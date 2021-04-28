@@ -1,7 +1,5 @@
 import express.Express;
 
-import java.nio.file.Paths;
-
 import static nosqlite.Database.collection;
 
 public class Main {
@@ -19,7 +17,7 @@ public class Main {
 
 
 
-        app.useStatic(Paths.get("src/main/resources/static"));
+
 
         app.listen(4000);
     }
