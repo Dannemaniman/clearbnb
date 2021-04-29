@@ -1,13 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <header></header>
+
+  <main>
+    <router-view />
+  </main>
+
+  <footer></footer>
 </template>
 
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+<script>
+export default {
+  async created() {
+    let res = await fetch('/rest/hello')
+    let message = await res.json()
+    console.log(message);
+  }
+}
 </script>
 
 <style>

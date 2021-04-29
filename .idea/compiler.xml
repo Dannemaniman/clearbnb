@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Clear-BnB" />
         <module name="clearbnb" />
+        <module name="vue-express" />
       </profile>
     </annotationProcessing>
   </component>
