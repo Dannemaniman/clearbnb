@@ -11,11 +11,11 @@
 <script>
 export default {
   async created() {
-    let res = await fetch('/rest/hello')
-    let message = await res.json()
+    let res = await fetch('/rest/hello');
+    let message = await res.json();
     console.log(message);
-  }
-}
+  },
+};
 </script>
 
 <style>
