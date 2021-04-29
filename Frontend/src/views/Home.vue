@@ -17,6 +17,7 @@
       <a href="../../public/images/House8.jpg" class="img-8"> </a>
     </div>
   </div>
+  <div class="slider"><h1>SLAAAJDEER</h1></div>
 </template>
 
 <script>
@@ -118,5 +119,12 @@ export default {
 .img-8 {
   grid-area: img-8;
   background-image: url('../../public/images/House8.jpg');
+}
+
+.slider {
+  margin-top: 15rem;
+  color: crimson;
+  font-size: 5rem;
+  background-color: aqua;
 }
 </style>
