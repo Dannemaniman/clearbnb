@@ -1,10 +1,10 @@
 <template>
+  <header></header>
+    <main>
+      <router-view />
+    </main>
 
-  <main>
-    <router-view />
-  </main>
-
- <Footer></Footer>
+  <Footer></Footer>
 </template>
 
 <script>
@@ -16,11 +16,11 @@ export default {
     Footer
   },
   async created() {
-    let res = await fetch('/rest/hello')
-    let message = await res.json()
+    let res = await fetch('/rest/hello');
+    let message = await res.json();
     console.log(message);
-  }
-}
+  },
+};
 </script>
 
 <style>
