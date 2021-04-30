@@ -1,9 +1,9 @@
 <template>
   <div class="home-content">
     <h1>Clear-BnB</h1>
-    <form submit.prevent="">
+    <form @submit.prevent="searchByLocation">
       <input type="text" placeholder="Enter location..." />
-      <button class="btn" @click="searchByLocation">Search</button>
+      <button type="submit" class="btn">Search</button>
     </form>
 
     <div class="image-gallery">
@@ -18,6 +18,8 @@
     </div>
   </div>
   <div class="slider"><h1>SLAAAJDEER</h1></div>
+
+  <div class="slider"><h1>SLAAAJDEER</h1></div>
 </template>
 
 <script>
@@ -29,11 +31,14 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin-top: 6rem;
+}
+form {
+  margin-top: 4rem;
+}
 .home-content {
-  width: 100%;
-  max-width: 60rem;
-  margin: auto;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
 }
 .image-gallery {
   margin-top: 5rem;
@@ -53,22 +58,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
 }
-/* .image-gallery a ion-icon {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 3rem;
-  position: relative;
-  z-index: 100;
-  padding: 1rem 3rem;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 0.4rem;
-  opacity: 0;
-  transition: opacity 0.5s;
-} */
 
 .image-gallery a::before {
   content: '';
@@ -122,9 +112,11 @@ export default {
 }
 
 .slider {
-  margin-top: 15rem;
-  color: crimson;
-  font-size: 5rem;
-  background-color: aqua;
+  margin: 5rem 0;
+  color: #4b4b4b;
+  font-size: 4rem;
+  background-color: #a9a9a9;
+  padding: 3rem 0;
+  max-width: 100%;
 }
 </style>
