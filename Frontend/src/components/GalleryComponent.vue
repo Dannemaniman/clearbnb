@@ -1,13 +1,13 @@
 <template>
   <div class="image-gallery">
-    <a href="../../public/images/House1.jpg" class="img-1"> </a>
-    <a href="../../public/images/House2.jpg" class="img-2"> </a>
-    <a href="../../public/images/House3.jpg" class="img-3"> </a>
-    <a href="../../public/images/House4.jpg" class="img-4"> </a>
-    <a href="../../public/images/House5.jpg" class="img-5"> </a>
-    <a href="../../public/images/House6.jpg" class="img-6"> </a>
-    <a href="../../public/images/House7.jpg" class="img-7"> </a>
-    <a href="../../public/images/House8.jpg" class="img-8"> </a>
+    <a href="/images/House1.jpg" class="img-1"> </a>
+    <a href="/images/House2.jpg" class="img-2"> </a>
+    <a href="/images/House3.jpg" class="img-3"> </a>
+    <a href="/images/House4.jpg" class="img-4"> </a>
+    <a href="/images/House5.jpg" class="img-5"> </a>
+    <a href="/images/House6.jpg" class="img-6"> </a>
+    <a href="/images/House7.jpg" class="img-7"> </a>
+    <a href="/images/House8.jpg" class="img-8"> </a>
   </div>
 </template>
 
@@ -55,35 +55,35 @@ export default {};
 .img-1 {
   grid-area: img-1;
   min-height: 20.5rem;
-  background-image: url('../../public/images/House1.jpg');
+  background-image: url('/images/House1.jpg');
 }
 .img-2 {
   grid-area: img-2;
-  background-image: url('../../public/images/House2.jpg');
+  background-image: url('/images/House2.jpg');
 }
 .img-3 {
   grid-area: img-3;
-  background-image: url('../../public/images/House3.jpg');
+  background-image: url('/images/House3.jpg');
 }
 .img-4 {
   grid-area: img-4;
-  background-image: url('../../public/images/House4.jpg');
+  background-image: url('/images/House4.jpg');
 }
 .img-5 {
   grid-area: img-5;
-  background-image: url('../../public/images/House5.jpg');
+  background-image: url('/images/House5.jpg');
 }
 .img-6 {
   grid-area: img-6;
   min-height: 20.5rem;
-  background-image: url('../../public/images/House6.jpg');
+  background-image: url('/images/House6.jpg');
 }
 .img-7 {
   grid-area: img-7;
-  background-image: url('../../public/images/House7.jpg');
+  background-image: url('/images/House7.jpg');
 }
 .img-8 {
   grid-area: img-8;
-  background-image: url('../../public/images/House8.jpg');
+  background-image: url('/images/House8.jpg');
 }
 </style>

@@ -1,10 +1,6 @@
 <template>
   <div class="home-content">
-    <h1>Clear-BnB</h1>
-    <form @submit.prevent="searchByLocation">
-      <input type="text" placeholder="Enter location..." />
-      <button type="submit" class="btn">Search</button>
-    </form>
+    <SearchBar />
     <GalleryComponent />
     <div class="slider"><h1>SLAAAJDEER</h1></div>
     <div class="slider"><h1>SLAAAJDEER</h1></div>
@@ -12,10 +8,12 @@
 </template>
 
 <script>
+import SearchBar from '../components/SearchBar.vue';
 import GalleryComponent from '../components/GalleryComponent.vue';
 export default {
   components: {
     GalleryComponent,
+    SearchBar,
   },
   methods: {
     searchByLocation() {},
@@ -27,12 +25,7 @@ export default {
 .home-content {
   padding: 0 0.5rem;
 }
-h1 {
-  margin-top: 6rem;
-}
-form {
-  margin-top: 4rem;
-}
+
 .slider {
   margin: 5rem 0;
   color: #4b4b4b;
