@@ -1,7 +1,14 @@
 <template>
-  <GalleryComponent />
-  <div class="slider"><h1>SLAAAJDEER</h1></div>
-  <div class="slider"><h1>SLAAAJDEER</h1></div>
+  <div class="home-content">
+    <h1>Clear-BnB</h1>
+    <form @submit.prevent="searchByLocation">
+      <input type="text" placeholder="Enter location..." />
+      <button type="submit" class="btn">Search</button>
+    </form>
+    <GalleryComponent />
+    <div class="slider"><h1>SLAAAJDEER</h1></div>
+    <div class="slider"><h1>SLAAAJDEER</h1></div>
+  </div>
 </template>
 
 <script>
@@ -17,6 +24,15 @@ export default {
 </script>
 
 <style scoped>
+.home-content {
+  padding: 0 0.5rem;
+}
+h1 {
+  margin-top: 6rem;
+}
+form {
+  margin-top: 4rem;
+}
 .slider {
   margin: 5rem 0;
   color: #4b4b4b;

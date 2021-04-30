@@ -1,21 +1,13 @@
 <template>
-  <div class="home-content">
-    <h1>Clear-BnB</h1>
-    <form @submit.prevent="searchByLocation">
-      <input type="text" placeholder="Enter location..." />
-      <button type="submit" class="btn">Search</button>
-    </form>
-
-    <div class="image-gallery">
-      <a href="../../public/images/House1.jpg" class="img-1"> </a>
-      <a href="../../public/images/House2.jpg" class="img-2"> </a>
-      <a href="../../public/images/House3.jpg" class="img-3"> </a>
-      <a href="../../public/images/House4.jpg" class="img-4"> </a>
-      <a href="../../public/images/House5.jpg" class="img-5"> </a>
-      <a href="../../public/images/House6.jpg" class="img-6"> </a>
-      <a href="../../public/images/House7.jpg" class="img-7"> </a>
-      <a href="../../public/images/House8.jpg" class="img-8"> </a>
-    </div>
+  <div class="image-gallery">
+    <a href="../../public/images/House1.jpg" class="img-1"> </a>
+    <a href="../../public/images/House2.jpg" class="img-2"> </a>
+    <a href="../../public/images/House3.jpg" class="img-3"> </a>
+    <a href="../../public/images/House4.jpg" class="img-4"> </a>
+    <a href="../../public/images/House5.jpg" class="img-5"> </a>
+    <a href="../../public/images/House6.jpg" class="img-6"> </a>
+    <a href="../../public/images/House7.jpg" class="img-7"> </a>
+    <a href="../../public/images/House8.jpg" class="img-8"> </a>
   </div>
 </template>
 
@@ -24,15 +16,6 @@ export default {};
 </script>
 
 <style scoped>
-h1 {
-  margin-top: 6rem;
-}
-form {
-  margin-top: 4rem;
-}
-.home-content {
-  padding: 0 0.5rem;
-}
 .image-gallery {
   margin-top: 5rem;
   display: grid;
