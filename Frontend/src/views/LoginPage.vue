@@ -7,9 +7,9 @@
       <button class="login" type="submit" value="submit">Logga in</button>
       <hr />
       <router-link to="/">
-        <button class="cancel" type="button">Avbryt</button>
+        <button class="cancel" type="button">Cancel</button>
       </router-link>
-      <router-link class="register" to="/src/views/RegisterPage.vue"
+      <router-link class="register" to="/register-page"
         >Register new account</router-link
       >
     </form>
@@ -48,6 +48,7 @@ form {
   max-width: 30rem;
   height: 35rem;
   background-color: #808080;
+  border-radius: 8px;
 }
 input {
   width: 45vw;
