@@ -15,7 +15,6 @@ public class Home {
     private ArrayList<Image> images;
     private String title;
     private String address;
-    private String zip;
     private String city;
     private String propertyType;
     private Accommodation accommodation;
@@ -57,14 +56,6 @@ public class Home {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
     }
 
     public String getCity() {
