@@ -1,5 +1,7 @@
 <template>
-  <header></header>
+  <header>
+    <Navbar/>
+  </header>
     <main>
       <router-view />
     </main>
@@ -9,11 +11,13 @@
 
 <script>
 import Footer from "./views/Footer.vue"
+import Navbar from './views/Navbar.vue';
 
 export default {
   name: "App",
   components: {
-    Footer
+    Footer,
+    Navbar
   },
   async created() {
     let res = await fetch('/rest/hello');
@@ -24,24 +28,20 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  min-height:100vh;
+*{
   margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 120%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+
+body{
+  color: rgba(34, 34, 34);
+  font-family:  Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
 }
 main {
   flex-grow: 1;

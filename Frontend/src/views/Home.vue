@@ -1,10 +1,6 @@
 <template>
   <div class="home-content">
-    <h1>Clear-BnB</h1>
-    <form @submit.prevent="searchByLocation">
-      <input type="text" placeholder="Enter location..." />
-      <button type="submit" class="btn">Search</button>
-    </form>
+   
 
     <div class="image-gallery">
       <a href="../../public/images/House1.jpg" class="img-1"> </a>
@@ -52,6 +48,7 @@ form {
     'img-7 img-7 img-8 img-6';
 }
 .image-gallery a {
+  top: 20px;
   width: 100%;
   height: 10rem;
   background-position: center;
