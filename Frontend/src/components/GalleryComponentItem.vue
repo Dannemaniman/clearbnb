@@ -16,4 +16,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.house {
+  cursor: pointer;
+  transition: 200ms;
+  height: 10rem;
+}
+
+.house:hover {
+  transform: scale(1.04);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+</style>

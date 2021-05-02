@@ -5,19 +5,9 @@
       :key="index"
       :class="addClass(index)"
       :house="house"
+      class="property"
     />
-    <!-- <router-link :to="house.images[0]" :class="addClass(index)">
-        <img :src="house.images[0]" />
-      </router-link> -->
   </div>
-  <!--  <a href="/images/House1.jpg" class="img-1"> </a>
-    <a href="/images/House2.jpg" class="img-2"> </a>
-    <a href="/images/House3.jpg" class="img-3"> </a>
-    <a href="/images/House4.jpg" class="img-4"> </a>
-    <a href="/images/House5.jpg" class="img-5"> </a>
-    <a href="/images/House6.jpg" class="img-6"> </a>
-    <a href="/images/House7.jpg" class="img-7"> </a>
-    <a href="/images/House8.jpg" class="img-8"> </a> -->
 </template>
 
 <script>
@@ -26,7 +16,7 @@ export default {
   components: { GalleryComponentItem },
   methods: {
     addClass(index) {
-      return 'img-' + (index + 1);
+      return 'house-' + (index + 1);
     },
   },
   computed: {
@@ -45,67 +35,34 @@ export default {
   grid-template-rows: auto;
   grid-gap: 0.5rem;
   grid-template-areas:
-    'img-1 img-2 img-3 img-3'
-    'img-1 img-4 img-5 img-6'
-    'img-7 img-7 img-8 img-6';
+    'house-1 house-2 house-3 house-3'
+    'house-1 house-4 house-5 house-6'
+    'house-7 house-7 house-8 house-6';
 }
-.image-gallery a {
-  width: 100%;
-  height: 10rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.image-gallery a::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.image-gallery a:hover::before {
-  opacity: 1;
-}
-
-.img-1 {
-  grid-area: img-1;
+.house-1 {
+  grid-area: house-1;
   min-height: 20.5rem;
-  /* background-image: url('/images/House1.jpg'); */
 }
-.img-2 {
-  grid-area: img-2;
-  /* background-image: url('/images/House2.jpg'); */
+.house-2 {
+  grid-area: house-2;
 }
-.img-3 {
-  grid-area: img-3;
-  /* background-image: url('/images/House3.jpg'); */
+.house-3 {
+  grid-area: house-3;
 }
-.img-4 {
-  grid-area: img-4;
-  /* background-image: url('/images/House4.jpg'); */
+.house-4 {
+  grid-area: house-4;
 }
-.img-5 {
-  grid-area: img-5;
-  /* background-image: url('/images/House5.jpg'); */
+.house-5 {
+  grid-area: house-5;
 }
-.img-6 {
-  grid-area: img-6;
+.house-6 {
+  grid-area: house-6;
   min-height: 20.5rem;
-  /* background-image: url('/images/House6.jpg'); */
 }
-.img-7 {
-  grid-area: img-7;
-  /* background-image: url('/images/House7.jpg'); */
+.house-7 {
+  grid-area: house-7;
 }
-.img-8 {
-  grid-area: img-8;
-  /* background-image: url('/images/House8.jpg'); */
+.house9-8 {
+  grid-area: house-8;
 }
 </style>
