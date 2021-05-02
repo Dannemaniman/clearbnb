@@ -5,7 +5,6 @@
       :key="index"
       :class="addClass(index)"
       :house="house"
-      class="property"
     />
   </div>
 </template>

@@ -25,8 +25,6 @@ export default createStore({
       let res = await fetch('/rest/houses');
       let houses = await res.json();
 
-      console.log(houses);
-
       store.commit('setHouses', houses);
     },
   },
