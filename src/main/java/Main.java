@@ -24,13 +24,13 @@ public class Main {
       config.useBrowser = true;
     });
   
-    ArrayList<String> images = new ArrayList<>();
+    /*ArrayList<String> images = new ArrayList<>();
     images.add("public\\images\\House8.jpg");
   
   
     House home = new House("Hemliga huset", "Flexibel", "Sjöbo", "Tält", "Trevligt tält bla bla", images, 500);
     
-    collection("House").save(home);
+    collection("House").save(home);*/
   
     app.get("/rest/houses", (req, res) -> {
       List<House> houses = collection("House").find();
