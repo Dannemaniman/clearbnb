@@ -1,23 +1,16 @@
 <template>
-  <div @click="goToDetails" :class="'image'" :key="'index'">
-    <!-- v-bind: (short ':') binds an attribute
-          to a reactive varaible -->
-    <img v-bind:src="property.imageUrl" alt="" />
+  <div @click="goToDetails" class="house">
+    <img :src="house.images[0]" />
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      image: 'img-' + (index + 1),
-    };
-  },
-  props: ['property'],
+  props: ['house'],
 
   methods: {
     goToDetails() {
-      this.$router.push('/property/' + this.property.id);
+      this.$router.push('/house/' + this.house.id);
     },
   },
 };

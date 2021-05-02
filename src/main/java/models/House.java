@@ -30,6 +30,8 @@ public class House {
         this.price = price;
     }
     
+//    Lägga alla bilder i en url variabel och sedan dom i en lista? eller bara ha en bild tillsvidare.
+    
     @Override
     public String toString() {
         return "House{" +
