@@ -1,13 +1,15 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 @Document
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Home {
 
     @Id
@@ -20,9 +22,11 @@ public class Home {
     private Accommodation accommodation;
     private String description;
     private String price;
-    private ArrayList<String> amenities;
-    private ArrayList<Reviews> reviews;
-    private ArrayList<Date> bookedDate;
+    private List<String> amenities;
+    private List<Reviews> reviews;
+    private String ownerId;
+    private List<Booking> bookings;
+
 
     public Home() { }
 
@@ -98,27 +102,35 @@ public class Home {
         this.price = price;
     }
 
-    public ArrayList<String> getAmenities() {
+    public List<String> getAmenities() {
         return amenities;
     }
 
-    public void setAmenities(ArrayList<String> amenities) {
+    public void setAmenities(List<String> amenities) {
         this.amenities = amenities;
     }
 
-    public ArrayList<Reviews> getReviews() {
+    public List<Reviews> getReviews() {
         return reviews;
     }
 
-    public void setReviews(ArrayList<Reviews> reviews) {
+    public void setReviews(List<Reviews> reviews) {
         this.reviews = reviews;
     }
 
-    public ArrayList<Date> getBookedDate() {
-        return bookedDate;
+    public String getOwnerId() {
+        return ownerId;
     }
 
-    public void setBookedDate(ArrayList<Date> bookedDate) {
-        this.bookedDate = bookedDate;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

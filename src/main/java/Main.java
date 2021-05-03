@@ -1,25 +1,20 @@
 import express.Express;
-
-import java.util.ArrayList;
-
+import models.Home;
+import models.User;
 import static nosqlite.Database.collection;
-
 /*
     C - Create  POST
     R - Read    GET
     U - Update  PUT
     D - Delete  DELETE
  */
-
 public class Main {
   public static void main(String[] args) {
     Express app = new Express();
-  
-    collection(config -> {
-      config.useBrowser = true;
-    });
 
-    /* ArrayList<String> images = new ArrayList<>(); images.add("public\\images\\House8.jpg"); */
+    collection(config -> {
+          config.useBrowser = true;
+    });
 
     app.get("/rest/homes", (req, res) -> {
         res.json(collection("Home").find());

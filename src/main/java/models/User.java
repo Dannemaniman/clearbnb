@@ -1,23 +1,35 @@
 package models;
-
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
-
-import java.util.ArrayList;
+import nosqlite.annotations.Transient;
+import java.util.List;
 
 @Document
 public class User {
 
-    @Id
-    private String id;
+    @Id private String id;
     private String userName;
     private String userPassword;
     private String email;
     private String fullName;
-    private ArrayList<Home> userHomes;
-    private ArrayList<Home> userBookings;
+    // ignore this property when saving to the collection
+    @Transient private List<Home> userHomes;
+    @Transient private List<Home> userBookings;
 
     public User() { }
+
+    @Override
+    public String toString() {
+        return "\nUser{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", userHomes=" + userHomes +
+                ", userBookings=" + userBookings +
+                '}';
+    }
 
     public String getId() {
         return id;
@@ -59,19 +71,19 @@ public class User {
         this.fullName = fullName;
     }
 
-    public ArrayList<Home> getUserHomes() {
+    public List<Home> getUserHomes() {
         return userHomes;
     }
 
-    public void setUserHomes(ArrayList<Home> userHomes) {
+    public void setUserHomes(List<Home> userHomes) {
         this.userHomes = userHomes;
     }
 
-    public ArrayList<Home> getUserBookings() {
+    public List<Home> getUserBookings() {
         return userBookings;
     }
 
-    public void setUserBookings(ArrayList<Home> userBookings) {
+    public void setUserBookings(List<Home> userBookings) {
         this.userBookings = userBookings;
     }
 }
