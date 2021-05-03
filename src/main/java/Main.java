@@ -1,5 +1,10 @@
 import express.Express;
+import models.House;
 
+import javax.print.DocFlavor;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static nosqlite.Database.collection;
@@ -14,11 +19,23 @@ import static nosqlite.Database.collection;
 public class Main {
   public static void main(String[] args) {
     Express app = new Express();
+  
+    collection(config -> {
+      config.useBrowser = true;
+    });
+  
+    /*ArrayList<String> images = new ArrayList<>();
+    images.add("public\\images\\House8.jpg");
+  
+  
+    House home = new House("Hemliga huset", "Flexibel", "Sjöbo", "Tält", "Trevligt tält bla bla", images, 500);
     
-    collection();
+    collection("House").save(home);*/
+  
+    app.get("/rest/houses", (req, res) -> {
+      List<House> houses = collection("House").find();
     
-    app.get("/rest/hello", (req, res) -> {
-      res.json(Map.of("message", "Hello from express"));
+      res.json(houses);
     });
     
     // start server

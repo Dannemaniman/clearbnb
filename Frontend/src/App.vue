@@ -1,24 +1,22 @@
 <template>
   <header></header>
-    <main>
-      <router-view />
-    </main>
+  <main>
+    <router-view />
+  </main>
 
   <Footer></Footer>
 </template>
 
 <script>
-import Footer from "./views/Footer.vue"
+import Footer from './views/Footer.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    Footer
+    Footer,
   },
-  async created() {
-    let res = await fetch('/rest/hello');
-    let message = await res.json();
-    console.log(message);
+  created() {
+    this.$store.dispatch('fetchHouses');
   },
 };
 </script>
@@ -31,7 +29,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  min-height:100vh;
+  min-height: 100vh;
   margin: 0;
   min-height: 100vh;
   display: flex;
@@ -46,5 +44,4 @@ body {
 main {
   flex-grow: 1;
 }
-
 </style>
