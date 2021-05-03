@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from './views/Home.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
-import HouseDetails from './views/HouseDetails.vue';
+import HomeDetails from './views/HomeDetails.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -22,8 +22,8 @@ export default createRouter({
       component: RegisterPage,
     },
     {
-      path: '/house/:id',
-      component: HouseDetails,
+      path: '/home/:id',
+      component: HomeDetails,
     },
   ],
 });

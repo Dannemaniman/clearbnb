@@ -15,8 +15,10 @@ export default {
   components: {
     Footer,
   },
+
   created() {
-    this.$store.dispatch('fetchHouses');
+    this.$store.dispatch('fetchHomes');
+    
   },
 };
 </script>
