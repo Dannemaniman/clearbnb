@@ -12,14 +12,21 @@
       <a href="../../public/images/House7.jpg" class="img-7"> </a>
       <a href="../../public/images/House8.jpg" class="img-8"> </a>
     </div>
+    <SearchBar />
+    <GalleryComponent />
+    <div class="slider"><h1>SLAAAJDEER</h1></div>
+    <div class="slider"><h1>SLAAAJDEER</h1></div>
   </div>
-  <div class="slider"><h1>SLAAAJDEER</h1></div>
-
-  <div class="slider"><h1>SLAAAJDEER</h1></div>
 </template>
 
 <script>
+import SearchBar from '../components/SearchBar.vue';
+import GalleryComponent from '../components/GalleryComponent.vue';
 export default {
+  components: {
+    GalleryComponent,
+    SearchBar,
+  },
   methods: {
     searchByLocation() {},
   },
@@ -27,12 +34,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  margin-top: 6rem;
-}
-form {
-  margin-top: 4rem;
-}
 .home-content {
   padding: 0 0.5rem;
 }
