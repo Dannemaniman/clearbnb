@@ -33,9 +33,12 @@ public class Main {
     collection("House").save(home);*/
   
     app.get("/rest/houses", (req, res) -> {
-      List<House> houses = collection("House").find();
+      res.json(collection("House").find());
     
-      res.json(houses);
+      
+    });
+    app.get("/rest/houses/:id", (req, res) -> {
+      res.json(collection("House").findById(req.params("id")));
     });
     
     // start server

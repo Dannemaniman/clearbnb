@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-content">
+  <div class="content">
     <h1>{{ home.title }}</h1>
     <h2>{{ home.address }}</h2>
     <h2>{{ home.description }}</h2>
@@ -12,29 +12,26 @@
 
 <script>
 export default {
-  data() {
+  /* data() {
     return {
       home: null,
     };
-  },
-  /*  computed: {
+  }, */
+  computed: {
     home() {
       return this.$store.state.selectedHouse;
     },
-  }, */
-  beforeMount() {
-    for (let home of this.$store.state.houses) {
-      if (home.id == this.$route.params.id) {
-        this.home = home;
-      }
-    }
   },
-  /*  async created() {
-    let id = this.$route.params.id;
-    const response = await fetch(`/rest/houses/${id}`);
-    const data = await response.json();
-    this.home = data;
-  }, */
+
+  created() {
+    this.$store.commit(
+      'setSelectedHouse',
+      this.$store.state.houses.find((h) => h.id == this.$route.params.id)
+    );
+    /* this.home = this.$store.state.houses.find(
+      (h) => h.id == this.$route.params.id
+    ); */
+  },
 };
 </script>
 
