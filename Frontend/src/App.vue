@@ -33,8 +33,11 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 120%;
 }
-
 
 body{
   color: rgba(34, 34, 34);
@@ -44,6 +47,7 @@ body{
   line-height: 18px;
   -webkit-font-smoothing: antialiased;
 }
+
 main {
   flex-grow: 1;
 }
