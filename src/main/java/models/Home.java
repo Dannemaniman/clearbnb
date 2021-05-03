@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Home {
 
     @Id

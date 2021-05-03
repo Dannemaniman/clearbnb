@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import HomeDetails from './views/HomeDetails.vue';
+import AllHomes from './views/AllHomes.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -25,5 +26,9 @@ export default createRouter({
       path: '/home/:id',
       component: HomeDetails,
     },
+    {
+      path: '/all-homes',
+      component: AllHomes,
+    }
   ],
 });
