@@ -1,7 +1,5 @@
 <template>
   <div class="home-content">
-   
-
     <div class="image-gallery">
       <a href="../../public/images/House1.jpg" class="img-1"> </a>
       <a href="../../public/images/House2.jpg" class="img-2"> </a>

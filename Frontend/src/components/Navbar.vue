@@ -2,7 +2,7 @@
   <header class="header" >
     <div class="logo">
       
-     <a href="#"> <img class="logo" src="../../public/images/clearbnb_logo1.png" alt="clearbnb_logo"/></a>
+     <router-link to="/"><img class="logo" src="../../public/images/clearbnb_logo1.png" alt="clearbnb_logo"/></router-link> 
     </div>
  
     <div class="header-search">
@@ -25,10 +25,10 @@
 <div class="login-form" v-if="isOpen">
   <form >
     <div class="logIn">
-      <a href="./index2.html">Log in</a>
+      <router-link to="/login-page">Log in</router-link>
     </div>
     <div class="signUp">
-    <a href="/#/">Sign up</a>
+      <router-link to="/register-page">Sign up</router-link>
     </div>
   </form>
 </div>
