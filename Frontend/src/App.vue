@@ -1,34 +1,35 @@
 <template>
-  <header>
-    <Navbar/>
-  </header>
-    <main>
-      <router-view />
-    </main>
+  <header></header>
+  <main>
+    <router-view />
+  </main>
 
   <Footer></Footer>
 </template>
 
 <script>
-import Footer from "./views/Footer.vue"
-import Navbar from './views/Navbar.vue';
+import Footer from './views/Footer.vue';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Footer,
-    Navbar
   },
-  async created() {
-    let res = await fetch('/rest/hello');
-    let message = await res.json();
-    console.log(message);
+  created() {
+    this.$store.dispatch('fetchHouses');
   },
 };
 </script>
 
 <style>
-*{
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -46,5 +47,4 @@ body{
 main {
   flex-grow: 1;
 }
-
 </style>

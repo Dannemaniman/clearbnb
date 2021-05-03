@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background-image: url('../public//images/background2.jpg');
+  background-image: url('/images/background2.jpg');
 }
 
 #app {
