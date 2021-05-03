@@ -1,6 +1,6 @@
 <template>
   <div class="home-content">
-    <SearchBar />
+
     <GalleryComponent />
     <div class="slider"><h1>SLAAAJDEER</h1></div>
     <div class="slider"><h1>SLAAAJDEER</h1></div>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import SearchBar from '../components/SearchBar.vue';
+
 import GalleryComponent from '../components/GalleryComponent.vue';
 export default {
   components: {
     GalleryComponent,
-    SearchBar,
+    
   },
   methods: {
     searchByLocation() {},
@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style scoped>
+
 .home-content {
   padding: 0 0.5rem;
 }
