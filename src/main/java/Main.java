@@ -1,11 +1,6 @@
 import express.Express;
-import models.House;
 
-import javax.print.DocFlavor;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import static nosqlite.Database.collection;
 
@@ -23,21 +18,25 @@ public class Main {
     collection(config -> {
       config.useBrowser = true;
     });
-  
-    /*ArrayList<String> images = new ArrayList<>();
-    images.add("public\\images\\House8.jpg");
-  
-  
-    House home = new House("Hemliga huset", "Flexibel", "Sjöbo", "Tält", "Trevligt tält bla bla", images, 500);
-    
-    collection("House").save(home);*/
-  
-    app.get("/rest/houses", (req, res) -> {
-      List<House> houses = collection("House").find();
-    
-      res.json(houses);
+
+    /* ArrayList<String> images = new ArrayList<>(); images.add("public\\images\\House8.jpg"); */
+
+    app.get("/rest/homes", (req, res) -> {
+        res.json(collection("Home").find());
     });
-    
+
+    app.get("/rest/homes/:id", (req, res) -> {
+        res.json(collection("Home").findById(req.params("id")));
+    });
+
+    app.get("/rest/users", (req, res) -> {
+        res.json(collection("User").find());
+    });
+
+    app.get("/rest/users/:id", (req, res) -> {
+        res.json(collection("User").findById(req.params("id")));
+    });
+
     // start server
     app.listen(4000);
   }
