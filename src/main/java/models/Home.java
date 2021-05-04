@@ -12,7 +12,7 @@ public class Home {
 
     @Id
     private String id;
-    private ArrayList<Image> images;
+    private ArrayList<String> images;
     private String title;
     private String address;
     private String city;
@@ -34,11 +34,11 @@ public class Home {
         this.id = id;
     }
 
-    public ArrayList<Image> getImages() {
+    public ArrayList<String> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(ArrayList<String> images) {
         this.images = images;
     }
 

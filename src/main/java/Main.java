@@ -1,6 +1,8 @@
 import express.Express;
+import models.Home;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static nosqlite.Database.collection;
 
@@ -28,12 +30,12 @@ public class Main {
     collection("House").save(home);*/
   
     app.get("/rest/houses", (req, res) -> {
-      res.json(collection("House").find());
-    
-      
+      List<Home> houses = collection("Home").find();
+  
+      res.json(houses);
     });
-    app.get("/rest/houses/:id", (req, res) -> {
-      res.json(collection("House").findById(req.params("id")));
+//    app.get("/rest/houses/:id", (req, res) -> {
+//      res.json(collection("House").findById(req.params("id")));
 
     /* ArrayList<String> images = new ArrayList<>(); images.add("public\\images\\House8.jpg"); */
 
