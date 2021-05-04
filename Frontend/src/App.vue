@@ -28,8 +28,13 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> aafc2a388084203769577f8fabc4f410cbf853a9
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -47,7 +52,6 @@ export default {
 
 body{
   color: rgba(34, 34, 34);
-  font-family:  Helvetica, Arial, sans-serif;
   font-size: 14px;
   letter-spacing: normal;
   line-height: 18px;

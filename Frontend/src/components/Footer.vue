@@ -1,27 +1,27 @@
 <template>
   <footer>
-    <div class="footer-content">
+    <div class='footer-content'>
       <ul>
-        <li><a href="/">How Clearbnb works</a></li>
-        <li><a href="/">Investors</a></li>
-        <li><a href="/">Careers</a></li>
-        <li><a href="/">Our mission</a></li>
+        <li><a href='/'>How Clearbnb works</a></li>
+        <li><a href='/'>Investors</a></li>
+        <li><a href='/'>Careers</a></li>
+        <li><a href='/'>Our mission</a></li>
       </ul>
       <ul>
-        <li><a href="/">Diversity &#38; Belonging</a></li>
-        <li><a href="/">Against Discrimination</a></li>
-        <li><a href="/">Accessibility</a></li>
-        <li><a href="/">Gift Cards</a></li>
+        <li><a href='/'>Diversity &#38; Belonging</a></li>
+        <li><a href='/'>Against Discrimination</a></li>
+        <li><a href='/'>Accessibility</a></li>
+        <li><a href='/'>Gift Cards</a></li>
       </ul>
       <ul>
-        <li><a href="/">Host your Home</a></li>
-        <li><a href="/">Responsible Hosting</a></li>
-        <li><a href="/">Refer hosts</a></li>
-        <li><a href="/">Community Center</a></li>
+        <li><a href='/'>Host your Home</a></li>
+        <li><a href='/'>Responsible Hosting</a></li>
+        <li><a href='/'>Refer hosts</a></li>
+        <li><a href='/'>Community Center</a></li>
       </ul>
     </div>
     <hr>
-    <div class="footer-company">
+    <div class='footer-company'>
       <p>
         © 2021 Clearbnb, Inc
       </p>
