@@ -22,8 +22,13 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> aafc2a388084203769577f8fabc4f410cbf853a9
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -31,16 +36,22 @@ export default {
   margin-top: 60px;
   min-height: 100vh;
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-size: 120%;
 }
 
-body {
-  margin: 0;
+body{
+  color: rgba(34, 34, 34);
+  font-size: 14px;
+  letter-spacing: normal;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
 }
+
 main {
   flex-grow: 1;
 }
