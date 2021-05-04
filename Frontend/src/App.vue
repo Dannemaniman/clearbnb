@@ -22,12 +22,6 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> aafc2a388084203769577f8fabc4f410cbf853a9
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,7 +38,7 @@ export default {
   font-size: 120%;
 }
 
-body{
+body {
   color: rgba(34, 34, 34);
   font-size: 14px;
   letter-spacing: normal;

@@ -29,11 +29,11 @@ public class Main {
     
     collection("House").save(home);*/
   
-    app.get("/rest/houses", (req, res) -> {
-      List<Home> houses = collection("Home").find();
-  
-      res.json(houses);
-    });
+//    app.get("/rest/houses", (req, res) -> {
+//      List<Home> houses = collection("Home").find();
+//
+//      res.json(houses);
+//    });
 //    app.get("/rest/houses/:id", (req, res) -> {
 //      res.json(collection("House").findById(req.params("id")));
 

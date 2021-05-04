@@ -22,18 +22,17 @@ export default createStore({
   // this.$store.dispatch('actionName')
   actions: {
     async fetchHouses(store) {
-      // fetch recipes and update
       // state with response
       // store.commit('setRecipes')
-      let res = await fetch('/rest/houses');
+      let res = await fetch('/rest/homes');
       let houses = await res.json();
       store.commit('setHouses', houses);
     },
 
-    async fetchHouseById(store, id) {
+    /*  async fetchHouseById(store, id) {
       let res = await fetch('/rest/houses/:${id}');
       let house = await res.json();
       store.commit('setSelectedHouse', house);
-    },
+    }, */
   },
 });
