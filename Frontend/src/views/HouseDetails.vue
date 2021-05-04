@@ -21,6 +21,9 @@
       <h2>{{ home.description }}</h2>
       <Amenities :amenities="home.amenities" />
     </div>
+    <div class="map"><h1>Map</h1></div>
+    <div class="reviews"><h1>Reviews</h1></div>
+    <div class="host"><h1>Host</h1></div>
   </div>
 </template>
 
@@ -77,5 +80,20 @@ export default {
   object-fit: contain;
   background-repeat: no-repeat;
   flex-wrap: wrap;
+}
+.map {
+  height: 15rem;
+  background-color: #6b6b6b;
+  margin-top: 3rem;
+}
+.reviews {
+  height: 15rem;
+  background-color: #a9a9a9;
+  margin-top: 3rem;
+}
+.host {
+  height: 15rem;
+  background-color: #6b6b6b;
+  margin-top: 3rem;
 }
 </style>
