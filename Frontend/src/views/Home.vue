@@ -22,6 +22,7 @@
 <script>
 import SearchBar from '../components/SearchBar.vue';
 import GalleryComponent from '../components/GalleryComponent.vue';
+
 export default {
   components: {
     GalleryComponent,
