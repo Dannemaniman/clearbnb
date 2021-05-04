@@ -17,7 +17,8 @@
       </div>
     </div>
     <div class="information">
-      <h2>{{ home.address }}</h2>
+      <h2>{{ home.city }}</h2>
+      <h3>{{ home.address }}</h3>
       <h2>{{ home.description }}</h2>
       <Amenities :amenities="home.amenities" />
     </div>
