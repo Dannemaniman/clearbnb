@@ -4,7 +4,8 @@ export default createStore({
   // this.$store.state.variableName
   state: {
     houses: [],
-    users: []
+    users: [],
+    selectedHouse: [],
   },
 
   // this.$store.commit('mutationName', data)
@@ -20,8 +21,10 @@ export default createStore({
     },
     addUser(state, user) {
       state.users.push(user);
-    }
-
+    },
+    setSelectedHouse(state, house) {
+      state.selectedHouse = house;
+    },
   },
 
   // this.$store.dispatch('actionNamehouses
@@ -40,5 +43,11 @@ export default createStore({
       
       store.commit('setUsers', users);
     },
+    
+    /*  async fetchHouseById(store, id) {
+      let res = await fetch('/rest/houses/:${id}');
+      let house = await res.json();
+      store.commit('setSelectedHouse', house);
+    }, */
   },
 });

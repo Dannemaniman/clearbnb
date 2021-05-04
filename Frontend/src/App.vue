@@ -44,7 +44,7 @@ export default {
   font-size: 120%;
 }
 
-body{
+body {
   color: rgba(34, 34, 34);
   font-size: 14px;
   letter-spacing: normal;
