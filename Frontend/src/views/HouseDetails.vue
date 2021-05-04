@@ -1,6 +1,7 @@
 <template>
   <div class="detail-content">
     <h1>{{ home.title }}</h1>
+    <img :src="home.images" alt="" />
     <h2>{{ home.address }}</h2>
     <h2>{{ home.description }}</h2>
     <!-- <img class="img-1" :src="home.images[0]" />
