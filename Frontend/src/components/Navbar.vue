@@ -74,7 +74,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  position: fixed;
+  
   width: 100%;
   z-index: 2;
   background: white;

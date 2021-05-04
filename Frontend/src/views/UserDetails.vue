@@ -1,7 +1,9 @@
 <template>
-  <div>
-    {{ user }}
-  </div>  
+  <h1>{{ user.fullName }}</h1>
+  <p>{{ user.userName }}</p>
+  <p>{{ user.email }}</p>
+  <p>{{ user.userHouses }}</p>
+  <p>{{ user.userBookings }}</p>
 </template>
 
 <script>
