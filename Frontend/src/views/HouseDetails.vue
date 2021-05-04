@@ -21,7 +21,6 @@
       <h2>{{ home.description }}</h2>
       <Amenities :amenities="home.amenities" />
     </div>
-    <div class="booking-modal"></div>
   </div>
 </template>
 
