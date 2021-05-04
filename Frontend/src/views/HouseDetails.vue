@@ -2,14 +2,9 @@
   <div class="detail-content">
     <h1>{{ home.title }}</h1>
     <img :src="home.images" alt="" />
-    <Amenities :amenities="home.amenities" />
     <h2>{{ home.address }}</h2>
     <h2>{{ home.description }}</h2>
-
-    <!-- <img class="img-1" :src="home.images[0]" />
-    <img class="img-2" :src="home.images[0]" />
-    <img class="img-3" :src="home.images[0]" />
-    <img class="img-4" :src="home.images[0]" /> -->
+    <Amenities :amenities="home.amenities" />
   </div>
 </template>
 
