@@ -1,10 +1,27 @@
 <template>
   <div class="detail-content">
     <h1>{{ home.title }}</h1>
-    <img :src="home.images" alt="" />
-    <h2>{{ home.address }}</h2>
-    <h2>{{ home.description }}</h2>
-    <Amenities :amenities="home.amenities" />
+    <div class="images">
+      <div class="big-image">
+        <img :src="home.images[0]" alt="" class="img-1" />
+      </div>
+      <div class="small-images">
+        <img :src="home.images[0]" alt="" class="img-2" />
+        <img :src="home.images[0]" alt="" class="img-3" />
+        <img :src="home.images[0]" alt="" class="img-4" />
+        <img :src="home.images[0]" alt="" class="img-5" />
+        <img :src="home.images[0]" alt="" class="img-6" />
+        <img :src="home.images[0]" alt="" class="img-7" />
+        <img :src="home.images[0]" alt="" class="img-8" />
+        <img :src="home.images[0]" alt="" class="img-9" />
+      </div>
+    </div>
+    <div class="information">
+      <h2>{{ home.address }}</h2>
+      <h2>{{ home.description }}</h2>
+      <Amenities :amenities="home.amenities" />
+    </div>
+    <div class="booking-modal"></div>
   </div>
 </template>
 
@@ -38,4 +55,28 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.detail-content {
+  display: flex;
+  flex-direction: column;
+}
+.images {
+  display: flex;
+  padding: 10px;
+}
+.detail-content .img-1 {
+  max-width: 20rem;
+  max-height: 25rem;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  align-self: flex-start;
+  flex-grow: 1;
+}
+.small-images img {
+  max-height: 12.5rem;
+  width: 25%;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  flex-wrap: wrap;
+}
+</style>
