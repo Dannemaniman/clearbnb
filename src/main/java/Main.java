@@ -1,5 +1,5 @@
 import express.Express;
-import models.Home;
+import models.House;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,6 @@ public class Main {
 //
 //      res.json(houses);
 //    });
-//    app.get("/rest/houses/:id", (req, res) -> {
-//      res.json(collection("House").findById(req.params("id")));
 
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());

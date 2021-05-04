@@ -1,39 +1,39 @@
 <template>
   <header class="header" >
     <div class="logo">
-      
      <router-link to="/"><img class="logo" src="../../public/images/clearbnb_logo1.png" alt="clearbnb_logo"/></router-link> 
     </div>
  
-    <div class="header-search">
-      
-      <input type="text" placeholder="Start your search"> <div class="header-searchIcon">
-     <div class="favorite-icon">
-       <button type="submit" ><img src="../../public/images/search1.png" alt="Search Icon"></button>
-     </div>
-      
-      </div>
-    
+    <div class="header-search"> 
+      <input type="text" placeholder="Start your search"> 
+        <div class="header-searchIcon">
+          <div class="favorite-icon">
+            <button type="submit" ><img src="../../public/images/search1.png" alt="Search Icon"></button>
+          </div>
+        </div>
     </div>
-    <div class="nav">
-     
 
-<button class="nav-button account" @click="isOpen = !isOpen">
-  <i class="fas fa-bars fa-lg"></i>
-  <i class="fas fa-user-circle"></i>
-</button>
-<div class="login-form" v-if="isOpen">
-  <form >
-    <div class="logIn">
-      <router-link to="/login-page">Log in</router-link>
-    </div>
-    <div class="signUp">
-      <router-link to="/register-page">Sign up</router-link>
-    </div>
-  </form>
-</div>
+    <div class="nav">
+      <button class="nav-button account" @click="isOpen = !isOpen">
+        <i class="fas fa-bars fa-lg"></i>
+        <i class="fas fa-user-circle"></i>
+      </button>
+      <div class="login-form" v-if="isOpen">
+        <form >
+          <div class="logIn">
+            <router-link to="/login-page">Log in</router-link>
+          </div>
+          <div class="signUp">
+            <router-link to="/register-page">Sign up</router-link>
+          </div>
+          <div>
+            <router-link to="/all-users">Users</router-link>
+          </div>
+        </form>
+      </div>
     </div>
   </header>
+
 </template>
 
 
@@ -46,12 +46,10 @@ export default {
       isOpen: false
     }
   }
-
 }
 </script>
+
 <style >
-
-
 :root{
   --grey--med:#ddd;
   --grey--light:#f7f7f7;
@@ -60,15 +58,16 @@ export default {
   --pink: #ff385c;
 }
 
-
 .logo{
   width: 150px;
   height: 95px;
   margin: 7px 0 0 0;
 }
+
 .logo .nav{
   flex: 1 0 140px;
 }
+
 .header{
   top: 0%;
   height: 80px;
@@ -81,15 +80,14 @@ export default {
   background: white;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
 }
+
 .header-option ul {
-   display: flex;
-   justify-content: space-between;
-  
-   
-  
+  display: flex;
+  justify-content: space-between;  
   align-items: center;
   
 }
+
 .header-search{
   display: inline-flex;
   border-radius:  24px;
@@ -100,9 +98,11 @@ export default {
   padding: 2px 8px;
    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10)
 }
+
 .header-search:hover{
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
 }
+
 .header-search input{
   outline: none;
   background: transparent;
@@ -113,11 +113,7 @@ export default {
   border: none;
   font-family: Helvetica, Arial, sans-serif;
   cursor: pointer;
-   
-  
 }
-
-
 
 .header-searchIcon{
   width: 32px;
@@ -129,16 +125,15 @@ export default {
   justify-content: center;
   margin-left: 14px;
   z-index: 5;
-
 }
- .header-searchIcon img{
+
+.header-searchIcon img{
    width: 2rem;
    height: 1.2rem;
    padding: 0;
-   
-   
- }
- .nav{
+}
+
+.nav{
    /* display: flex;
    justify-content: flex-end; */
 
@@ -157,9 +152,9 @@ export default {
     -webkit-justify-content: flex-end !important;
     justify-content: flex-end !important;
     height: 80px !important;
-  
- }
- .favorite-icon button{
+}
+
+.favorite-icon button{
   background: none;
   border: none;
   position: relative;
@@ -167,23 +162,23 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
- 
 }
 
- .fa-user-circle{
+.fa-user-circle{
    font-size: 30px;
    color: var(--grey--text--light);
-  
- }
- .fa-globe{
+}
+
+.fa-globe{
    font-size: 17px;
- }
- .nav{
+}
+
+.nav{
    display: flex;
    justify-content: flex-end;
- }
+}
 
- .nav-button{
+.nav-button{
    height: 48px;
    background: transparent;
    border: none;
@@ -195,39 +190,40 @@ export default {
    border-radius: 22px;
 
    color: rgb(34, 34, 34);
- }
- .globe{
+}
+
+.globe{
    transition:ease 0.3s;
    text-decoration: none;
   color: black;
   font-weight: bold;
- }
- .globe:hover{
-   background: var(--grey--med);
+}
 
- }
- .account{
+.globe:hover{
+   background: var(--grey--med);
+}
+
+.account{
   height: 42px;
   border-radius: 22px;
   border: 1px solid var(--grey--med);
   transition:ease 0.3s;
   padding: 5px 5px 5px 12px;
+}
 
- }
- .account:hover{
+.account:hover{
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+}
 
- }
 .account i:last-child{
- 
  height: 30px;
  margin-left: 16px;
 }
-.account i:first-child{
 
+.account i:first-child{
  height: 12px;
- 
 }
+
 .login-form{
   position: absolute;
   width: 245px;
@@ -239,90 +235,72 @@ export default {
   border-radius: 14px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10);
   border: 1px solid var(--grey--med);
-  
-
 }
 
 .login-form form{
-  
  margin: 10px;
  font-size: 20px;
- 
- 
 }
+
 .logIn{
   padding: 30px;
-  
 }
 
 .logIn a{
   color: var(--grey-text-dark);
   text-decoration: none; 
 }
+
 .signUp{
   padding: 30px;
 }
-
 
 .signUp a{
   color: var(--grey-text-dark);
   text-decoration: none;
 }
+
 .signUp:hover{
   border-radius: 35px;
   background: var(--grey--light);
 }
+
 .logIn:hover{
-   border-radius: 35px;
+  border-radius: 35px;
   background: var(--grey--light);
-  
 }
 
-
-
-
-
 @media only screen and (max-width: 768px){
-  
-.header-search, .header-search input {
-     -webkit-box-align: center !important;
+  .header-search, .header-search input {
+    -webkit-box-align: center !important;
     align-items: center !important;
     display: flex !important;
     height: 44px !important;
     margin: 0px !important;
     white-space: nowrap !important;
 		width: 100%;
-	
+  }
+  
+  .nav-button{
+    display: none;
+  }
+  
+  .logo{
+    display: none;
+  }
+  .login-form{
+    display: none;
+  }
 }
 
-.nav-button{
-  display: none;
-}
-.logo{
-  display: none;
-  
-  
-}
-.login-form{
-  display: none;
-}
-
-}
 @media only screen and (max-width: 430px){
-.header-search{
- width: 100%;
-	
+  .header-search{
+    width: 100%;
+	}
+  
+  .header-search input{  
+	  width: 100%;
+  }
 }
-
-
-.header-search input{  
-	width: 100%;
-
-}
-
-
-}
-
-
 
 </style>

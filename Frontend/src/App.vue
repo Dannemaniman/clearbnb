@@ -1,7 +1,6 @@
 <template>
-  <header>
-    <Navbar />
-  </header>
+  <Navbar />
+  
   <main>
     <router-view />
   </main>
