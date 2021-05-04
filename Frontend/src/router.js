@@ -4,8 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from './views/Home.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
-import HomeDetails from './views/HomeDetails.vue';
-import AllHomes from './views/AllHomes.vue';
+import HouseDetails from './views/HouseDetails.vue';
+import AllUsers from './views/AllUsers.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -24,11 +24,11 @@ export default createRouter({
     },
     {
       path: '/home/:id',
-      component: HomeDetails,
+      component: HouseDetails,
     },
     {
-      path: '/all-homes',
-      component: AllHomes,
+      path: '/all-users',
+      component: AllUsers,
     }
   ],
 });

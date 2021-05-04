@@ -21,7 +21,8 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('fetchHomes');
+    this.$store.dispatch('fetchHouses');
+    this.$store.dispatch('fetchUsers');
   }
 };
 </script>

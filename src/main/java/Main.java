@@ -1,6 +1,5 @@
 import express.Express;
-import models.Home;
-import models.User;
+
 import static nosqlite.Database.collection;
 /*
     C - Create  POST
@@ -16,12 +15,12 @@ public class Main {
           config.useBrowser = true;
     });
 
-    app.get("/rest/homes", (req, res) -> {
-        res.json(collection("Home").find());
+    app.get("/rest/houses", (req, res) -> {
+        res.json(collection("House").find());
     });
 
-    app.get("/rest/homes/:id", (req, res) -> {
-        res.json(collection("Home").findById(req.params("id")));
+    app.get("/rest/houses/:id", (req, res) -> {
+        res.json(collection("House").findById(req.params("id")));
     });
 
     app.get("/rest/users", (req, res) -> {

@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document
-public class Home {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class House {
 
     @Id
     private String id;
-    private ArrayList<Image> images;
+    private ArrayList<String> images;
     private String title;
     private String address;
     private String city;
@@ -26,8 +27,26 @@ public class Home {
     private String ownerId;
     private List<Booking> bookings;
 
+    public House() { }
 
-    public Home() { }
+    @Override
+    public String toString() {
+        return "House{" +
+                "id='" + id + '\'' +
+                ", images=" + images +
+                ", title='" + title + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", propertyType='" + propertyType + '\'' +
+                ", accommodation=" + accommodation +
+                ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
+                ", amenities=" + amenities +
+                ", reviews=" + reviews +
+                ", ownerId='" + ownerId + '\'' +
+                ", bookings=" + bookings +
+                '}';
+    }
 
     public String getId() {
         return id;
@@ -37,11 +56,11 @@ public class Home {
         this.id = id;
     }
 
-    public ArrayList<Image> getImages() {
+    public ArrayList<String> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(ArrayList<String> images) {
         this.images = images;
     }
 

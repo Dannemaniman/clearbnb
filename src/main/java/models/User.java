@@ -1,4 +1,5 @@
 package models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 import nosqlite.annotations.Transient;
@@ -13,8 +14,8 @@ public class User {
     private String email;
     private String fullName;
     // ignore this property when saving to the collection
-    @Transient private List<Home> userHomes;
-    @Transient private List<Home> userBookings;
+    @Transient private List<House> userHouses;
+    @Transient private List<House> userBookings;
 
     public User() { }
 
@@ -26,7 +27,7 @@ public class User {
                 ", userPassword='" + userPassword + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", userHomes=" + userHomes +
+                ", userHouses=" + userHouses +
                 ", userBookings=" + userBookings +
                 '}';
     }
@@ -71,19 +72,17 @@ public class User {
         this.fullName = fullName;
     }
 
-    public List<Home> getUserHomes() {
-        return userHomes;
+    public List<House> getUserHouses() {
+        return userHouses;
     }
 
-    public void setUserHomes(List<Home> userHomes) {
-        this.userHomes = userHomes;
-    }
+    public void setUserHouses(List<House> userHouses) { this.userHouses = userHouses; }
 
-    public List<Home> getUserBookings() {
+    public List<House> getUserBookings() {
         return userBookings;
     }
 
-    public void setUserBookings(List<Home> userBookings) {
+    public void setUserBookings(List<House> userBookings) {
         this.userBookings = userBookings;
     }
 }

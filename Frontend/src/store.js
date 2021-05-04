@@ -3,29 +3,42 @@ import { createStore } from 'vuex';
 export default createStore({
   // this.$store.state.variableName
   state: {
-    homes: [],
+    houses: [],
+    users: []
   },
 
   // this.$store.commit('mutationName', data)
   mutations: {
-    setHomes(state, homes) {
-      state.homes = homes;
+    setHouses(state, houses) {
+      state.houses = houses;
     },
-    addHome(state, home) {
-      state.homes.push(home);
+    addHouses(state, house) {
+      state.houses.push(house);
+    },
+    setUsers(state, users) {
+      state.users = users;
+    },
+    addUser(state, user) {
+      state.users.push(user);
     }
+
   },
 
-  // this.$store.dispatch('actionName')
+  // this.$store.dispatch('actionNamehouses
   actions: {
-    async fetchHomes(store) {
-      // fetch homes and update state with response
-      // store.commit('setRecipes')
-
-      let res = await fetch('/rest/homes');
-      let homes = await res.json();
+    async fetchHouses(store) {
+      // fetch house and update state with response
+      // store.commit('setHouse')
+      let res = await fetch('/rest/houses');
+      let houses = await res.json();
       
-      store.commit('setHomes', homes);
-    }
+      store.commit('setHouses', houses);
+    },
+    async fetchUsers(store) {
+      let res = await fetch('/rest/users');
+      let users = await res.json();
+      
+      store.commit('setUsers', users);
+    },
   },
 });
