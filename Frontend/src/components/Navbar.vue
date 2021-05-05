@@ -1,16 +1,23 @@
 <template>
-  <header class="header" >
+  <header class="header">
     <div class="logo">
-     <router-link to="/"><img class="logo" src="../../public/images/clearbnb_logo1.png" alt="clearbnb_logo"/></router-link> 
+      <router-link to="/"
+        ><img
+          class="logo"
+          src="../../public/images/clearbnb_logo1.png"
+          alt="clearbnb_logo"
+      /></router-link>
     </div>
- 
-    <div class="header-search"> 
-      <input type="text" placeholder="Start your search"> 
-        <div class="header-searchIcon">
-          <div class="favorite-icon">
-            <button type="submit" ><img src="../../public/images/search1.png" alt="Search Icon"></button>
-          </div>
+
+    <div class="header-search">
+      <input type="text" placeholder="Start your search" />
+      <div class="header-searchIcon">
+        <div class="favorite-icon">
+          <button type="submit">
+            <img src="../../public/images/search1.png" alt="Search Icon" />
+          </button>
         </div>
+      </div>
     </div>
 
     <div class="nav">
@@ -19,7 +26,7 @@
         <i class="fas fa-user-circle"></i>
       </button>
       <div class="login-form" v-if="isOpen">
-        <form >
+        <form>
           <div class="logIn">
             <router-link to="/login-page">Log in</router-link>
           </div>
@@ -33,48 +40,46 @@
       </div>
     </div>
   </header>
-
 </template>
-
 
 <script>
 export default {
   name: 'navbar',
 
-  data(){
-    return{
-      isOpen: false
-    }
-  }
-}
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+};
 </script>
 
-<style >
-:root{
-  --grey--med:#ddd;
-  --grey--light:#f7f7f7;
-  --grey--text--light:#717171;
-  --grey-text-dark:#222;
+<style>
+:root {
+  --grey--med: #ddd;
+  --grey--light: #f7f7f7;
+  --grey--text--light: #717171;
+  --grey-text-dark: #222;
   --pink: #ff385c;
 }
 
-.logo{
+.logo {
   width: 150px;
   height: 95px;
   margin: 7px 0 0 0;
 }
 
-.logo .nav{
+.logo .nav {
   flex: 1 0 140px;
 }
 
-.header{
+.header {
   top: 0%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  
+
   width: 100%;
   z-index: 2;
   background: white;
@@ -83,27 +88,26 @@ export default {
 
 .header-option ul {
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
   align-items: center;
-  
 }
 
-.header-search{
+.header-search {
   display: inline-flex;
-  border-radius:  24px;
+  border-radius: 24px;
   overflow: hidden;
   align-items: center;
   border: 1px solid var(--grey--med);
-  transition:ease 0.3s;
+  transition: ease 0.3s;
   padding: 2px 8px;
-   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10)
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header-search:hover{
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
+.header-search:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.header-search input{
+.header-search input {
   outline: none;
   background: transparent;
   height: 38px;
@@ -115,11 +119,11 @@ export default {
   cursor: pointer;
 }
 
-.header-searchIcon{
+.header-searchIcon {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background:var(--pink);
+  background: var(--pink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,34 +131,34 @@ export default {
   z-index: 5;
 }
 
-.header-searchIcon img{
-   width: 2rem;
-   height: 1.2rem;
-   padding: 0;
+.header-searchIcon img {
+  width: 2rem;
+  height: 1.2rem;
+  padding: 0;
 }
 
-.nav{
-   /* display: flex;
+.nav {
+  /* display: flex;
    justify-content: flex-end; */
 
-    -webkit-box-pack: end !important;
-    -ms-flex-pack: end !important;
-    -webkit-box-align: center !important;
-    -ms-flex-align: center !important;
-    position: relative !important;
-    display: -webkit-box !important;
-    display: -moz-box !important;
-    display: -ms-flexbox !important;
-    display: -webkit-flex !important;
-    display: flex !important;
-    -webkit-align-items: center !important;
-    align-items: center !important;
-    -webkit-justify-content: flex-end !important;
-    justify-content: flex-end !important;
-    height: 80px !important;
+  -webkit-box-pack: end !important;
+  -ms-flex-pack: end !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  position: relative !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-items: center !important;
+  align-items: center !important;
+  -webkit-justify-content: flex-end !important;
+  justify-content: flex-end !important;
+  height: 80px !important;
 }
 
-.favorite-icon button{
+.favorite-icon button {
   background: none;
   border: none;
   position: relative;
@@ -164,143 +168,143 @@ export default {
   cursor: pointer;
 }
 
-.fa-user-circle{
-   font-size: 30px;
-   color: var(--grey--text--light);
+.fa-user-circle {
+  font-size: 30px;
+  color: var(--grey--text--light);
 }
 
-.fa-globe{
-   font-size: 17px;
+.fa-globe {
+  font-size: 17px;
 }
 
-.nav{
-   display: flex;
-   justify-content: flex-end;
+.nav {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.nav-button{
-   height: 48px;
-   background: transparent;
-   border: none;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding: 10px 16px;
-   cursor: pointer; 
-   border-radius: 22px;
+.nav-button {
+  height: 48px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 22px;
 
-   color: rgb(34, 34, 34);
+  color: rgb(34, 34, 34);
 }
 
-.globe{
-   transition:ease 0.3s;
-   text-decoration: none;
+.globe {
+  transition: ease 0.3s;
+  text-decoration: none;
   color: black;
   font-weight: bold;
 }
 
-.globe:hover{
-   background: var(--grey--med);
+.globe:hover {
+  background: var(--grey--med);
 }
 
-.account{
+.account {
   height: 42px;
   border-radius: 22px;
   border: 1px solid var(--grey--med);
-  transition:ease 0.3s;
+  transition: ease 0.3s;
   padding: 5px 5px 5px 12px;
 }
 
-.account:hover{
+.account:hover {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 }
 
-.account i:last-child{
- height: 30px;
- margin-left: 16px;
+.account i:last-child {
+  height: 30px;
+  margin-left: 16px;
 }
 
-.account i:first-child{
- height: 12px;
+.account i:first-child {
+  height: 12px;
 }
 
-.login-form{
+.login-form {
   position: absolute;
   width: 245px;
   height: 200px;
   z-index: 4;
   background: rgb(252, 252, 252);
-  right:0;
+  right: 0;
   top: 75px;
   border-radius: 14px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--grey--med);
 }
 
-.login-form form{
- margin: 10px;
- font-size: 20px;
+.login-form form {
+  margin: 10px;
+  font-size: 20px;
 }
 
-.logIn{
+.logIn {
   padding: 30px;
 }
 
-.logIn a{
-  color: var(--grey-text-dark);
-  text-decoration: none; 
-}
-
-.signUp{
-  padding: 30px;
-}
-
-.signUp a{
+.logIn a {
   color: var(--grey-text-dark);
   text-decoration: none;
 }
 
-.signUp:hover{
+.signUp {
+  padding: 30px;
+}
+
+.signUp a {
+  color: var(--grey-text-dark);
+  text-decoration: none;
+}
+
+.signUp:hover {
   border-radius: 35px;
   background: var(--grey--light);
 }
 
-.logIn:hover{
+.logIn:hover {
   border-radius: 35px;
   background: var(--grey--light);
 }
 
-@media only screen and (max-width: 768px){
-  .header-search, .header-search input {
+@media only screen and (max-width: 768px) {
+  .header-search,
+  .header-search input {
     -webkit-box-align: center !important;
     align-items: center !important;
     display: flex !important;
     height: 44px !important;
     margin: 0px !important;
     white-space: nowrap !important;
-		width: 100%;
-  }
-  
-  .nav-button{
-    display: none;
-  }
-  
-  .logo{
-    display: none;
-  }
-  .login-form{
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 430px){
-  .header-search{
     width: 100%;
-	}
-  
-  .header-search input{  
-	  width: 100%;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  .logo {
+    display: none;
+  }
+  .login-form {
+    display: none;
   }
 }
 
+@media only screen and (max-width: 430px) {
+  .header-search {
+    width: 100%;
+  }
+
+  .header-search input {
+    width: 100%;
+  }
+}
 </style>
