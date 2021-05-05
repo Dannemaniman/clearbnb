@@ -1,10 +1,10 @@
 <template>
   <Navbar />
-  
+
   <main>
     <router-view />
   </main>
-  
+
   <Footer />
 </template>
 
@@ -16,13 +16,13 @@ export default {
   name: 'App',
   components: {
     Navbar,
-    Footer
+    Footer,
   },
 
   created() {
     this.$store.dispatch('fetchHouses');
     this.$store.dispatch('fetchUsers');
-  }
+  },
 };
 </script>
 

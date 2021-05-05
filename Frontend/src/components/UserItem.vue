@@ -1,6 +1,6 @@
 <template>
   <div @click="goToUser" class="card">
-    <img v-bind:src="user.image" alt="">
+    <img v-bind:src="user.image" alt="" />
     <h3>{{ user.fullName }}</h3>
     <p>{{ user.userName }}</p>
     <p>{{ user.id }}</p>
@@ -15,9 +15,9 @@ export default {
   methods: {
     goToUser() {
       this.$router.push('/user/' + this.user.id);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

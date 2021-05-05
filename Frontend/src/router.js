@@ -34,6 +34,6 @@ export default createRouter({
     {
       path: '/user/:id',
       component: UserDetails,
-    }
+    },
   ],
 });

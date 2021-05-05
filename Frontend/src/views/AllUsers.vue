@@ -1,20 +1,16 @@
 <template>
-  
   <h1>All users</h1>
-  <UserList />  
-  
+  <UserList />
 </template>
 
 <script>
-import UserList from '../components/UserList.vue'
+import UserList from '../components/UserList.vue';
 
 export default {
   components: {
-    UserList
-  }
-}
+    UserList,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
