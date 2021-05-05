@@ -13,6 +13,7 @@ export default {
   props: ['house'],
   methods: {
     goToDetails() {
+      this.$store.commit('setSelectedHouse', this.house);
       this.$router.push('/house/' + this.house.id);
     },
   },
