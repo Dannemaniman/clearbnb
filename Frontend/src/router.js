@@ -24,7 +24,7 @@ export default createRouter({
       component: RegisterPage,
     },
     {
-      path: '/home/:id',
+      path: '/house/:id',
       component: HouseDetails,
     },
     {
