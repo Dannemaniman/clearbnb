@@ -3,13 +3,10 @@ package models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Document
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class House {
 
     @Id

@@ -6,7 +6,7 @@
   />
 </template>
 
-<script>
+<script> 
 import UserItem from './UserItem.vue'
 
 export default {

@@ -1,6 +1,4 @@
 import express.Express;
-import models.House;
-
 import java.util.ArrayList;
 import java.util.List;
 
