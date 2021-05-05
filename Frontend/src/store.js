@@ -4,6 +4,7 @@ export default createStore({
   state: {
     houses: [],
     selectedHouse: [],
+    citySearch: '',
   },
 
   // this.$store.commit('mutationName')
@@ -16,6 +17,9 @@ export default createStore({
     },
     setSelectedHouse(state, house) {
       state.selectedHouse = house;
+    },
+    setCitySearch(state, city) {
+      state.citySearch = city;
     },
   },
 
