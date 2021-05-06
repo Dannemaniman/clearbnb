@@ -9,8 +9,8 @@
       /></router-link>
     </div>
 
-    <div class="header-search">
-      <input type="text" placeholder="Start your search" />
+    <form @submit.prevent="searchByLocation" class="header-search">
+      <input v-model="searchCity" type="text" placeholder="Enter location..." />
       <div class="header-searchIcon">
         <div class="favorite-icon">
           <button type="submit">
@@ -18,7 +18,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </form>
 
     <div class="nav">
       <button class="nav-button account" @click="isOpen = !isOpen">
@@ -49,7 +49,15 @@ export default {
   data() {
     return {
       isOpen: false,
+      searchCity: '',
     };
+  },
+  methods: {
+    searchByLocation() {
+      let searchCity = this.searchCity;
+      this.$store.commit('setCitySearch', searchCity);
+      this.$router.push('/search-results');
+    },
   },
 };
 </script>

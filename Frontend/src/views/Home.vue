@@ -1,6 +1,5 @@
 <template>
   <div class="home-content">
-    <SearchBar />
     <GalleryComponent />
     <div class="slider"><h1>SLAAAJDEER</h1></div>
     <div class="slider"><h1>SLAAAJDEER</h1></div>
