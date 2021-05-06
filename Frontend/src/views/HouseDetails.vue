@@ -22,16 +22,19 @@
       <h2>{{ home.description }}</h2>
       <Amenities :amenities="home.amenities" />
     </div>
+    <BookingModal />
     <div class="map"><h1>Map</h1></div>
     <div class="reviews"><h1>Reviews</h1></div>
-    <div class="host"><h1>Host</h1></div>
+    <Hosts />
   </div>
 </template>
 
 <script>
+import Hosts from '../components/Hosts.vue';
+import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 export default {
-  components: { Amenities },
+  components: { Amenities, Hosts, BookingModal },
   data() {
     return {
       home: null,
