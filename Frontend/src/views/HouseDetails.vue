@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-content">
+  <div v-if="home" class="detail-content">
     <h1>{{ home.title }}</h1>
     <div class="images">
       <div class="big-image">
@@ -37,24 +37,13 @@ export default {
       home: null,
     };
   },
-  /*  computed: {
-    home() {
-      return this.$store.state.selectedHouse;
-    },
-  }, */
-  created() {
-    for (let home of this.$store.state.houses) {
-      if (home.id == this.$route.params.id) {
-        this.home = home;
-      }
-    }
-  },
-  /*  async created() {
+
+  async created() {
     let id = this.$route.params.id;
-    const response = await fetch(`/rest/homes/${id}`);
+    const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
-  }, */
+  },
 };
 </script>
 
