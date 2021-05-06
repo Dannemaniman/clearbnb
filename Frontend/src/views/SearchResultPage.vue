@@ -24,6 +24,7 @@ export default {
     };
   },
   components: { SearchResultItem },
+  methods: {},
 
   async created() {
     let res = await fetch('/rest/houses');
