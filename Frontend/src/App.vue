@@ -1,33 +1,32 @@
 <template>
-  <header></header>
+  <Navbar />
+
   <main>
     <router-view />
   </main>
 
-  <Footer></Footer>
+  <Footer />
 </template>
 
 <script>
-import Footer from './views/Footer.vue';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
+    Navbar,
     Footer,
   },
+
   created() {
     this.$store.dispatch('fetchHouses');
+    this.$store.dispatch('fetchUsers');
   },
 };
 </script>
 
 <style>
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> aafc2a388084203769577f8fabc4f410cbf853a9
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,7 +43,7 @@ export default {
   font-size: 120%;
 }
 
-body{
+body {
   color: rgba(34, 34, 34);
   font-size: 14px;
   letter-spacing: normal;

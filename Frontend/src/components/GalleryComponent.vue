@@ -1,7 +1,7 @@
 <template>
   <div class="image-gallery">
     <GalleryComponentItem
-      v-for="(house, index) of houses"
+      v-for="(house, index) of houses.slice(0, 8)"
       :key="index"
       :class="addClass(index)"
       :house="house"
@@ -61,7 +61,7 @@ export default {
 .house-7 {
   grid-area: house-7;
 }
-.house9-8 {
+.house-8 {
   grid-area: house-8;
 }
 </style>
