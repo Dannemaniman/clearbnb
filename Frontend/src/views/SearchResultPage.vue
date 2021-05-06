@@ -1,6 +1,6 @@
 <template>
   <div v-if="houses" class="content">
-    <h1>Search button/bar component</h1>
+    <SearchModal />
 
     <h1>{{ houses.length }} Matched objects</h1>
     <div class="search-results">
@@ -17,13 +17,14 @@
 
 <script>
 import SearchResultItem from '../components/SearchResultItem.vue';
+import SearchModal from '../components/SearchModal.vue';
 export default {
   data() {
     return {
       houses: [],
     };
   },
-  components: { SearchResultItem },
+  components: { SearchResultItem, SearchModal },
   methods: {},
 
   async created() {
