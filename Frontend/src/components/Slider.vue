@@ -56,7 +56,6 @@ export default {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    /* overflow: scroll; */
     position: relative;
   }
 
