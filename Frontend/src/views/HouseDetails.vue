@@ -42,7 +42,7 @@ export default {
       return this.$store.state.selectedHouse;
     },
   }, */
-  beforeMount() {
+  created() {
     for (let home of this.$store.state.houses) {
       if (home.id == this.$route.params.id) {
         this.home = home;
@@ -51,7 +51,7 @@ export default {
   },
   /*  async created() {
     let id = this.$route.params.id;
-    const response = await fetch(`/rest/houses/${id}`);
+    const response = await fetch(`/rest/homes/${id}`);
     const data = await response.json();
     this.home = data;
   }, */

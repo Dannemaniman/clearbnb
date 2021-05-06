@@ -1,22 +1,27 @@
 <template>
-  <header></header>
+  <Navbar />
+
   <main>
     <router-view />
   </main>
 
-  <Footer></Footer>
+  <Footer />
 </template>
 
 <script>
-import Footer from './views/Footer.vue';
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
+    Navbar,
     Footer,
   },
+
   created() {
     this.$store.dispatch('fetchHouses');
+    this.$store.dispatch('fetchUsers');
   },
 };
 </script>
