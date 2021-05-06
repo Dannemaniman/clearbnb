@@ -1,30 +1,47 @@
 <template>
-  <button class="button" @click="showModal = true">Refine search</button>
-  <transition name="fade" apear>
-    <div
-      class="modal-overlay"
-      v-if="showModal"
-      @click="showModal = false"
-    ></div>
-  </transition>
-  <transition name="slide" appear>
-    <div class="modal" v-if="showModal">
-      <h1>Lorem Ipsum</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-        minima quae aperiam architecto? Quia provident voluptates perspiciatis
-        fugit harum explicabo.
-      </p>
-      <button class="button" @click="showModal = false">Search</button>
-    </div>
-  </transition>
+  <section class="modal-container">
+    <button class="button" @click="popModal">Refine search</button>
+    <transition name="fade" appear>
+      <div class="modal-overlay" v-if="showModal" @click="closeModal"></div>
+    </transition>
+    <transition name="slide" mode="out-in" appear>
+      <div class="modal" v-if="showModal">
+        <h1>Lorem Ipsum</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+          provident explicabo accusamus laudantium voluptatum nobis sed nesciunt
+          neque possimus molestiae?
+        </p>
+        <button class="button" @click="closeModal">Search</button>
+      </div>
+    </transition>
+  </section>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+  methods: {
+    popModal() {
+      this.showModal = true;
+    },
+    closeModal(e) {
+      this.showModal = false;
+      e.stopPropagation();
+    },
+  },
+};
 </script>
 
 <style scoped>
+.modal-container {
+  margin-top: 2rem;
+}
+
 .button {
   appearance: none;
   outline: none;
@@ -34,7 +51,7 @@ export default {};
 
   display: inline-block;
   padding: 15px 25px;
-  background-image: linear-gradient(to right, #cc2e5d, #ff5858);
+  background-image: linear-gradient(to right, #6b6b6b, #808080);
   border-radius: 8px;
 
   color: #fff;
@@ -55,31 +72,31 @@ export default {};
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -100%);
   z-index: 99;
 
   width: 100%;
-  max-width: 400px;
+  max-width: 700px;
   background-color: #fff;
   border-radius: 16px;
 
   padding: 25px;
 }
-h1 {
+
+.modal h1 {
   color: #222;
   font-size: 32px;
   font-weight: 900;
   margin-bottom: 15px;
 }
-
-p {
+.modal p {
   color: #666;
   font-size: 18px;
   font-weight: 400;
@@ -87,21 +104,24 @@ p {
 }
 
 .fade-enter-active,
-fade-leave-active {
+.fade-leave-active {
   transition: opacity 0.5s;
 }
 
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
-}
-.slide-enter-active,
-slide-leave-active {
-  transition: transform 0.5s;
+  opacity: 0.5;
 }
 
-.slide-enter,
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 1s;
+}
+.slide-enter-to {
+  transform: translateY(-100vh) translateX(-50%);
+}
+
 .slide-leave-to {
-  transform: translateY(-50%) translateX(100vw);
+  transform: translateY(-100vh) translateX(-50%);
 }
 </style>
