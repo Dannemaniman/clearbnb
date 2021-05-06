@@ -1,23 +1,36 @@
 package models;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
-
-import java.util.ArrayList;
+import nosqlite.annotations.Transient;
+import java.util.List;
 
 @Document
 public class User {
 
-    @Id
-    private String id;
+    @Id private String id;
     private String userName;
     private String userPassword;
     private String email;
     private String fullName;
-    private ArrayList<Home> userHomes;
-    private ArrayList<Home> userBookings;
+    // ignore this property when saving to the collection
+    @Transient private List<House> userHouses;
+    @Transient private List<House> userBookings;
 
     public User() { }
+
+    @Override
+    public String toString() {
+        return "\nUser{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", userHouses=" + userHouses +
+                ", userBookings=" + userBookings +
+                '}';
+    }
 
     public String getId() {
         return id;
@@ -59,19 +72,17 @@ public class User {
         this.fullName = fullName;
     }
 
-    public ArrayList<Home> getUserHomes() {
-        return userHomes;
+    public List<House> getUserHouses() {
+        return userHouses;
     }
 
-    public void setUserHomes(ArrayList<Home> userHomes) {
-        this.userHomes = userHomes;
-    }
+    public void setUserHouses(List<House> userHouses) { this.userHouses = userHouses; }
 
-    public ArrayList<Home> getUserBookings() {
+    public List<House> getUserBookings() {
         return userBookings;
     }
 
-    public void setUserBookings(ArrayList<Home> userBookings) {
+    public void setUserBookings(List<House> userBookings) {
         this.userBookings = userBookings;
     }
 }
