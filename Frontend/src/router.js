@@ -31,6 +31,8 @@ export default createRouter({
     {
       path: '/search-results',
       component: SearchResultsPage,
+    },
+    {
       path: '/all-users',
       component: AllUsers,
     },

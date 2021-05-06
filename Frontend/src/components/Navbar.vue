@@ -116,7 +116,6 @@ export default {
   align-items: center;
   border: none;
   font-family: Helvetica, Arial, sans-serif;
-  cursor: pointer;
 }
 
 .header-searchIcon {
