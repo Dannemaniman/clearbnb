@@ -20,13 +20,13 @@ export default {
   },
   methods: {
     moveRight() {
+      console.log(this.$refs)
       let slides =  document.querySelectorAll('.slide')
 
       slides.forEach((item, index) => {
          item.style.transform = `translateX(-${300 * this.moveCounter}px)`
       })
        this.moveCounter >= this.images.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
-      //  this.moveCounter += 1
     }, 
     moveLeft() {
       let slides =  document.querySelectorAll('.slide')

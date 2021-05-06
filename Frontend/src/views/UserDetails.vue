@@ -4,10 +4,16 @@
   <p>{{ user.email }}</p>
   <p>{{ user.userHouses }}</p>
   <p>{{ user.userBookings }}</p>
+  <BasicInfo />
 </template>
 
 <script>
+  import BasicInfo from '../components/BasicInfo.vue'
+
 export default {
+  components: {
+    BasicInfo
+  },
   data() {
     return {
       user: null,
