@@ -57,6 +57,7 @@ export default {
       let searchCity = this.searchCity;
       this.$store.commit('setCitySearch', searchCity);
       this.$router.push('/search-results');
+      this.searchCity = '';
     },
   },
 };
