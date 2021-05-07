@@ -100,7 +100,7 @@ export default {
         review: '',
         amenities: [],
       },
-      properties: ['Sexnäste', 'Villa', 'Lägenhet', 'Sommarstuga'],
+      properties: ['Torp', 'Villa', 'Lägenhet', 'Sommarstuga'],
       prices: ['1000', '2000', '3000', '4000'],
       reviews: ['1/5', '2/5', '3/5', '4/5', '5/5'],
     };
@@ -160,7 +160,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -90%);
   z-index: 99;
 
   max-width: 520px;
