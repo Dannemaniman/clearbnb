@@ -163,7 +163,7 @@ export default {
   transform: translate(-50%, -50%);
   z-index: 99;
 
-  max-width: 550px;
+  max-width: 520px;
   background-color: #e9e9e9;
   border-radius: 16px;
   padding: 25px;
@@ -182,6 +182,26 @@ export default {
 .selectors {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+}
+.selectors select {
+  background: #a9a9a9;
+  border: 1px solid #9f9f9f;
+  cursor: pointer;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><polygon points="0,0 100,0 50,50" style="fill:%23626163;"/></svg>');
+  background-position: right 5px top 50%;
+  background-repeat: no-repeat;
+  background-size: 0.8rem;
+  padding: 0.2rem;
+  width: 7rem;
+}
+.selectors select:hover select:focus {
+  outline: none;
+  background-color: #a9a9a9;
+  border: 1px solid #4b4b4b;
 }
 .selectors div {
   margin: 0.2rem 0;
@@ -194,26 +214,29 @@ export default {
 }
 
 .selector-text {
-  display: flex;
-  flex-direction: column;
   display: inline;
   margin-top: 1rem;
   background-color: #c7c7c7;
   padding: 1rem 0;
   border-radius: 10px 0 0 0;
+  text-align: left;
+}
+.selector span {
 }
 .amenities {
   margin-top: 1rem;
   background-color: #c7c7c7;
   padding: 1rem 0;
   border-radius: 0 10px 0 0;
+  height: 90px;
 }
 .amenities p {
-  margin-top: 0;
+  margin: 0;
 }
 
 label {
-  margin-right: 0.2rem;
+  margin: 0.4rem;
+  font-weight: 700;
 }
 
 .slide-enter-active,
