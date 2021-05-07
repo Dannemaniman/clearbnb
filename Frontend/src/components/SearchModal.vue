@@ -75,7 +75,7 @@
           <p>Property type: {{ searchObject.property }}</p>
           <p>Max price: {{ searchObject.price }}</p>
           <p>Min review: {{ searchObject.review }}</p>
-          <p>Amenities: {{ searchObject.amenities }}</p>
+          <Amenities :amenities="searchObject.amenities" />
         </div>
 
         <button class="button" @click="closeModal">Search</button>
@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import Amenities from './Amenities.vue';
 export default {
   data() {
     return {
@@ -101,6 +102,7 @@ export default {
       reviews: ['1/5', '2/5', '3/5', '4/5', '5/5'],
     };
   },
+  components: { Amenities },
   methods: {
     popModal() {
       this.showModal = true;
