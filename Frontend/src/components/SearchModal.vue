@@ -35,17 +35,38 @@
             </div>
           </div>
           <div class="checkboxes">
+            <h4>Must have amenities:</h4>
             <div>
-              <input type="checkbox" value="" v.model="amenities" />
+              <label>Wifi</label>
+              <input
+                type="checkbox"
+                value="Wifi"
+                v-model="searchObject.amenities"
+              />
             </div>
             <div>
-              <input type="checkbox" value="" v.model="amenities" />
+              <label>Television</label>
+              <input
+                type="checkbox"
+                value="Television"
+                v-model="searchObject.amenities"
+              />
             </div>
             <div>
-              <input type="checkbox" value="" v.model="amenities" />
+              <label>Breakfast</label>
+              <input
+                type="checkbox"
+                value="Breakfast"
+                v-model="searchObject.amenities"
+              />
             </div>
             <div>
-              <input type="checkbox" value="" v.model="amenities" />
+              <label>Toothbrush</label>
+              <input
+                type="checkbox"
+                value="Toothbrush"
+                v-model="searchObject.amenities"
+              />
             </div>
           </div>
         </form>
@@ -54,9 +75,7 @@
           <p>Property type: {{ searchObject.property }}</p>
           <p>Max price: {{ searchObject.price }}</p>
           <p>Min review: {{ searchObject.review }}</p>
-          <ul>
-            <li>Amenities</li>
-          </ul>
+          <p>Amenities: {{ searchObject.amenities }}</p>
         </div>
 
         <button class="button" @click="closeModal">Search</button>
@@ -135,7 +154,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -70%);
   z-index: 99;
 
   width: 100%;
