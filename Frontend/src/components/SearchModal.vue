@@ -69,8 +69,12 @@
             </div>
           </div>
           <div class="selector-text">
-            Property type: {{ searchObject.property }}<n /> Max price:
-            {{ searchObject.price }} <n /> Min review: {{ searchObject.review }}
+            <label>Type:</label>
+            <span> {{ searchObject.property }}</span
+            ><br />
+            <label>Max price:</label> <span> {{ searchObject.price }}</span
+            ><br />
+            <label>Min review:</label> <span> {{ searchObject.review }}</span>
           </div>
           <div class="amenities">
             <Amenities :amenities="searchObject.amenities" />
@@ -160,10 +164,10 @@ export default {
 
   width: 100%;
   max-width: 700px;
-  background-color: #fff;
+  background-color: #f2f2f2;
   border-radius: 16px;
-
   padding: 25px;
+  color: #000;
 }
 .flexbox {
   display: flex;
@@ -194,10 +198,14 @@ export default {
   flex-direction: column;
   justify-content: flex-end;
   align-items: start;
+  display: inline;
+  text-align: start;
 }
 .amenities {
   border: 1px #000 solid;
-  background-color: #fff;
+}
+label {
+  margin-right: 0.2rem;
 }
 
 .slide-enter-active,
