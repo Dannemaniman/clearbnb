@@ -68,13 +68,26 @@
             </div>
           </div>
 
+          <div class="guest-number">
+            <li class="select-item">
+              <p class="select-label">Beds:</p>
+              <div class="button-container">
+                <button @click="decrement">-</button>
+                <p>{{ counter }}</p>
+                <button @click="increment">+</button>
+              </div>
+            </li>
+          </div>
+
           <div class="selector-text">
             <label>Property:</label>
             <span> {{ searchObject.property }}</span
             ><br />
             <label>Max price:</label> <span> {{ searchObject.price }}</span
             ><br />
-            <label>Min review:</label> <span> {{ searchObject.review }}</span>
+            <label>Min review:</label> <span> {{ searchObject.review }}</span
+            ><br />
+            <label>Beds:</label> <span>{{ counter }}</span>
           </div>
           <div class="amenities">
             <p>Amenities:</p>
@@ -103,6 +116,7 @@ export default {
       properties: ['Torp', 'Villa', 'Lägenhet', 'Sommarstuga'],
       prices: ['1000', '2000', '3000', '4000'],
       reviews: ['1/5', '2/5', '3/5', '4/5', '5/5'],
+      counter: 0,
     };
   },
   components: { Amenities },
@@ -112,6 +126,14 @@ export default {
     },
     closeModal() {
       this.showModal = false;
+    },
+    increment() {
+      this.counter++;
+    },
+    decrement() {
+      if (this.counter !== 0) {
+        this.counter--;
+      }
     },
   },
 };
@@ -160,7 +182,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -90%);
+  transform: translate(-50%, -80%);
   z-index: 99;
 
   max-width: 520px;
@@ -213,20 +235,64 @@ export default {
   padding: 0 3rem;
 }
 
+.guest-number {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+}
+
+.select-label {
+  flex-grow: 4;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+.select-label p:last-of-type {
+  font-size: 0.8rem;
+  margin-left: 1rem;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  padding-left: 1rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  margin-right: 4rem;
+}
+
+.button-container p {
+  align-self: center;
+  margin: 0 0.8rem;
+}
+
+.button-container button {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 2rem;
+  outline: none;
+  cursor: pointer;
+}
+
 .selector-text {
   display: inline;
-  margin-top: 1rem;
   background-color: #c7c7c7;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-radius: 10px 0 0 0;
   text-align: left;
 }
-.selector span {
-}
+
 .amenities {
-  margin-top: 1rem;
   background-color: #c7c7c7;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-radius: 0 10px 0 0;
   height: 90px;
 }
