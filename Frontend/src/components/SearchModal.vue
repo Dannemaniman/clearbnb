@@ -29,9 +29,8 @@ export default {
     popModal() {
       this.showModal = true;
     },
-    closeModal(e) {
+    closeModal() {
       this.showModal = false;
-      e.stopPropagation();
     },
   },
 };
@@ -72,7 +71,7 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .modal {
@@ -103,21 +102,21 @@ export default {
   margin-bottom: 15px;
 }
 
-.fade-enter-active,
+/* .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
-}
+} */
 
-.fade-enter,
+/* .fade-enter,
 .fade-leave-to {
-  opacity: 0.5;
-}
+  opacity: 0;
+} */
 
 .slide-enter-active,
 .slide-leave-active {
   transition: transform 1s;
 }
-.slide-enter-to {
+.slide-enter {
   transform: translateY(-100vh) translateX(-50%);
 }
 
