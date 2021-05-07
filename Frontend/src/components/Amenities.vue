@@ -46,8 +46,8 @@ h1 {
   justify-content: center;
 }
 .amenities img {
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
 }
 .amenities p {
   display: none;

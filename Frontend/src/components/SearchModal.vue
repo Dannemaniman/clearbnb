@@ -9,7 +9,7 @@
         <div class="flexbox">
           <div class="selectors">
             <div>
-              <label>Property type: </label>
+              <label>Property: </label>
               <select v-model="searchObject.property">
                 <option v-for="property in properties" :key="property">
                   {{ property }}
@@ -34,7 +34,6 @@
             </div>
           </div>
           <div class="checkboxes">
-            <p>Must have amenities:</p>
             <div>
               <label>Wifi</label>
               <input
@@ -68,8 +67,9 @@
               />
             </div>
           </div>
+
           <div class="selector-text">
-            <label>Type:</label>
+            <label>Property:</label>
             <span> {{ searchObject.property }}</span
             ><br />
             <label>Max price:</label> <span> {{ searchObject.price }}</span
@@ -77,6 +77,7 @@
             <label>Min review:</label> <span> {{ searchObject.review }}</span>
           </div>
           <div class="amenities">
+            <p>Amenities:</p>
             <Amenities :amenities="searchObject.amenities" />
           </div>
         </div>
@@ -162,9 +163,8 @@ export default {
   transform: translate(-50%, -50%);
   z-index: 99;
 
-  width: 100%;
-  max-width: 700px;
-  background-color: #f2f2f2;
+  max-width: 550px;
+  background-color: #e9e9e9;
   border-radius: 16px;
   padding: 25px;
   color: #000;
@@ -180,30 +180,38 @@ export default {
 /*   */
 
 .selectors {
-  border: 1px #000 solid;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: start;
 }
 .selectors div {
   margin: 0.2rem 0;
 }
 .checkboxes {
-  border: 1px #000 solid;
-}
-.selector-text {
-  border: 1px #000 solid;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: start;
+  align-items: flex-end;
+  padding: 0 3rem;
+}
+
+.selector-text {
+  display: flex;
+  flex-direction: column;
   display: inline;
-  text-align: start;
+  margin-top: 1rem;
+  background-color: #c7c7c7;
+  padding: 1rem 0;
+  border-radius: 10px 0 0 0;
 }
 .amenities {
-  border: 1px #000 solid;
+  margin-top: 1rem;
+  background-color: #c7c7c7;
+  padding: 1rem 0;
+  border-radius: 0 10px 0 0;
 }
+.amenities p {
+  margin-top: 0;
+}
+
 label {
   margin-right: 0.2rem;
 }
