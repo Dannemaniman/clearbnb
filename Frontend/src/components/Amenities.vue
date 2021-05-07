@@ -1,6 +1,5 @@
 <template>
   <section class="section-amenities">
-    <h1>Amenities</h1>
     <div class="amenities-container">
       <article v-for="(amenity, index) of amenities" :key="index">
         <img :src="getPath(index)" :alt="amenity" />

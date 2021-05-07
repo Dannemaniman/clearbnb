@@ -6,11 +6,10 @@
     </transition>
     <transition name="slide" mode="out-in" appear>
       <div class="modal" v-if="showModal">
-        <h1>Sök tjofräs</h1>
-        <form>
+        <div class="flexbox">
           <div class="selectors">
             <div>
-              <label>Property type:</label>
+              <label>Property type: </label>
               <select v-model="searchObject.property">
                 <option v-for="property in properties" :key="property">
                   {{ property }}
@@ -18,7 +17,7 @@
               </select>
             </div>
             <div>
-              <label>Max price:</label>
+              <label>Max price: </label>
               <select v-model="searchObject.price">
                 <option v-for="price in prices" :key="price">
                   {{ price }}
@@ -26,7 +25,7 @@
               </select>
             </div>
             <div>
-              <label>Min review:</label>
+              <label>Min review: </label>
               <select v-model="searchObject.review">
                 <option v-for="review in reviews" :key="review">
                   {{ review }}
@@ -35,7 +34,7 @@
             </div>
           </div>
           <div class="checkboxes">
-            <h4>Must have amenities:</h4>
+            <p>Must have amenities:</p>
             <div>
               <label>Wifi</label>
               <input
@@ -69,15 +68,16 @@
               />
             </div>
           </div>
-        </form>
-        <div class="preview">
-          <h3>Chosen:</h3>
-          <p>Property type: {{ searchObject.property }}</p>
-          <p>Max price: {{ searchObject.price }}</p>
-          <p>Min review: {{ searchObject.review }}</p>
-          <Amenities :amenities="searchObject.amenities" />
+          <div class="selector-text">
+            <h3>Chosen:</h3>
+            <p>Property type: {{ searchObject.property }}</p>
+            <p>Max price: {{ searchObject.price }}</p>
+            <p>Min review: {{ searchObject.review }}</p>
+          </div>
+          <div class="amenities">
+            <Amenities :amenities="searchObject.amenities" />
+          </div>
         </div>
-
         <button class="button" @click="closeModal">Search</button>
       </div>
     </transition>
@@ -156,7 +156,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -50%);
   z-index: 99;
 
   width: 100%;
@@ -166,29 +166,28 @@ export default {
 
   padding: 25px;
 }
-
-.modal h1 {
-  color: #222;
-  font-size: 32px;
-  font-weight: 900;
-  margin-bottom: 15px;
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
 }
-.modal p {
-  color: #666;
-  font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 15px;
+.flexbox > * {
+  flex: 1 1 50%;
 }
 
-/* .fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-} */
+/*   */
 
-/* .fade-enter,
-.fade-leave-to {
-  opacity: 0;
-} */
+.selectors {
+  border: 1px #000 solid;
+}
+.checkboxes {
+  border: 1px #000 solid;
+}
+.selector-text {
+  border: 1px #000 solid;
+}
+.amenities {
+  border: 1px #000 solid;
+}
 
 .slide-enter-active,
 .slide-leave-active {
