@@ -6,12 +6,59 @@
     </transition>
     <transition name="slide" mode="out-in" appear>
       <div class="modal" v-if="showModal">
-        <h1>Lorem Ipsum</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-          provident explicabo accusamus laudantium voluptatum nobis sed nesciunt
-          neque possimus molestiae?
-        </p>
+        <h1>Sök tjofräs</h1>
+        <form>
+          <div class="selectors">
+            <div>
+              <label>Property type:</label>
+              <select v-model="searchObject.property">
+                <option v-for="property in properties" :key="property">
+                  {{ property }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Max price:</label>
+              <select v-model="searchObject.price">
+                <option v-for="price in prices" :key="price">
+                  {{ price }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Min review:</label>
+              <select v-model="searchObject.review">
+                <option v-for="review in reviews" :key="review">
+                  {{ review }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="checkboxes">
+            <div>
+              <input type="checkbox" value="" v.model="amenities" />
+            </div>
+            <div>
+              <input type="checkbox" value="" v.model="amenities" />
+            </div>
+            <div>
+              <input type="checkbox" value="" v.model="amenities" />
+            </div>
+            <div>
+              <input type="checkbox" value="" v.model="amenities" />
+            </div>
+          </div>
+        </form>
+        <div class="preview">
+          <h3>Chosen:</h3>
+          <p>Property type: {{ searchObject.property }}</p>
+          <p>Max price: {{ searchObject.price }}</p>
+          <p>Min review: {{ searchObject.review }}</p>
+          <ul>
+            <li>Amenities</li>
+          </ul>
+        </div>
+
         <button class="button" @click="closeModal">Search</button>
       </div>
     </transition>
@@ -23,6 +70,16 @@ export default {
   data() {
     return {
       showModal: false,
+      searchObject: {
+        city: '',
+        property: '',
+        price: '',
+        review: '',
+        amenities: [],
+      },
+      properties: ['Sexnäste', 'Villa', 'Lägenhet', 'Sommarstuga'],
+      prices: ['1000', '2000', '3000', '4000'],
+      reviews: ['1/5', '2/5', '3/5', '4/5', '5/5'],
     };
   },
   methods: {
