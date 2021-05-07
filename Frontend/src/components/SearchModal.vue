@@ -69,10 +69,8 @@
             </div>
           </div>
           <div class="selector-text">
-            <h3>Chosen:</h3>
-            <p>Property type: {{ searchObject.property }}</p>
-            <p>Max price: {{ searchObject.price }}</p>
-            <p>Min review: {{ searchObject.review }}</p>
+            Property type: {{ searchObject.property }}<n /> Max price:
+            {{ searchObject.price }} <n /> Min review: {{ searchObject.review }}
           </div>
           <div class="amenities">
             <Amenities :amenities="searchObject.amenities" />
@@ -125,9 +123,10 @@ export default {
   border: none;
   background: none;
   cursor: pointer;
+  margin-top: 0.5rem;
 
   display: inline-block;
-  padding: 15px 25px;
+  padding: 10px 20px;
   background-image: linear-gradient(to right, #6b6b6b, #808080);
   border-radius: 8px;
 
@@ -178,15 +177,27 @@ export default {
 
 .selectors {
   border: 1px #000 solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: start;
+}
+.selectors div {
+  margin: 0.2rem 0;
 }
 .checkboxes {
   border: 1px #000 solid;
 }
 .selector-text {
   border: 1px #000 solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: start;
 }
 .amenities {
   border: 1px #000 solid;
+  background-color: #fff;
 }
 
 .slide-enter-active,

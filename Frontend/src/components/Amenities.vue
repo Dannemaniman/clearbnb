@@ -30,7 +30,7 @@ export default {
 .section-amenities {
   display: flex;
   flex-direction: column;
-  background-color: #a9a9a9;
+  /* background-color: #a9a9a9; */
   border-radius: 8px 8px 8px 2px;
 }
 
@@ -44,6 +44,13 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+.amenities img {
+  height: 20px;
+  width: 20px;
+}
+.amenities p {
+  display: none;
 }
 
 article {
