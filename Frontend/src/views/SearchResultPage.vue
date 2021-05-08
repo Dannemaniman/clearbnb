@@ -22,28 +22,39 @@ export default {
   data() {
     return {
       houses: [],
-      searchObject: {},
+      searchObject: null,
+      filteredHouses: null,
     };
   },
   components: { SearchResultItem, SearchModal },
   methods: {
     refineSearch(payload) {
       this.searchObject = payload.searchObject;
-      console.log(this.searchObject);
+      this.filteredHouses = [];
+      this.houses.forEach((house) => {
+        if (house.price <= searchObject.price && house.price !== null) {
+          console.log('Hej');
+          filteredHouses.push(house);
+        }
+      });
     },
   },
 
   async created() {
-    let res = await fetch('/rest/houses');
-    let houses = await res.json();
+    if (!this.filteredHouses) {
+      let res = await fetch('/rest/houses');
+      let houses = await res.json();
 
-    houses.filter((house) => {
-      let city = house.city.toLowerCase();
-      let search = this.$store.state.citySearch.toLowerCase();
-      if (city.includes(search)) {
-        this.houses.push(house);
-      }
-    });
+      houses.filter((house) => {
+        let city = house.city.toLowerCase();
+        let search = this.$store.state.citySearch.toLowerCase();
+        if (city.includes(search)) {
+          this.houses.push(house);
+        }
+      });
+    } else {
+      this.houses = this.filteredHouses;
+    }
   },
 
   /*   created() {
