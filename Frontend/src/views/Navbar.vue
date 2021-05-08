@@ -7,9 +7,9 @@
  
     <div class="header-search">
       
-      <input type="text" placeholder="Start your search"> <div class="header-searchIcon">
+      <input type="text" v-model="searchLocation" placeholder="Start your search"> <div class="header-searchIcon">
      <div class="favorite-icon">
-       <button type="submit" ><img src="../../public/images/search1.png" alt="Search Icon"></button>
+       <button type="submit" @click="searchSubmit" ><img src="../../public/images/search1.png" alt="Search Icon"></button>
      </div>
       
       </div>
@@ -43,9 +43,19 @@ export default {
 
   data(){
     return{
-      isOpen: false
-    }
-  }
+      isOpen: false,
+      searchLocation: '',
+  };
+  },
+    methods: {
+    searchSubmit() {
+      let searchLocation = this.searchLocation;
+     this.$store.commit('searchCity', searchLocation);
+      this.$router.push('/result');
+    
+    },
+  },
+
 
 }
 </script>

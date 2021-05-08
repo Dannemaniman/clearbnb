@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import HouseDetails from './views/HouseDetails.vue';
+import SearchResult from './views/SearchResult.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -24,6 +25,11 @@ export default createRouter({
     {
       path: '/house/:id',
       component: HouseDetails,
+    },
+    {
+      path: '/result',
+      component: SearchResult,
+
     },
   ],
 });

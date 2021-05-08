@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
   state: {
     houses: [],
+    searchlocation : '',
   },
 
   // this.$store.commit('mutationName')
@@ -12,6 +13,9 @@ export default createStore({
     },
     addHouses(state, house) {
       state.houses.push(house);
+    },
+      searchCity(state, city) {
+      state.searchlocation = city;
     },
   },
 

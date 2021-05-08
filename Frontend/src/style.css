@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -11,7 +12,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #c7c7c7;
 
   display: flex;
@@ -22,9 +23,9 @@ body {
 main {
   flex: 1;
   width: 100%;
-  max-width: 60rem;
-  margin: auto;
-  background-color: #4b4b4b;
+  max-width: 70rem;
+  margin: 80px auto;
+  background-color: #484848;
 }
 
 Färgkoder {
