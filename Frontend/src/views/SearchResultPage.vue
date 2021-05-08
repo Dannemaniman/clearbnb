@@ -1,6 +1,6 @@
 <template>
   <div v-if="houses" class="content">
-    <SearchModal />
+    <SearchModal @refined-search="refineSearch" />
 
     <h1>{{ houses.length }} Matched objects</h1>
     <div class="search-results">
@@ -22,10 +22,16 @@ export default {
   data() {
     return {
       houses: [],
+      searchObject: {},
     };
   },
   components: { SearchResultItem, SearchModal },
-  methods: {},
+  methods: {
+    refineSearch(payload) {
+      this.searchObject = payload.searchObject;
+      console.log(this.searchObject);
+    },
+  },
 
   async created() {
     let res = await fetch('/rest/houses');

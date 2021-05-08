@@ -94,7 +94,7 @@
             <Amenities :amenities="searchObject.amenities" />
           </div>
         </div>
-        <button class="button" @click="closeModal">Search</button>
+        <button class="button" @click="sendSearch">Search</button>
       </div>
     </transition>
   </section>
@@ -107,11 +107,11 @@ export default {
     return {
       showModal: false,
       searchObject: {
-        city: '',
         property: '',
         price: '',
         review: '',
         amenities: [],
+        beds: '',
       },
       properties: ['Torp', 'Villa', 'Lägenhet', 'Sommarstuga'],
       prices: ['1000', '2000', '3000', '4000'],
@@ -129,11 +129,18 @@ export default {
     },
     increment() {
       this.counter++;
+      this.searchObject.beds++;
     },
     decrement() {
       if (this.counter !== 0) {
         this.counter--;
+        this.searchObject.beds--;
       }
+    },
+    sendSearch() {
+      console.log(this.searchObject);
+      this.$emit('refined-search', { searchObject: this.searchObject });
+      this.showModal = false;
     },
   },
 };
