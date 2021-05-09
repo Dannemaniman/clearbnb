@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import HouseDetails from './views/HouseDetails.vue';
+import SearchResultsPage from './views/SearchResultPage.vue';
 import AllUsers from './views/AllUsers.vue';
 import UserDetails from './views/UserDetails.vue';
 import ConfirmPage from './views/ConfirmPage.vue';
@@ -27,6 +28,10 @@ export default createRouter({
     {
       path: '/house/:id',
       component: HouseDetails,
+    },
+    {
+      path: '/search-results',
+      component: SearchResultsPage,
     },
     {
       path: '/all-users',
