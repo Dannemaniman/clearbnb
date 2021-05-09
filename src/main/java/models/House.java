@@ -16,7 +16,7 @@ public class House {
     private String address;
     private String city;
     private String propertyType;
-    private Accommodation accommodation;
+    private String beds;
     private String description;
     private String price;
     private List<String> amenities;
@@ -35,7 +35,7 @@ public class House {
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", propertyType='" + propertyType + '\'' +
-                ", accommodation=" + accommodation +
+                ", beds=" + beds +
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
                 ", amenities=" + amenities +
@@ -93,12 +93,12 @@ public class House {
         this.propertyType = propertyType;
     }
 
-    public Accommodation getAccommodation() {
-        return accommodation;
+    public String getAccommodation() {
+        return beds;
     }
 
-    public void setAccommodation(Accommodation accommodation) {
-        this.accommodation = accommodation;
+    public void setAccommodation(String beds) {
+        this.beds = beds;
     }
 
     public String getDescription() {

@@ -138,7 +138,6 @@ export default {
       }
     },
     sendSearch() {
-      console.log(this.searchObject);
       this.$emit('refined-search', { searchObject: this.searchObject });
       this.showModal = false;
     },

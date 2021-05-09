@@ -23,43 +23,79 @@ export default {
     return {
       houses: [],
       searchObject: null,
-      filteredHouses: [],
-      housesByCity: null,
-      refinedSearch: null,
+      housesByCity: [],
+      restoringHousesByCity: [],
     };
   },
-  computed: {},
+  computed: {
+    searchResult: function () {
+      return this.searchByPrice(
+        this.searchByProperty(
+          this.searchByBeds(
+            this.searchByAmenities(this.searchByReview(this.housesByCity))
+          )
+        )
+      );
+    },
+  },
   components: { SearchResultItem, SearchModal },
   methods: {
-    searchByPrice() {
-      this.housesByCity.forEach((house) => {
-        if (house.price <= this.searchObject.price) {
-          this.filteredHouses.push(house);
-        } else if (this.searchObject.price == null) {
-          this.filteredHouses.push(house);
-        }
-        this.housesByCity = this.filteredHouses;
+    /* Får in housesByCity från searchBar / create.
+      Köra arrayen genom alla filter och sedan rendera.
+      price, property, beds, amenities, reviews.
+       */
+
+    searchByPrice(houses) {
+      if (this.searchObject.price == null) {
+        return houses;
+      }
+      console.log('hej');
+      return houses.filter((house) => {
+        house.price <= this.searchObject.price;
       });
     },
-    searchByProperty() {},
-    searchByBeds() {},
-    searchByAmenities() {},
-    searchByReview() {
-      console.log(this.housesByCity);
-      this.refinedSearch = [];
-      this.filteredHouses = this.housesByCity;
-      this.filteredHouses.forEach((house) => {
-        if (house.reviews >= this.searchObject.review) {
-          this.refinedSearch.push(house);
-        } else if (this.searchObject.review == null) {
-          this.refinedSearch.push(house);
-        }
+    searchByProperty(houses) {
+      if (this.searchObject.property == null) {
+        return houses;
+      }
+      return houses.filter((house) => {
+        house.propertyType.includes(this.searchObject.property);
       });
-      console.log(this.refinedSearch);
+    },
+    searchByBeds(houses) {
+      console.log('beds');
+      if (this.searchObject.beds == null) {
+        return houses;
+      }
+      return houses.filter((house) => {
+        house.beds >= this.searchObject.beds;
+      });
+    },
+    searchByAmenities(houses) {
+      console.log('amenities');
+      if (this.searchObject.amenities == null) {
+        return houses;
+      }
+      houses.filter((house) => {
+        this.searchObject.amenities.every((amenity) =>
+          house.amenities.includes(amenity)
+        );
+      });
+    },
+    searchByReview(houses) {
+      if (this.searchObject.review == null) {
+        return houses;
+      }
+      return houses.filter((house) => {
+        house.reviews >= this.searchObject.review;
+      });
     },
     gettingSearchObject(payload) {
       this.searchObject = payload.searchObject;
-      this.searchByPrice();
+      console.log(this.searchObject);
+      /* Kalla på metoderna här? */
+      console.log(this.searchResult);
+      this.housesByCity = searchResult;
     },
   },
 
@@ -75,6 +111,7 @@ export default {
       }
     });
     this.housesByCity = this.houses;
+
     /* else {
       this.houses = houses;
     } */
