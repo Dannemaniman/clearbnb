@@ -24,6 +24,7 @@ export default {
       houses: [],
       searchObject: null,
       filteredHouses: null,
+      housesByCity: null,
     };
   },
   components: { SearchResultItem, SearchModal },
@@ -31,18 +32,15 @@ export default {
     refineSearch(payload) {
       this.searchObject = payload.searchObject;
       this.filteredHouses = [];
-      this.houses.forEach((house) => {
+      this.housesByCity.forEach((house) => {
         if (house.price <= this.searchObject.price) {
           this.filteredHouses.push(house);
           console.log(this.filteredHouses);
-        } else {
-          if (this.filteredHouses.length >= 0) {
-            this.houses = this.filteredHouses;
-          }
-          console.log();
-          ('No match!');
         }
       });
+      this.houses = this.filteredHouses;
+
+      //Återställa houses
     },
   },
 
@@ -58,6 +56,7 @@ export default {
           this.houses.push(house);
         }
       });
+      this.housesByCity = this.houses;
     } else {
       this.houses = houses;
     }
