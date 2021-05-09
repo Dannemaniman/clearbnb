@@ -33,11 +33,15 @@
           <div class="signUp">
             <router-link to="/register-page">Sign up</router-link>
           </div>
-          <div>
+          <div class="signUp">
             <router-link to="/all-users">Users</router-link>
           </div>
         </form>
       </div>
+    </div>
+
+    <div v-if="this.$store.state.user != null">
+      <button @click="logout">Logout</button>
     </div>
   </header>
 </template>
@@ -50,6 +54,13 @@ export default {
     return {
       isOpen: false,
     };
+  },
+
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      console.log(this.$store.state.user);
+    },
   },
 };
 </script>
