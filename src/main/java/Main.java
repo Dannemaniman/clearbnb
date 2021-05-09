@@ -16,20 +16,8 @@ public class Main {
     collection(config -> {
           config.useBrowser = true;
     });
-  
-    /*ArrayList<String> images = new ArrayList<>();
-    images.add("public\\images\\House8.jpg");
-  
-  
-    House home = new House("Hemliga huset", "Flexibel", "Sjöbo", "Tält", "Trevligt tält bla bla", images, 500);
-    
-    collection("House").save(home);*/
-  
-//    app.get("/rest/houses", (req, res) -> {
-//      List<Home> houses = collection("Home").find();
-//
-//      res.json(houses);
-//    });
+
+    new Auth(app);
 
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());
