@@ -32,9 +32,15 @@ export default {
       this.searchObject = payload.searchObject;
       this.filteredHouses = [];
       this.houses.forEach((house) => {
-        if (house.price <= searchObject.price && house.price !== null) {
-          console.log('Hej');
-          filteredHouses.push(house);
+        if (house.price <= this.searchObject.price) {
+          this.filteredHouses.push(house);
+          console.log(this.filteredHouses);
+        } else {
+          if (this.filteredHouses.length >= 0) {
+            this.houses = this.filteredHouses;
+          }
+          console.log();
+          ('No match!');
         }
       });
     },
