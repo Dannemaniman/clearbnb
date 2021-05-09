@@ -47,10 +47,10 @@ export default {
   },
 
   async created() {
-    let res = await fetch('/rest/houses');
-    let houses = await res.json();
+    if (!this.filteredHouses) {
+      let res = await fetch('/rest/houses');
+      let houses = await res.json();
 
-    if (this.$store.state.citySearch) {
       houses.filter((house) => {
         let city = house.city.toLowerCase();
         let search = this.$store.state.citySearch.toLowerCase();
@@ -59,7 +59,7 @@ export default {
         }
       });
     } else {
-      this.houses = houses;
+      this.houses = this.filteredHouses;
     }
   },
 
