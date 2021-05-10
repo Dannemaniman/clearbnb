@@ -2,11 +2,11 @@
   <div v-if="houses" class="content">
     <SearchModal @refined-search="gettingSearchObject" />
 
-    <h1>{{ housesByCity.length }} Matched objects</h1>
+    <h1>{{ refinedSearchResult.length }} Matched objects</h1>
     <div class="search-results">
       <SearchResultItem
         class="house"
-        v-for="house of housesByCity"
+        v-for="house of refinedSearchResult"
         :key="house.id"
         :house="house"
       />
@@ -24,7 +24,7 @@ export default {
       houses: [],
       searchObject: null,
       housesByCity: [],
-      restoringHousesByCity: [],
+      refinedSearchResult: [],
     };
   },
   computed: {
@@ -46,25 +46,32 @@ export default {
        */
 
     searchByPrice(houses) {
-      if (this.searchObject.price == null) {
+      if (this.searchObject.price == '') {
         return houses;
       }
-      console.log('hej');
-      return houses.filter((house) => {
-        house.price <= this.searchObject.price;
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.price <= this.searchObject.price) {
+          arr.push(house);
+        }
       });
+      return arr;
     },
     searchByProperty(houses) {
-      if (this.searchObject.property == null) {
+      if (this.searchObject.property == '') {
         return houses;
       }
-      return houses.filter((house) => {
-        house.propertyType.includes(this.searchObject.property);
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.propertyType == this.searchObject.property) {
+          arr.push(house);
+        }
       });
+      console.log(arr);
+      return arr;
     },
     searchByBeds(houses) {
-      console.log('beds');
-      if (this.searchObject.beds == null) {
+      if (true) {
         return houses;
       }
       return houses.filter((house) => {
@@ -72,8 +79,7 @@ export default {
       });
     },
     searchByAmenities(houses) {
-      console.log('amenities');
-      if (this.searchObject.amenities == null) {
+      if (true) {
         return houses;
       }
       houses.filter((house) => {
@@ -83,19 +89,24 @@ export default {
       });
     },
     searchByReview(houses) {
-      if (this.searchObject.review == null) {
+      if (this.searchObject.review == '') {
         return houses;
       }
-      return houses.filter((house) => {
-        house.reviews >= this.searchObject.review;
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.reviews >= this.searchObject.review) {
+          arr.push(house);
+        }
       });
+      return arr;
     },
     gettingSearchObject(payload) {
       this.searchObject = payload.searchObject;
       console.log(this.searchObject);
       /* Kalla på metoderna här? */
+
       console.log(this.searchResult);
-      this.housesByCity = searchResult;
+      this.refinedSearchResult = this.searchResult;
     },
   },
 
@@ -110,6 +121,7 @@ export default {
         this.houses.push(house);
       }
     });
+    this.refinedSearchResult = this.houses;
     this.housesByCity = this.houses;
 
     /* else {

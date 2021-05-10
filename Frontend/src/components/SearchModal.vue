@@ -35,18 +35,10 @@
           </div>
           <div class="checkboxes">
             <div>
-              <label>Wifi</label>
+              <label>Bed</label>
               <input
                 type="checkbox"
-                value="Wifi"
-                v-model="searchObject.amenities"
-              />
-            </div>
-            <div>
-              <label>Television</label>
-              <input
-                type="checkbox"
-                value="Television"
+                value="Bed"
                 v-model="searchObject.amenities"
               />
             </div>
@@ -59,10 +51,18 @@
               />
             </div>
             <div>
-              <label>Toothbrush</label>
+              <label>Fridge</label>
               <input
                 type="checkbox"
-                value="Toothbrush"
+                value="Fridge"
+                v-model="searchObject.amenities"
+              />
+            </div>
+            <div>
+              <label>Heating</label>
+              <input
+                type="checkbox"
+                value="Heating"
                 v-model="searchObject.amenities"
               />
             </div>
