@@ -8,6 +8,7 @@ import HouseDetails from './views/HouseDetails.vue';
 import SearchResultsPage from './views/SearchResultPage.vue';
 import AllUsers from './views/AllUsers.vue';
 import UserDetails from './views/UserDetails.vue';
+import ConfirmPage from './views/ConfirmPage.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -39,6 +40,10 @@ export default createRouter({
     {
       path: '/user/:id',
       component: UserDetails,
+    },
+    {
+      path: '/confirm',
+      component: ConfirmPage,
     },
   ],
 });
