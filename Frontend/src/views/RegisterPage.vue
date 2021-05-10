@@ -50,7 +50,7 @@ export default {
         firstName: this.firstName,
         email : this.email,
         password: this.password,
-         confirmPassword: this.confirmPassword
+        confirmPassword: this.confirmPassword
       }
         this.$store.dispatch('register', credentails)
     }
