@@ -24,7 +24,7 @@
     </div>
     <BookingModal />
     <div class="map"><h1>Map</h1></div>
-    <div class="reviews"><h1>Reviews</h1></div>
+    <Reviews />
     <Hosts />
   </div>
 </template>
@@ -33,8 +33,9 @@
 import Hosts from '../components/Hosts.vue';
 import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
+import Reviews from '../components/Reviews.vue';
 export default {
-  components: { Amenities, Hosts, BookingModal },
+  components: { Amenities, Hosts, BookingModal, Reviews },
   data() {
     return {
       home: null,
