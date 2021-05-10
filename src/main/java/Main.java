@@ -1,4 +1,7 @@
 import express.Express;
+import models.Review;
+import models.Review;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +19,10 @@ public class Main {
     collection(config -> {
           config.useBrowser = true;
     });
-  
+    
     /*ArrayList<String> images = new ArrayList<>();
     images.add("public\\images\\House8.jpg");
-  
+    
   
     House home = new House("Hemliga huset", "Flexibel", "Sjöbo", "Tält", "Trevligt tält bla bla", images, 500);
     
@@ -46,6 +49,10 @@ public class Main {
     app.get("/rest/users/:id", (req, res) -> {
         res.json(collection("User").findById(req.params("id")));
     });
+    
+      app.get("/rest/reviews", (req, res) -> {
+          res.json(collection("Review").find());
+      });
 
     // start server
     app.listen(4000);

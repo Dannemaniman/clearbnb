@@ -24,9 +24,13 @@
     </div>
     <BookingModal />
     <div class="map"><h1>Map</h1></div>
-    <div class="reviews">
-      <Reviews />
-    </div>
+    <Reviews
+      class="reviews"
+      v-for="review of reviews"
+      :review="review"
+      :key="review.id"
+    />
+
     <Hosts />
   </div>
 </template>
@@ -41,6 +45,7 @@ export default {
   data() {
     return {
       home: null,
+      reviews: {},
     };
   },
 
@@ -49,6 +54,7 @@ export default {
     const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
+    this.reviews = this.$store.state.reviews;
   },
 };
 </script>
