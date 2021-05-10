@@ -38,7 +38,7 @@
             v-if="this.$store.state.user != null"
             @click="this.$router.push('/user/' + this.$store.state.user.id)"
           >
-            My page
+            My Page
           </div>
           <div
             class="signUp"
