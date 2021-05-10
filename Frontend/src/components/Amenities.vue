@@ -1,6 +1,5 @@
 <template>
   <section class="section-amenities">
-    <h1>Amenities</h1>
     <div class="amenities-container">
       <article v-for="(amenity, index) of amenities" :key="index">
         <img :src="getPath(index)" :alt="amenity" />
@@ -31,7 +30,7 @@ export default {
 .section-amenities {
   display: flex;
   flex-direction: column;
-  background-color: #a9a9a9;
+  /* background-color: #a9a9a9; */
   border-radius: 8px 8px 8px 2px;
 }
 
@@ -45,6 +44,13 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+.amenities img {
+  height: 25px;
+  width: 25px;
+}
+.amenities p {
+  display: none;
 }
 
 article {

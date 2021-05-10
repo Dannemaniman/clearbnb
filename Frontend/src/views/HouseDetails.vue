@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-content">
+  <div v-if="home" class="detail-content">
     <h1>{{ home.title }}</h1>
     <div class="images">
       <div class="big-image">
@@ -17,44 +17,36 @@
       </div>
     </div>
     <div class="information">
-      <h2>{{ home.city }}</h2>
-      <h3>{{ home.address }}</h3>
+      <h1>{{ home.city }}</h1>
+      <h2>{{ home.address }}</h2>
       <h2>{{ home.description }}</h2>
       <Amenities :amenities="home.amenities" />
     </div>
+    <BookingModal />
     <div class="map"><h1>Map</h1></div>
     <div class="reviews"><h1>Reviews</h1></div>
-    <div class="host"><h1>Host</h1></div>
+    <Hosts />
   </div>
 </template>
 
 <script>
+import Hosts from '../components/Hosts.vue';
+import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 export default {
-  components: { Amenities },
+  components: { Amenities, Hosts, BookingModal },
   data() {
     return {
       home: null,
     };
   },
-  /*  computed: {
-    home() {
-      return this.$store.state.selectedHouse;
-    },
-  }, */
-  created() {
-    for (let home of this.$store.state.houses) {
-      if (home.id == this.$route.params.id) {
-        this.home = home;
-      }
-    }
-  },
-  /*  async created() {
+
+  async created() {
     let id = this.$route.params.id;
-    const response = await fetch(`/rest/homes/${id}`);
+    const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
-  }, */
+  },
 };
 </script>
 
