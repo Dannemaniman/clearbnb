@@ -71,12 +71,16 @@ export default {
       return arr;
     },
     searchByBeds(houses) {
-      if (true) {
+      if (this.searchObject.beds == 0) {
         return houses;
       }
-      return houses.filter((house) => {
-        house.beds >= this.searchObject.beds;
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.accommodation.beds >= this.searchObject.beds) {
+          arr.push(house);
+        }
       });
+      return arr;
     },
     searchByAmenities(houses) {
       if (this.searchObject.amenities.length == 0) {
