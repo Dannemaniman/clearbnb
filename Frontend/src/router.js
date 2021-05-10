@@ -5,7 +5,9 @@ import Home from './views/Home.vue';
 import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import HouseDetails from './views/HouseDetails.vue';
+import SearchResultsPage from './views/SearchResultPage.vue';
 import UserDetails from './views/UserDetails.vue';
+import ConfirmPage from './views/ConfirmPage.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -27,8 +29,16 @@ export default createRouter({
       component: HouseDetails,
     },
     {
+      path: '/search-results',
+      component: SearchResultsPage,
+    },
+    {
       path: '/user/:id',
       component: UserDetails,
+    },
+    {
+      path: '/confirm',
+      component: ConfirmPage,
     },
   ],
 });

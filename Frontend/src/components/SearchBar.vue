@@ -1,12 +1,25 @@
 <template>
   <form @submit.prevent="searchByLocation">
-    <input type="text" placeholder="Enter location..." />
-    <button type="submit" class="btn">Search</button>
+    <input v-model="searchCity" type="text" placeholder="Enter location..." />
+    <button class="btn">Search</button>
   </form>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      searchCity: '',
+    };
+  },
+  methods: {
+    searchByLocation() {
+      let searchCity = this.searchCity;
+      this.$store.commit('setCitySearch', searchCity);
+      this.$router.push('/search-results');
+    },
+  },
+};
 </script>
 
 <style scoped>
