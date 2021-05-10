@@ -24,7 +24,9 @@
     </div>
     <BookingModal />
     <div class="map"><h1>Map</h1></div>
-    <Reviews />
+    <div class="reviews">
+      <Reviews />
+    </div>
     <Hosts />
   </div>
 </template>
@@ -82,12 +84,6 @@ export default {
 }
 .reviews {
   height: 15rem;
-  background-color: #a9a9a9;
-  margin-top: 3rem;
-}
-.host {
-  height: 15rem;
-  background-color: #6b6b6b;
   margin-top: 3rem;
 }
 </style>
