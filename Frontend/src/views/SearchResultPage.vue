@@ -11,7 +11,6 @@
         :house="house"
       />
     </div>
-    <!-- <p>{{ houses }}</p> -->
   </div>
 </template>
 
@@ -40,11 +39,6 @@ export default {
   },
   components: { SearchResultItem, SearchModal },
   methods: {
-    /* Får in housesByCity från searchBar / create.
-      Köra arrayen genom alla filter och sedan rendera.
-      price, property, beds, amenities, reviews.
-       */
-
     searchByPrice(houses) {
       if (this.searchObject.price == '') {
         return houses;
@@ -67,7 +61,6 @@ export default {
           arr.push(house);
         }
       });
-      console.log(arr);
       return arr;
     },
     searchByBeds(houses) {
@@ -112,10 +105,6 @@ export default {
     },
     gettingSearchObject(payload) {
       this.searchObject = payload.searchObject;
-      console.log(this.searchObject);
-      /* Kalla på metoderna här? */
-
-      console.log(this.searchResult);
       this.refinedSearchResult = this.searchResult;
     },
   },
