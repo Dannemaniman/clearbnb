@@ -79,14 +79,20 @@ export default {
       });
     },
     searchByAmenities(houses) {
-      if (true) {
+      if (this.searchObject.amenities.length == 0) {
         return houses;
       }
-      houses.filter((house) => {
-        this.searchObject.amenities.every((amenity) =>
-          house.amenities.includes(amenity)
-        );
+      let arr = [];
+      houses.forEach((house) => {
+        if (
+          this.searchObject.amenities.every((elem) =>
+            house.amenities.includes(elem)
+          )
+        ) {
+          arr.push(house);
+        }
       });
+      return arr;
     },
     searchByReview(houses) {
       if (this.searchObject.review == '') {
