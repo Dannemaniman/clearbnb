@@ -4,7 +4,6 @@ export default createStore({
   // this.$store.state.variableName
   state: {
     houses: [],
-    users: [],
     selectedHouse: [],
     user: null,
   },
@@ -17,17 +16,11 @@ export default createStore({
     addHouses(state, house) {
       state.houses.push(house);
     },
-    setUsers(state, users) {
-      state.users = users;
-    },
-    addUser(state, user) {
-      state.users.push(user);
+    setSelectedHouse(state, house) {
+      state.selectedHouse = house;
     },
     setUser(state, user) {
       state.user = user;
-    },
-    setSelectedHouse(state, house) {
-      state.selectedHouse = house;
     },
   },
 
@@ -41,13 +34,6 @@ export default createStore({
 
       store.commit('setHouses', houses);
     },
-    async fetchUsers(store) {
-      let res = await fetch('/rest/users');
-      let users = await res.json();
-
-      store.commit('setUsers', users);
-    },
-
     async register(store, credentials) {
       let res = await fetch('/api/register', {
         method: 'POST',
