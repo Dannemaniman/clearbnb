@@ -6,7 +6,7 @@ import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import HouseDetails from './views/HouseDetails.vue';
 import SearchResultsPage from './views/SearchResultPage.vue';
-import UserDetails from './views/UserDetails.vue';
+import UserPage from './views/UserPage.vue';
 import ConfirmPage from './views/ConfirmPage.vue';
 
 export default createRouter({
@@ -34,7 +34,7 @@ export default createRouter({
     },
     {
       path: '/user/:id',
-      component: UserDetails,
+      component: UserPage,
     },
     {
       path: '/confirm',

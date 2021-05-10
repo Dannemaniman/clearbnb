@@ -36,6 +36,13 @@
           <div
             class="signUp"
             v-if="this.$store.state.user != null"
+            @click="this.$router.push('/user/' + this.$store.state.user.id)"
+          >
+            My page
+          </div>
+          <div
+            class="signUp"
+            v-if="this.$store.state.user != null"
             @click="logout"
           >
             <router-link to="/">Logout</router-link>

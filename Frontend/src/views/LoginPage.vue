@@ -36,9 +36,8 @@ export default {
         email: this.email,
         userPassword: this.userPassword,
       };
-
       this.$store.dispatch('login', credentials);
-      // this.$router.push()
+      this.$router.push('/');
     },
   },
 };

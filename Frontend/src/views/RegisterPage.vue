@@ -43,6 +43,7 @@ export default {
       };
 
       this.$store.dispatch('register', credentials);
+      this.$router.push('/');
     },
   },
 };
