@@ -10,7 +10,7 @@
           <p class='select-label'>Adults</p>
           <div class='button-container'>
             <button @click='decrement("adult")'>-</button>
-             <p>{{adultCounter}}</p>
+             <p>{{aCounter}}</p>
             <button @click='increment("adult")'>+</button>
           </div>
         </li>
@@ -21,7 +21,7 @@
           </div>  
           <div class='button-container'>
             <button @click='decrement("child")'>-</button>
-             <p>{{childCounter}}</p>
+             <p>{{cCounter}}</p>
             <button @click='increment("child")'>+</button>
           </div>
         </li>
@@ -32,7 +32,7 @@
           </div>
           <div class='button-container'>
             <button @click='decrement("senior")'>-</button>
-             <p>{{seniorCounter}}</p>
+             <p>{{sCounter}}</p>
             <button @click='increment("senior")'>+</button>
           </div>   
         </li>
@@ -45,15 +45,27 @@
 
 <script>
 export default {
-  props: {
-    changeCounter: { type: Function }
+  props: [
+    'changeCounter',
+    'adultCounter',
+    'childCounter',
+    'seniorCounter']
+  ,
+  computed: {
+      aCounter() {
+       return this.adultCounter
+      },
+      cCounter() {
+       return this.childCounter
+      },
+      sCounter() {
+       return this.seniorCounter
+      } 
   },
   data() {
     return {
       showModal: false,
-      adultCounter: 0,
-      childCounter: 0,
-      seniorCounter: 0
+      
     }
   },
   methods: {
@@ -65,22 +77,10 @@ export default {
       e.stopPropagation()
     },
     increment(type) {
-      if(type === 'adult') {
-        this.adultCounter++
-      } else if (type === 'child') {
-        this.childCounter++
-      } else {
-        this.seniorCounter++
-      }
+      this.$emit('increment', type)
     },
     decrement(type) {
-      if(type === 'adult' && this.adultCounter !== 0) {
-        this.adultCounter--
-      } else if (type === 'child' && this.childCounter !== 0) {
-        this.childCounter--
-      } else if(type === 'senior' && this.seniorCounter !== 0){
-        this.seniorCounter--
-      }
+      this.$emit('decrement', type)
     }
   }
 }

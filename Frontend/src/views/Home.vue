@@ -1,9 +1,10 @@
 <template>
   <div class="home-content">
-    <GalleryComponent />
+    <GalleryComponent :houses="houses"/>
     <div class="slider"><h1>SLAAAJDEER</h1></div>
     <div class="slider"><h1>SLAAAJDEER</h1></div>
     <Slider :images='houses' />
+    <booking-modal></booking-modal>
   </div>
 </template>
 
@@ -11,12 +12,14 @@
 import SearchBar from '../components/SearchBar.vue';
 import GalleryComponent from '../components/GalleryComponent.vue';
 import Slider from "../components/Slider.vue"
+import BookingModal from "../components/BookingModal.vue"
 
 export default {
   components: {
     GalleryComponent,
     SearchBar,
-    Slider
+    Slider,
+    BookingModal
   },
   data() {
     return {
