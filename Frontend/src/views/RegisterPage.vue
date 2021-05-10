@@ -1,114 +1,63 @@
 <template>
-  <div class="form-container">
+ <main class="form-signin">
     <form>
-      <img src="/images/register.png" />
-      <input type="text" placeholder="Full name..." required />
-      <input type="email" placeholder="Email..." required />
-      <input type="password" placeholder="Password..." required />
-      <input type="password" placeholder="Password..." required />
-      <button class="login" type="submit" value="submit">Register</button>
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+   <label for="inputEmail" class="sr-only">Name</label>
+  <input v-model="firstName" type="text"  class="form-control" placeholder="Name" required autofocus>
+  <label  for="inputEmail" class="sr-only">Email address</label>
+  <input  v-model="email" type="text"  class="form-control" placeholder="Email address" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input v-model="password" type="password"  class="form-control" placeholder="Password" required>
+  <input  v-model="confirmPassword " type="password"  class="form-control" placeholder="Password" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+     </div>
+      <button  @click="register" class="w-100 btn btn-lg btn-primary">Register</button>
       <hr />
       <router-link to="/">
-        <button class="cancel" type="button">Cancel</button>
+        <button class="w-100 btn btn-lg btn-primary" type="button">Cancel</button>
       </router-link>
     </form>
-  </div>
+ </main>
+
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      firstName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  },
+  methods:{
+    login(){
+      let credentails ={
+        email : this.email,
+        password: this.password,
+     
+      }
+
+      this.$store.dispatch('login', credentails)
+
+    },
+    register(){
+         let credentails ={
+        firstName: this.firstName,
+        email : this.email,
+        password: this.password,
+         confirmPassword: this.confirmPassword
+      }
+        this.$store.dispatch('register', credentails)
+    }
+  }
+};
 </script>
 
-<style scoped>
-.form-container {
-  padding: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+<style >
 
-img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  align-self: center;
-  margin: 1rem;
-  border-radius: 8px;
-  opacity: 0.8;
-  min-height: 100px;
-  object-fit: contain;
-}
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 30rem;
-  height: 35rem;
-  background-color: #808080;
-  border-radius: 8px;
-}
-input {
-  width: 45vw;
-  min-width: 130px;
-  max-width: 220px;
-  height: 1.4rem;
-  margin: 0.5rem auto;
-  border-radius: 4px;
-  border: 0;
-  background-color: #e9e9e9;
-}
-input:hover {
-  background-color: #a9a9a9;
-}
-input:last-of-type {
-  margin-bottom: 1rem;
-}
-button {
-  width: 45vw;
-  min-width: 130px;
-  max-width: 220px;
-  height: 1.4rem;
-  margin: 0.5rem auto;
-  font-size: 1rem;
-  cursor: pointer;
-  background-image: linear-gradient(147deg, #6b6b6b 0%, #4b4b4b 84%);
-  border: #4b4b4b;
-  border-radius: 4px;
-  color: #e9e9e9;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  background-color: #c7c7c7;
-}
-button:hover {
-  background: #c7c7c7;
-  color: #4b4b4b;
-}
-.login {
-  height: 2.5rem;
-}
-.cancel {
-  margin-bottom: 1rem;
-}
-hr {
-  margin: 1rem 0;
-  border: 0;
-  height: 1px;
-  width: 100%;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.75),
-    rgba(255, 255, 255, 0)
-  );
-}
-.register {
-  text-decoration: none;
-  margin-top: 3rem;
-  font-size: 1rem;
-  color: #4b4b4b;
-}
 </style>

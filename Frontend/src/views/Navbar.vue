@@ -24,11 +24,11 @@
 </button>
 <div class="login-form" v-if="isOpen">
   <form >
-    <div class="logIn">
-      <a href="./index2.html">Log in</a>
+    <div class="logIn" @click="isOpen = !isOpen">
+      <router-link to="/login" ><a>Log in</a> </router-link>
     </div>
-    <div class="signUp">
-    <a href="/#/">Sign up</a>
+    <div class="signUp" @click="isOpen = !isOpen">
+   <router-link to="/register"><a>Sign up</a></router-link>
     </div>
   </form>
 </div>

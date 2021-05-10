@@ -2,10 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 // import views
 import Home from './views/Home.vue';
-import LoginPage from './views/LoginPage.vue';
 import RegisterPage from './views/RegisterPage.vue';
 import HouseDetails from './views/HouseDetails.vue';
 import SearchResult from './views/SearchResult.vue';
+import Login from './views/Login.vue';
 
 export default createRouter({
   history: createWebHistory(),
@@ -15,11 +15,11 @@ export default createRouter({
       component: Home,
     },
     {
-      path: '/login-page',
-      component: LoginPage,
+      path: '/login',
+      component: Login,
     },
     {
-      path: '/register-page',
+      path: '/register',
       component: RegisterPage,
     },
     {

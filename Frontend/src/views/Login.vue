@@ -1,88 +1,25 @@
 <template>
-     <div class="container">
-        <div class="row">
-			<div class="col-md-5 mx-auto">
-			<div id="first">
-				<div class="myform form ">
-					 <div class="logo mb-3">
-						 <div class="col-md-12 text-center">
-							<h1>Login</h1>
-						 </div>
-					</div>
-                   <form action="" method="post" name="login">
-                           <div class="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                           </div>
-                           <div class="form-group">
-                              <label for="exampleInputEmail1">Password</label>
-                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
-                           </div>
-                           <div class="form-group">
-                              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
-                           </div>
-                           <div class="col-md-12 text-center ">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-                           </div>
-                           <div class="col-md-12 ">
-                              <div class="login-or">
-                                 <hr class="hr-or">
-                                 <span class="span-or">or</span>
-                              </div>
-                           </div>
-                           <div class="col-md-12 mb-3">
-                              <p class="text-center">
-                                 <a href="javascript:void();" class="google btn mybtn"><i class="fa fa-google-plus">
-                                 </i> Signup using Google
-                                 </a>
-                              </p>
-                           </div>
-                           <div class="form-group">
-                              <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
-                           </div>
-                        </form>
-                 
-				</div>
-			</div>
-			  <div id="second">
-			      <div class="myform form ">
-                        <div class="logo mb-3">
-                           <div class="col-md-12 text-center">
-                              <h1 >Signup</h1>
-                           </div>
-                        </div>
-                        <form action="#" name="registration">
-                           <div class="form-group">
-                              <label for="exampleInputEmail1">First Name</label>
-                              <input type="text"  name="firstname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
-                           </div>
-                           <div class="form-group">
-                              <label for="exampleInputEmail1">Last Name</label>
-                              <input type="text"  name="lastname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
-                           </div>
-                           <div class="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                           </div>
-                           <div class="form-group">
-                              <label for="exampleInputEmail1">Password</label>
-                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
-                           </div>
-                           <div class="col-md-12 text-center mb-3">
-                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>
-                           </div>
-                           <div class="col-md-12 ">
-                              <div class="form-group">
-                                 <p class="text-center"><a href="#" id="signin">Already have an account?</a></p>
-                              </div>
-                           </div>
-                            </div>
-                        </form>
-                     </div>
-			</div>
-		</div>
-      </div> 
+<main class="form-signin">
+   <form>
+  <img class="mb-4" src="../../public/images/clearbnb_logo1.png" alt="" width="260" height="200">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email"  class="form-control" placeholder="Email address" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password"  class="form-control" placeholder="Password" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
+</form>
+   </main>
 </template>
+  
+        
+   
 
 <script>
 export default {
@@ -91,38 +28,37 @@ export default {
 </script>
 
 <style>
-  body{
-        padding-top:4.2rem;
-		padding-bottom:4.2rem;
-		background:rgba(0, 0, 0, 0.76);
-        }
-        a{
-         text-decoration:none !important;
-         }
-         h1,h2,h3{
-         font-family: 'Kaushan Script', cursive;
-         }
-          .myform{
-		position: relative;
-		display: -ms-flexbox;
-		display: flex;
-		padding: 1rem;
-		-ms-flex-direction: column;
-		flex-direction: column;
-		width: 100%;
-		pointer-events: auto;
-		background-color: #fff;
-		background-clip: padding-box;
-		border: 1px solid rgba(0,0,0,.2);
-		border-radius: 1.1rem;
-		outline: 0;
-		max-width: 500px;
-		 }
-         .tx-tfm{
-         text-transform:uppercase;
-         }
-         .mybtn{
-         border-radius:50px;
-         }
-        
+ 
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  background: rgb(238, 223, 196);
+  color: black;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 </style>

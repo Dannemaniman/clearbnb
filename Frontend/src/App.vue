@@ -1,12 +1,14 @@
 <template>
+<div>
   <header>
     <Navbar/>
   </header>
   <main>
-    <router-view />
+    <router-view/>
   </main>
 
   <Footer/>
+  </div>
 </template>
 
 <script>
@@ -21,6 +23,7 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchHouses');
+    this.$store.dispatch('whoami');
   },
 };
 </script>
@@ -43,4 +46,6 @@ body {
 main {
   flex-grow: 1;
 }
+
+
 </style>
