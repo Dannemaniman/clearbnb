@@ -1,5 +1,4 @@
 <template>
-  <h1>Details</h1>
   <div class="user-details" v-if="user">
     <div class="image">
       <img src="../../public/pngegg.png" alt="" />
