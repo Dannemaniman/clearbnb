@@ -27,25 +27,14 @@
       </button>
       <div class="login-form" v-if="isOpen">
         <form>
-          <div class="logIn" v-if="this.$store.state.user == null">
+          <div class="logIn">
             <router-link to="/login-page">Log in</router-link>
           </div>
-          <div class="signUp" v-if="this.$store.state.user == null">
+          <div class="signUp">
             <router-link to="/register-page">Sign up</router-link>
           </div>
-          <div
-            class="signUp"
-            v-if="this.$store.state.user != null"
-            @click="this.$router.push('/user/' + this.$store.state.user.id)"
-          >
-            My Page
-          </div>
-          <div
-            class="signUp"
-            v-if="this.$store.state.user != null"
-            @click="logout"
-          >
-            <router-link to="/">Logout</router-link>
+          <div>
+            <router-link to="/all-users">Users</router-link>
           </div>
         </form>
       </div>
@@ -63,13 +52,7 @@ export default {
       searchCity: '',
     };
   },
-
   methods: {
-    logout() {
-      this.$store.dispatch('logout');
-      console.log(this.$store.state.user);
-    },
-
     searchByLocation() {
       let searchCity = this.searchCity;
       this.$store.commit('setCitySearch', searchCity);

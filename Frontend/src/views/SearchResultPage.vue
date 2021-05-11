@@ -1,17 +1,16 @@
 <template>
   <div v-if="houses" class="content">
-    <SearchModal />
+    <SearchModal @refined-search="gettingSearchObject" />
 
-    <h1>{{ houses.length }} Matched objects</h1>
+    <h1>{{ refinedSearchResult.length }} Matched objects</h1>
     <div class="search-results">
       <SearchResultItem
         class="house"
-        v-for="house of houses"
+        v-for="house of refinedSearchResult"
         :key="house.id"
         :house="house"
       />
     </div>
-    <!-- <p>{{ houses }}</p> -->
   </div>
 </template>
 
@@ -22,10 +21,93 @@ export default {
   data() {
     return {
       houses: [],
+      searchObject: null,
+      housesByCity: [],
+      refinedSearchResult: [],
     };
   },
+  computed: {
+    searchResult: function () {
+      return this.searchByPrice(
+        this.searchByProperty(
+          this.searchByBeds(
+            this.searchByAmenities(this.searchByReview(this.housesByCity))
+          )
+        )
+      );
+    },
+  },
   components: { SearchResultItem, SearchModal },
-  methods: {},
+  methods: {
+    searchByPrice(houses) {
+      if (this.searchObject.price == '') {
+        return houses;
+      }
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.price <= this.searchObject.price) {
+          arr.push(house);
+        }
+      });
+      return arr;
+    },
+    searchByProperty(houses) {
+      if (this.searchObject.property == '') {
+        return houses;
+      }
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.propertyType == this.searchObject.property) {
+          arr.push(house);
+        }
+      });
+      return arr;
+    },
+    searchByBeds(houses) {
+      if (this.searchObject.beds == 0) {
+        return houses;
+      }
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.accommodation.beds >= this.searchObject.beds) {
+          arr.push(house);
+        }
+      });
+      return arr;
+    },
+    searchByAmenities(houses) {
+      if (this.searchObject.amenities.length == 0) {
+        return houses;
+      }
+      let arr = [];
+      houses.forEach((house) => {
+        if (
+          this.searchObject.amenities.every((elem) =>
+            house.amenities.includes(elem)
+          )
+        ) {
+          arr.push(house);
+        }
+      });
+      return arr;
+    },
+    searchByReview(houses) {
+      if (this.searchObject.review == '') {
+        return houses;
+      }
+      let arr = [];
+      houses.forEach((house) => {
+        if (house.reviews >= this.searchObject.review) {
+          arr.push(house);
+        }
+      });
+      return arr;
+    },
+    gettingSearchObject(payload) {
+      this.searchObject = payload.searchObject;
+      this.refinedSearchResult = this.searchResult;
+    },
+  },
 
   async created() {
     let res = await fetch('/rest/houses');
@@ -38,6 +120,12 @@ export default {
         this.houses.push(house);
       }
     });
+    this.refinedSearchResult = this.houses;
+    this.housesByCity = this.houses;
+
+    /* else {
+      this.houses = houses;
+    } */
   },
 };
 </script>
