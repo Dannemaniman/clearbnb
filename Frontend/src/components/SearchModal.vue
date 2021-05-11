@@ -33,69 +33,64 @@
               </select>
             </div>
           </div>
-          <div class="checkboxes">
-            <div>
-              <label>Wifi</label>
-              <input
-                type="checkbox"
-                value="Wifi"
-                v-model="searchObject.amenities"
-              />
-            </div>
-            <div>
-              <label>Television</label>
-              <input
-                type="checkbox"
-                value="Television"
-                v-model="searchObject.amenities"
-              />
-            </div>
-            <div>
-              <label>Breakfast</label>
-              <input
-                type="checkbox"
-                value="Breakfast"
-                v-model="searchObject.amenities"
-              />
-            </div>
-            <div>
-              <label>Toothbrush</label>
-              <input
-                type="checkbox"
-                value="Toothbrush"
-                v-model="searchObject.amenities"
-              />
-            </div>
+        </div>
+        <div class="checkboxes">
+          <div>
+            <label>Bed</label>
+            <input
+              type="checkbox"
+              value="Bed"
+              v-model="searchObject.amenities"
+            />
           </div>
-
-          <div class="guest-number">
-            <li class="select-item">
-              <p class="select-label">Beds:</p>
-              <div class="button-container">
-                <button @click="decrement">-</button>
-                <p>{{ counter }}</p>
-                <button @click="increment">+</button>
-              </div>
-            </li>
+          <div>
+            <label>Breakfast</label>
+            <input
+              type="checkbox"
+              value="Breakfast"
+              v-model="searchObject.amenities"
+            />
           </div>
-
-          <div class="selector-text">
-            <label>Property:</label>
-            <span> {{ searchObject.property }}</span
-            ><br />
-            <label>Max price:</label> <span> {{ searchObject.price }}</span
-            ><br />
-            <label>Min review:</label> <span> {{ searchObject.review }}</span
-            ><br />
-            <label>Beds:</label> <span>{{ counter }}</span>
+          <div>
+            <label>Fridge</label>
+            <input
+              type="checkbox"
+              value="Fridge"
+              v-model="searchObject.amenities"
+            />
           </div>
-          <div class="amenities">
-            <p>Amenities:</p>
-            <Amenities :amenities="searchObject.amenities" />
+          <div>
+            <label>Heating</label>
+            <input
+              type="checkbox"
+              value="Heating"
+              v-model="searchObject.amenities"
+            />
           </div>
         </div>
-        <button class="button" @click="closeModal">Search</button>
+        <div class="guest-number">
+          <li class="select-item">
+            <p class="select-label">Beds:</p>
+            <div class="button-container">
+              <button @click="decrement">-</button>
+              <p>{{ counter }}</p>
+              <button @click="increment">+</button>
+            </div>
+          </li>
+        </div>
+        <div class="selector-text">
+          <label>Property:</label>
+          <span> {{ searchObject.property }}</span
+          ><br />
+          <label>Max price:</label> <span> {{ searchObject.price }}</span
+          ><br />
+          <label>Min review:</label> <span> {{ searchObject.review }}</span
+          ><br />
+          <label>Beds:</label> <span>{{ counter }}</span>
+        </div>
+        <Amenities :amenities="searchObject.amenities" />
       </div>
+      <button class="button" @click="sendSearch">Search</button>
     </transition>
   </section>
 </template>
@@ -107,15 +102,15 @@ export default {
     return {
       showModal: false,
       searchObject: {
-        city: '',
         property: '',
         price: '',
         review: '',
         amenities: [],
+        beds: '',
       },
       properties: ['Torp', 'Villa', 'Lägenhet', 'Sommarstuga'],
       prices: ['1000', '2000', '3000', '4000'],
-      reviews: ['1/5', '2/5', '3/5', '4/5', '5/5'],
+      reviews: ['1', '2', '3', '4', '5'],
       counter: 0,
     };
   },
@@ -129,11 +124,17 @@ export default {
     },
     increment() {
       this.counter++;
+      this.searchObject.beds++;
     },
     decrement() {
       if (this.counter !== 0) {
         this.counter--;
+        this.searchObject.beds--;
       }
+    },
+    sendSearch() {
+      this.$emit('refined-search', { searchObject: this.searchObject });
+      this.showModal = false;
     },
   },
 };
