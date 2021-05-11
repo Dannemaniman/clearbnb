@@ -103,7 +103,7 @@ export default createStore({
       store.commit('setBookings', bookings);
     },
     async book(store, info) {
-      let res = await fetch('/rest/booking', {
+      let res = await fetch('/rest/bookings', {
         method: 'POST',
         body: JSON.stringify(info),
       });
