@@ -33,64 +33,69 @@
               </select>
             </div>
           </div>
-        </div>
-        <div class="checkboxes">
-          <div>
-            <label>Bed</label>
-            <input
-              type="checkbox"
-              value="Bed"
-              v-model="searchObject.amenities"
-            />
-          </div>
-          <div>
-            <label>Breakfast</label>
-            <input
-              type="checkbox"
-              value="Breakfast"
-              v-model="searchObject.amenities"
-            />
-          </div>
-          <div>
-            <label>Fridge</label>
-            <input
-              type="checkbox"
-              value="Fridge"
-              v-model="searchObject.amenities"
-            />
-          </div>
-          <div>
-            <label>Heating</label>
-            <input
-              type="checkbox"
-              value="Heating"
-              v-model="searchObject.amenities"
-            />
-          </div>
-        </div>
-        <div class="guest-number">
-          <li class="select-item">
-            <p class="select-label">Beds:</p>
-            <div class="button-container">
-              <button @click="decrement">-</button>
-              <p>{{ counter }}</p>
-              <button @click="increment">+</button>
+          <div class="checkboxes">
+            <div>
+              <label>Bed</label>
+              <input
+                type="checkbox"
+                value="Bed"
+                v-model="searchObject.amenities"
+              />
             </div>
-          </li>
+            <div>
+              <label>Breakfast</label>
+              <input
+                type="checkbox"
+                value="Breakfast"
+                v-model="searchObject.amenities"
+              />
+            </div>
+            <div>
+              <label>Fridge</label>
+              <input
+                type="checkbox"
+                value="Fridge"
+                v-model="searchObject.amenities"
+              />
+            </div>
+            <div>
+              <label>Heating</label>
+              <input
+                type="checkbox"
+                value="Heating"
+                v-model="searchObject.amenities"
+              />
+            </div>
+          </div>
+
+          <div class="guest-number">
+            <li class="select-item">
+              <p class="select-label">Beds:</p>
+              <div class="button-container">
+                <button @click="decrement">-</button>
+                <p>{{ counter }}</p>
+                <button @click="increment">+</button>
+              </div>
+            </li>
+          </div>
+
+          <div class="selector-text">
+            <label>Property:</label>
+            <span> {{ searchObject.property }}</span
+            ><br />
+            <label>Max price:</label> <span> {{ searchObject.price }}</span
+            ><br />
+            <label>Min review:</label> <span> {{ searchObject.review }}</span
+            ><br />
+            <label>Beds:</label> <span>{{ counter }}</span>
+          </div>
+          <div class="amenities">
+            <p>Amenities:</p>
+            <Amenities :amenities="searchObject.amenities" />
+          </div>
         </div>
-        <div class="selector-text">
-          <label>Property:</label>
-          <span> {{ searchObject.property }}</span
-          ><br />
-          <label>Max price:</label> <span> {{ searchObject.price }}</span
-          ><br />
-          <label>Min review:</label> <span> {{ searchObject.review }}</span
-          ><br />
-          <label>Beds:</label> <span>{{ counter }}</span>
-        </div>
-        <Amenities :amenities="searchObject.amenities" />
+        <button class="button" @click="sendSearch">Search</button>
       </div>
-      <button class="button" @click="sendSearch">Search</button>
     </transition>
   </section>
 </template>
