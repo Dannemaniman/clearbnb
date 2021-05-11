@@ -2,7 +2,6 @@
   <div class="home-content">
     <GalleryComponent />
     <div class="slider"><h1>SLAAAJDEER</h1></div>
-    <div class="slider"><h1>SLAAAJDEER</h1></div>
     <Slider :images="houses" />
   </div>
 </template>
