@@ -97,7 +97,7 @@ export default {
       }
       let arr = [];
       houses.forEach((house) => {
-        if (house.reviews >= this.searchObject.review) {
+        if (house.review >= this.searchObject.review) {
           arr.push(house);
         }
       });
