@@ -23,7 +23,7 @@
       <Amenities :amenities="home.amenities" />
     </div>
     <BookingModal />
-    <div class="map"><h1>Map</h1></div>
+    <div class="map"></div>
     <div class="reviews">
       <Reviews
         v-for="review of reviews.slice(1, 4)"
@@ -84,11 +84,7 @@ export default {
   background-repeat: no-repeat;
   flex-wrap: wrap;
 }
-.map {
-  height: 15rem;
-  background-color: #6b6b6b;
-  margin-top: 3rem;
-}
+
 .reviews {
   display: flex;
   align-items: center;
@@ -97,7 +93,10 @@ export default {
   gap: 0.5rem;
   height: 100%;
   margin: 1rem 0;
-  overflow-x: hidden;
-  overflow-y: visible;
+}
+.map {
+  background-image: url('../../public/Map.png');
+  height: 25rem;
+  margin-top: 3rem;
 }
 </style>

@@ -54,7 +54,6 @@ export default {
   margin-top: 8px;
   font-size: 0.85rem;
   line-height: 1rem;
-  text-overflow: ellipsis;
 }
 .review-body {
   overflow: hidden;
