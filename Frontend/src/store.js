@@ -7,6 +7,7 @@ export default createStore({
     selectedHouse: [],
     user: null,
     citySearch: '',
+    reviews: [],
   },
 
   // this.$store.commit('mutationName', data)
@@ -25,6 +26,9 @@ export default createStore({
     },
     setCitySearch(state, city) {
       state.citySearch = city;
+    },
+    setReviews(state, reviews) {
+      state.reviews = reviews;
     },
   },
 
@@ -72,6 +76,18 @@ export default createStore({
       let res = await fetch('/api/logout');
       console.log('logged out');
       store.commit('setUser', null);
+    },
+    async fetchUsers(store) {
+      let res = await fetch('/rest/users');
+      let users = await res.json();
+
+      store.commit('setUsers', users);
+    },
+    async fetchReviews(store) {
+      let res = await fetch('/rest/reviews');
+      let reviews = await res.json();
+
+      store.commit('setReviews', reviews);
     },
 
     /*  async fetchHouseById(store, id) {

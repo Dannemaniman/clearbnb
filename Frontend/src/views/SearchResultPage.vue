@@ -39,17 +39,6 @@ export default {
       }
     });
   },
-
-  /*   created() {
-    this.$store.state.houses.filter((house) => {
-      let city = house.city.toLowerCase();
-      let search = this.$store.state.citySearch.toLowerCase();
-
-      if (city.includes(search)) {
-        this.houses.push(house);
-      }
-    });
-  }, */
 };
 </script>
 

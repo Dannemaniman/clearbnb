@@ -22,6 +22,7 @@ export default {
   created() {
     this.$store.dispatch('whoAmI');
     this.$store.dispatch('fetchHouses');
+    this.$store.dispatch('fetchReviews');
   },
 };
 </script>
