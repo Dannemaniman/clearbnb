@@ -4,8 +4,8 @@
       <h1>CONFIRM DETAILS</h1>
     </div>
     <h2>Booking</h2>
-    <ListItem :item="info"/>
-    <form class="credit-modal" @submit.prevent=""> 
+    <ListItem :item="info" />
+    <form class="credit-modal" @submit.prevent="">
       <select>
         <option value="">Select your card</option>
         <option value="visa">Visa</option>
@@ -13,38 +13,48 @@
         <option value="american-express">American Express</option>
       </select>
       <div class="card"></div>
-      <input placeholder="Card Number" type="text" class="card-number"/>
-      <input placeholder="Card Expiration" type="text" class="card-expiration"/>
-      <input placeholder="Card CVV" type="text" class="card-cvv"/>
-      <button class="submit-button">Pay</button>    
+      <input placeholder="Card Number" type="text" class="card-number" />
+      <input
+        placeholder="Card Expiration"
+        type="text"
+        class="card-expiration"
+      />
+      <input placeholder="Card CVV" type="text" class="card-cvv" />
+      <button class="submit-button" @click="book">Pay</button>
     </form>
   </section>
 </template>
 
 <script>
-import ListItem from "../components/ListItem.vue"
+import ListItem from '../components/ListItem.vue';
 
 export default {
   components: {
-    ListItem
+    ListItem,
+  },
+  methods: {
+    book() {
+      let info = this.info;
+      console.log(info);
+      this.$store.dispatch('book', info);
+    },
   },
   data() {
     return {
       info: {
-        image: "/public/images/House1.jpg",
+        // image: '/public/images/House1.jpg',
         date: new Date(),
-        type: "House",
-        city: "Stockholm",
-        adress: "Korvgatan 21",
-        id: Math.random()
-      }
-    }
-  }
-}
+        // type: 'House',
+        // city: 'Stockholm',
+        // adress: 'Korvgatan 21',
+        // id: Math.random(),
+      },
+    };
+  },
+};
 </script>
 
 <style scoped>
-
 section {
   width: 70%;
   background-color: rgb(214, 214, 214);
@@ -78,7 +88,9 @@ section {
   border-radius: 10px 10px 0 0;
   margin: 0 auto;
   border-bottom: 0;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   margin-top: 6rem;
   background-color: whitesmoke;
   position: relative;

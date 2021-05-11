@@ -13,6 +13,7 @@ public class Booking {
     private String bookerId;
     private String houseId;
     private List<Date> bookedDates;
+    private Date date;
 
     public Booking() { }
 
@@ -46,5 +47,13 @@ public class Booking {
 
     public void setBookedDates(List<Date> bookedDates) {
         this.bookedDates = bookedDates;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
