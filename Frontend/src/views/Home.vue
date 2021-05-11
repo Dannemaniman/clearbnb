@@ -2,9 +2,9 @@
   <div class="home-content">
     <GalleryComponent />
     <p>Nära dig</p>
-    <Slider :images="houses2" />
+    <Slider :houses="houses" />
     <p>I Omfånget</p>
-    <Slider :images="houses2" />
+    <Slider :houses="houses" />
     <p> Våra Förslag</p>
     <Slider :houses="houses" />
   </div>
@@ -23,25 +23,14 @@ export default {
   },
   data() {
     return {
-      houses2: [
-        '../../public/images/House1.jpg',
-        '../../public/images/House2.jpg',
-        '../../public/images/House3.jpg',
-        '../../public/images/House4.jpg',
-        '../../public/images/House5.jpg',
-        '../../public/images/House6.jpg',
-        '../../public/images/House7.jpg',
-        '../../public/images/House8.jpg',
-      ],
+      houses: null,
     };
   },
-  computed: {
-    houses() {
-      return this.$store.state.houses;
-    },
-  },
-  methods: {
-    searchByLocation() {},
+  async created() {
+      setTimeout((async () => {
+        let housesData = await this.$store.state.houses
+        this.houses = housesData
+      }), 1000)
   },
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
   <section class='section-slider'>
-    <div class='slider-container'>
+    <div class='slider-container' v-if="houses !== null">
       <div class='arrow-left' @click='moveLeft'/>
       <article :class="`slide${String(Math.random()).replace(
-        '.', '')}`" v-for='(image, index) of images' :key='index'  :ref="String(Math.random()).replace(
+        '.', '')}`" v-for='house of houses' :key='house.id'  :ref="String(Math.random()).replace(
         '.', '')">
-        <img :src='images[index]'/>
+        <img :src='house.images[0]' @click="goToDetails(house.id)"/>
       </article>
       <div class='arrow-right' @click='moveRight'/>
     </div>
@@ -14,7 +14,7 @@
 
 <script> 
 export default {
-  props: ['images'],
+  props: ['houses'],
   data() {
     return {
        moveCounter: 0,
@@ -22,7 +22,7 @@ export default {
   }, 
   methods: {
     moveRight() {
-      this.moveCounter >= this.images.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
+      this.moveCounter >= this.houses.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
 
        for(let ref in this.$refs) {
          this.$refs[ref].style.transform = `translateX(-${300 * this.moveCounter}px)`
@@ -35,8 +35,8 @@ export default {
         this.$refs[ref].style.transform = `translateX(-${300 * this.moveCounter}px)`
       } 
     },
-    goToDetails() {
-      // this.$router.push('/house/' + this.house.id);
+    goToDetails(id) {
+       this.$router.push('/house/' + id);
     }
   },
 }
@@ -61,6 +61,7 @@ export default {
 
   article {
     transition: all 0.3s ease;
+    cursor: pointer;
   }
 
   img {
@@ -78,6 +79,7 @@ export default {
     border-top: 60px solid transparent;
     border-bottom: 60px solid transparent;
     border-left: 60px solid black;
+    cursor: pointer;
   }
 
   .arrow-right:hover,   .arrow-right:active {
@@ -93,6 +95,7 @@ export default {
     border-top: 60px solid transparent;
     border-bottom: 60px solid transparent; 
     border-right:60px solid black; 
+    cursor: pointer;    
   }
 
   .arrow-left:hover,   .arrow-left:active {
