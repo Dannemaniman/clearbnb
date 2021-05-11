@@ -1,60 +1,57 @@
 <template>
-  <div class="detail-content">
+  <div v-if="home" class="detail-content">
     <h1>{{ home.title }}</h1>
     <div class="images">
-      <div class="big-image">
-        <img :src="home.images[0]" alt="" class="img-1" />
-      </div>
-      <div class="small-images">
-        <img :src="home.images[0]" alt="" class="img-2" />
-        <img :src="home.images[0]" alt="" class="img-3" />
-        <img :src="home.images[0]" alt="" class="img-4" />
-        <img :src="home.images[0]" alt="" class="img-5" />
-        <img :src="home.images[0]" alt="" class="img-6" />
-        <img :src="home.images[0]" alt="" class="img-7" />
-        <img :src="home.images[0]" alt="" class="img-8" />
-        <img :src="home.images[0]" alt="" class="img-9" />
-      </div>
+      <img :src="home.images[0]" alt="" class="img-1" />
+      <img :src="home.images[0]" alt="" class="img-2" />
+      <img :src="home.images[0]" alt="" class="img-3" />
+      <img :src="home.images[0]" alt="" class="img-4" />
+      <img :src="home.images[0]" alt="" class="img-5" />
+      <img :src="home.images[0]" alt="" class="img-6" />
+      <img :src="home.images[0]" alt="" class="img-7" />
+      <img :src="home.images[0]" alt="" class="img-8" />
     </div>
     <div class="information">
-      <h2>{{ home.city }}</h2>
-      <h3>{{ home.address }}</h3>
+      <h1>{{ home.city }}</h1>
+      <h2>{{ home.address }}</h2>
       <h2>{{ home.description }}</h2>
       <Amenities :amenities="home.amenities" />
     </div>
-    <div class="map"><h1>Map</h1></div>
-    <div class="reviews"><h1>Reviews</h1></div>
-    <div class="host"><h1>Host</h1></div>
+    <BookingModal />
+    <div class="map"></div>
+    <div class="reviews">
+      <Reviews
+        v-for="review of reviews.slice(1, 4)"
+        :review="review"
+        :key="review.id"
+      />
+    </div>
+
+    <Hosts />
   </div>
 </template>
 
 <script>
+import Hosts from '../components/Hosts.vue';
+import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
+import Reviews from '../components/Reviews.vue';
 export default {
-  components: { Amenities },
+  components: { Amenities, Hosts, BookingModal, Reviews },
   data() {
     return {
       home: null,
+      reviews: {},
     };
   },
-  /*  computed: {
-    home() {
-      return this.$store.state.selectedHouse;
-    },
-  }, */
-  created() {
-    for (let home of this.$store.state.houses) {
-      if (home.id == this.$route.params.id) {
-        this.home = home;
-      }
-    }
-  },
-  /*  async created() {
+
+  async created() {
     let id = this.$route.params.id;
-    const response = await fetch(`/rest/homes/${id}`);
+    const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
-  }, */
+    this.reviews = this.$store.state.reviews;
+  },
 };
 </script>
 
@@ -64,37 +61,34 @@ export default {
   flex-direction: column;
 }
 .images {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 1rem;
+  gap: 0.3rem;
+}
+.images img {
+  width: 100%;
+}
+.images img:nth-child(1) {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.reviews {
   display: flex;
-  padding: 10px;
-}
-.detail-content .img-1 {
-  max-width: 20rem;
-  max-height: 25rem;
-  object-fit: contain;
-  background-repeat: no-repeat;
-  align-self: flex-start;
-  flex-grow: 1;
-}
-.small-images img {
-  max-height: 12.5rem;
-  width: 25%;
-  object-fit: contain;
-  background-repeat: no-repeat;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: 0.5rem;
+  height: 100%;
+  margin: 1rem 0;
 }
 .map {
-  height: 15rem;
-  background-color: #6b6b6b;
-  margin-top: 3rem;
-}
-.reviews {
-  height: 15rem;
-  background-color: #a9a9a9;
-  margin-top: 3rem;
-}
-.host {
-  height: 15rem;
-  background-color: #6b6b6b;
+  background-image: url('../../public/Map.png');
+  height: 25rem;
   margin-top: 3rem;
 }
 </style>

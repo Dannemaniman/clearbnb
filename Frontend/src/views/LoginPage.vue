@@ -1,14 +1,19 @@
 <template>
   <div class="form-container">
-    <form>
+    <form @submit.prevent="login">
       <img src="/images/login.png" />
-      <input type="email" placeholder="E-mail..." required />
-      <input type="password" placeholder="Password..." required />
-      <button class="login" type="submit" value="submit">Logga in</button>
+      <input v-model="email" type="email" placeholder="E-mail..." required />
+      <input
+        v-model="userPassword"
+        type="password"
+        placeholder="Password..."
+        required
+      />
+      <button class="login">Login</button>
       <hr />
-      <router-link to="/">
+      <!--<router-link to="/">
         <button class="cancel" type="button">Cancel</button>
-      </router-link>
+      </router-link> -->
       <router-link class="register" to="/register-page"
         >Register new account</router-link
       >
@@ -17,7 +22,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      email: '',
+      userPassword: '',
+    };
+  },
+
+  methods: {
+    login() {
+      let credentials = {
+        email: this.email,
+        userPassword: this.userPassword,
+      };
+      this.$store.dispatch('login', credentials);
+      this.$router.push('/');
+    },
+  },
+};
 </script>
 
 <style scoped>
