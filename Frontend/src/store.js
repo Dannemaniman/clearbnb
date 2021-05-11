@@ -89,11 +89,5 @@ export default createStore({
 
       store.commit('setReviews', reviews);
     },
-
-    /*  async fetchHouseById(store, id) {
-      let res = await fetch('/rest/houses/:${id}');
-      let house = await res.json();
-      store.commit('setSelectedHouse', house);
-    }, */
   },
 });

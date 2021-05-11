@@ -20,7 +20,7 @@ public class House {
     private String description;
     private String price;
     private List<String> amenities;
-    private List<Review> review;
+    private String reviews;
     private String ownerId;
     private List<Booking> bookings;
 
@@ -39,7 +39,7 @@ public class House {
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
                 ", amenities=" + amenities +
-                ", reviews=" + review +
+                ", reviews=" + reviews +
                 ", ownerId='" + ownerId + '\'' +
                 ", bookings=" + bookings +
                 '}';
@@ -125,12 +125,12 @@ public class House {
         this.amenities = amenities;
     }
 
-    public List<Review> getReview() {
-        return review;
+    public String getReview() {
+        return reviews;
     }
 
-    public void setReview(List<Review> review) {
-        this.review = review;
+    public void setReview(String reviews) {
+        this.reviews = reviews;
     }
 
     public String getOwnerId() {
