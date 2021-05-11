@@ -1,52 +1,22 @@
 <template>
   <div class="form-container">
-    <form @submit.prevent="register">
+    <form>
       <img src="/images/register.png" />
-      <input
-        v-model="fullName"
-        type="text"
-        placeholder="Full name..."
-        required
-      />
-      <input v-model="email" type="email" placeholder="Email..." required />
-      <input
-        v-model="userPassword"
-        type="password"
-        placeholder="Password..."
-        required
-      />
-      <button class="login">Register</button>
+      <input type="text" placeholder="Full name..." required />
+      <input type="email" placeholder="Email..." required />
+      <input type="password" placeholder="Password..." required />
+      <input type="password" placeholder="Password..." required />
+      <button class="login" type="submit" value="submit">Register</button>
       <hr />
-      <!--<router-link to="/">
+      <router-link to="/">
         <button class="cancel" type="button">Cancel</button>
-      </router-link> -->
+      </router-link>
     </form>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      fullName: '',
-      email: '',
-      userPassword: '',
-    };
-  },
-
-  methods: {
-    register() {
-      let credentials = {
-        fullName: this.fullName,
-        email: this.email,
-        userPassword: this.userPassword,
-      };
-
-      this.$store.dispatch('register', credentials);
-      this.$router.push('/');
-    },
-  },
-};
+export default {};
 </script>
 
 <style scoped>

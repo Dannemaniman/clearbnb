@@ -1,4 +1,5 @@
 package models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 import nosqlite.annotations.Transient;
