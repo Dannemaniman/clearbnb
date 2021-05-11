@@ -1,6 +1,6 @@
 <template>
   <section class="user-content">
-    <div>
+    <div class="buttons">
       <button @click="openPage(1)">Bookings</button>
       <button @click="openPage(2)">Houses</button>
       <button @click="openPage(3)">Details</button>

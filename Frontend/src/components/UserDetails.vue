@@ -1,7 +1,7 @@
 <template>
   <div class="user-details" v-if="user">
     <div class="image">
-      <img src="../../public/pngegg.png" alt="" />
+      <img src="../../public/stockman.jpg" alt="" />
     </div>
     <div class="info">
       <h1>{{ user.fullName }}</h1>
@@ -36,6 +36,13 @@ export default {
 
 .image {
   width: 50%;
+}
+
+img {
+  margin-top: 4rem;
+  width: 450px;
+  height: 300px;
+  border-radius: 10px;
 }
 
 .info {

@@ -1,18 +1,28 @@
 <template>
-  <div v-if="houses">
-    <h2>{{ houses[0].title }}</h2>
-    <p>{{ houses[0].address }}</p>
-    <p>{{ houses[0].city }}</p>
-    <p>{{ houses[0].description }}</p>
-  </div>
+  <button>New House</button>
+  <UserHouseItem
+    v-for="(userHouse, index) of userHouses"
+    v-bind:key="index"
+    v-bind:house="userHouse"
+  />
 </template>
 
 <script>
+import UserHouseItem from './UserHouseItem.vue';
 export default {
+  components: {
+    UserHouseItem,
+  },
+  computed: {
+    houses() {
+      return this.$store.state.houses;
+    },
+  },
+
   data() {
     return {
       user: null,
-      houses: [],
+      userHouses: [],
     };
   },
 
@@ -22,20 +32,36 @@ export default {
     let user = await userRes.json();
     this.user = user;
 
-    this.userHouses();
-  },
-
-  methods: {
-    userHouses() {
-      for (let house of this.$store.state.houses) {
-        if (this.user.id == house.ownerId) {
-          this.houses.push(house);
-        }
+    let userHouses = [];
+    for (let house of this.houses) {
+      if (this.user.id == house.ownerId) {
+        userHouses.push(house);
       }
-      console.log(this.houses);
-    },
+    }
+    this.userHouses = userHouses;
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+button {
+  margin-top: 1rem;
+  width: 20%;
+  height: 4rem;
+  border-radius: 10px;
+  outline: none;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #a9a9a9;
+}
+
+button:active {
+  background-color: #a9a9a9;
+}
+</style>
