@@ -7,7 +7,7 @@ export default createStore({
     users: [],
     selectedHouse: [],
     citySearch: '',
-    reviews: {},
+    reviews: [],
   },
 
   // this.$store.commit('mutationName', data)

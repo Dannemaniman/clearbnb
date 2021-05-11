@@ -24,12 +24,13 @@
     </div>
     <BookingModal />
     <div class="map"><h1>Map</h1></div>
-    <Reviews
-      class="reviews"
-      v-for="review of reviews"
-      :review="review"
-      :key="review.id"
-    />
+    <div class="reviews">
+      <Reviews
+        v-for="review of reviews.slice(1, 4)"
+        :review="review"
+        :key="review.id"
+      />
+    </div>
 
     <Hosts />
   </div>
@@ -89,7 +90,14 @@ export default {
   margin-top: 3rem;
 }
 .reviews {
-  height: 15rem;
-  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  height: 100%;
+  margin: 1rem 0;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 </style>

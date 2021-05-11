@@ -1,12 +1,13 @@
 <template>
   <section class="review-card">
     <div class="review-header">
-      {{ review.grade }}
+      <img :src="review.avatar" alt="" />
+      {{ review.grade }} / 5
     </div>
     <div class="author">
       <strong>{{ review.author }}</strong>
       reviewed
-      <strong>Torpet</strong>
+      <strong>This</strong>
     </div>
     <div class="review-body">
       {{ review.review }}
@@ -29,7 +30,7 @@ export default {
 <style scoped>
 .review-card {
   min-width: 240px;
-  max-width: 400px;
+  max-width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,17 +45,21 @@ export default {
   display: flex;
   align-items: center;
 }
+.review-header img {
+  margin-right: 3rem;
+  background-color: #c7c7c7;
+  border-radius: 50px;
+}
 .author {
   margin-top: 8px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   line-height: 1rem;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 .review-body {
   overflow: hidden;
   margin-top: 16px;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   line-height: 1.25rem;
 }
 </style>
