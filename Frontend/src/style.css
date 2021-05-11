@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #c7c7c7;
+  color: #4b4b4b;
 
   display: flex;
   flex-direction: column;
@@ -27,7 +27,8 @@ main {
   width: 100%;
   max-width: 60rem;
   margin: auto;
-  background-color: #4b4b4b;
+  background-color: #a9a9a9;
+  opacity: 0.9;
 }
 
 Färgkoder {

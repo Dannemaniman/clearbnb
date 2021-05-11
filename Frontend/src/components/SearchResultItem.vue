@@ -2,7 +2,6 @@
   <article @click="goToDetails">
     <img :src="house.images[0]" />
     <h2>{{ house.propertyType }}</h2>
-    <h3>Review 3/5 (39 reviews)</h3>
     <h2>{{ house.city }}</h2>
     <h3>{{ house.address }}</h3>
   </article>

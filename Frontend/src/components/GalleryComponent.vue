@@ -18,6 +18,9 @@ export default {
       return 'house-' + (index + 1);
     },
   },
+    created() {
+    console.log("galleryItem")
+  },
   computed: {
     houses() {
       return this.$store.state.houses;
@@ -29,6 +32,7 @@ export default {
 <style scoped>
 .image-gallery {
   margin-top: 5rem;
+  margin-bottom: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;

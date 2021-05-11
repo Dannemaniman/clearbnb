@@ -7,7 +7,6 @@
 <script>
 export default {
   props: ['house'],
-
   methods: {
     goToDetails() {
       this.$router.push('/house/' + this.house.id);
@@ -32,5 +31,6 @@ img {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 10px;
 }
 </style>
