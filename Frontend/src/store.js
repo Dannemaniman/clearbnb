@@ -4,8 +4,8 @@ export default createStore({
   // this.$store.state.variableName
   state: {
     houses: [],
+    users: [],
     selectedHouse: [],
-    user: null,
     citySearch: '',
     reviews: [],
   },
@@ -18,11 +18,14 @@ export default createStore({
     addHouses(state, house) {
       state.houses.push(house);
     },
+    setUsers(state, users) {
+      state.users = users;
+    },
+    addUser(state, user) {
+      state.users.push(user);
+    },
     setSelectedHouse(state, house) {
       state.selectedHouse = house;
-    },
-    setUser(state, user) {
-      state.user = user;
     },
     setCitySearch(state, city) {
       state.citySearch = city;
@@ -41,41 +44,6 @@ export default createStore({
       let houses = await res.json();
 
       store.commit('setHouses', houses);
-    },
-    async register(store, credentials) {
-      let res = await fetch('/api/register', {
-        method: 'POST',
-        body: JSON.stringify(credentials),
-      });
-
-      let loggedInUser = await res.json();
-
-      console.log('registered user', loggedInUser);
-
-      store.commit('setUser', loggedInUser);
-    },
-    async login(store, credentials) {
-      let res = await fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify(credentials),
-      });
-
-      let loggedInUser = await res.json();
-
-      console.log('logged in user', loggedInUser);
-
-      store.commit('setUser', loggedInUser);
-    },
-    async whoAmI(store) {
-      let res = await fetch('/api/whoami');
-      let user = await res.json();
-      console.log(user);
-      store.commit('setUser', user);
-    },
-    async logout(store) {
-      let res = await fetch('/api/logout');
-      console.log('logged out');
-      store.commit('setUser', null);
     },
     async fetchUsers(store) {
       let res = await fetch('/rest/users');
