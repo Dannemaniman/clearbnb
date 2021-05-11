@@ -80,7 +80,7 @@ const router = createRouter({
 });
 
 // beforeEach gets called anytime somebody clicks on a route or when the page is first loaded an a route is chosen, so if you click on a router-link, the beforeEach gets the "to" ex. login, the if statement is going to check the "to" (which is an array but since login have no child components it is an array of one), the matched property goes through the array, and sends each of the array items into the arrow function which checks the item and looks at the meta to see if requiresAuth is true or false (meta is defined on "to" regardless if it is in the one of the objects in routes)
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   let routerAuthCheck;
   if (store.state.user == null) {
     routerAuthCheck = false;
@@ -103,6 +103,6 @@ router.beforeEach((to, from, next) => {
   else {
     next();
   }
-});
+}); */
 
 export default router;
