@@ -7,7 +7,6 @@
 <script>
 export default {
   props: ['house'],
-
   methods: {
     goToDetails() {
       this.$router.push('/house/' + this.house.id);

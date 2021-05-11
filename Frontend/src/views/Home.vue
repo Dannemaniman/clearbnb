@@ -1,8 +1,12 @@
 <template>
   <div class="home-content">
     <GalleryComponent />
-    <div class="slider"><h1>SLAAAJDEER</h1></div>
-    <Slider :images="houses" />
+    <p>Nära dig</p>
+    <Slider :houses="houses" />
+    <p>I Omfånget</p>
+    <Slider :houses="houses" />
+    <p> Våra Förslag</p>
+    <Slider :houses="houses" />
   </div>
 </template>
 
@@ -19,22 +23,16 @@ export default {
   },
   data() {
     return {
-      houses: [
-        '../../public/images/House1.jpg',
-        '../../public/images/House2.jpg',
-        '../../public/images/House3.jpg',
-        '../../public/images/House4.jpg',
-        '../../public/images/House5.jpg',
-        '../../public/images/House6.jpg',
-        '../../public/images/House7.jpg',
-        '../../public/images/House8.jpg',
-      ],
+      houses: null,
     };
   },
-  methods: {
-    searchByLocation() {},
+  async created() {
+      setTimeout((async () => {
+        let housesData = await this.$store.state.houses
+        this.houses = housesData
+      }), 1000)
   },
-};
+}
 </script>
 
 <style scoped>
@@ -42,12 +40,9 @@ export default {
   padding: 0 0.5rem;
 }
 
-.slider {
-  margin: 5rem 0;
-  color: #4b4b4b;
-  font-size: 4rem;
-  background-color: #a9a9a9;
-  padding: 3rem 0;
-  max-width: 100%;
+p {
+  font-size: 2rem; 
+  color: black;
+  font-weight: thin;
 }
 </style>

@@ -1,46 +1,44 @@
 <template>
   <section class='section-slider'>
-    <div class='slider-container'>
+    <div class='slider-container' v-if="houses !== null">
       <div class='arrow-left' @click='moveLeft'/>
-      <article class='slide' v-for='(image, index) of images' :key='index'>
-        <img :src='images[index]' ref='imagez'/>
+      <article :class="`slide${String(Math.random()).replace(
+        '.', '')}`" v-for='house of houses' :key='house.id'  :ref="String(Math.random()).replace(
+        '.', '')">
+        <img :src='house.images[0]' @click="goToDetails(house.id)"/>
       </article>
       <div class='arrow-right' @click='moveRight'/>
     </div>
   </section>
 </template>
 
-<script>
+<script> 
 export default {
-  props: ['images'],
+  props: ['houses'],
   data() {
     return {
-       moveCounter: 1 
+       moveCounter: 0,
     }
-  },
+  }, 
   methods: {
     moveRight() {
-      let slides =  document.querySelectorAll('.slide')
+      this.moveCounter >= this.houses.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
 
-      slides.forEach((item, index) => {
-         item.style.transform = `translateX(-${300 * this.moveCounter}px)`
-      })
-       this.moveCounter >= this.images.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
-      //  this.moveCounter += 1
+       for(let ref in this.$refs) {
+         this.$refs[ref].style.transform = `translateX(-${300 * this.moveCounter}px)`
+       }
     }, 
     moveLeft() {
-      let slides =  document.querySelectorAll('.slide')
       this.moveCounter <= 0 ? this.moveCounter = 0 : this.moveCounter -= 1
-      slides.forEach((item, index) => {
-         item.style.transform = `translateX(-${300 * this.moveCounter}px)`
-      })
-      
-  console.log(this.moveCounter)
+
+      for(let ref in this.$refs) {
+        this.$refs[ref].style.transform = `translateX(-${300 * this.moveCounter}px)`
+      } 
+    },
+    goToDetails(id) {
+       this.$router.push('/house/' + id);
     }
   },
-  mounted() {
-    this.imgWidth = this.$refs.image
-  }
 }
 </script>
 
@@ -49,6 +47,8 @@ export default {
   .section-slider {
     width: 100%;
     background-color: grey;
+    margin-bottom: 10rem;
+    border-top: 3px solid black;
   }
 
   .slider-container {
@@ -56,8 +56,12 @@ export default {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    /* overflow: scroll; */
     position: relative;
+  }
+
+  article {
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 
   img {
@@ -75,6 +79,7 @@ export default {
     border-top: 60px solid transparent;
     border-bottom: 60px solid transparent;
     border-left: 60px solid black;
+    cursor: pointer;
   }
 
   .arrow-right:hover,   .arrow-right:active {
@@ -90,6 +95,7 @@ export default {
     border-top: 60px solid transparent;
     border-bottom: 60px solid transparent; 
     border-right:60px solid black; 
+    cursor: pointer;    
   }
 
   .arrow-left:hover,   .arrow-left:active {
