@@ -31,6 +31,8 @@
 import Calender from '../components/Calender.vue'
 import GuestModal from '../components/GuestModal.vue'
 
+
+
 export default {
   components: {
     Calender,
