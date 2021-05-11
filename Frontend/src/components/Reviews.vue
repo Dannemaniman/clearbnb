@@ -39,7 +39,6 @@ export default {
   margin: 0 0 16px 0;
   background-color: #f2f2f2;
   color: #4b4b4b;
-  box-sizing: border-box;
 }
 .review-header {
   display: flex;
@@ -56,7 +55,6 @@ export default {
   line-height: 1rem;
 }
 .review-body {
-  overflow: hidden;
   margin-top: 16px;
   font-size: 0.9rem;
   line-height: 1.25rem;
