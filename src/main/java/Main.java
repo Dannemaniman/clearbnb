@@ -38,9 +38,9 @@ public class Main {
         res.json(collection("User").findById(req.params("id")));
     });
     
-      app.get("/rest/reviews", (req, res) -> {
+    app.get("/rest/reviews", (req, res) -> {
           res.json(collection("Review").find());
-      });
+    });
 
     // start server
     app.listen(4000);
