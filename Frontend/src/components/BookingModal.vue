@@ -32,6 +32,7 @@ import Calender from '../components/Calender.vue'
 import GuestModal from '../components/GuestModal.vue'
 
 export default {
+  props: ['home'],
   components: {
     Calender,
     GuestModal
@@ -53,26 +54,26 @@ export default {
         senior: 150
       },
       chosenDate: {
-        start: new Date(),
-        end: new Date()
+        start: new Date(2021, 11, 17), 
+        end: new Date(2022, 0, 13) 
       }
     }
   },
   methods: {
     popPage(){
-      let that = this;
-      let object = {
+      console.log(this.home)
+      let chosenObject = {
         adult: this.adultCounter,
         child: this.childCounter,
         senior: this.seniorCounter,
         prices: this.prices,
         chosenDate: this.chosenDate,
-        //houseid
+        house: this.home 
       }
+      this.$store.dispatch('storeHome', chosenObject)
       this.$router.push('/confirm')
     },
     increment(type) {
-      console.log("increment 1")
       if(type === 'adult') {
         this.adultCounter++
       } else if (type === 'child') {
@@ -82,7 +83,6 @@ export default {
       }
     },
     decrement(type) {
-      console.log("decrement 1")
       if(type === 'adult' && this.adultCounter !== 0) {
         this.adultCounter--
       } else if (type === 'child' && this.childCounter !== 0) {
@@ -104,11 +104,8 @@ export default {
     width: fit-content;
     padding: 1rem;
     color: black;
-    /* margin: 0 0; */
     min-width: 14rem;
-    /* margin-right: 0; */
     position: relative;
-    /* right: -4rem; */
   }
 
   h2 {

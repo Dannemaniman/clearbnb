@@ -102,17 +102,18 @@ export default createStore({
 
       store.commit('setBookings', bookings);
     },
-    async book(store, info) {
+    async book(store, confirmedBooking) {
       let res = await fetch('/rest/bookings', {
         method: 'POST',
-        body: JSON.stringify(info),
+        body: JSON.stringify(confirmedBooking),
       });
 
       let booking = await res.json();
-
       console.log('You booked', booking);
-
       store.commit('addBooking', booking);
+    },
+    async storeHome(store, house) {
+      store.commit('setSelectedHouse', house);
     },
   },
 });

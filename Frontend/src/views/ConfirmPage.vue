@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import BookingModalVue from '../components/BookingModal.vue';
 import ListItem from '../components/ListItem.vue';
 
 export default {
@@ -34,21 +35,21 @@ export default {
   },
   methods: {
     book() {
-      let info = this.info;
-      console.log(info);
-      this.$store.dispatch('book', info);
+      let booking = {
+        bookerId: this.userId,
+        houseId: this.info.house.id,
+      };
+      this.$store.dispatch('book', booking);
     },
+  },
+  created() {
+    console.log(this.$store.state.selectedHouse);
+    console.log(this.$store.state.user.id);
   },
   data() {
     return {
-      info: {
-        //image: '/public/images/House1.jpg',
-        date: new Date(),
-        //type: 'House',
-        //city: 'Stockholm',
-        //adress: 'Korvgatan 21',
-        //id: Math.random(),
-      },
+      info: this.$store.state.selectedHouse,
+      userId: this.$store.state.user.id,
     };
   },
 };
