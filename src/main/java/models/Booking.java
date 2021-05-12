@@ -1,13 +1,29 @@
 package models;
 
+import nosqlite.annotations.Document;
+import nosqlite.annotations.Id;
+
 import java.util.Date;
 import java.util.List;
 
+@Document
 public class Booking {
+    @Id
+    private String id;
     private String bookerId;
-    private List<Date> bookedDate;
+    private String houseId;
+    private List<Date> bookedDates;
+    private Date date;
 
     public Booking() { }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getBookerId() {
         return bookerId;
@@ -17,11 +33,28 @@ public class Booking {
         this.bookerId = bookerId;
     }
 
-    public List<Date> getBookedDate() {
-        return bookedDate;
+    public String getHouseId() {
+        return houseId;
     }
 
-    public void setBookedDate(List<Date> bookedDate) {
-        this.bookedDate = bookedDate;
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
+    }
+
+    public List<Date> getBookedDates() {
+        return bookedDates;
+    }
+
+    public void setBookedDates(List<Date> bookedDates) {
+        this.bookedDates = bookedDates;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
+
