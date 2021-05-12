@@ -121,6 +121,7 @@ export default {
     color: white;
     border-radius: 10px;
     outline: none;
+    cursor: pointer;
   }
 
   article {

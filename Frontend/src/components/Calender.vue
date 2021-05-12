@@ -66,10 +66,10 @@ export default {
     },
     moveLeft() {
       let calenders =  document.querySelectorAll('table')
-      this.moveCounter-1 <= 0 ? this.moveCounter = 11 : this.moveCounter -= 1
+      this.moveCounter <= 0 ? this.moveCounter = 12-2 : this.moveCounter -= 1
 
       calenders.forEach((item, index) => {
-         item.style.transform = `translateX(-${307 * (this.moveCounter-1)}px)`
+         item.style.transform = `translateX(-${307 * (this.moveCounter)}px)`
       })
     }
   }
