@@ -38,6 +38,7 @@ export default {
       let booking = {
         bookerId: this.userId,
         houseId: this.info.house.id,
+        chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
       };
       this.$store.dispatch('book', booking);
     },

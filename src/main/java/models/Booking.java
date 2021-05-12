@@ -12,8 +12,7 @@ public class Booking {
     private String id;
     private String bookerId;
     private String houseId;
-    private List<Date> bookedDates;
-    private Date date;
+    private List<Date> chosenDate;
 
     public Booking() { }
 
@@ -41,20 +40,12 @@ public class Booking {
         this.houseId = houseId;
     }
 
-    public List<Date> getBookedDates() {
-        return bookedDates;
+    public List<Date> getChosenDate() {
+        return chosenDate;
     }
 
-    public void setBookedDates(List<Date> bookedDates) {
-        this.bookedDates = bookedDates;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setChosenDate(List<Date> chosenDate) {
+        this.chosenDate = chosenDate;
     }
 }
 
