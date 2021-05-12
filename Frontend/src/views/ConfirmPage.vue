@@ -28,16 +28,12 @@ export default {
   components: {
     ListItem
   },
+   created() {
+     console.log(this.$store.state.selectedHouse)
+   },
   data() {
     return {
-      info: {
-        image: "/public/images/House1.jpg",
-        date: new Date(),
-        type: "House",
-        city: "Stockholm",
-        adress: "Korvgatan 21",
-        id: Math.random()
-      }
+      info: this.$store.state.selectedHouse
     }
   }
 }

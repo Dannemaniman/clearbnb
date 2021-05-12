@@ -18,9 +18,6 @@ export default {
       return 'house-' + (index + 1);
     },
   },
-    created() {
-    console.log("galleryItem")
-  },
   computed: {
     houses() {
       return this.$store.state.houses;
