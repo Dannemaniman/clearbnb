@@ -1,7 +1,7 @@
 <template>
   <section class='section-host'>
     <header>
-      <img class='avatar' src='../../public/pngegg.png'/>
+      <img class='avatar' src='../../public/avatar.jpg'/>
       <div class='user-container'>
         <h1>Hosted by <span class='span-name'>Greger</span> </h1>
         <p class='reviews-number'>★ 23 Reviews</p>
@@ -12,7 +12,7 @@
       <p class='info-text'>
         Tillgänglig på telefon under hela vistelsen, personligt mottagande och incheckning.
         <br/><br/> 
-        Bjuder på kaffe och sex på morgonen, därefter vandrar vi tillsammans genom skogen i Munkebäck.
+        Bjuder på kaffe och bullar på morgonen.
         <br/><br/>
         Jag spelar Heavy Metal på full volym från klockan 11 till 3 på natten. 
       </p>
