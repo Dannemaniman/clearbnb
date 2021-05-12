@@ -8,6 +8,7 @@ export default createStore({
     user: null,
     citySearch: '',
     reviews: [],
+    bookings: [],
   },
 
   // this.$store.commit('mutationName', data)
@@ -29,6 +30,12 @@ export default createStore({
     },
     setReviews(state, reviews) {
       state.reviews = reviews;
+    },
+    setBookings(state, bookings) {
+      state.bookings = bookings;
+    },
+    addBooking(state, booking) {
+      state.bookings.push(booking);
     },
   },
 
@@ -88,6 +95,22 @@ export default createStore({
       let reviews = await res.json();
 
       store.commit('setReviews', reviews);
+    },
+    async fetchBookings(store) {
+      let res = await fetch('/rest/bookings');
+      let bookings = await res.json();
+
+      store.commit('setBookings', bookings);
+    },
+    async book(store, confirmedBooking) {
+      let res = await fetch('/rest/bookings', {
+        method: 'POST',
+        body: JSON.stringify(confirmedBooking),
+      });
+
+      let booking = await res.json();
+      console.log('You booked', booking);
+      store.commit('addBooking', booking);
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
