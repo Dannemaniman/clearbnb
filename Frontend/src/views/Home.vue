@@ -11,6 +11,8 @@
 
 import GalleryComponent from '../components/GalleryComponent.vue';
 export default {
+  name: 'Home',
+  props: ['user'],
   components: {
     GalleryComponent,
     

@@ -39,11 +39,11 @@ export default{
 <style scoped>
 
 footer {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
+ 
+
   background-color: #4B4B4B;
-  width: 100vw;
+  width: 100%;
+
 }
 
 .footer-content {
@@ -52,6 +52,7 @@ footer {
   justify-content: center;
   padding-bottom: 1rem;
   padding-top: 1rem;
+  bottom: 0;
 }
 
 li {

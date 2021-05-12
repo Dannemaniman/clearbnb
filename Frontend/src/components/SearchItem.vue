@@ -25,7 +25,7 @@
                   
                   </div>
                   <div class="favorite-icon">
-                   <router-link to="/login-page"> <button ><i class="far fa-heart "></i></button> </router-link>
+                   <button @click="alertToCart"><i class="far fa-heart "></i> </button>
                   </div>
           
                 </div> 
@@ -61,6 +61,9 @@
 export default {
   props: ['house'],
   methods: {
+    alertToCart(){
+      alert("added to favorite")
+    },
     goToDetails() {
       this.$router.push('/house/' + this.house.id);
     },

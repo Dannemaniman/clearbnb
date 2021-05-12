@@ -22,8 +22,10 @@
   <i class="fas fa-bars fa-lg"></i>
   <i class="fas fa-user-circle"></i>
 </button>
-<div class="login-form" v-if="isOpen">
-  <form >
+<div v-if="!user">
+<div class="login-form" v-if="isOpen" >
+  
+  <form>
     <div class="logIn" @click="isOpen = !isOpen">
       <router-link to="/login" ><a>Log in</a> </router-link>
     </div>
@@ -32,19 +34,46 @@
     </div>
   </form>
 </div>
+</div>
+<div  v-if="user">
+<div class="login-form" v-if="isOpen">
+  <form >
+    <div class="logIn">
+      <p class="name">{{user.firstName}}</p> 
+     
     </div>
+     
+    <div class="logout">
+      <router-link to="/" ><a  @click="logout">Logout</a> </router-link>
+    </div>
+     <div class="logout">
+   <router-link to="/booking"><a>Booking</a></router-link>
+    </div>
+  </form>
+  </div>
+  </div>
+</div>
+    
   </header>
 </template>
 
 
 <script>
+
+import {mapGetters} from 'vuex'
 export default {
-  name: 'navbar',
+  name: 'Navbar',
+
+ computed:{
+      ...mapGetters(['user'])
+    },
 
   data(){
     return{
       isOpen: false,
       searchLocation: '',
+    
+      
   };
   },
     methods: {
@@ -52,8 +81,14 @@ export default {
       let searchLocation = this.searchLocation;
      this.$store.commit('searchCity', searchLocation);
       this.$router.push('/result');
+
     
     },
+      logout(){
+      this.$store.dispatch('logout')
+    },
+
+    
   },
 
 
@@ -261,7 +296,7 @@ export default {
  
 }
 .logIn{
-  padding: 30px;
+  padding: 20px;
   
 }
 
@@ -270,8 +305,14 @@ export default {
   text-decoration: none; 
 }
 .signUp{
-  padding: 30px;
+  padding: 20px;
+  display: flex;
 }
+.name{
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--pink);
+  }
 
 
 .signUp a{

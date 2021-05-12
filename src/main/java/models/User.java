@@ -16,6 +16,7 @@ public class User {
     private String firstName;
     private String email;
     private String password;
+    private String password_confirm;
 
     //ignore this property when saving to the collection
     @Transient
@@ -24,13 +25,17 @@ public class User {
     //default constructor
 
 
+    public User() {
+    }
+
     @Override
     public String toString() {
-        return "\nUser{" +
+        return "/nUser{" +
                 "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", password_confirm='" + password_confirm + '\'' +
                 ", houses=" + houses +
                 '}';
     }
@@ -67,6 +72,14 @@ public class User {
         this.password = password;
     }
 
+    public String getPassword_confirm() {
+        return password_confirm;
+    }
+
+    public void setPassword_confirm(String password_confirm) {
+        this.password_confirm = password_confirm;
+    }
+
     public List<House> getHouses() {
         return houses;
     }
@@ -74,4 +87,6 @@ public class User {
     public void setHouses(List<House> houses) {
         this.houses = houses;
     }
+
+
 }
