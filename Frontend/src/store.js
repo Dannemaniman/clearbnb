@@ -89,5 +89,8 @@ export default createStore({
 
       store.commit('setReviews', reviews);
     },
+    async storeHome(store, house) {
+      store.commit('setSelectedHouse', house);
+    },
   },
 });

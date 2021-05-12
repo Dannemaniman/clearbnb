@@ -18,7 +18,7 @@
         <h2>{{ home.description }}</h2>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal />
+      <BookingModal :home="home"/>
     </div>
     <div class="map"></div>
     <div class="reviews">
