@@ -1,5 +1,5 @@
 <template>
-  <table :class='tableClass'>
+  <table :class='tableClass' @click="markSelection">
     <p class='table-header'>
       {{month}} 2021
     </p>
@@ -26,10 +26,29 @@ export default {
   props: ['days', 'month'],
   data() {
     return {
-      tableClass: ''
+      tableClass: '',
+      currentMarker: 0,
+      firstOne: null,
+      secondOne: null
     }
   },
-  
+  methods: {
+    markSelection(event) {
+      console.dir(event.target.textContent)
+      console.dir(event.target.attributes[0])
+      console.dir(event.parent)
+      if(this.currentMarker === 0){
+          this.currentMarker = 1
+          this.firstOne = event.target.textContent
+          let target = event.target.attributes[0].name
+          // let firstElement = document.querySelector([target])
+          // console.log(firstElement)
+      } else if (this.currentMarker === 1) {
+          this.currentMarker = 0
+          this.secondOne = event.target.textContent
+      }
+    }
+  },
   mounted() {
     setTimeout(() => {
        this.tableClass = 'table-pop'
