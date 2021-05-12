@@ -6,8 +6,8 @@
     </header>
     <article>
       <Calender />
-      <GuestModal />
-      <button>Check Availability</button>
+      <GuestModal @increment="increment" @decrement="decrement" :adultCounter="adultCounter" :childCounter="childCounter" :seniorCounter="seniorCounter"/>
+      <button @click="popPage">Check Availability</button>
     </article>
     <footer>
       <div class='price-bar'>
@@ -21,7 +21,7 @@
       <hr />
       <div class='total-bar'>
         <p>Total</p>
-        <p>1,765 kr</p>
+        <p>{{ totalPrice }}</p>
       </div>
     </footer>
   </section>
@@ -36,11 +36,60 @@ export default {
     Calender,
     GuestModal
   },
+  computed: {
+    //lägg computed som räknar ut antal dagar som är mellan 2 new Date()
+    totalPrice() {
+      return (this.adultCounter * this.prices['adult']) + (this.childCounter * this.prices['child']) + (this.seniorCounter * this.prices['senior'])
+    }
+  },
   data() {
     return {
       adultCounter: 0,
       childCounter: 0,
-      seniorCounter: 0
+      seniorCounter: 0,
+      prices: {
+        adult: 250,
+        child: 125,
+        senior: 150
+      },
+      chosenDate: {
+        start: new Date(),
+        end: new Date()
+      }
+    }
+  },
+  methods: {
+    popPage(){
+      let that = this;
+      let object = {
+        adult: this.adultCounter,
+        child: this.childCounter,
+        senior: this.seniorCounter,
+        prices: this.prices,
+        chosenDate: this.chosenDate,
+        //houseid
+      }
+      this.$router.push('/confirm')
+    },
+    increment(type) {
+      console.log("increment 1")
+      if(type === 'adult') {
+        this.adultCounter++
+      } else if (type === 'child') {
+        this.childCounter++
+      } else {
+        this.seniorCounter++
+      }
+    },
+    decrement(type) {
+      console.log("decrement 1")
+      if(type === 'adult' && this.adultCounter !== 0) {
+        this.adultCounter--
+      } else if (type === 'child' && this.childCounter !== 0) {
+        this.childCounter--
+      } else if(type === 'senior' && this.seniorCounter !== 0){
+        this.seniorCounter--
+      }
     }
   }
 }
