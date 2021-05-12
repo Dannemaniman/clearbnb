@@ -104,7 +104,15 @@ export default {
     width: fit-content;
     padding: 1rem;
     color: black;
-    margin: 0 auto;
+    /* margin: 0 0; */
+    min-width: 14rem;
+    /* margin-right: 0; */
+    position: relative;
+    /* right: -4rem; */
+  }
+
+  h2 {
+    font-size: 1.2rem;
   }
 
   button {

@@ -11,13 +11,15 @@
       <img :src="home.images[0]" alt="" class="img-7" />
       <img :src="home.images[0]" alt="" class="img-8" />
     </div>
-    <div class="information">
-      <h1>{{ home.city }}</h1>
-      <h2>{{ home.address }}</h2>
-      <h2>{{ home.description }}</h2>
-      <Amenities :amenities="home.amenities" />
+    <div class="content-holder">
+      <div class="information">
+        <h1>{{ home.city }}</h1>
+        <h2>{{ home.address }}</h2>
+        <h2>{{ home.description }}</h2>
+        <Amenities :amenities="home.amenities" />
+      </div>
+      <BookingModal />
     </div>
-    <BookingModal />
     <div class="map"></div>
     <div class="reviews">
       <Reviews
@@ -26,7 +28,6 @@
         :key="review.id"
       />
     </div>
-
     <Hosts />
   </div>
 </template>
@@ -60,6 +61,22 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+.content-holder {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.information {
+  padding: 2rem;
+  flex-grow: 3;
+}
+
+.information h2:last-of-type{
+  font-size: 1.3rem;
+}
+
 .images {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
