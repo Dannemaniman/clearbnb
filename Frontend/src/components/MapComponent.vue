@@ -12,19 +12,21 @@ export default {
   name: 'Map',
   data() {
     return {
-      center: [37, 7749, -122, 4194],
+      center: [55.68370479244602, 13.608292932699289],
     };
   },
   methods: {
     setupLeafletMap: function () {
-      const mapDiv = L.map('mapContainer').setView(this.center, 13);
+      let mapDiv = L.map('mapContainer').setView(this.center, 9);
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
         {
           attribution:
-            'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+            'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
           maxZoom: 18,
           id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
           accessToken:
             'pk.eyJ1IjoibWFsZWwiLCJhIjoiY2tvbWk3aDZsMDN2MTJwcDF0NW4wYmUxOSJ9.VLAe6Cp447l7BygcRzPkTg',
         }
