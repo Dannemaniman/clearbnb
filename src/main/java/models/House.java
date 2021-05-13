@@ -6,6 +6,7 @@ import nosqlite.annotations.Id;
 import nosqlite.annotations.Transient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Document
@@ -24,11 +25,12 @@ public class House {
     private List<String> amenities;
     private String reviews;
     private String ownerId;
+    private double[] position;
     @Transient
     private List<Booking> bookings;
 
     public House() { }
-
+    
     @Override
     public String toString() {
         return "House{" +
@@ -42,12 +44,29 @@ public class House {
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
                 ", amenities=" + amenities +
-                ", reviews=" + reviews +
+                ", reviews='" + reviews + '\'' +
                 ", ownerId='" + ownerId + '\'' +
+                ", position=" + Arrays.toString(position) +
                 ", bookings=" + bookings +
                 '}';
     }
-
+    
+    public String getReviews() {
+        return reviews;
+    }
+    
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
+    }
+    
+    public double[] getPosition() {
+        return position;
+    }
+    
+    public void setPosition(double[] position) {
+        this.position = position;
+    }
+    
     public String getId() {
         return id;
     }

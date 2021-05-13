@@ -20,7 +20,7 @@
       </div>
       <BookingModal :home="home" />
     </div>
-    <MapComponent />
+    <MapComponent :home="home" />
     <div class="reviews">
       <Reviews
         v-for="review of reviews.slice(1, 4)"
@@ -46,6 +46,12 @@ export default {
       reviews: {},
     };
   },
+
+  /* mounted() {
+    console.log(this.$refs);
+    let mapDiv = this.$refs.mapDiv;
+    mapDiv.dropMarker({ Latitude: 55.6837, Longitude: 13.60829 });
+  }, */
 
   async created() {
     let id = this.$route.params.id;

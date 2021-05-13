@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div id="mapContainer"></div>
+    <div ref="mapDiv" id="mapContainer"></div>
   </div>
 </template>
 
@@ -15,9 +15,10 @@ export default {
       center: [55.68370479244602, 13.608292932699289],
     };
   },
+  props: ['home'],
   methods: {
     setupLeafletMap: function () {
-      let mapDiv = L.map('mapContainer').setView(this.center, 9);
+      this.mapDiv = L.map('mapContainer').setView(this.center, 9);
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
         {
@@ -30,11 +31,21 @@ export default {
           accessToken:
             'pk.eyJ1IjoibWFsZWwiLCJhIjoiY2tvbWk3aDZsMDN2MTJwcDF0NW4wYmUxOSJ9.VLAe6Cp447l7BygcRzPkTg',
         }
-      ).addTo(mapDiv);
+      ).addTo(this.mapDiv);
+    },
+    addMarkers() {
+      /*  L.marker(this.home.position).addTo(this.mapDiv); */
+      L.circle(this.home.position, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500,
+      }).addTo(this.mapDiv);
     },
   },
   mounted() {
     this.setupLeafletMap();
+    this.addMarkers();
   },
 };
 </script>
