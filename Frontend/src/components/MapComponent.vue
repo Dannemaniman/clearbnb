@@ -35,8 +35,8 @@ export default {
       ).addTo(this.mapDiv);
     },
     addMarkers() {
-      if (this.$route.params.id == '/') {
-        houses.forEach((house) => {
+      if (!this.$route.params.id) {
+        this.houses.forEach((house) => {
           L.circle(house.position, {
             color: 'red',
             fillColor: '#f03',
@@ -55,11 +55,13 @@ export default {
       /*  L.marker(this.home.position).addTo(this.mapDiv); */
     },
   },
-  mounted() {
+  async mounted() {
+    let res = await fetch('/rest/houses');
+    let houses = await res.json();
+    this.houses = houses;
+    console.log(this.houses);
     this.setupLeafletMap();
     this.addMarkers();
-    this.houses = this.$store.state.houses;
-    console.log(this.houses);
   },
 };
 </script>
