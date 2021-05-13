@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <div ref="mapDiv" id="mapContainer"></div>
+    <div id="mapContainer"></div>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       center: [55.68370479244602, 13.608292932699289],
+      houses: '',
     };
   },
   props: ['home'],
@@ -34,18 +35,31 @@ export default {
       ).addTo(this.mapDiv);
     },
     addMarkers() {
+      if (this.$route.params.id == '/') {
+        houses.forEach((house) => {
+          L.circle(house.position, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500,
+          }).addTo(this.mapDiv);
+        });
+      } else {
+        L.circle(this.home.position, {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5,
+          radius: 500,
+        }).addTo(this.mapDiv);
+      }
       /*  L.marker(this.home.position).addTo(this.mapDiv); */
-      L.circle(this.home.position, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500,
-      }).addTo(this.mapDiv);
     },
   },
   mounted() {
     this.setupLeafletMap();
     this.addMarkers();
+    this.houses = this.$store.state.houses;
+    console.log(this.houses);
   },
 };
 </script>
