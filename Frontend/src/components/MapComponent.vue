@@ -42,7 +42,10 @@ export default {
             fillColor: '#f03',
             fillOpacity: 0.5,
             radius: 500,
-          }).addTo(this.mapDiv);
+          })
+            .bindPopup(house.title + '<br>' + house.price)
+            .openPopup()
+            .addTo(this.mapDiv);
         });
       } else {
         L.circle(this.home.position, {
