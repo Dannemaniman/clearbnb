@@ -53,7 +53,10 @@ export default {
           fillColor: '#f03',
           fillOpacity: 0.5,
           radius: 500,
-        }).addTo(this.mapDiv);
+        })
+          .bindPopup(this.home.title + '<br>' + this.home.price)
+          .openPopup()
+          .addTo(this.mapDiv);
       }
       /*  L.marker(this.home.position).addTo(this.mapDiv); */
     },
@@ -62,7 +65,6 @@ export default {
     let res = await fetch('/rest/houses');
     let houses = await res.json();
     this.houses = houses;
-    console.log(this.houses);
     this.setupLeafletMap();
     this.addMarkers();
   },
