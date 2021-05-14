@@ -24,28 +24,45 @@
 <script>
 export default {
   props: ['days', 'month'],
+  emit: ['setDate'],
   data() {
     return {
       tableClass: '',
       currentMarker: 0,
       firstOne: null,
-      secondOne: null
+      secondOne: null,
+      monthNames: ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+]
     }
   },
   methods: {
     markSelection(event) {
-      console.dir(event.target.textContent)
-      console.dir(event.target.attributes[0])
-      console.dir(event.parent)
+      let yearMonth = event.target.attributes[0].ownerElement.parentElement.parentElement.firstChild.innerHTML.split(" ")
+      let month = yearMonth[0].trim()
+      let numberMonth = this.monthNames.indexOf(month)
+      let year = yearMonth[1].trim()
+      let day = event.target.textContent.trim()
+
+       let date = new Date(year, numberMonth, day).toLocaleDateString()
+        console.log(date)
+
       if(this.currentMarker === 0){
           this.currentMarker = 1
-          this.firstOne = event.target.textContent
+          // this.firstOne = event.target.textContent
           let target = event.target.attributes[0].name
-          // let firstElement = document.querySelector([target])
-          // console.log(firstElement)
+          event.target.style.backgroundColor = "salmon"
+          this.firstOne = date
+          this.$emit('setDate', this.firstOne)
+          console.log("hej1")
+
       } else if (this.currentMarker === 1) {
+          event.target.style.backgroundColor = "salmon"
           this.currentMarker = 0
-          this.secondOne = event.target.textContent
+          // this.secondOne = event.target.textContent
+          this.firstOne = date
+          this.$emit('setDate', this.firstOne)
+          console.log("hej2")
       }
     }
   },
