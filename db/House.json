@@ -1,341 +1,281 @@
 [ {
   "id" : "QF9XhXnwNtobejyBxc-To",
-  "images" : [ "\\images\\House1.jpg" ],
+  "images" : [ "../public\\images\\House1.jpg" ],
   "title" : "Traditional cabin",
   "address" : "Glumslövsvägen 23, 261 62",
   "city" : "Glumslöv",
-  "propertyType" : "Torp",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Small cabin located on west coast",
-  "price" : "3000",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "4",
   "ownerId" : "L6EfdhODvhWkNu0y2FesO",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "dcGqW973SuZ7J6OWJRs6z",
-  "images" : [ "\\images\\House2.jpg" ],
+  "images" : [ "../public\\images\\House2.jpg" ],
   "title" : "Cozy log cabin",
   "address" : "Södra Bergönsvägen 10, 343 71",
-  "city" : "Glumslöv",
-  "propertyType" : "Villa",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Diö",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Warm log cabin located close to nature",
-  "price" : "3999",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
   "ownerId" : "L6EfdhODvhWkNu0y2FesO",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "bVZlMEakb-184N0je24RI",
-  "images" : [ "\\images\\House3.jpg" ],
+  "images" : [ "../public\\images\\House3.jpg" ],
   "title" : "Classic estate in nature",
   "address" : "Ivö Ljungaväg 95, 290 34",
-  "city" : "Glumslöv",
-  "propertyType" : "Lägenhet",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Fjälkinge",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Beautiful, large estate close to lake and the east coast",
-  "price" : "1000",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "5",
   "ownerId" : "L6EfdhODvhWkNu0y2FesO",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "NlrUnApOQNNvH6gzU2bfl",
-  "images" : [ "\\images\\House4.jpg" ],
+  "images" : [ "../public\\images\\House4.jpg" ],
   "title" : "Beach front villa",
   "address" : "Andrénvägen 34, 276 45",
-  "city" : "Glumslöv",
-  "propertyType" : "Torp",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Löderup",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Fantastic villa close to amazing beaches",
-  "price" : "2999",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
   "ownerId" : "L6EfdhODvhWkNu0y2FesO",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "spYROoShRiR-KDqU1piUK",
-  "images" : [ "\\images\\House5.jpg" ],
-  "title" : "Luxuary villa",
+  "images" : [ "../public\\images\\House5.jpg" ],
+  "title" : "Luxury villa",
   "address" : "Hobjersvägen 17, 271 78",
-  "city" : "Ystad",
-  "propertyType" : "Lägenhet",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Löderup",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Modern villa with swimming pool, located five minutes from the beach",
-  "price" : "4999",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "2",
   "ownerId" : "DiorKue696Sne1ctFTSc_",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "twxJGpNW9NrVaF2b9O_fR",
-  "images" : [ "\\images\\House6.jpg" ],
+  "images" : [ "../public\\images\\House6.jpg" ],
   "title" : "Large house for family",
   "address" : "Lachmannsväg 29, 271 72",
-  "city" : "Glumslöv",
-  "propertyType" : "Sommarstuga",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Köpingebro",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Perfect house for a large family vacation",
-  "price" : "2800",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "4",
   "ownerId" : "DiorKue696Sne1ctFTSc_",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "0cbPLpLgqsnqSB3H2uaKx",
-  "images" : [ "\\images\\House7.jpg" ],
+  "images" : [ "../public\\images\\House7.jpg" ],
   "title" : "Cozy cottage",
   "address" : "Björnbärsgatan 9, 234 43 Lomma",
-  "city" : "Ystad",
-  "propertyType" : "Sommarstuga",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Lomma",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Located close to beaches and the city of Lund, perfect for a weekend getaway",
-  "price" : "3350",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "5",
   "ownerId" : "DiorKue696Sne1ctFTSc_",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "o0U_oWPgWfmyFmeWjnyWk",
-  "images" : [ "\\images\\House8.jpg" ],
+  "images" : [ "../public\\images\\House8.jpg" ],
   "title" : "Modern house in suburb",
   "address" : "Prästgången 2, 224 80 Lund",
   "city" : "Lund",
-  "propertyType" : "Lägenhet",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Newly built large house for family vaccations",
-  "price" : "1500",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "3",
   "ownerId" : "Nce0ENUku1Dy0igSN1AzF",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "KqcgVlfUkMX5jxtqlIaAP",
-  "images" : [ "\\images\\House9.jpg" ],
+  "images" : [ "../public\\images\\House9.jpg" ],
   "title" : "Guesthouse close to lake",
   "address" : "Vombsjövägen, 247 96 Veberöd",
-  "city" : "Lund",
-  "propertyType" : "Lägenhet",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Vomb",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Entire guesthouse for yourselves, comfortable in close proximity to lake Vomb",
-  "price" : "2850",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "4",
   "ownerId" : "Nce0ENUku1Dy0igSN1AzF",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "2JTVem4JSjdl-u0CjGzxO",
-  "images" : [ "\\images\\House10.jpg" ],
+  "images" : [ "../public\\images\\House10.jpg" ],
   "title" : "A room in Kivik",
   "address" : "Strandridarevägen 8-10, 277 30 Kivik",
-  "city" : "Lund",
-  "propertyType" : "Villa",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Kivik",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Welcome to a stay in our house",
-  "price" : "1249",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "1",
   "ownerId" : "Nce0ENUku1Dy0igSN1AzF",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "8kHgfLziUXMXUN26vmI5-",
-  "images" : [ "\\images\\House11.jpg" ],
+  "images" : [ "../public\\images\\House11.jpg" ],
   "title" : "Surfshack with fireplace",
   "address" : "Bakfamnen, 272 95",
-  "city" : "Glumslöv",
-  "propertyType" : "Torp",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Vik",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Nice shack close to one of the best surfing spots in Sweden",
-  "price" : "2670",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
   "ownerId" : "PMd7y6FXa2U0LRjU2Fqkg",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "ejMnK0hcYhmp5RvWbQ8YL",
-  "images" : [ "\\images\\House12.jpg" ],
+  "images" : [ "../public\\images\\House12.jpg" ],
   "title" : "Modern house",
   "address" : "Melycket 1, 272 95",
-  "city" : "Lund",
-  "propertyType" : "Lägenhet",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Vik",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Newly built house in Vik, close to Simrishamn and Kivik",
-  "price" : "4500",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "5",
   "ownerId" : "alh1AwfwhWpJkuhGfov-T",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "azG5NUzK3SDqQAkdcPmoe",
-  "images" : [ "\\images\\House13.jpg" ],
+  "images" : [ "../public\\images\\House13.jpg" ],
   "title" : "Studio apartment in center",
   "address" : "Museigatan 15-1, 272 32",
-  "city" : "Lund",
-  "propertyType" : "Sommarstuga",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Simrishamn",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Renovated studio in the center of Simrishamn",
-  "price" : "3200",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "2",
   "ownerId" : "wzU8FE5cDq9WXv8fGH3ll",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "5R0iSI8gc1rlO3thhD8dZ",
-  "images" : [ "\\images\\House14.jpg" ],
+  "images" : [ "../public\\images\\House14.jpg" ],
   "title" : "Hostel in center",
   "address" : "Christian Barnekowsgatan 23, 272 32",
-  "city" : "Ystad",
-  "propertyType" : "Torp",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Simrishamn",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Clean and fresh hostel on the beautiful east coast of Scania",
-  "price" : "2780",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "4",
   "ownerId" : "ff9dQqrvvUJ7smPGyo7Wg",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "qSZAPu9B5AIlXswIH5AID",
-  "images" : [ "\\images\\House15.jpg" ],
+  "images" : [ "../public\\images\\House15.jpg" ],
   "title" : "Nice guesthouse close to sea",
   "address" : "Videgatan, 271 33",
   "city" : "Ystad",
-  "propertyType" : "Villa",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Welcome to this guesthouse close to the sea and the well renowned spa",
-  "price" : "4500",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
   "ownerId" : "ExjVgfDb6hDUnZ355eu1w",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "DwhvsJqmzJ69QcUi9H2-4",
-  "images" : [ "\\images\\House16.jpg" ],
+  "images" : [ "../public\\images\\House16.jpg" ],
   "title" : "Seaside cottage",
   "address" : "Skarpskyttevägen 92, 271 60",
   "city" : "Ystad",
-  "propertyType" : "Torp",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Cute cottage with seaview and a 5 minute trip to the town of Ystad",
-  "price" : "2100",
+  "price" : null,
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "2",
   "ownerId" : "ZRe009gm8uqbIJQ5UWai2",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "thZ4l05-Au8YOorGzQvTV",
-  "images" : [ "\\images\\House17.jpg" ],
+  "images" : [ "../public\\images\\House17.jpg" ],
   "title" : "Apartment in the center",
   "address" : "Lilla Strandgatan 7, 271 43",
   "city" : "Ystad",
-  "propertyType" : "Lägenhet",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Apartment right in the center of Ystad, close to everything",
-  "price" : "1500",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "5",
   "ownerId" : "kWt7pOgIPsYQiryylAIPL",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "qVLuiQBIvPh9XorvdkKZy",
-  "images" : [ "\\images\\House18.jpg" ],
+  "images" : [ "../public\\images\\House18.jpg" ],
   "title" : "Renovated fishing lodge",
   "address" : "231 78 Smygehamn",
-  "city" : "Trelleborg",
-  "propertyType" : "Villa",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Smygehuk",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Refreshing getaway in quiet fishing village",
-  "price" : "4100",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "4",
   "ownerId" : "kWt7pOgIPsYQiryylAIPL",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "GFvR2-OznKv0L0DezBQ5u",
-  "images" : [ "\\images\\House19.jpg" ],
+  "images" : [ "../public\\images\\House19.jpg" ],
   "title" : "Entire apartment",
   "address" : "Östergatan 49-65, 239 30",
-  "city" : "Trelleborg",
-  "propertyType" : "Sommarstuga",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
+  "city" : "Skanör",
+  "propertyType" : null,
+  "accommodation" : null,
   "description" : "Perfect for birdwatchers and close to golfing",
-  "price" : "3100",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "1",
   "ownerId" : "ZRe009gm8uqbIJQ5UWai2",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 }, {
   "id" : "_VLfon8nLSNUDXDRENJd9",
-  "images" : [ "\\images\\House20.jpg" ],
-  "title" : "Entire estate in center",
+  "images" : [ "../public\\images\\House20.jpg" ],
+  "title" : "Entire apartment in center",
   "address" : "Regementsgatan 52, 217 48",
-  "city" : "Trelleborg",
-  "propertyType" : "Villa",
-  "accommodation" : {
-    "bathrooms" : 2,
-    "beds" : 5
-  },
-  "description" : "Nice estate close to everything in Trellehulla",
-  "price" : "4000",
+  "city" : "Malmö",
+  "propertyType" : null,
+  "accommodation" : null,
+  "description" : "Nice apartment close to the everything in Malmö",
+  "price" : null,
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "5",
   "ownerId" : "ExjVgfDb6hDUnZ355eu1w",
-  "bookings" : null
+  "bookings" : null,
+  "review" : null
 } ]
