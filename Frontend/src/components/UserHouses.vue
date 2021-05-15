@@ -1,31 +1,63 @@
 <template>
-  <button>New House</button>
+  <button @click="showCreateHome = !showCreateHome">New House</button>
   <UserHouseItem
     v-for="(userHouse, index) of userHouses"
     v-bind:key="index"
     v-bind:house="userHouse"
   />
+  <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo"/>
+  <UserAmenities v-if="showCreateHome" @amenities="getAmenities"/>  
+  <PhotoUploader v-if="showCreateHome" @photo="getPhoto"/>
+  <button @click="submitHome">Submit Home</button>
 </template>
 
 <script>
 import UserHouseItem from './UserHouseItem.vue';
+import BasicInfo from "./BasicInfo.vue";
+import PhotoUploader from "./PhotoUploader.vue";
+import UserAmenities from "./UserAmenities.vue"
+
 export default {
   components: {
     UserHouseItem,
+    BasicInfo,
+    PhotoUploader,
+    UserAmenities
+  },
+  data() {
+    return {
+      user: null,
+      userHouses: [],
+      showCreateHome: false,
+      amenities: [],
+      images: [],
+      basicInfo: []
+    };
   },
   computed: {
     houses() {
       return this.$store.state.houses;
     },
   },
-
-  data() {
-    return {
-      user: null,
-      userHouses: [],
-    };
+  methods: {
+    getAmenities(amen) {
+      this.amenities = amen
+    },
+    getPhoto(photos) {
+      this.images = photos
+    },
+    getBasicInfo(info) {
+      this.basicInfo = info
+      console.log(this.basicInfo)
+    },
+    submitHome() {
+     console.log( this.userHouses)
+     console.log(this.showCreateHome),
+     console.log(this.amenities),
+     console.log(this.images),
+     console.log(this.basicInfo)
+    }
   },
-
   async created() {
     let userId = this.$route.params.id;
     let userRes = await fetch('/rest/users/' + userId);

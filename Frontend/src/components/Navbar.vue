@@ -282,6 +282,7 @@ export default {
 
 .signUp {
   padding: 30px;
+  cursor: pointer;
 }
 
 .signUp a {
