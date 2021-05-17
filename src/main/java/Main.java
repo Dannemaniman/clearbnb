@@ -51,7 +51,6 @@ public class Main {
         res.json(booking);
     });
 
-<<<<<<< HEAD
       app.post("/rest/houses", (req, res) -> {
           System.out.println("Hejsan");
           //System.out.println(req.body());
@@ -60,17 +59,8 @@ public class Main {
           collection("House").save(house);
           res.json(house);
       });
-
-
+      
       // start server
-=======
-      app.post("/rest/userHome", (req, res) -> {
-          //String userId =
-          System.out.println(req.body());
-      });
-
-    // start server
->>>>>>> ac712c2cb463f5119ab405862d76938b398115fc
     app.listen(4000);
   }
 }
