@@ -37,9 +37,12 @@ export default createStore({
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
+    addHouses(state, house) {
+      state.houses.push(house);
+    },
   },
 
-  // this.$store.dispatch('actionNamehouses
+  // this.$store.dispatch('actionNamehouses)s
   actions: {
     async fetchHouses(store) {
       // fetch house and update state with response
@@ -68,9 +71,7 @@ export default createStore({
       });
 
       let loggedInUser = await res.json();
-
       console.log('logged in user', loggedInUser);
-
       store.commit('setUser', loggedInUser);
     },
     async whoAmI(store) {
@@ -114,6 +115,17 @@ export default createStore({
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
+    },
+
+    async createHouse(store, hostObject) {
+      let res = await fetch('/rest/houses', {
+        method: 'POST',
+        body: JSON.stringify(hostObject),
+      });
+
+      let house = await res.json();
+      console.log('You created', house);
+      store.commit('addHouses', house);
     },
   },
 });

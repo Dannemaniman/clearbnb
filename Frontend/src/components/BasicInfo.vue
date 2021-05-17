@@ -5,16 +5,17 @@
       <label for="title">Title</label>
       <input name="title" type="text" class="long-input" v-model="title"/>
       <label for="price">Price</label>
-      <input name="price" type="text" class="sshort-input" v-model="price"/>
+      <p>{{price}}</p>
+      <input name="price" type="range" min="0" max="3000" step="50"  v-model="price"/>
       <label for="description"></label>
       <textarea name="description" placeholder="Please Enter a Accurate Description of the Home." rows="10" cols="50" v-model="description"/>
       <label for="address">Address</label>
       <input name="address" type="text" class="long-input" v-model="address"/>
       <label for="zip">Zip Code</label>
       <input name="zip" type="text" class="state-input" v-model="zipcode"/>
-      <input name="zip" type="text" class="short-input" v-model="state"/>
+      <input name="zip" type="text" class="short-input" v-model="city"/>
       <label for="properties">Property Type</label>
-      <select id="property-select" name="properties" v-model="type">
+      <select id="property-select" name="properties" v-model="propertyType">
         <option disabled value="">Please Choose...</option>
         <option value="apartment">Apartment</option>
         <option value="house">House</option>
@@ -60,12 +61,12 @@ export default {
       bedCounter: 0,
       bathroomCounter: 0,
       title: "",
-      price: "",
+      price: 0,
       description: "",
       address: "",
       zipcode: "",
-      state: "",
-      type: ""
+      city: "",
+      propertyType: ""
     }
   },
   methods: {
@@ -95,6 +96,10 @@ label {
 
 input {
   padding: 1rem;
+}
+
+input[type="range"] {
+  padding: 0;
 }
 
 textarea {
