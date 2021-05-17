@@ -48,10 +48,13 @@ export default {
     const data = await response.json();
     this.home = data;
     this.reviews = this.$store.state.reviews;
-    this.reviews = await this.reviews.filter(
-      (review) => review.author == this.home.ownerId
-    );
-    console.log(this.reviews);
+    let arr = [];
+    this.reviews.forEach((review) => {
+      if (review.gradedHouse == this.home.id) {
+        arr.push(review);
+      }
+    });
+    this.reviews = arr;
   },
 };
 </script>

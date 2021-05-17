@@ -7,7 +7,7 @@
     <div class="author">
       <strong>{{ review.author }}</strong>
       reviewed
-      <strong>This</strong>
+      <strong>{{ review.gradedHouse }}</strong>
     </div>
     <div class="review-body">
       {{ review.review }}
