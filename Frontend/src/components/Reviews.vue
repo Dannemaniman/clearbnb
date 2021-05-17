@@ -7,7 +7,7 @@
     <div class="author">
       <strong>{{ review.author }}</strong>
       reviewed
-      <strong>{{ review.gradedHouse }}</strong>
+      <strong>{{ house }}</strong>
     </div>
     <div class="review-body">
       {{ review.review }}
@@ -19,11 +19,22 @@
 export default {
   data() {
     return {
-      reviews: [],
+      houses: [],
+      house: '',
     };
   },
   methods: {},
   props: ['review'],
+
+  created() {
+    this.houses = this.$store.state.houses;
+    this.houses.forEach((house) => {
+      if (house.id == this.review.gradedHouse) {
+        this.house = house.title;
+        console.log(this.house);
+      }
+    });
+  },
 };
 </script>
 
