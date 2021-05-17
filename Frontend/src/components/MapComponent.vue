@@ -18,7 +18,7 @@ export default {
   },
   props: ['home'],
   methods: {
-    setupLeafletMap: function () {
+    setupLeafletMap() {
       this.mapDiv = L.map('mapContainer').setView(this.center, 9);
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
