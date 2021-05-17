@@ -1,15 +1,22 @@
 <template>
   <section>
     <p class="title">Home Info</p>
-    <form @submit.prevent="">
-      <p>Address</p>
-      <input type="text" class="address-input"/>
-      <p>Zip Code</p>
-      <input type="text" class="state-input"/>
-      <input type="text" class="zipcode-input"/>
-      <p>Property Type</p>
-      <select id="property-select" name="properties">
-        <option value="">Please Choose...</option>
+    <form @change.prevent="getFormData">
+      <label for="title">Title</label>
+      <input name="title" type="text" class="long-input" v-model="title"/>
+      <label for="price">Price</label>
+      <p>{{price}}</p>
+      <input name="price" type="range" min="0" max="3000" step="50"  v-model="price"/>
+      <label for="description"></label>
+      <textarea name="description" placeholder="Please Enter a Accurate Description of the Home." rows="10" cols="50" v-model="description"/>
+      <label for="address">Address</label>
+      <input name="address" type="text" class="long-input" v-model="address"/>
+      <label for="zip">Zip Code</label>
+      <input name="zip" type="text" class="state-input" v-model="zipcode"/>
+      <input name="zip" type="text" class="short-input" v-model="city"/>
+      <label for="properties">Property Type</label>
+      <select id="property-select" name="properties" v-model="propertyType">
+        <option disabled value="">Please Choose...</option>
         <option value="apartment">Apartment</option>
         <option value="house">House</option>
         <option value="bed-n-breakfast">Bed and Breakfast</option>
@@ -47,11 +54,24 @@
 
 <script>
 export default {
+  emit:['basicInfo'],
   data() {
     return {
       guestCounter: 0,
       bedCounter: 0,
-      bathroomCounter: 0
+      bathroomCounter: 0,
+      title: "",
+      price: 0,
+      description: "",
+      address: "",
+      zipcode: "",
+      city: "",
+      propertyType: ""
+    }
+  },
+  methods: {
+    getFormData() {
+      this.$emit('basicInfo', this.$data)
     }
   }
 }
@@ -69,8 +89,21 @@ section {
   padding: 1rem;
 }
 
-.title {
-  font-size: 2rem;
+label {
+  display: block;
+  margin: 1rem;
+}
+
+input {
+  padding: 1rem;
+}
+
+input[type="range"] {
+  padding: 0;
+}
+
+textarea {
+  padding: 1rem;
 }
 
 select {
@@ -78,6 +111,10 @@ select {
   width: 30%;
   outline: none;
   padding: 0.2rem;
+}
+
+.title {
+  font-size: 2rem;
 }
 
 .accomodate-info {
@@ -121,7 +158,7 @@ input {
   border: 1p solid black;
 }
 
-.address-input {
+.long-input {
   width: 60%;
 }
 
@@ -130,7 +167,7 @@ input {
   margin-right: 2rem;
 }
 
-.zipcode-input {
+.short-input {
   width: 20%;
 
 }

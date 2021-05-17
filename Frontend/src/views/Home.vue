@@ -2,10 +2,11 @@
   <div class="home-content">
     <GalleryComponent />
     <p>Nära dig</p>
-    <Slider :houses="houses" />
+    <!-- <Slider :houses="houses" />
     <p>I Omfånget</p>
     <Slider :houses="houses" />
-    <p>Våra Boenden</p>
+    <p> Våra Förslag</p>
+    <Slider :houses="houses" /> -->
     <MapComponent />
   </div>
 </template>
