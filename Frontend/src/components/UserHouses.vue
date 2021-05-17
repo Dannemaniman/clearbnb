@@ -26,12 +26,12 @@ export default {
   },
   data() {
     return {
-      user: null,
+      user: this.$store.state.userId,
       userHouses: [],
       showCreateHome: false,
       amenities: [],
       images: [],
-      basicInfo: []
+      basicInfo: [],
     };
   },
   computed: {
@@ -51,11 +51,12 @@ export default {
       console.log(this.basicInfo)
     },
     submitHome() {
-     console.log( this.userHouses)
+     console.log(this.userHouses)
      console.log(this.showCreateHome),
      console.log(this.amenities),
      console.log(this.images),
      console.log(this.basicInfo)
+     this.$store.dispatch('saveUserHome', this.$data)
     }
   },
   async created() {

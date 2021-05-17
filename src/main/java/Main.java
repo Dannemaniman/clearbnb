@@ -50,6 +50,11 @@ public class Main {
         res.json(booking);
     });
 
+      app.post("/rest/userHome", (req, res) -> {
+          //String userId =
+          System.out.println(req.body());
+      });
+
     // start server
     app.listen(4000);
   }
