@@ -1,5 +1,6 @@
 import express.Express;
 import models.Booking;
+import models.House;
 
 import static nosqlite.Database.collection;
 /*
@@ -50,7 +51,17 @@ public class Main {
         res.json(booking);
     });
 
-    // start server
+      app.post("/rest/houses", (req, res) -> {
+          System.out.println("Hejsan");
+          //System.out.println(req.body());
+          House house = req.body(House.class);
+          //System.out.println(house);
+          collection("House").save(house);
+          res.json(house);
+      });
+
+
+      // start server
     app.listen(4000);
   }
 }

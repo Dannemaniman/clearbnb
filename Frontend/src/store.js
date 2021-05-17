@@ -37,6 +37,9 @@ export default createStore({
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
+    addHouses(state, house) {
+      state.houses.push(house);
+    },
   },
 
   // this.$store.dispatch('actionNamehouses
@@ -114,6 +117,17 @@ export default createStore({
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
+    },
+
+    async createHouse(store, hostObject) {
+      let res = await fetch('/rest/houses', {
+        method: 'POST',
+        body: JSON.stringify(hostObject),
+      });
+
+      let house = await res.json();
+      console.log('You created', house);
+      store.commit('addHouses', house);
     },
   },
 });

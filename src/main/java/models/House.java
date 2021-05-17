@@ -6,6 +6,7 @@ import nosqlite.annotations.Id;
 import nosqlite.annotations.Transient;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Document
@@ -16,6 +17,7 @@ public class House {
     private ArrayList<String> images;
     private String title;
     private String address;
+    private String zipcode;
     private String city;
     private String propertyType;
     private Accommodation accommodation;
@@ -24,6 +26,8 @@ public class House {
     private List<String> amenities;
     private String reviews;
     private String ownerId;
+    private Date leaseStart;
+    private Date leaseEnd;
     @Transient
     private List<Booking> bookings;
 
@@ -42,10 +46,44 @@ public class House {
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
                 ", amenities=" + amenities +
-                ", reviews=" + reviews +
+                ", reviews='" + reviews + '\'' +
                 ", ownerId='" + ownerId + '\'' +
+                ", leaseStart=" + leaseStart +
+                ", leaseEnd=" + leaseEnd +
                 ", bookings=" + bookings +
                 '}';
+    }
+
+    public String getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Date getLeaseStart() {
+        return leaseStart;
+    }
+
+    public void setLeaseStart(Date leaseStart) {
+        this.leaseStart = leaseStart;
+    }
+
+    public Date getLeaseEnd() {
+        return leaseEnd;
+    }
+
+    public void setLeaseEnd(Date leaseEnd) {
+        this.leaseEnd = leaseEnd;
     }
 
     public String getId() {
