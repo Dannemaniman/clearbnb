@@ -18,15 +18,11 @@
         <h2>{{ home.description }}</h2>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal :home="home"/>
+      <BookingModal :home="home" />
     </div>
     <div class="map"></div>
     <div class="reviews">
-      <Reviews
-        v-for="review of reviews.slice(1, 4)"
-        :review="review"
-        :key="review.id"
-      />
+      <Reviews v-for="review of reviews" :review="review" :key="review.id" />
     </div>
     <Hosts />
   </div>
@@ -52,6 +48,10 @@ export default {
     const data = await response.json();
     this.home = data;
     this.reviews = this.$store.state.reviews;
+    this.reviews = await this.reviews.filter(
+      (review) => review.author == this.home.ownerId
+    );
+    console.log(this.reviews);
   },
 };
 </script>
@@ -73,7 +73,7 @@ export default {
   flex-grow: 3;
 }
 
-.information h2:last-of-type{
+.information h2:last-of-type {
   font-size: 1.3rem;
 }
 
