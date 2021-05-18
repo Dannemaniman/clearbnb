@@ -25,6 +25,7 @@
 import CalenderTable from "./CalenderTable.vue"
 
 export default {
+  emit: ['setDate'],
   components: {
     CalenderTable
   },
@@ -68,12 +69,15 @@ export default {
         this.firstElement ? this.firstElement.style.backgroundColor = "" : this.firstElement = null
         this.current === 0 ? this.firstElement = element : this.secondElement = element
         element.style.backgroundColor = "salmon"
+        this.$emit('setDate', date, this.current)
 
       } else if(this.current === 1) {
         this.secondElement ? this.secondElement.style.backgroundColor = "" : this.secondElement = null
         this.current === 0 ? this.firstElement = element : this.secondElement = element
         element.style.backgroundColor = "lightblue"        
+        this.$emit('setDate', date, this.current)
       }
+      
    
     },
     moveRight() {
