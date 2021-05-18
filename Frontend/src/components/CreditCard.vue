@@ -165,6 +165,7 @@ export default {
   padding-right: 2rem;
   position: relative;
   top: -5px;
+  text-shadow: 1px 1px black;
 }
 
 .card-chip {
