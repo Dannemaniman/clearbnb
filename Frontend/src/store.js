@@ -37,6 +37,15 @@ export default createStore({
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
+    deleteBooking(state, bookingId) {
+      for (let booking of state.bookings) {
+        if (booking.id == bookingId) {
+          let index = state.bookings.indexOf(booking);
+          state.bookings.splice(index, 1);
+        }
+      }
+      console.log(state.bookings);
+    },
   },
 
   // this.$store.dispatch('actionNamehouses
@@ -114,6 +123,16 @@ export default createStore({
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
+    },
+    async deleteBooking(store, id) {
+      let res = await fetch('/rest/bookings/' + id, {
+        method: 'DELETE',
+      });
+
+      let ok = await res.text();
+      console.log('Delete of', ok);
+
+      store.commit('deleteBooking', id);
     },
   },
 });

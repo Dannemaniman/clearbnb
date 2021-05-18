@@ -43,11 +43,19 @@ public class Main {
         res.json(collection("Booking").find());
     });
 
+      app.get("/rest/bookings/:id", (req, res) -> {
+          res.json(collection("Booking").findById(req.params("id")));
+      });
+
     app.post("/rest/bookings", (req, res) -> {
         Booking booking = req.body(Booking.class);
         // Booking occupied = collection("Booking").find(and(eq("houseId" + booking.getHouseId()), eq("bookedDates" + booking.getBookedDates())));
         collection("Booking").save(booking);
         res.json(booking);
+    });
+
+    app.delete("rest/bookings/:id", (req, res) -> {
+        res.json(collection("Booking").deleteById(req.params("id")));
     });
 
     // start server

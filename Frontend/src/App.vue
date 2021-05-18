@@ -20,9 +20,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('whoAmI');
     this.$store.dispatch('fetchHouses');
     this.$store.dispatch('fetchReviews');
+    this.$store.dispatch('fetchBookings');
   },
 };
 </script>
