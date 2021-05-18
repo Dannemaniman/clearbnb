@@ -9,7 +9,7 @@
       <UserBookings v-if="bookings" />
     </div>
     <div>
-      <UserHouses v-if="houses" />
+      <UserHouses :userObjects="userObjects" v-if="houses" />
     </div>
     <div>
       <UserDetails v-if="details" />
@@ -34,6 +34,7 @@ export default {
       bookings: false,
       houses: false,
       details: true,
+      userObjects: '',
     };
   },
 
@@ -50,6 +51,7 @@ export default {
           this.bookings = false;
           this.houses = true;
           this.details = false;
+          this.getUserHouses();
           break;
         }
         case 3: {
@@ -60,7 +62,21 @@ export default {
         }
       }
     },
+    getUserHouses() {
+      let userID = this.$store.state.user.id;
+      let houses = this.$store.state.houses;
+      let userHouses = [];
+      for (let house of houses) {
+        if (userID == house.ownerId) {
+          userHouses.push(house);
+          console.log(userID);
+        }
+      }
+      this.userObjects = userHouses;
+      console.log(this.userObjects);
+    },
   },
+  mounted() {},
 };
 </script>
 

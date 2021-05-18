@@ -1,7 +1,7 @@
 <template>
   <button @click="showCreateHome = !showCreateHome">New House</button>
   <UserHouseItem
-    v-for="(userHouse, index) of userHouses"
+    v-for="(userHouse, index) of userObjects"
     v-bind:key="index"
     v-bind:house="userHouse"
   />
@@ -25,10 +25,11 @@ export default {
     PhotoUploader,
     UserAmenities,
   },
+  props: ['userObjects'],
   data() {
     return {
       // user: null,
-      //userHouses: [],
+      userHouses: [],
       showCreateHome: false,
       amenities: [],
       images: [],
@@ -39,6 +40,7 @@ export default {
   },
   computed: {
     houses() {
+      console.log('computed');
       return this.$store.state.houses;
     },
   },
@@ -86,6 +88,7 @@ export default {
       // }
     },
     async created() {
+      /*   console.log('tjo');
       let userId = this.$route.params.id;
       let userRes = await fetch('/rest/users/' + userId);
       let user = await userRes.json();
@@ -97,7 +100,7 @@ export default {
           userHouses.push(house);
         }
       }
-      this.userHouses = userHouses;
+      this.userHouses = userHouses; */
     },
   },
 };
