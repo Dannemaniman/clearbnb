@@ -5,7 +5,7 @@
       {{ review.grade }} / 5
     </div>
     <div class="author">
-      <strong>{{ review.author }}</strong>
+      <strong>{{ user }}</strong>
       reviewed
       <strong>{{ house }}</strong>
     </div>
@@ -21,6 +21,8 @@ export default {
     return {
       houses: [],
       house: '',
+      users: '',
+      user: '',
     };
   },
   methods: {},
@@ -32,6 +34,13 @@ export default {
       if (house.id == this.review.gradedHouse) {
         this.house = house.title;
         console.log(this.house);
+      }
+    });
+    // Annan metod
+    this.users = this.$store.state.users;
+    this.users.forEach((user) => {
+      if (user.id == this.review.author) {
+        this.user = user.fullName;
       }
     });
   },

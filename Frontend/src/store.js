@@ -9,6 +9,7 @@ export default createStore({
     citySearch: '',
     reviews: [],
     bookings: [],
+    users: {},
   },
 
   // this.$store.commit('mutationName', data)
@@ -39,6 +40,9 @@ export default createStore({
     },
     addHouses(state, house) {
       state.houses.push(house);
+    },
+    setUsers(state, users) {
+      state.users = users;
     },
   },
 
