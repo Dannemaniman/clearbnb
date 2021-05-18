@@ -38,6 +38,7 @@ export default {
       secondOne: null,
       firstElement: null,
       secondElement: null,
+      currentElement : null,
       monthNames: ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ]
@@ -46,79 +47,57 @@ export default {
   methods: {
     markSelection(event) {
       let yearMonth = event.target.attributes[0].ownerElement.parentElement.parentElement.firstChild.innerHTML.split(" ")
-      let month = yearMonth[0].trim()
-      let numberMonth = this.monthNames.indexOf(month)
+      let month = this.monthNames.indexOf(yearMonth[0].trim())
       let year = yearMonth[1].trim()
       let day = event.target.textContent.trim()
+      let date = new Date(year, month, day).toLocaleDateString()
 
-      let date = new Date(year, numberMonth, day).toLocaleDateString()
-      // console.log(date)
-      // for(let ref in this.$refs) {
-      //   console.log(this.$refs[ref])
-      // }
-
-      // console.log(this.$refs.rowFirst)
-      // console.log(this.$refs.masterRow.children)
-
-      // console.log(this.$refs.masterRow.children)
-
-      // for(let item in this.$refs[rowFirst]) {
-      //   console.log("hej")
-      //   console.log(this.$refs[rowFirst][item])
-      //   // console.log(this.$refs.masterRow.children[item])
-      //   // for(let item in items) {
-      //   //   console.log(item)
-      //   // }
-      // }
-
-  // console.log(this.$refs.rowFirst)
-
-    // console.log(typeof this.$refs.rowFirst)
-
-      //  for(let item in this.$refs.rowFirst) {
-      //    console.log(this.$refs.rowFirst[item])
-      //  }
-
-    console.log(this.$refs.masterRow.childNodes)
-
-    // if()
-    let counter = 1
-    for(let items of this.$refs.masterRow.childNodes) {
-      // console.log(items)
-
-      // for(let item of items) {
-      //   console.log(items[item])
-      // }
-    }
-
-    // console.log(this.$refs.length)
-
-    for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
-       console.dir(this.$refs.masterRow.childNodes[i])
-
-      for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
-        console.log("hej")
-        console.log(this.$refs.masterRow.childNodes[i].childNodes)
-      }
-    }
-
-      if(this.currentMarker === 0){
+      if(this.currentMarker === 0 && event.target.children.length === 0){
           this.currentMarker = 1
           this.firstElement ? this.firstElement.style.backgroundColor = "" : this.firstElement = null
-          // this.firstOne = event.target.textContent
-          let target = event.target.attributes[0].name
-          // event.target.style.backgroundColor = "salmon"
           this.firstOne = date
           this.firstElement = event.target
+          this.currentElement = event.target
+
+          if(Number(event.target.textContent.trim()) <= this.currentElement ) return
+
           this.$emit('setDate', date, this.firstElement)
-      } else if (this.currentMarker === 1) {
-        this.secondElement ? this.secondElement.style.backgroundColor = "" : this.secondElement = null
-          // event.target.style.backgroundColor = "salmon"
+      } else if (this.currentMarker === 1  && event.target.children.length === 0) {
+          this.secondElement ? this.secondElement.style.backgroundColor = "" : this.secondElement = null
           this.currentMarker = 0
-          // this.secondOne = event.target.textContent
           this.firstOne = date
           this.secondElement = event.target
           this.$emit('setDate', date, this.secondElement)
+      }
+      this.renderInactiveSelections();
+    },
+    renderInactiveSelections() {
+      console.log(this.currentMarker)
+      if(this.currentMarker === 1) {
+
+        for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
+          for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+            if(
+              Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) < 
+              Number(this.firstElement.childNodes[0].data)){
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+            }
+          }
+        }
+      } else if(this.currentMarker === 0) {
+        for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
+          for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+            if(
+              Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) > 
+              Number(this.secondElement.childNodes[0].data)){
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+            }
+          }
+        }
       }
     }
   },
@@ -144,7 +123,6 @@ export default {
     position: relative;
     border-spacing: 10px;
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
   }
 
   .table-pop {
@@ -158,6 +136,10 @@ export default {
 
   td:hover, td:active {
     background-color: lightblue;
+  }
+
+  td {
+    cursor: pointer;
     border-radius: 10px;
   }
 

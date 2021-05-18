@@ -62,10 +62,8 @@ export default {
       e.stopPropagation();
     },
     setDate(date, element) {
-      console.log(date)
       this.current === 0 ? this.firstDate = date : this.secondDate = date
       this.current === 0 ? this.current = 1 : this.current = 0
-      // this.firstElement.style.backgroundColor = "salmon"
       if(this.current === 0) {
         this.firstElement ? this.firstElement.style.backgroundColor = "" : this.firstElement = null
         this.current === 0 ? this.firstElement = element : this.secondElement = element
@@ -74,7 +72,7 @@ export default {
       } else if(this.current === 1) {
         this.secondElement ? this.secondElement.style.backgroundColor = "" : this.secondElement = null
         this.current === 0 ? this.firstElement = element : this.secondElement = element
-        element.style.backgroundColor = "salmon"        
+        element.style.backgroundColor = "lightblue"        
       }
    
     },
