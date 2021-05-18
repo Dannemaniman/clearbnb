@@ -1,15 +1,16 @@
 <template>
   <button @click="showCreateHome = !showCreateHome">New House</button>
-  <UserHouseItem
-    v-for="(userHouse, index) of userObjects"
-    v-bind:key="index"
-    v-bind:house="userHouse"
-  />
+
   <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
   <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
   <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
   <!-- <button type="reset">Reset</button> -->
   <button @click="submitHome">Submit Home</button>
+  <UserHouseItem
+    v-for="(userHouse, index) of userObjects"
+    v-bind:key="index"
+    v-bind:house="userHouse"
+  />
 </template>
 
 <script>

@@ -69,11 +69,9 @@ export default {
       for (let house of houses) {
         if (userID == house.ownerId) {
           userHouses.push(house);
-          console.log(userID);
         }
       }
       this.userObjects = userHouses;
-      console.log(this.userObjects);
     },
   },
   mounted() {},
