@@ -1,47 +1,47 @@
 <template>
-        <!-- <hr class="separator"/> -->
-          <!-- <div class="credit_container">
-            <p class="booking-card">Valt kort:  </p> -->
-            <div class="credit-card" :class="cardColor2">
-              <div class="credit-title" >{{ cardType }}</div>
-              <div class="card-chip">
-                <div class="chip-firstline">
-                  <div class="chip-firstline-leftdent"></div>
-                  <div class="chip-firstline_rightdent"></div>
-                </div>
-                <div class="chip-secondline">
-                  <div class="chip-secondline_middledent_left"></div>
-                  <div class="chip-secondline_middledent_right"></div>
-                </div>
-                <div class="chip-thirdline">
-                  <div class="chip-thirdline_leftdent"></div>
-                  <div class="chip-thirdline_rightdent"></div>                   
-                </div>
-              </div>
-              <div class="card-number"> 
-                   <input placeholder="Card Number" type="text" class="card-number" />
-              </div>
-              <div class="card-validation">
-                  <input placeholder="Card CVV" type="text" class="card-cvv" />
-                <div class="card-valid">VALID THRU</div>
-                <div class="card-triangle"></div>
-                <div class="card-monthyear">     
-                    <input
-                        placeholder="09"
-                        type="text"
-                        class="card-expiration"
-                    />
-                    <p class="separator"> / </p>
-                    <input 
-                        placeholder="24"
-                        type="text"
-                        class="card-expiration"
-                        />
-                </div>             
-              </div>
-              <div class="card-name"></div>
-            </div>
-          <!-- </div>   -->
+    <hr class="separator"/> 
+      <div class="credit_container">
+       <p class="booking-card">Valt kort:  </p> 
+       <div :class="cardColor2" class="credit-card" >
+        <div class="credit-title" >{{ cardType }}</div>
+        <div class="card-chip">
+          <div class="chip-firstline">
+            <div class="chip-firstline-leftdent"></div>
+            <div class="chip-firstline_rightdent"></div>
+          </div>
+          <div class="chip-secondline">
+            <div class="chip-secondline_middledent_left"></div>
+            <div class="chip-secondline_middledent_right"></div>
+          </div>
+          <div class="chip-thirdline">
+            <div class="chip-thirdline_leftdent"></div>
+            <div class="chip-thirdline_rightdent"></div>                   
+          </div>
+        </div>
+        <div class="card-number"> 
+              <input placeholder="Card Number" type="text" class="card-number" />
+        </div>
+        <div class="card-validation">
+            <input placeholder="CVV" type="text" class="card-cvv" />
+          <div class="card-valid">VALID THRU</div>
+          <div class="card-triangle"></div>
+          <div class="card-monthyear">     
+              <input
+                  placeholder="09"
+                  type="text"
+                  class="card-expiration"
+              />
+              <p class="separator"> / </p>
+              <input 
+                  placeholder="24"
+                  type="text"
+                  class="card-expiration"
+                  />
+          </div>             
+        </div>
+        <div class="card-name"></div>
+      </div>
+    </div>  
 </template>
 
 <script>
@@ -49,21 +49,20 @@ export default {
     props: ['cardType'],
     data() {
         return {
-            cardColor: "black2"
+          cardColor: "black"
         }
     },
     computed: {
       cardColor2: function(){
-          console.log("hej")
-        if(this.cardType === " " || cardType === "visa"){
-          return this.cardColor
+        if(this.cardType === "visa"){
+          return "visa-blue"
         }
-        else if(cardType === "mastercard"){
-          return "salmon"
+        else if(this.cardType === "mastercard"){
+          return "master-salmon"
         }
-        else if(cardType === "american-express"){
-          return "black"
-        }   
+        else if(this.cardType === "american-express"){
+          return "express-black"
+        }
       }
   },
 
@@ -72,12 +71,16 @@ export default {
 
 <style scoped>
 
-.salmon {
-    background: salmon;
+.master-salmon {
+    background-color: orange;
 }
 
-.black2 {
-    background: black !important;
+.visa-blue {
+  background-color: rgb(61, 108, 188);
+}
+
+.express-black {
+    background-color: rgb(32, 32, 32);
     color: white;
 }
 
@@ -85,16 +88,15 @@ export default {
   width: 2.6rem;
   height: 1.6rem;
   position: absolute;
-  /* top: -3rem; */
-  /* right:5rem; */
   left: 0;
-
 }
 
 .separator {
     font-size: 1.6rem;    
+    width: 90%;
+    height: 1px;
     margin: 0;
-    color: black;
+    color: rgb(44, 44, 44);
     position: relative;
     top: 0.5rem;
     padding-left: 0.2rem;
@@ -108,9 +110,8 @@ export default {
 
 .credit_container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
   justify-content: center;
   padding-bottom: 3rem;
 }
@@ -131,13 +132,9 @@ export default {
   top: 0.2rem;
   height: 1.8rem;
   margin: 0 auto;
-  /* margin-left: 2rem; */
 }
 
 .credit-card {
-  /* position: absolute; */
-  top: 6rem;
-  background-color: rgb(61, 108, 188);
   border-radius: 6px;
   height: 12rem;
   width: 20rem;
@@ -178,20 +175,7 @@ export default {
   background-color: silver;
   margin-left: 2rem;
   transform: scale(1.5);
-  /* margin-top: 1rem; */
 }
-
-/* @keyframes movecard {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(5px);
-  }
-  100% {
-    transform: translateY(0x);
-  }
-} */
 
 .chip-firstline {
   border-bottom: 1px solid grey;

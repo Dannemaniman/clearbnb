@@ -7,7 +7,7 @@
     <ListItem :item="info" />
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
-        <option value="">Select your card</option>
+        <option selected="selected" value="Select your card">Select your card</option>
         <option value="visa">Visa</option>
         <option value="mastercard">Mastercard</option>
         <option value="american-express">American Express</option>
@@ -31,7 +31,7 @@ export default {
     return {
       info: this.$store.state.selectedHouse,
       // userId: this.$store.state.user.id,
-      cardType: " ",
+      cardType: "Select your card",
     };
   },
   methods: {
@@ -120,7 +120,7 @@ select {
   width: 30%;
   outline: none;
   padding: 0.2rem;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
 }
 
 .submit-button {
