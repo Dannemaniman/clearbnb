@@ -1,15 +1,16 @@
 <template>
   <button @click="showCreateHome = !showCreateHome">New House</button>
-  <UserHouseItem
-    v-for="(userHouse, index) of userHouses"
-    v-bind:key="index"
-    v-bind:house="userHouse"
-  />
+
   <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
   <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
   <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
   <!-- <button type="reset">Reset</button> -->
   <button @click="submitHome">Submit Home</button>
+  <UserHouseItem
+    v-for="(userHouse, index) of userObjects"
+    v-bind:key="index"
+    v-bind:house="userHouse"
+  />
 </template>
 
 <script>
@@ -25,10 +26,11 @@ export default {
     PhotoUploader,
     UserAmenities,
   },
+  props: ['userObjects'],
   data() {
     return {
       // user: null,
-      //userHouses: [],
+      userHouses: [],
       showCreateHome: false,
       amenities: [],
       images: [],
@@ -39,6 +41,7 @@ export default {
   },
   computed: {
     houses() {
+      console.log('computed');
       return this.$store.state.houses;
     },
   },
@@ -86,6 +89,7 @@ export default {
       // }
     },
     async created() {
+      /*   console.log('tjo');
       let userId = this.$route.params.id;
       let userRes = await fetch('/rest/users/' + userId);
       let user = await userRes.json();
@@ -97,7 +101,7 @@ export default {
           userHouses.push(house);
         }
       }
-      this.userHouses = userHouses;
+      this.userHouses = userHouses; */
     },
   },
 };
