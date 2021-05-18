@@ -1,5 +1,5 @@
 <template>
-  <section v-if="$store.state.user" class="user-content">
+  <section v-if="loggedIn !== null" class="user-content">
     <div class="buttons">
       <button @click="openPage(1)">Bookings</button>
       <button @click="openPage(2)">Houses</button>
@@ -37,7 +37,11 @@ export default {
       userObjects: '',
     };
   },
-
+  computed: {
+    loggedIn() {
+      this.$store.state.user ? true : this.$router.push('/');
+    },
+  },
   methods: {
     openPage(value) {
       switch (value) {
