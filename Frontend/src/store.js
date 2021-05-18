@@ -75,6 +75,11 @@ export default createStore({
       });
 
       let loggedInUser = await res.json();
+      if ('Error' in loggedInUser) {
+        console.log('Detta blidde inte bra', loggedInUser);
+        alert('Bad credentials');
+        return;
+      }
       console.log('logged in user', loggedInUser);
       store.commit('setUser', loggedInUser);
     },
