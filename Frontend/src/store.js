@@ -8,6 +8,8 @@ export default createStore({
     user: null,
     citySearch: '',
     reviews: [],
+    bookings: [],
+    users: {},
   },
 
   // this.$store.commit('mutationName', data)
@@ -30,9 +32,21 @@ export default createStore({
     setReviews(state, reviews) {
       state.reviews = reviews;
     },
+    setBookings(state, bookings) {
+      state.bookings = bookings;
+    },
+    addBooking(state, booking) {
+      state.bookings.push(booking);
+    },
+    addHouses(state, house) {
+      state.houses.push(house);
+    },
+    setUsers(state, users) {
+      state.users = users;
+    },
   },
 
-  // this.$store.dispatch('actionNamehouses
+  // this.$store.dispatch('actionNamehouses)s
   actions: {
     async fetchHouses(store) {
       // fetch house and update state with response
@@ -61,15 +75,17 @@ export default createStore({
       });
 
       let loggedInUser = await res.json();
-
+      if ('Error' in loggedInUser) {
+        console.log('Detta blidde inte bra', loggedInUser);
+        alert('Bad credentials');
+        return;
+      }
       console.log('logged in user', loggedInUser);
-
       store.commit('setUser', loggedInUser);
     },
     async whoAmI(store) {
       let res = await fetch('/api/whoami');
       let user = await res.json();
-      console.log(user);
       store.commit('setUser', user);
     },
     async logout(store) {
@@ -88,6 +104,36 @@ export default createStore({
       let reviews = await res.json();
 
       store.commit('setReviews', reviews);
+    },
+    async fetchBookings(store) {
+      let res = await fetch('/rest/bookings');
+      let bookings = await res.json();
+
+      store.commit('setBookings', bookings);
+    },
+    async book(store, confirmedBooking) {
+      let res = await fetch('/rest/bookings', {
+        method: 'POST',
+        body: JSON.stringify(confirmedBooking),
+      });
+
+      let booking = await res.json();
+      console.log('You booked', booking);
+      store.commit('addBooking', booking);
+    },
+    async storeHome(store, house) {
+      store.commit('setSelectedHouse', house);
+    },
+
+    async createHouse(store, hostObject) {
+      let res = await fetch('/rest/houses', {
+        method: 'POST',
+        body: JSON.stringify(hostObject),
+      });
+
+      let house = await res.json();
+      console.log('You created', house);
+      store.commit('addHouses', house);
     },
   },
 });

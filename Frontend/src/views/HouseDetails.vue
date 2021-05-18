@@ -18,15 +18,11 @@
         <h2>{{ home.description }}</h2>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal />
+      <BookingModal :home="home" />
     </div>
-    <div class="map"></div>
+    <MapComponent :home="home" />
     <div class="reviews">
-      <Reviews
-        v-for="review of reviews.slice(1, 4)"
-        :review="review"
-        :key="review.id"
-      />
+      <Reviews v-for="review of reviews" :review="review" :key="review.id" />
     </div>
     <Hosts />
   </div>
@@ -37,8 +33,9 @@ import Hosts from '../components/Hosts.vue';
 import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 import Reviews from '../components/Reviews.vue';
+import MapComponent from '../components/MapComponent.vue';
 export default {
-  components: { Amenities, Hosts, BookingModal, Reviews },
+  components: { Amenities, Hosts, BookingModal, Reviews, MapComponent },
   data() {
     return {
       home: null,
@@ -46,12 +43,25 @@ export default {
     };
   },
 
+  /* mounted() {
+    console.log(this.$refs);
+    let mapDiv = this.$refs.mapDiv;
+    mapDiv.dropMarker({ Latitude: 55.6837, Longitude: 13.60829 });
+  }, */
+
   async created() {
     let id = this.$route.params.id;
     const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
     this.reviews = this.$store.state.reviews;
+    let arr = [];
+    this.reviews.forEach((review) => {
+      if (review.gradedHouse == this.home.id) {
+        arr.push(review);
+      }
+    });
+    this.reviews = arr;
   },
 };
 </script>
@@ -73,7 +83,7 @@ export default {
   flex-grow: 3;
 }
 
-.information h2:last-of-type{
+.information h2:last-of-type {
   font-size: 1.3rem;
 }
 

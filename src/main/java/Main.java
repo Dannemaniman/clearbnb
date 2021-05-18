@@ -1,4 +1,6 @@
 import express.Express;
+import models.Booking;
+import models.House;
 
 import static nosqlite.Database.collection;
 /*
@@ -34,10 +36,31 @@ public class Main {
     });
     
     app.get("/rest/reviews", (req, res) -> {
-          res.json(collection("Review").find());
+        res.json(collection("Review").find());
     });
 
-    // start server
+
+    app.get("/rest/bookings", (req, res) -> {
+        res.json(collection("Booking").find());
+    });
+
+    app.post("/rest/bookings", (req, res) -> {
+        Booking booking = req.body(Booking.class);
+        // Booking occupied = collection("Booking").find(and(eq("houseId" + booking.getHouseId()), eq("bookedDates" + booking.getBookedDates())));
+        collection("Booking").save(booking);
+        res.json(booking);
+    });
+
+      app.post("/rest/houses", (req, res) -> {
+          System.out.println("Hejsan");
+          //System.out.println(req.body());
+          House house = req.body(House.class);
+          //System.out.println(house);
+          collection("House").save(house);
+          res.json(house);
+      });
+      
+      // start server
     app.listen(4000);
   }
 }

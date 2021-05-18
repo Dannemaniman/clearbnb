@@ -2,11 +2,12 @@
   <div class="home-content">
     <GalleryComponent />
     <p>Nära dig</p>
-    <Slider :houses="houses" />
+    <!-- <Slider :houses="houses" />
     <p>I Omfånget</p>
     <Slider :houses="houses" />
     <p> Våra Förslag</p>
-    <Slider :houses="houses" />
+    <Slider :houses="houses" /> -->
+    <MapComponent />
   </div>
 </template>
 
@@ -14,12 +15,14 @@
 import SearchBar from '../components/SearchBar.vue';
 import GalleryComponent from '../components/GalleryComponent.vue';
 import Slider from '../components/Slider.vue';
+import MapComponent from '../components/MapComponent.vue';
 
 export default {
   components: {
     GalleryComponent,
     SearchBar,
     Slider,
+    MapComponent,
   },
   data() {
     return {
@@ -27,12 +30,12 @@ export default {
     };
   },
   async created() {
-      setTimeout((async () => {
-        let housesData = await this.$store.state.houses
-        this.houses = housesData
-      }), 1000)
+    setTimeout(async () => {
+      let housesData = await this.$store.state.houses;
+      this.houses = housesData;
+    }, 1000);
   },
-}
+};
 </script>
 
 <style scoped>
@@ -41,7 +44,7 @@ export default {
 }
 
 p {
-  font-size: 2rem; 
+  font-size: 2rem;
   color: black;
   font-weight: thin;
 }

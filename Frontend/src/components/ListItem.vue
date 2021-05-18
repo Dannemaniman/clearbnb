@@ -1,10 +1,10 @@
 <template>
   <article>
-    <img :src="item.image"/>
+    <img :src="item.house.images[0]"/>
     <div class="item-info">
-      <p class="item-type">{{item.type}}</p>
-      <p class="item-adress">{{item.adress}}, {{item.city}}</p>      
-      <p class="item-date">{{item.date.toLocaleString()}}</p>    
+      <p class="item-type">{{item.house.title}}</p>
+      <p class="item-adress">{{item.house.address}}, {{item.house.city}}</p>      
+      <p class="item-date">{{item.chosenDate.start.toLocaleDateString()}} - {{item.chosenDate.end.toLocaleDateString()}}</p>    
     </div>
     <button>Cancel</button>
   </article>
@@ -75,8 +75,8 @@ export default {
 
   .item-date {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    top: 0;
+    right: 5rem;
     margin-right: 1rem;
     font-size: 0.7rem;
   }
