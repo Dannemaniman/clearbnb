@@ -5,9 +5,9 @@
       {{ review.grade }} / 5
     </div>
     <div class="author">
-      <strong>{{ review.author }}</strong>
+      <strong>{{ user }}</strong>
       reviewed
-      <strong>This</strong>
+      <strong>{{ house }}</strong>
     </div>
     <div class="review-body">
       {{ review.review }}
@@ -19,11 +19,37 @@
 export default {
   data() {
     return {
-      reviews: [],
+      houses: [],
+      house: '',
+      users: '',
+      user: '',
     };
   },
-  methods: {},
+  methods: {
+    getHouseTitle() {
+      this.houses = this.$store.state.houses;
+      this.houses.forEach((house) => {
+        if (house.id == this.review.gradedHouse) {
+          this.house = house.title;
+          console.log(this.house);
+        }
+      });
+    },
+    getUserName() {
+      this.users = this.$store.state.users;
+      this.users.forEach((user) => {
+        if (user.id == this.review.author) {
+          this.user = user.fullName;
+        }
+      });
+    },
+  },
   props: ['review'],
+
+  created() {
+    this.getHouseTitle();
+    this.getUserName();
+  },
 };
 </script>
 

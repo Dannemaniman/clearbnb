@@ -22,11 +22,7 @@
     </div>
     <MapComponent :home="home" />
     <div class="reviews">
-      <Reviews
-        v-for="review of reviews.slice(1, 4)"
-        :review="review"
-        :key="review.id"
-      />
+      <Reviews v-for="review of reviews" :review="review" :key="review.id" />
     </div>
     <Hosts />
   </div>
@@ -59,6 +55,13 @@ export default {
     const data = await response.json();
     this.home = data;
     this.reviews = this.$store.state.reviews;
+    let arr = [];
+    this.reviews.forEach((review) => {
+      if (review.gradedHouse == this.home.id) {
+        arr.push(review);
+      }
+    });
+    this.reviews = arr;
   },
 };
 </script>
