@@ -18,9 +18,9 @@
         <h2>{{ home.description }}</h2>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal :home="home"/>
+      <BookingModal :home="home" />
     </div>
-    <div class="map"></div>
+    <MapComponent :home="home" />
     <div class="reviews">
       <Reviews
         v-for="review of reviews.slice(1, 4)"
@@ -37,14 +37,21 @@ import Hosts from '../components/Hosts.vue';
 import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 import Reviews from '../components/Reviews.vue';
+import MapComponent from '../components/MapComponent.vue';
 export default {
-  components: { Amenities, Hosts, BookingModal, Reviews },
+  components: { Amenities, Hosts, BookingModal, Reviews, MapComponent },
   data() {
     return {
       home: null,
       reviews: {},
     };
   },
+
+  /* mounted() {
+    console.log(this.$refs);
+    let mapDiv = this.$refs.mapDiv;
+    mapDiv.dropMarker({ Latitude: 55.6837, Longitude: 13.60829 });
+  }, */
 
   async created() {
     let id = this.$route.params.id;
@@ -73,7 +80,7 @@ export default {
   flex-grow: 3;
 }
 
-.information h2:last-of-type{
+.information h2:last-of-type {
   font-size: 1.3rem;
 }
 
