@@ -25,24 +25,30 @@ export default {
       user: '',
     };
   },
-  methods: {},
+  methods: {
+    getHouseTitle() {
+      this.houses = this.$store.state.houses;
+      this.houses.forEach((house) => {
+        if (house.id == this.review.gradedHouse) {
+          this.house = house.title;
+          console.log(this.house);
+        }
+      });
+    },
+    getUserName() {
+      this.users = this.$store.state.users;
+      this.users.forEach((user) => {
+        if (user.id == this.review.author) {
+          this.user = user.fullName;
+        }
+      });
+    },
+  },
   props: ['review'],
 
   created() {
-    this.houses = this.$store.state.houses;
-    this.houses.forEach((house) => {
-      if (house.id == this.review.gradedHouse) {
-        this.house = house.title;
-        console.log(this.house);
-      }
-    });
-    // Annan metod
-    this.users = this.$store.state.users;
-    this.users.forEach((user) => {
-      if (user.id == this.review.author) {
-        this.user = user.fullName;
-      }
-    });
+    this.getHouseTitle();
+    this.getUserName();
   },
 };
 </script>
