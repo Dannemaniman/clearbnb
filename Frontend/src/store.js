@@ -135,5 +135,10 @@ export default createStore({
       console.log('You created', house);
       store.commit('addHouses', house);
     },
+
+    async getSliderInfo() {
+      let res = await fetch('/rest/besthouses');
+      let info = await res.json();
+    },
   },
 });

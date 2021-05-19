@@ -1,9 +1,12 @@
 import express.Express;
 import models.Booking;
 import models.House;
+import models.Review;
 import nosqlite.Collection;
 
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import static nosqlite.Database.collection;
 /*
@@ -25,13 +28,28 @@ public class Main {
     new Auth(app);
 
 
+
+
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());
     });
 
     app.get("/rest/besthouses", (req, res) -> {
 
-        collection("house").find("reviews==");
+        List<House> users = collection("House").find();
+        List<Review> reviews = collection("Review").find();
+
+
+
+        Collections.sort(reviews, new Sortbyroll());
+
+        reviews.forEach(name -> System.out.println(name));
+
+
+
+        //Collections.sort(reviews, new Sortbyroll());
+
+        //collection("house").find("reviews==");
 
         res.json(collection("House").find());
     });
@@ -65,10 +83,7 @@ public class Main {
     });
 
       app.post("/rest/houses", (req, res) -> {
-          System.out.println("Hejsan");
-          //System.out.println(req.body());
           House house = req.body(House.class);
-          //System.out.println(house);
           collection("House").save(house);
           res.json(house);
       });
@@ -76,4 +91,18 @@ public class Main {
       // start server
     app.listen(4000);
   }
+/*
+  public static int sortMe(Review a, Review b) {
+      return a.getGrade() - b.getGrade();
+  } */
+}
+
+class Sortbyroll implements Comparator<Review>
+{
+    // Used for sorting in ascending order of
+    // roll number
+    public int compare(Review a, Review b)
+    {
+        return a.getGrade() - b.getGrade();
+    }
 }
