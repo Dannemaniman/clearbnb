@@ -43,7 +43,6 @@ export default {
 
   methods: {
     deleteBooking(id) {
-      console.log(id);
       this.$store.dispatch('deleteBooking', id);
     },
   },

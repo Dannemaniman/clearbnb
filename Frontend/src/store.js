@@ -60,7 +60,6 @@ export default createStore({
           state.userBookings.splice(index, 1);
         }
       }
-      console.log(state.userBookings);
     },
   },
 
