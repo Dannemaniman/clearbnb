@@ -6,37 +6,38 @@
     <h2>Booking</h2>
     <ListItem :item="info" />
     <form class="credit-modal" @submit.prevent="">
-      <select>
-        <option value="">Select your card</option>
+      <select v-model="cardType">
+        <option selected="selected" value="Select your card">Select your card</option>
         <option value="visa">Visa</option>
         <option value="mastercard">Mastercard</option>
         <option value="american-express">American Express</option>
       </select>
-      <div class="card"></div>
-      <input placeholder="Card Number" type="text" class="card-number" />
-      <input
-        placeholder="Card Expiration"
-        type="text"
-        class="card-expiration"
-      />
-      <input placeholder="Card CVV" type="text" class="card-cvv" />
+      <credit-card :cardType="cardType"></credit-card>
       <button class="submit-button" @click="book">Pay</button>
     </form>
   </section>
 </template>
 
 <script>
-import BookingModalVue from '../components/BookingModal.vue';
 import ListItem from '../components/ListItem.vue';
+import CreditCard from "../components/CreditCard.vue"
 
 export default {
   components: {
     ListItem,
+    CreditCard
+  },
+    data() {
+    return {
+      info: this.$store.state.selectedHouse,
+      // userId: this.$store.state.user.id,
+      cardType: "Select your card",
+    };
   },
   methods: {
     book() {
       let booking = {
-        bookerId: this.userId,
+        // bookerId: this.userId,
         houseId: this.info.house.id,
         chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
       };
@@ -45,13 +46,7 @@ export default {
   },
   created() {
     console.log(this.$store.state.selectedHouse);
-    console.log(this.$store.state.user.id);
-  },
-  data() {
-    return {
-      info: this.$store.state.selectedHouse,
-      userId: this.$store.state.user.id,
-    };
+    // console.log(this.$store.state.user.id);
   },
 };
 </script>
@@ -120,26 +115,12 @@ input {
   position: relative;
 }
 
-.card-expiration {
-  width: 9rem;
-  margin-right: 2rem;
-  position: relative;
-  left: -2rem;
-}
-
-.card-cvv {
-  width: 5rem;
-  position: relative;
-  top: -3rem;
-  right: -5rem;
-}
-
 select {
   height: 2rem;
   width: 30%;
   outline: none;
   padding: 0.2rem;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
 }
 
 .submit-button {
