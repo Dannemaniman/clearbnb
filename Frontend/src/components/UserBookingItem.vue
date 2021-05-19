@@ -5,12 +5,39 @@
     <p>HouseID: {{ userBooking.houseId }}</p>
     <p>Dates: {{ userBooking.chosenDate }}</p>
     <button @click="deleteBooking(this.userBooking.id)">X</button>
+    <UserHouseItem
+      v-for="(house, index) of userHouses"
+      v-bind:key="index"
+      v-bind:house="house"
+    />
   </div>
 </template>
 
 <script>
+import UserHouseItem from './UserHouseItem.vue';
 export default {
   props: ['userBooking'],
+
+  components: {
+    UserHouseItem,
+  },
+
+  data() {
+    return {
+      userHouses: [],
+    };
+  },
+
+  created() {
+    let houses = [];
+    for (let house of this.$store.state.houses) {
+      if (house.id == this.userBooking.houseId) {
+        houses.push(house);
+      }
+    }
+    this.userHouses = houses;
+  },
+
   methods: {
     deleteBooking(id) {
       console.log(id);

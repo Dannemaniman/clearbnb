@@ -44,9 +44,9 @@ public class Main {
         res.json(collection("Booking").find());
     });
 
-      app.get("/rest/bookings/:id", (req, res) -> {
-          res.json(collection("Booking").findById(req.params("id")));
-      });
+    app.get("/rest/bookings/:id", (req, res) -> {
+        res.json(collection("Booking").findById(req.params("id")));
+    });
 
     app.post("/rest/bookings", (req, res) -> {
         Booking booking = req.body(Booking.class);
