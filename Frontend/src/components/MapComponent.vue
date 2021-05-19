@@ -46,29 +46,7 @@ export default {
       });
       this.mapDiv.addControl(searchControl);
     },
-    addNewHouse() {
-      let userAddress = '99 Southwark St, London SE1 0JF, UK';
 
-      let query_promise = this.provider.search({ query: userAddress });
-
-      query_promise.then(
-        (value) => {
-          for (let i = 0; i < value.length; i++) {
-            // Success!
-            let x_coor = value[i].x;
-            let y_coor = value[i].y;
-            let label = value[i].label;
-            // Create a marker for the found coordinates
-            let marker = L.marker([y_coor, x_coor]).addTo(this.mapDiv); // CAREFULL!!! The first position corresponds to the lat (y) and the second to the lon (x)
-            // Add a popup to said marker with the address found by geosearch (not the one from the user)
-            marker.bindPopup('<b>Found location</b><br>' + label).openPopup();
-          }
-        },
-        (reason) => {
-          console.log(reason); // Error!
-        }
-      );
-    },
     addMarkers() {
       if (!this.$route.params.id) {
         this.houses.forEach((house) => {
@@ -82,9 +60,9 @@ export default {
               '<h3>' +
                 house.title +
                 '</h3>' +
-                '<img src="' +
+                /*  '<img src="' +
                 house.images[0] +
-                '" width="150" />' +
+                '" width="150" />' + */
                 '<br>' +
                 house.description +
                 '<br>' +
@@ -119,7 +97,6 @@ export default {
     this.houses = houses;
     this.setupLeafletMap();
     this.addMarkers();
-    this.addNewHouse();
   },
 };
 </script>

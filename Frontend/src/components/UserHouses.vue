@@ -5,7 +5,7 @@
   <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
   <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
   <!-- <button type="reset">Reset</button> -->
-  <button @click="submitHome">Submit Home</button>
+  <button @click="addNewHouse">Submit Home</button>
   <UserHouseItem
     v-for="(userHouse, index) of userObjects"
     v-bind:key="index"
@@ -18,6 +18,7 @@ import UserHouseItem from './UserHouseItem.vue';
 import BasicInfo from './BasicInfo.vue';
 import PhotoUploader from './PhotoUploader.vue';
 import UserAmenities from './UserAmenities.vue';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 
 export default {
   components: {
@@ -37,6 +38,8 @@ export default {
       basicInfo: [],
       ownerId: '',
       images: [],
+      position: [],
+      provider: new OpenStreetMapProvider(),
     };
   },
   computed: {
@@ -55,6 +58,35 @@ export default {
     getBasicInfo(info) {
       this.basicInfo = info;
     },
+
+    addNewHouse() {
+      //let userAddress = 'Sunnanväg 209, Lund, SE';
+      let userAddress =
+        this.basicInfo.address + ' ' + this.basicInfo.city + ' ' + 'SE';
+      //Adress  --, Stad postnummer, Land
+      let query_promise = this.provider.search({ query: userAddress });
+
+      query_promise.then(
+        (value) => {
+          for (let i = 0; i < value.length; i++) {
+            // Success!
+            let x_coor = value[i].x;
+            let y_coor = value[i].y;
+            //let label = value[i].label;
+
+            this.position = [y_coor, x_coor];
+            console.log(this.position);
+          }
+        },
+        (reason) => {
+          console.log(reason); // Error!
+        }
+      );
+      setTimeout(() => {
+        this.submitHome();
+      }, 1000);
+    },
+
     async submitHome() {
       //  console.log( this.userHouses)
       //  console.log(this.showCreateHome),
@@ -80,6 +112,7 @@ export default {
           beds: this.basicInfo.bedCounter,
         },
         ownerId: this.$route.params.id,
+        position: this.position,
         // images: this.images
       };
 
@@ -88,7 +121,7 @@ export default {
       this.$store.dispatch('createHouse', hostObject);
       // }
     },
-    async created() {
+    created() {
       /*   console.log('tjo');
       let userId = this.$route.params.id;
       let userRes = await fetch('/rest/users/' + userId);
