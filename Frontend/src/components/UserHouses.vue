@@ -84,7 +84,7 @@ export default {
       );
       setTimeout(() => {
         this.submitHome();
-      }, 1000);
+      }, 2000);
     },
 
     async submitHome() {
