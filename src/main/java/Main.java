@@ -44,6 +44,10 @@ public class Main {
         res.json(collection("Booking").find());
     });
 
+      app.get("/rest/bookings/:id", (req, res) -> {
+          res.json(collection("Booking").findById(req.params("id")));
+      });
+
     app.post("/rest/bookings", (req, res) -> {
         Booking booking = req.body(Booking.class);
         // Booking occupied = collection("Booking").find(and(eq("houseId" + booking.getHouseId()), eq("bookedDates" + booking.getBookedDates())));
@@ -51,16 +55,21 @@ public class Main {
         res.json(booking);
     });
 
-      app.post("/rest/houses", (req, res) -> {
+    app.post("/rest/houses", (req, res) -> {
           System.out.println("Hejsan");
           //System.out.println(req.body());
           House house = req.body(House.class);
           //System.out.println(house);
           collection("House").save(house);
           res.json(house);
-      });
+    });
       
       // start server
+    app.delete("rest/bookings/:id", (req, res) -> {
+        res.json(collection("Booking").deleteById(req.params("id")));
+    });
+
+    // start server
     app.listen(4000);
   }
 }

@@ -38,12 +38,18 @@ export default createStore({
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
-    addHouses(state, house) {
-      state.houses.push(house);
-    },
     setUsers(state, users) {
       state.users = users;
     },
+    /* deleteBooking(state, bookingId) {
+      for (let booking of state.bookings) {
+        if (booking.id == bookingId) {
+          let index = state.bookings.indexOf(booking);
+          state.bookings.splice(index, 1);
+        }
+      }
+      console.log(state.bookings);
+    }, */
   },
 
   // this.$store.dispatch('actionNamehouses)s
@@ -124,7 +130,6 @@ export default createStore({
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
     },
-
     async createHouse(store, hostObject) {
       let res = await fetch('/rest/houses', {
         method: 'POST',
@@ -135,13 +140,22 @@ export default createStore({
       console.log('You created', house);
       store.commit('addHouses', house);
     },
-
     async updateUser(store, userInfo) {
       console.log(userInfo);
       // let res = await fetch('/rest/user/:id', {
       //   method: 'PUT',
       //   body: JSON.stringify(userInfo)
       // })
+    },
+    async deleteBooking(store, id) {
+      let res = await fetch('/rest/bookings/' + id, {
+        method: 'DELETE',
+      });
+
+      let ok = await res.text();
+      console.log('Delete of', ok);
+
+      // store.commit('deleteBooking', id);
     },
   },
 });
