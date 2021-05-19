@@ -37,7 +37,7 @@ export default createStore({
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
-    deleteBooking(state, bookingId) {
+    /* deleteBooking(state, bookingId) {
       for (let booking of state.bookings) {
         if (booking.id == bookingId) {
           let index = state.bookings.indexOf(booking);
@@ -45,7 +45,7 @@ export default createStore({
         }
       }
       console.log(state.bookings);
-    },
+    }, */
   },
 
   // this.$store.dispatch('actionNamehouses
@@ -132,7 +132,7 @@ export default createStore({
       let ok = await res.text();
       console.log('Delete of', ok);
 
-      store.commit('deleteBooking', id);
+      // store.commit('deleteBooking', id);
     },
   },
 });
