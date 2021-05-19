@@ -1,15 +1,16 @@
 <template>
-  <div class="card">
-    <h3>BookingID: {{ userBooking.id }}</h3>
-    <h4>BookerID: {{ userBooking.bookerId }}</h4>
-    <p>HouseID: {{ userBooking.houseId }}</p>
-    <p>Dates: {{ userBooking.chosenDate }}</p>
-    <button @click="deleteBooking(this.userBooking.id)">X</button>
+  <div class="booking-card">
     <UserHouseItem
       v-for="(house, index) of userHouses"
       v-bind:key="index"
       v-bind:house="house"
     />
+    <h3>Start: {{ startDate }}</h3>
+    <h3>End: {{ endDate }}</h3>
+    <p>BookingID: {{ userBooking.id }}</p>
+    <button class="cancel" @click="deleteBooking(this.userBooking.id)">
+      X
+    </button>
   </div>
 </template>
 
@@ -25,6 +26,8 @@ export default {
   data() {
     return {
       userHouses: [],
+      startDate: new Date(this.userBooking.chosenDate[0]).toLocaleDateString(),
+      endDate: new Date(this.userBooking.chosenDate[1]).toLocaleDateString(),
     };
   },
 
@@ -42,18 +45,23 @@ export default {
     deleteBooking(id) {
       console.log(id);
       this.$store.dispatch('deleteBooking', id);
-      // window.location.reload();
     },
   },
 };
 </script>
 
 <style>
-.card {
+.booking-card {
   border-radius: 10px;
   border: 1px solid black;
   background-color: rgb(235, 235, 235);
   color: black;
+  margin: 10px;
+  display: flex;
+}
+
+.cancel {
+  height: 20px;
   margin: 10px;
 }
 </style>

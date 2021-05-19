@@ -14,7 +14,8 @@ public class Main {
     Express app = new Express();
 
     collection(config -> {
-          config.useBrowser = true;
+        config.useBrowser = true;
+        config.useWatcher = true;
     });
 
     new Auth(app);

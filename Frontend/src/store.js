@@ -9,6 +9,7 @@ export default createStore({
     citySearch: '',
     reviews: [],
     bookings: [],
+    userBookings: [],
     users: {},
   },
 
@@ -32,24 +33,35 @@ export default createStore({
     setReviews(state, reviews) {
       state.reviews = reviews;
     },
+    setUsers(state, users) {
+      state.users = users;
+    },
     setBookings(state, bookings) {
       state.bookings = bookings;
+      if (state.user == null) {
+        return;
+      } else {
+        let userBookings = [];
+        for (let booking of state.bookings) {
+          if (state.user.id == booking.bookerId) {
+            userBookings.push(booking);
+          }
+        }
+        state.userBookings = userBookings;
+      }
     },
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
-    setUsers(state, users) {
-      state.users = users;
-    },
-    /* deleteBooking(state, bookingId) {
-      for (let booking of state.bookings) {
-        if (booking.id == bookingId) {
-          let index = state.bookings.indexOf(booking);
-          state.bookings.splice(index, 1);
+    deleteBooking(state, newMessage) {
+      for (let booking of state.userBookings) {
+        if (booking.id == newMessage.id) {
+          let index = state.userBookings.indexOf(booking);
+          state.userBookings.splice(index, 1);
         }
       }
-      console.log(state.bookings);
-    }, */
+      console.log(state.userBookings);
+    },
   },
 
   // this.$store.dispatch('actionNamehouses)s

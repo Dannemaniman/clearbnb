@@ -12,33 +12,11 @@ export default {
   components: {
     UserBookingItem,
   },
-
-  computed: {
-    bookings() {
-      return this.$store.state.bookings;
-    },
-  },
-
   data() {
     return {
-      user: null,
-      userBookings: [],
+      user: this.$store.state.user,
+      userBookings: this.$store.state.userBookings,
     };
-  },
-
-  async created() {
-    let userId = this.$route.params.id;
-    let userRes = await fetch('/rest/users/' + userId);
-    let user = await userRes.json();
-    this.user = user;
-
-    let userBookings = [];
-    for (let booking of this.bookings) {
-      if (this.user.id == booking.bookerId) {
-        userBookings.push(booking);
-      }
-    }
-    this.userBookings = userBookings;
   },
 };
 </script>
