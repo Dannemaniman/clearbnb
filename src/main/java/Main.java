@@ -1,6 +1,9 @@
 import express.Express;
 import models.Booking;
 import models.House;
+import nosqlite.Collection;
+
+import java.util.Collections;
 
 import static nosqlite.Database.collection;
 /*
@@ -13,13 +16,23 @@ public class Main {
   public static void main(String[] args) {
     Express app = new Express();
 
+
     collection(config -> {
           config.useBrowser = true;
     });
 
+
     new Auth(app);
 
+
     app.get("/rest/houses", (req, res) -> {
+        res.json(collection("House").find());
+    });
+
+    app.get("/rest/besthouses", (req, res) -> {
+
+        collection("house").find("reviews==");
+
         res.json(collection("House").find());
     });
 
