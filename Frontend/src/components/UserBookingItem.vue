@@ -1,20 +1,21 @@
 <template>
   <div class="card">
-    <h3>BookingID: {{ booking.id }}</h3>
-    <h4>BookerID: {{ booking.bookerId }}</h4>
-    <p>HouseID: {{ booking.houseId }}</p>
-    <p>Dates: {{ booking.chosenDate }}</p>
-    <button @click="deleteBooking(this.booking.id)">X</button>
+    <h3>BookingID: {{ userBooking.id }}</h3>
+    <h4>BookerID: {{ userBooking.bookerId }}</h4>
+    <p>HouseID: {{ userBooking.houseId }}</p>
+    <p>Dates: {{ userBooking.chosenDate }}</p>
+    <button @click="deleteBooking(this.userBooking.id)">X</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['booking'],
+  props: ['userBooking'],
   methods: {
     deleteBooking(id) {
       console.log(id);
       this.$store.dispatch('deleteBooking', id);
+      // window.location.reload();
     },
   },
 };
