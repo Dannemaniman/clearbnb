@@ -2,7 +2,7 @@
   <UserBookingItem
     v-for="(userBooking, index) of userBookings"
     v-bind:key="index"
-    v-bind:booking="userBooking"
+    v-bind:userBooking="userBooking"
   />
 </template>
 
