@@ -43,7 +43,23 @@ export default {
             fillOpacity: 0.5,
             radius: 500,
           })
-            .bindPopup(house.title + '<br>' + house.price)
+            .bindPopup(
+              '<h3>' +
+                house.title +
+                '</h3>' +
+                '<img src="' +
+                house.images[0] +
+                '" width="150" />' +
+                '<br>' +
+                house.description +
+                '<br>' +
+                'Price: ' +
+                '<strong>' +
+                house.price +
+                '</strong>' +
+                '/night',
+              { maxWidth: 160 }
+            )
             .openPopup()
             .addTo(this.mapDiv);
         });
@@ -53,6 +69,7 @@ export default {
           fillColor: '#f03',
           fillOpacity: 0.5,
           radius: 500,
+          className: 'popup',
         })
           .bindPopup(this.home.title + '<br>' + this.home.price)
           .openPopup()
