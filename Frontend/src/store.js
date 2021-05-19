@@ -135,5 +135,13 @@ export default createStore({
       console.log('You created', house);
       store.commit('addHouses', house);
     },
+
+    async updateUser(store, userInfo) {
+      console.log(userInfo);
+      // let res = await fetch('/rest/user/:id', {
+      //   method: 'PUT',
+      //   body: JSON.stringify(userInfo)
+      // })
+    },
   },
 });
