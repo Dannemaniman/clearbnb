@@ -30,6 +30,7 @@ import BookingModalVue from '../components/BookingModal.vue';
 import ListItem from '../components/ListItem.vue';
 
 export default {
+  props:['info'],
   components: {
     ListItem,
   },
@@ -45,12 +46,13 @@ export default {
   },
   created() {
     console.log(this.$store.state.selectedHouse);
-    console.log(this.$store.state.user.id);
+    console.log(this.info)
+    // console.log(this.$store.state.user.id);
   },
   data() {
     return {
       info: this.$store.state.selectedHouse,
-      userId: this.$store.state.user.id,
+      // userId: this.$store.state.user.id,
     };
   },
 };

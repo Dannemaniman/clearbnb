@@ -77,6 +77,7 @@ export default {
 
         for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
           for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+            console.log("här ->", this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)
             if(
               Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) < 
               Number(this.firstElement.childNodes[0].data)){
