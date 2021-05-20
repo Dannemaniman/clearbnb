@@ -60,9 +60,9 @@ export default {
               '<h3>' +
                 house.title +
                 '</h3>' +
-                /*  '<img src="' +
+                '<img src="' +
                 house.images[0] +
-                '" width="150" />' + */
+                '" width="150" />' +
                 '<br>' +
                 house.description +
                 '<br>' +
