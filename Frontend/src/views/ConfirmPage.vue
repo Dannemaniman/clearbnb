@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="loggedIn !== null">
     <div class="header-bar">
       <h1>CONFIRM DETAILS</h1>
     </div>
@@ -7,7 +7,9 @@
     <ListItem :item="info" />
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
-        <option selected="selected" value="Select your card">Select your card</option>
+        <option selected="selected" value="Select your card">
+          Select your card
+        </option>
         <option value="visa">Visa</option>
         <option value="mastercard">Mastercard</option>
         <option value="american-express">American Express</option>
@@ -20,19 +22,24 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
-import CreditCard from "../components/CreditCard.vue"
+import CreditCard from '../components/CreditCard.vue';
 
 export default {
   components: {
     ListItem,
-    CreditCard
+    CreditCard,
   },
-    data() {
+  data() {
     return {
       info: this.$store.state.selectedHouse,
       // userId: this.$store.state.user.id,
-      cardType: "Select your card",
+      cardType: 'Select your card',
     };
+  },
+  computed: {
+    loggedIn() {
+      this.$store.state.user ? true : this.$router.push('/login-page');
+    },
   },
   methods: {
     book() {
