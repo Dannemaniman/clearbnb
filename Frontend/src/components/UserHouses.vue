@@ -37,7 +37,7 @@ export default {
       images: [],
       basicInfo: [],
       ownerId: '',
-      images: [],
+      images: null,
       position: [],
       provider: new OpenStreetMapProvider(),
     };
@@ -93,7 +93,10 @@ export default {
       //  console.log(this.amenities),
       //  console.log(this.images),
       //  console.log(this.basicInfo)
-
+      if (this.images == null) {
+        console.log('hej');
+        this.images = ['/images/No-Image.jpg'];
+      }
       // if (this.$store.state.user) {
       let ownerId = await this.$store.state.user.id;
       console.log(ownerId);
@@ -113,7 +116,7 @@ export default {
         },
         ownerId: this.$route.params.id,
         position: this.position,
-        // images: this.images
+        images: this.images,
       };
 
       console.log(hostObject);
