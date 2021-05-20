@@ -137,7 +137,7 @@ export default createStore({
     },
 
     async getSliderInfo() {
-      let res = await fetch('/rest/besthouses');
+      let res = await fetch('/rest/best-houses');
       let info = await res.json();
     },
   },

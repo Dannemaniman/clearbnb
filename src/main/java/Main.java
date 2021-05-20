@@ -34,23 +34,17 @@ public class Main {
         res.json(collection("House").find());
     });
 
-    app.get("/rest/besthouses", (req, res) -> {
+    app.get("/rest/best-houses", (req, res) -> {
+        List<Review> reviews = collection("Review").find(op -> {
+            op.sort = "grade=desc";
+            op.limit = 5;
+        });
 
-        List<House> users = collection("House").find();
-        List<Review> reviews = collection("Review").find();
+        List<Users>  
 
-
-
-        Collections.sort(reviews, new Sortbyroll());
+        System.out.println(reviews);
 
         reviews.forEach(name -> System.out.println(name));
-
-
-
-        //Collections.sort(reviews, new Sortbyroll());
-
-        //collection("house").find("reviews==");
-
         res.json(collection("House").find());
     });
 
@@ -91,18 +85,4 @@ public class Main {
       // start server
     app.listen(4000);
   }
-/*
-  public static int sortMe(Review a, Review b) {
-      return a.getGrade() - b.getGrade();
-  } */
-}
-
-class Sortbyroll implements Comparator<Review>
-{
-    // Used for sorting in ascending order of
-    // roll number
-    public int compare(Review a, Review b)
-    {
-        return a.getGrade() - b.getGrade();
-    }
 }
