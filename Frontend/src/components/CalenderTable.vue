@@ -72,12 +72,12 @@ export default {
       this.renderInactiveSelections();
     },
     renderInactiveSelections() {
-      console.log(this.currentMarker)
       if(this.currentMarker === 1) {
-
         for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
           for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
-            console.log("här ->", this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)
+            if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                return
+            }
             if(
               Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) < 
               Number(this.firstElement.childNodes[0].data)){
@@ -90,6 +90,9 @@ export default {
       } else if(this.currentMarker === 0) {
         for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
           for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+            if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                return
+            }
             if(
               Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) > 
               Number(this.secondElement.childNodes[0].data)){
