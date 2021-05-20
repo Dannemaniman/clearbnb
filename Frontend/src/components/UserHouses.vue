@@ -89,6 +89,9 @@ export default {
           console.log(reason); // Error!
         }
       );
+      if (this.position.length <= 0) {
+        this.position = [-74.2183050512854, 26.899583900684352];
+      }
       setTimeout(() => {
         this.submitHome();
       }, 2000);
