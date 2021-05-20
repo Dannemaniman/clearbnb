@@ -1,31 +1,40 @@
 <template>
   <article ref="listItem">
-    <img :src="item.house.images[0]"/>
+    <img :src="imgSrc"/>
     <div class="item-info">
-      <p class="item-type">{{item.house.title}}</p>
-      <p class="item-adress">{{item.house.address}}, {{item.house.city}}</p>      
-      <p class="item-date">{{item.chosenDate.start.toLocaleDateString()}} - {{item.chosenDate.end.toLocaleDateString()}}</p>    
+      <p class="item-type">{{title}}</p>
+      <p class="item-adress">{{address}}, {{city}}</p>      
+      <p class="item-date">{{chosenDate.start.toLocaleDateString()}} - {{chosenDate.end.toLocaleDateString()}}</p>    
     </div>
-    <button>Cancel</button>
+    <button v-if="reviewable" class="review-button" @click="popReviewModal">Review</button>
+    <button class="cancel-button">Cancel</button>
   </article>
+  <ReviewModal :houseId="houseId" v-if="showReviewModal" @dismiss="popReviewModal"/>
 </template>
 
 <script>
+import ReviewModal from "./ReviewModal.vue"
+
 export default {
-  props: ['item'],
-  date() {
+  props: ['imgSrc', 'title', 'address', 'city', 'chosenDate', 'houseId'],
+  components: {
+    ReviewModal
+  },
+  data() {
     return {
-      id: item.id
+      showReviewModal: false,
     }
   },
+   computed: {
+     reviewable(){
+        let currentDate = new Date()
+        return this.chosenDate.end.toLocaleDateString() < currentDate ? true : false
+   },
+  },
   methods: {
-    reviewable() {
-      let currentDate = new Date();
-      console.log(currentDate)
-      if(item.chosenDate.end.toLocaleDateString() < currentDate) {
-        console.log("reviewable")
-      }
-    }
+    popReviewModal() {
+      this.showReviewModal = !this.showReviewModal
+    },
   }
 }
 </script>
@@ -55,8 +64,9 @@ export default {
     width: 150px;
   }
 
-  button {
+  .cancel-button {
     height: 3rem;
+    width: 4rem;    
     position: absolute;
     right: 0;
     top: 0;
@@ -65,6 +75,21 @@ export default {
     outline: none;
     border-radius: 0 0 0 10px;
     cursor: pointer;
+  }
+
+  .review-button {
+    height: 3rem;
+    width: 4rem;
+    position: absolute;
+    right: 0;
+    top: 3rem;
+    border-top: none;
+    border-right: none;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    background-color: lightgreen;
+    border-color: green;
   }
 
   button:hover, button:active {

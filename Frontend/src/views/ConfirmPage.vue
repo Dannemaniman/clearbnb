@@ -4,7 +4,7 @@
       <h1>CONFIRM DETAILS</h1>
     </div>
     <h2>Booking</h2>
-    <ListItem :item="info" />
+    <ListItem :houseId="info.house.id" :imgSrc="info.house.images[0]" :title="info.house.title" :address="info.house.address" :city="info.house.city" :chosenDate="info.chosenDate"/>
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
         <option selected="selected" value="Select your card">Select your card</option>
@@ -48,7 +48,7 @@ export default {
     console.log(this.$store.state.selectedHouse);
     // console.log(this.$store.state.user.id);
   },
-};
+}; 
 </script>
 
 <style scoped>

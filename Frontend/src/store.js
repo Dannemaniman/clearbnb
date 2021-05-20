@@ -148,5 +148,12 @@ export default createStore({
       //   body: JSON.stringify(userInfo)
       // })
     },
+
+    async postReview(store, review) {
+      let res = await fetch('/rest/post-review', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
+    },
   },
 });

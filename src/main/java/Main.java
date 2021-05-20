@@ -96,6 +96,12 @@ public class Main {
           collection("House").save(house);
           res.json(house);
       });
+
+      app.post("/rest/post-review", (req, res) -> {
+         Review review = req.body(Review.class);
+          System.out.println(review);
+          collection("Review").save(review);
+      });
       
       // start server
     app.listen(4000);
