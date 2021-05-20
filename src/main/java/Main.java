@@ -4,6 +4,7 @@ import models.House;
 import models.Review;
 import nosqlite.Collection;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -35,17 +36,31 @@ public class Main {
     });
 
     app.get("/rest/best-houses", (req, res) -> {
+
         List<Review> reviews = collection("Review").find(op -> {
             op.sort = "grade=desc";
             op.limit = 5;
         });
+        List<House> houses = new ArrayList<>();
 
-        List<Users>  
+        reviews.forEach(review -> {
+            houses.add(collection("House").findOne("id==" + review.getGradedHouse()));
+            System.out.println(review);
+        });
 
-        System.out.println(reviews);
+        houses.forEach(item -> {
+            System.out.println();
+            System.out.println(item.toString());
+        });
+      //  System.out.println(houses.toString());
 
-        reviews.forEach(name -> System.out.println(name));
-        res.json(collection("House").find());
+
+       // List<Users>
+
+        //System.out.println(reviews);
+
+    //    reviews.forEach(name -> System.out.println(name));
+      //  res.json(collection("House").find());
     });
 
     app.get("/rest/houses/:id", (req, res) -> {
