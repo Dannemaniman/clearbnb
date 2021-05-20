@@ -1,4 +1,8 @@
 <template>
+  <button class="create-button" @click="showCreate = !showCreate">Edit User Info</button>
+  <div v-if="showCreate">
+      <UserCreation />
+  </div>
   <div class="user-details" v-if="user">
     <div class="image">
       <img src="../../public/stockman.jpg" alt="" />
@@ -12,10 +16,16 @@
 </template>
 
 <script>
+import UserCreation from "./UserCreation.vue"
+
 export default {
+  components: {
+    UserCreation
+  },
   data() {
     return {
       user: null,
+      showCreate: false
     };
   },
 
@@ -29,6 +39,17 @@ export default {
 </script>
 
 <style scoped>
+
+.create-button {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  height: 2rem;
+  color: black;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
 .user-details {
   display: flex;
   flex-direction: row;
