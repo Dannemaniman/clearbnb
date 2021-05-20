@@ -140,5 +140,13 @@ export default createStore({
       let res = await fetch('/rest/best-houses');
       let info = await res.json();
     },
+
+    async updateUser(store, userInfo) {
+      console.log(userInfo);
+      // let res = await fetch('/rest/user/:id', {
+      //   method: 'PUT',
+      //   body: JSON.stringify(userInfo)
+      // })
+    },
   },
 });
