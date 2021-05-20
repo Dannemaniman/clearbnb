@@ -41,6 +41,7 @@ public class Main {
             op.sort = "grade=desc";
             op.limit = 5;
         });
+        
         List<House> houses = new ArrayList<>();
 
         reviews.forEach(review -> {
@@ -48,19 +49,6 @@ public class Main {
             System.out.println(review);
         });
 
-        houses.forEach(item -> {
-            System.out.println();
-            System.out.println(item.toString());
-        });
-      //  System.out.println(houses.toString());
-
-
-       // List<Users>
-
-        //System.out.println(reviews);
-
-    //    reviews.forEach(name -> System.out.println(name));
-      //  res.json(collection("House").find());
     });
 
     app.get("/rest/houses/:id", (req, res) -> {
