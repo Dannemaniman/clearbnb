@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article ref="listItem">
     <img :src="item.house.images[0]"/>
     <div class="item-info">
       <p class="item-type">{{item.house.title}}</p>
@@ -16,6 +16,15 @@ export default {
   date() {
     return {
       id: item.id
+    }
+  },
+  methods: {
+    reviewable() {
+      let currentDate = new Date();
+      console.log(currentDate)
+      if(item.chosenDate.end.toLocaleDateString() < currentDate) {
+        console.log("reviewable")
+      }
     }
   }
 }
