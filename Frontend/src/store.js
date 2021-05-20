@@ -135,7 +135,6 @@ export default createStore({
       });
 
       let booking = await res.json();
-      console.log('You booked', booking);
       store.commit('addBooking', booking);
     },
     async storeHome(store, house) {
@@ -164,8 +163,7 @@ export default createStore({
       });
 
       let ok = await res.text();
-      console.log('Delete of', ok);
-
+      // console.log('Delete of', ok);
       // store.commit('deleteBooking', id);
     },
   },

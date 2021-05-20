@@ -20,6 +20,11 @@
       </div>
       <BookingModal :home="home" />
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
     <MapComponent :home="home" />
     <div class="reviews">
       <Reviews v-for="review of reviews" :review="review" :key="review.id" />
