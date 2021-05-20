@@ -62,7 +62,13 @@ export default {
     addNewHouse() {
       //let userAddress = 'Sunnanväg 209, Lund, SE';
       let userAddress =
-        this.basicInfo.address + ' ' + this.basicInfo.city + ' ' + 'SE';
+        this.basicInfo.address +
+        ' ' +
+        this.basicInfo.city +
+        ' ' +
+        this.basicInfo.zipcode.replace(/\s+/g, '') +
+        ' ' +
+        'SE';
       //Adress  --, Stad postnummer, Land
       let query_promise = this.provider.search({ query: userAddress });
 
@@ -76,6 +82,7 @@ export default {
 
             this.position = [y_coor, x_coor];
             console.log(this.position);
+            console.log(value);
           }
         },
         (reason) => {
