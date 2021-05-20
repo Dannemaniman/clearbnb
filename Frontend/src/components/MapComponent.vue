@@ -85,7 +85,23 @@ export default {
           radius: 500,
           className: 'popup',
         })
-          .bindPopup(this.home.title + '<br>' + this.home.price)
+          .bindPopup(
+            '<h3>' +
+              this.home.title +
+              '</h3>' +
+              '<img src="' +
+              this.home.images[0] +
+              '" width="150" />' +
+              '<br>' +
+              this.home.description +
+              '<br>' +
+              'Price: ' +
+              '<strong>' +
+              this.home.price +
+              '</strong>' +
+              '/night',
+            { maxWidth: 160 }
+          )
           .openPopup()
           .addTo(this.mapDiv);
       }
