@@ -2,9 +2,9 @@
   <article ref="listItem">
     <img :src="imgSrc"/>
     <div class="item-info">
-      <p class="item-type">{{title}}</p>
-      <p class="item-adress">{{address}}, {{city}}</p>      
-      <p class="item-date">{{chosenDate.start.toLocaleDateString()}} - {{chosenDate.end.toLocaleDateString()}}</p>    
+      <p class="item-type">{{item.house.title}}</p>
+      <p class="item-adress">{{item.house.address}}, {{item.house.city}}</p>      
+      <p class="item-date">{{item.chosenDate.start}} - {{item.chosenDate.end}}</p>    
     </div>
     <button v-if="reviewable" class="review-button" @click="popReviewModal">Review</button>
     <button class="cancel-button">Cancel</button>

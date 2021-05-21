@@ -1,10 +1,10 @@
 <template>
   <section class='calender' @click='popModal'>
     <div class='checkin-container'>
-      <p>Check-in</p>
+      <p>{{firstDate}}</p>
     </div>
     <div class='checkout-container'>
-      <p>Check-in</p>
+      <p>{{secondDate}}</p>
     </div>
     <div v-if='showModal' class='calender-modal'>
       <header class='calender-title'>
@@ -13,7 +13,7 @@
       </header>
       <div class='arrow-left' @click='moveLeft'></div>
       <article class='calender-month'>
-        <CalenderTable v-for='(days, month, index) in daysPerMonth' :key="index" :month='month' :days='days'/>
+        <CalenderTable v-for='(days, month, index) in daysPerMonth' :key="index" :month='month' :days='days' @setDate="setDate"/>
       </article>
        <div class='arrow-right' @click='moveRight'></div>
       <button @click='closeModal'>Close</button>
@@ -25,12 +25,15 @@
 import CalenderTable from "./CalenderTable.vue"
 
 export default {
+  emit: ['setDate'],
   components: {
     CalenderTable
   },
   data() {
     return {
       showModal: false,
+      firstDate: "Check-in",
+      secondDate: "Check-out",
       moveCounter: 0,
       daysPerMonth: {
         "January": 31,
@@ -46,6 +49,9 @@ export default {
         "November": 30,
         "December": 31
       },
+      current: 0,
+      firstElement: null,
+      // secondElement: null
     }
   },
   methods: {
@@ -55,6 +61,24 @@ export default {
     closeModal(e) {
       this.showModal = false;
       e.stopPropagation();
+    },
+    setDate(date, element) {
+      this.current === 0 ? this.firstDate = date : this.secondDate = date
+      this.current === 0 ? this.current = 1 : this.current = 0
+      if(this.current === 0) {
+        this.firstElement ? this.firstElement.style.backgroundColor = "" : this.firstElement = null
+        this.current === 0 ? this.firstElement = element : this.secondElement = element
+        element.style.backgroundColor = "salmon"
+        this.$emit('setDate', date, this.current)
+
+      } else if(this.current === 1) {
+        this.secondElement ? this.secondElement.style.backgroundColor = "" : this.secondElement = null
+        this.current === 0 ? this.firstElement = element : this.secondElement = element
+        element.style.backgroundColor = "lightblue"        
+        this.$emit('setDate', date, this.current)
+      }
+      
+   
     },
     moveRight() {
       let calenders =  document.querySelectorAll('table')
