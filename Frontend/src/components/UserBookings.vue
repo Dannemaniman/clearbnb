@@ -1,13 +1,23 @@
 <template>
-  <h1>Bookings</h1>
-  <ListItem :item="booking"/>
+  <UserBookingItem
+    v-for="(userBooking, index) of userBookings"
+    v-bind:key="index"
+    v-bind:userBooking="userBooking"
+  />
 </template>
 
 <script>
-import ListItem from "./ListItem.vue"
-
+import UserBookingItem from './UserBookingItem.vue';
 export default {
-props: ['booking']
+  components: {
+    UserBookingItem,
+  },
+  data() {
+    return {
+      user: this.$store.state.user,
+      userBookings: this.$store.state.userBookings,
+    };
+  },
 };
 </script>
 

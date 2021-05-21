@@ -5,6 +5,7 @@ import nosqlite.annotations.Id;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Document
 public class Booking {
@@ -13,6 +14,8 @@ public class Booking {
     private String bookerId;
     private String houseId;
     private List<Date> chosenDate;
+    private double price;
+    private Map<String, Integer> guests;
 
     public Booking() { }
 
@@ -46,6 +49,22 @@ public class Booking {
 
     public void setChosenDate(List<Date> chosenDate) {
         this.chosenDate = chosenDate;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Map<String, Integer> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(Map<String, Integer> guests) {
+        this.guests = guests;
     }
 }
 

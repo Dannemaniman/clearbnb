@@ -22,7 +22,8 @@ public class Main {
 
 
     collection(config -> {
-          config.useBrowser = true;
+        config.useBrowser = true;
+        config.useWatcher = true;
     });
 
 
@@ -72,6 +73,10 @@ public class Main {
         res.json(collection("Booking").find());
     });
 
+    app.get("/rest/bookings/:id", (req, res) -> {
+        res.json(collection("Booking").findById(req.params("id")));
+    });
+
     app.post("/rest/bookings", (req, res) -> {
         Booking booking = req.body(Booking.class);
         // Booking occupied = collection("Booking").find(and(eq("houseId" + booking.getHouseId()), eq("bookedDates" + booking.getBookedDates())));
@@ -92,6 +97,11 @@ public class Main {
       });
       
       // start server
+    app.delete("rest/bookings/:id", (req, res) -> {
+        res.json(collection("Booking").deleteById(req.params("id")));
+    });
+
+    // start server
     app.listen(4000);
   }
 }
