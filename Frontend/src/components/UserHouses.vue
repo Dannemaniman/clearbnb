@@ -6,7 +6,7 @@
     <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
     <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
     <!-- <button type="reset">Reset</button> -->
-    <button @click="addNewHouse">Submit Home</button>
+    <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
   </div>
   <UserHouseItem
     v-for="(userHouse, index) of userObjects"
