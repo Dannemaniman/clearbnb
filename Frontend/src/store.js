@@ -8,6 +8,7 @@ export default createStore({
     user: null,
     citySearch: '',
     reviews: [],
+    replies: [],
     bookings: [],
     users: {},
   },
@@ -31,6 +32,9 @@ export default createStore({
     },
     setReviews(state, reviews) {
       state.reviews = reviews;
+    },
+    setReplies(state, replies) {
+      state.replies = replies;
     },
     setBookings(state, bookings) {
       state.bookings = bookings;
@@ -102,9 +106,15 @@ export default createStore({
     async fetchReviews(store, id) {
       let res = await fetch(`/rest/reviews/${id}`);
       let reviews = await res.json();
-      console.log(id);
       store.commit('setReviews', reviews);
     },
+
+    async fetchReplies(store, id) {
+      let res = await fetch(`/rest/replies/${id}`);
+      let replies = await res.json();
+      store.commit('setReplies', replies);
+    },
+
     async fetchBookings(store) {
       let res = await fetch('/rest/bookings');
       let bookings = await res.json();
@@ -157,6 +167,7 @@ export default createStore({
     },
 
     async postReply(store, review) {
+      console.log(review);
       let res = await fetch('/rest/post-reply', {
         method: 'POST',
         body: JSON.stringify(review),

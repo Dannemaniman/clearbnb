@@ -25,9 +25,7 @@ export default {
      //this.$store.dispatch('fetchReviews');
      this.$store.dispatch('fetchUsers');
     //  this.$store.dispatch('getSliderInfo')
-    setTimeout( ( ) => {
-      console.log(this.$store.state.houses)}, 2000)
-  },
+   },
 };
 </script>
 

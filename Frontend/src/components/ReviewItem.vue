@@ -5,7 +5,7 @@
       {{ review.grade }} / 5
     </div>
     <div class="author">
-      <strong>{{ user }}</strong>
+      <strong>{{ review.user }}</strong>
       reviewed
       <strong>{{ house }}</strong>
     </div>
@@ -21,6 +21,13 @@
 export default {
   props: ['review'],
   emit: ['popSection'],
+  created() {
+    this.getHouseTitle();
+    this.getUserName();
+    console.log("röv")
+    console.log(this.review)
+    console.log(this.review.user)
+  },
   data() {
     return {
       houses: [],
@@ -47,10 +54,6 @@ export default {
         }
       });
     },
-  },
-  created() {
-    this.getHouseTitle();
-    this.getUserName();
   },
 };
 </script>

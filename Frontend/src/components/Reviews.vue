@@ -1,97 +1,67 @@
 <template>
-  <review-item v-for="review of reviews" :review="review" :key="review.id" @popSection="popReplySection"/>
+<section>
+ <ReviewSlider :reviews="reviews" @popSection="popReplySection"/>
   <section v-if="showReview">
     <article class="top-review">
       <div class="user-bar">
         <img :src="replyReview.avatar" alt="" />
-        <p class="review-author"><strong><!--{{ replyReview.user }}--> Kalle</strong></p>
+        <p class="review-author"><strong>{{ replyReview.author }}</strong></p>
       </div>
       <div class="text-bar">
-        <p><strong><!--{{ replyReview.house }}-->Classic Estate In Nature -- </strong> <strong>Grade:</strong> {{ replyReview.grade }} / 5 </p>
-        
+        <p><strong>{{ replyReview.house }} Classic Estate In Nature    -- </strong> <strong>Grade:</strong> {{ replyReview.grade }} / 5 </p>
         <p>{{ replyReview.review }}</p>
       </div>
-      
     </article>
     <article v-for="review in replyReviews" :key="review.id" class="top-review reply">
       <div class="user-bar">
-        <img :src="replyReview.avatar" alt="" />
-        <p class="review-author"><strong><!--{{ replyReview.user }}--> Kalle</strong></p>
+        <img :src="review.avatar" alt="" />
+        <p class="review-author"><strong>{{ review.author }}</strong></p>
       </div>
-       <p>{{ replyReview.review }}</p>
+       <p>{{ review.reply }}</p>
     </article>
-    
     <div class="create-comment-container">
       <textarea name="description" placeholder="Must be logged in to write comment.." rows="3" cols="50" v-model="reviewText"/>
       <button class="send-button" @click="postReply">Post</button>
     </div>
   </section> 
+ </section>  
 </template>
 
 <script>
-import ReviewItem from "./ReviewItem.vue"
+import ReviewSlider from "./ReviewSlider.vue"
 
 export default {
   props: ['reviews'],
   components: {
-    ReviewItem
+    ReviewSlider
   },
   data() {
     return {
       showReview: false,
-      replyReviews: [
-        {
-          review: "awdawdawdawdawdawd",
-          author: "Jolm",    //if no user user "3333sawdawd!"
-          avatar: ""
-      },
-      {
-          review: "awdawdawdawdawdawd",
-          author: "Jolm",    //if no user user "3333sawdawd!"
-          avatar: ""
-      },
-      {
-          review: "awdawdawdawdawdawd",
-          author: "Jolm",    //if no user user "3333sawdawd!"
-          avatar: ""
-      },
-      {
-          review: "awdawdawdawdawdawd",
-          author: "Jolm",    //if no user user "3333sawdawd!"
-          avatar: ""
-      },
-      ],
+      replyReviews: null, 
       reviewText: "",
-      replyReview: null,
+      replyReview: null
     };
   },
   methods: {
-    popReplySection(review) {
-      console.log(review)
+    async popReplySection(review) {
       this.showReview = !this.showReview
       this.replyReview = review 
+      await this.$store.dispatch('fetchReplies', this.replyReview.id)
+      this.replyReviews = this.$store.state.replies
     },
     postReply() {
-
-      if(!this.$store.state.user) {
-        this.$router.push('/login-page')
-      }
-
-      //check if user is logged in firsts
-       let review = {
-         review: this.reviewText,
-         author: this.$store.state.user,    //if no user user "3333sawdawd!"
-         originalReviewId: this.replyReview,
-         avatar: ""
+       if(!this.$store.state.user) {
+         this.$router.push('/login-page')
+         return
        }
-
-     
-        console.log(review)
-      
-
-
-      // console.log(this.replyReview)
-      // this.$store.dispatch('postReply', review)
+       let reply = {
+         reviewId: this.replyReview.id,
+         avatar: "https://robohash.org/autdelectusest.png?size=50x50&set=set1",
+         author: this.$store.state.user.fullName,
+         reply: this.reviewText
+       }   
+       this.$store.dispatch('postReply', reply)
     }
   }
 };
@@ -99,7 +69,6 @@ export default {
 
 <style scoped>
   section {
-    /* background-color: whitesmoke; */
     width: 100%;
     display: flex;
     flex-direction: column;

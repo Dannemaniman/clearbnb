@@ -21,9 +21,7 @@
       <BookingModal :home="home" />
     </div>
     <MapComponent :home="home" />
-    <div class="reviews">
-      <Reviews :reviews="reviews" />
-    </div>
+    <Reviews :reviews="$store.state.reviews" />
     <Hosts />
   </div>
 </template>
@@ -40,16 +38,8 @@ export default {
   data() {
     return {
       home: null,
-      // reviews: {},
     }
   },
-    computed: {
-      async reviews() {
-          let reviews = await this.$store.dispatch('fetchReviews', this.home.id);
-          console.log("id", this.home.id)
-          return reviews
-      } 
-    },
 
   /* mounted() {
     console.log(this.$refs);
@@ -63,18 +53,7 @@ export default {
     const data = await response.json();
     this.home = data;
 
-    //Hämta reviews bara för detta huset
-    // this.reviews = this.$store.state.reviews; 
-    // console.log(this.reviews)
-
-    // let arr = [];
-    // this.reviews.forEach((review) => {
-    //   if (review.gradedHouse == this.home.id) {
-    //     arr.push(review);
-    //   }
-    // });
-    // this.reviews = arr;
-    // console.log(this.home)
+    let reviews = await this.$store.dispatch('fetchReviews', this.home.id);
   },
 };
 </script>
