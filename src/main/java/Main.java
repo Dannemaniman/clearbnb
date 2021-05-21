@@ -27,10 +27,7 @@ public class Main {
 
 
     new Auth(app);
-
-
-
-
+    
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());
     });

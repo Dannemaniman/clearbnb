@@ -31,8 +31,8 @@ export default {
   },
   async created() {
     setTimeout(async () => {
-      let housesData = await this.$store.state.houses;
-      this.houses = housesData;
+      // let housesData = await this.$store.state.houses;
+      // this.houses = housesData;
     }, 1000);
   },
 };
