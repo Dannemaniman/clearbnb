@@ -136,12 +136,24 @@ export default createStore({
       store.commit('addHouses', house);
     },
 
+    async getSliderInfo() {
+      let res = await fetch('/rest/best-houses');
+      let info = await res.json();
+    },
+
     async updateUser(store, userInfo) {
       console.log(userInfo);
       // let res = await fetch('/rest/user/:id', {
       //   method: 'PUT',
       //   body: JSON.stringify(userInfo)
       // })
+    },
+
+    async postReview(store, review) {
+      let res = await fetch('/rest/post-review', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
     },
   },
 });
