@@ -34,11 +34,8 @@ export default {
   computed: {
     reviewable() {
       let currentDate = new Date();
-      console.log(currentDate);
-      let bookedEndDate = new Date(this.chosenDate.end);
-      console.log(bookedEndDate);
-
-      return bookedEndDate > currentDate ? true : false;
+      console.log(this.chosenDate);
+      return this.chosenDate.end < currentDate ? true : false;
     },
   },
   methods: {

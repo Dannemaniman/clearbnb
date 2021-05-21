@@ -152,6 +152,7 @@ export default {
 
 <style scoped>
 #mapContainer {
+  margin-top: 7rem;
   width: 100%;
   height: 35rem;
 }
