@@ -55,7 +55,7 @@ export default {
   },
   data() {
     return {
-      adultCounter: 0,
+      adultCounter: 1,
       childCounter: 0,
       seniorCounter: 0,
       prices: {
@@ -74,6 +74,8 @@ export default {
       let guests = this.adultCounter + this.childCounter + this.seniorCounter;
       if (guests == 0) {
         alert('Choose how many guests that are staying');
+      } else if (this.chosenDate.start == null || this.chosenDate.end == null) {
+        alert('You have to choose check-in and check-out dates');
       } else {
         if (this.$store.state.user !== null) {
           let chosenObject = {
