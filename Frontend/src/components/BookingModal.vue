@@ -75,19 +75,23 @@ export default {
       if (guests == 0) {
         alert('Choose how many guests that are staying');
       } else {
-        let chosenObject = {
-          guests: {
-            totalGuests: guests,
-            adult: this.adultCounter,
-            child: this.childCounter,
-            senior: this.seniorCounter,
-          },
-          price: this.totalPrice,
-          chosenDate: this.chosenDate,
-          house: this.home,
-        };
-        this.$store.dispatch('storeHome', chosenObject);
-        this.$router.push('/confirm');
+        if (this.$store.state.user !== null) {
+          let chosenObject = {
+            guests: {
+              totalGuests: guests,
+              adult: this.adultCounter,
+              child: this.childCounter,
+              senior: this.seniorCounter,
+            },
+            price: this.totalPrice,
+            chosenDate: this.chosenDate,
+            house: this.home,
+          };
+          this.$store.dispatch('storeHome', chosenObject);
+          this.$router.push('/confirm');
+        } else {
+          this.$router.push('/login-page');
+        }
       }
     },
     increment(type) {
