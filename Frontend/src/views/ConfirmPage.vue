@@ -56,6 +56,7 @@ export default {
         guests: this.bookingInfo.guests,
       };
       this.$store.dispatch('book', booking);
+      this.$router.push('/user/' + this.userId);
     },
   },
   created() {
