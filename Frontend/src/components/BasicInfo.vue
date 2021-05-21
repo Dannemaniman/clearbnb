@@ -3,17 +3,54 @@
     <p class="title">Home Info</p>
     <form @change.prevent="getFormData">
       <label for="title">Title</label>
-      <input name="title" type="text" class="long-input" v-model="title"/>
+      <input
+        name="title"
+        placeholder="Title..."
+        type="text"
+        class="long-input"
+        v-model="title"
+      />
       <label for="price">Price</label>
-      <p>{{price}}</p>
-      <input name="price" type="range" min="0" max="3000" step="50"  v-model="price"/>
+      <p>{{ price }}</p>
+      <input
+        name="price"
+        type="range"
+        min="0"
+        max="3000"
+        step="50"
+        v-model="price"
+      />
       <label for="description"></label>
-      <textarea name="description" placeholder="Please Enter a Accurate Description of the Home." rows="10" cols="50" v-model="description"/>
+      <textarea
+        name="description"
+        placeholder="Please Enter a Accurate Description of the Home."
+        rows="10"
+        cols="50"
+        v-model="description"
+      />
       <label for="address">Address</label>
-      <input name="address" type="text" class="long-input" v-model="address"/>
+      <input
+        name="address"
+        placeholder="Enter address..."
+        type="text"
+        class="long-input"
+        v-model="address"
+      />
       <label for="zip">Zip Code</label>
-      <input name="zip" type="text" class="state-input" v-model="zipcode"/>
-      <input name="zip" type="text" class="short-input" v-model="city"/>
+      <input
+        name="zip"
+        placeholder="Zip code..."
+        type="text"
+        class="state-input"
+        v-model="zipcode"
+      />
+      <input
+        name="zip"
+        placeholder="City..."
+        type="text"
+        class="short-input"
+        v-model="city"
+      />
       <label for="properties">Property Type</label>
       <select id="property-select" name="properties" v-model="propertyType">
         <option disabled value="">Please Choose...</option>
@@ -25,26 +62,43 @@
         <p>How many guests can your place accomodate?</p>
         <div class="basicinfo-buttonbar">
           <p>Guests</p>
-          <div class='button-container'>
-            <button type="button" @click='guestCounter <= 0 ? guestCounter = 0 : guestCounter--'>-</button>
-            <p>{{guestCounter}}</p>
-            <button type="button" @click='guestCounter++'>+</button>
-          </div>                    
+          <div class="button-container">
+            <button
+              type="button"
+              @click="guestCounter <= 0 ? (guestCounter = 0) : guestCounter--"
+            >
+              -
+            </button>
+            <p>{{ guestCounter }}</p>
+            <button type="button" @click="guestCounter++">+</button>
+          </div>
         </div>
         <div class="basicinfo-buttonbar">
           <p>Beds</p>
-          <div class='button-container'>
-            <button type="button" @click='bedCounter <= 0 ? bedCounter = 0 : bedCounter--'>-</button>
-            <p>{{bedCounter}}</p>
-            <button type="button" @click='bedCounter++'>+</button>
+          <div class="button-container">
+            <button
+              type="button"
+              @click="bedCounter <= 0 ? (bedCounter = 0) : bedCounter--"
+            >
+              -
+            </button>
+            <p>{{ bedCounter }}</p>
+            <button type="button" @click="bedCounter++">+</button>
           </div>
         </div>
         <div class="basicinfo-buttonbar">
           <p>Bathrooms</p>
-          <div class='button-container'>
-            <button type="button" @click='bathroomCounter <= 0 ? bathroomCounter = 0 : bathroomCounter--'>-</button>
-            <p>{{bathroomCounter}}</p>
-            <button type="button" @click='bathroomCounter++'>+</button>
+          <div class="button-container">
+            <button
+              type="button"
+              @click="
+                bathroomCounter <= 0 ? (bathroomCounter = 0) : bathroomCounter--
+              "
+            >
+              -
+            </button>
+            <p>{{ bathroomCounter }}</p>
+            <button type="button" @click="bathroomCounter++">+</button>
           </div>
         </div>
       </div>
@@ -54,31 +108,30 @@
 
 <script>
 export default {
-  emit:['basicInfo'],
+  emit: ['basicInfo'],
   data() {
     return {
       guestCounter: 0,
       bedCounter: 0,
       bathroomCounter: 0,
-      title: "",
-      price: 0,
-      description: "",
-      address: "",
-      zipcode: "",
-      city: "",
-      propertyType: ""
-    }
+      title: '',
+      price: 300,
+      description: '',
+      address: '',
+      zipcode: '',
+      city: '',
+      propertyType: '',
+    };
   },
   methods: {
     getFormData() {
-      this.$emit('basicInfo', this.$data)
-    }
-  }
-}
+      this.$emit('basicInfo', this.$data);
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 section {
   margin: 0 auto;
   margin-top: 2rem;
@@ -98,7 +151,7 @@ input {
   padding: 1rem;
 }
 
-input[type="range"] {
+input[type='range'] {
   padding: 0;
 }
 
@@ -121,7 +174,7 @@ select {
   margin-top: 3rem;
 }
 
-.basicinfo-buttonbar{
+.basicinfo-buttonbar {
   display: flex;
   flex-direction: row;
   width: 70%;
@@ -169,6 +222,5 @@ input {
 
 .short-input {
   width: 20%;
-
 }
 </style>
