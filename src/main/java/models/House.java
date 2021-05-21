@@ -25,7 +25,7 @@ public class House {
     private String description;
     private String price;
     private List<String> amenities;
-    private List<Review> reviews;
+    //private List<Review> reviews;
     private String ownerId;
     private double[] position;
     private Date leaseStart;
@@ -48,7 +48,6 @@ public class House {
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
                 ", amenities=" + amenities +
-                ", reviews='" + reviews + '\'' +
                 ", ownerId='" + ownerId + '\'' +
                 ", position=" + Arrays.toString(position) +
                 ", bookings=" + bookings +
@@ -58,13 +57,6 @@ public class House {
                 '}';
     }
 
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
     
     public double[] getPosition() {
         return position;

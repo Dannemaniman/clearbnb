@@ -27,6 +27,20 @@ public class Main {
 
 
     new Auth(app);
+
+
+    Review review3 =  new Review();
+    review3.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
+    review3.setAuthor("Hf7pJLnRbu1uExXWaXRW2");
+    review3.setReview("Huset sög.   ");
+    review3.setGrade(0);
+    review3.setGradedHouse("o0U_oWPgWfmyFmeWjnyWk");
+
+
+    collection("Review").save(review3);
+
+    System.out.println(collection("Review").find());
+
     
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());
@@ -60,8 +74,14 @@ public class Main {
         res.json(collection("User").findById(req.params("id")));
     });
     
-    app.get("/rest/reviews", (req, res) -> {
-        res.json(collection("Review").find());
+    app.get("/rest/reviews/:id", (req, res) -> {
+        //res.json(collection("Review").find());
+        List<Review> review = collection("Review").findById(req.params("id"));
+        List<Review> review2 = collection("Review").find();
+        System.out.println(req.params("id"));
+        System.out.println(review2.toString());
+       // System.out.println(review);
+        res.json(collection("Review").findById(req.params("id")));
     });
 
 

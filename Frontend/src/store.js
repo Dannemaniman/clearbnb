@@ -99,10 +99,10 @@ export default createStore({
 
       store.commit('setUsers', users);
     },
-    async fetchReviews(store) {
-      let res = await fetch('/rest/reviews');
+    async fetchReviews(store, id) {
+      let res = await fetch(`/rest/reviews/${id}`);
       let reviews = await res.json();
-
+      console.log(id);
       store.commit('setReviews', reviews);
     },
     async fetchBookings(store) {

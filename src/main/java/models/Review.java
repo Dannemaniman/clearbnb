@@ -8,33 +8,36 @@ import java.util.List;
 
 @Document
 public class Review {
-   @Id
+
+    @Id
     private String id;
     private String avatar;
     private String author;
     private String review;
     private int grade;
     private String gradedHouse;
-    private List<Review> replies;
+    private List<Reply> replies;
     
     public Review(){};
-    
+
     @Override
-    public String
-    toString() {
-        return "Reviews{" +
-                "author='" + author + '\'' +
-                ", review='" + review + '\'' +
-                ", grade=" + grade +
-                ", gradedHouse='" + gradedHouse + '\'' +
+    public String toString() {
+        return  '\n' + "Review{" + '\n' +
+                ", id='" + id + '\n' +
+                ", avatar='" + avatar + '\n' +
+                ", author='" + author + '\n' +
+                ", review='" + review + '\n' +
+                ", grade=" + grade + '\n' +
+                ", gradedHouse='" + gradedHouse + '\n' +
+                ", replies=" + replies + '\n' +
                 '}';
     }
 
-    public List<Review> getReplies() {
+    public List<Reply> getReplies() {
         return replies;
     }
 
-    public void setReplies(List<Review> replies) {
+    public void setReplies(List<Reply> replies) {
         this.replies = replies;
     }
 

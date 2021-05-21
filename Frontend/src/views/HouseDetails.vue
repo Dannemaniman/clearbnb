@@ -22,7 +22,6 @@
     </div>
     <MapComponent :home="home" />
     <div class="reviews">
-      <!-- <Reviews v-for="review of reviews" :review="review" :key="review.id" /> -->
       <Reviews :reviews="reviews" />
     </div>
     <Hosts />
@@ -35,14 +34,22 @@ import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 import Reviews from '../components/Reviews.vue';
 import MapComponent from '../components/MapComponent.vue';
+
 export default {
   components: { Amenities, Hosts, BookingModal, Reviews, MapComponent },
   data() {
     return {
       home: null,
-      reviews: {},
-    };
+      // reviews: {},
+    }
   },
+    computed: {
+      async reviews() {
+          let reviews = await this.$store.dispatch('fetchReviews', this.home.id);
+          console.log("id", this.home.id)
+          return reviews
+      } 
+    },
 
   /* mounted() {
     console.log(this.$refs);
@@ -55,15 +62,19 @@ export default {
     const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
-    this.reviews = this.$store.state.reviews;
-    let arr = [];
-    this.reviews.forEach((review) => {
-      if (review.gradedHouse == this.home.id) {
-        arr.push(review);
-      }
-    });
-    this.reviews = arr;
-    console.log(this.home)
+
+    //Hämta reviews bara för detta huset
+    // this.reviews = this.$store.state.reviews; 
+    // console.log(this.reviews)
+
+    // let arr = [];
+    // this.reviews.forEach((review) => {
+    //   if (review.gradedHouse == this.home.id) {
+    //     arr.push(review);
+    //   }
+    // });
+    // this.reviews = arr;
+    // console.log(this.home)
   },
 };
 </script>

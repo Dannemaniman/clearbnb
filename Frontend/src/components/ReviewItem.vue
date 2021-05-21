@@ -36,7 +36,6 @@ export default {
       this.houses.forEach((house) => {
         if (house.id == this.review.gradedHouse) {
           this.house = house.title;
-          console.log(this.house);
         }
       });
     },
@@ -52,7 +51,6 @@ export default {
   created() {
     this.getHouseTitle();
     this.getUserName();
-    console.log(this.review)
   },
 };
 </script>
