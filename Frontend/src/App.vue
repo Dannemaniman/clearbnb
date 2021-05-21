@@ -24,6 +24,7 @@ export default {
     this.$store.dispatch('fetchReviews');
     this.$store.dispatch('fetchUsers');
     this.$store.dispatch('fetchBookings');
+    // this.$store.dispatch('getSliderInfo')
   },
 };
 </script>

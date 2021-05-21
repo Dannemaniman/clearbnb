@@ -150,6 +150,12 @@ export default createStore({
       console.log('You created', house);
       store.commit('addHouses', house);
     },
+
+    async getSliderInfo() {
+      let res = await fetch('/rest/best-houses');
+      let info = await res.json();
+    },
+
     async updateUser(store, userInfo) {
       console.log(userInfo);
       // let res = await fetch('/rest/user/:id', {
@@ -165,6 +171,12 @@ export default createStore({
       let ok = await res.text();
       // console.log('Delete of', ok);
       // store.commit('deleteBooking', id);
+    },
+    async postReview(store, review) {
+      let res = await fetch('/rest/post-review', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
     },
   },
 });

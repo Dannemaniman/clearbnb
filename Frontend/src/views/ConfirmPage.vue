@@ -4,7 +4,14 @@
       <h1>CONFIRM DETAILS</h1>
     </div>
     <h2>Booking</h2>
-    <ListItem :item="bookingInfo" />
+    <ListItem
+      :houseId="info.house.id"
+      :imgSrc="info.house.images[0]"
+      :title="info.house.title"
+      :address="info.house.address"
+      :city="info.house.city"
+      :chosenDate="info.chosenDate"
+    />
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
         <option selected="selected" value="Select your card">
@@ -31,7 +38,7 @@ export default {
   },
   data() {
     return {
-      bookingInfo: this.$store.state.selectedHouse,
+      info: this.$store.state.selectedHouse,
       userId: this.$store.state.user.id,
       cardType: 'Select your card',
     };
@@ -40,13 +47,10 @@ export default {
     book() {
       let booking = {
         bookerId: this.userId,
-        houseId: this.bookingInfo.house.id,
-        chosenDate: [
-          this.bookingInfo.chosenDate.start,
-          this.bookingInfo.chosenDate.end,
-        ],
-        price: this.bookingInfo.price,
-        guests: this.bookingInfo.guests,
+        houseId: this.info.house.id,
+        chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
+        price: this.info.price,
+        guests: this.info.guests,
       };
       this.$store.dispatch('book', booking);
     },
