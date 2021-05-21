@@ -82,7 +82,7 @@ export default {
             child: this.childCounter,
             senior: this.seniorCounter,
           },
-          prices: this.prices,
+          price: this.totalPrice,
           chosenDate: this.chosenDate,
           house: this.home,
         };

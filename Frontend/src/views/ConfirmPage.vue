@@ -42,13 +42,11 @@ export default {
         bookerId: this.userId,
         houseId: this.info.house.id,
         chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
+        price: this.info.price,
+        guests: this.info.guests,
       };
       this.$store.dispatch('book', booking);
     },
-  },
-  created() {
-    console.log(this.$store.state.selectedHouse);
-    // console.log(this.$store.state.user.id);
   },
 };
 </script>
