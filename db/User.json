@@ -78,4 +78,12 @@
   "fullName" : "Styrbjörn Jönsson",
   "userHouses" : null,
   "userBookings" : null
+}, {
+  "id" : "jXx3Ew3QbbIGU2Fsornl8",
+  "userName" : null,
+  "userPassword" : "d7190eb194ff9494625514b6d178c87f99c5973e28c398969d2233f2960a573e",
+  "email" : "daniellangas91@gmail.com",
+  "fullName" : "Daniel Langås",
+  "userHouses" : null,
+  "userBookings" : null
 } ]

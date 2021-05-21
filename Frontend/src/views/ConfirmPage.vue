@@ -4,10 +4,19 @@
       <h1>CONFIRM DETAILS</h1>
     </div>
     <h2>Booking</h2>
-    <ListItem :houseId="info.house.id" :imgSrc="info.house.images[0]" :title="info.house.title" :address="info.house.address" :city="info.house.city" :chosenDate="info.chosenDate"/>
+    <ListItem
+      :houseId="bookingInfo.house.id"
+      :imgSrc="bookingInfo.house.images[0]"
+      :title="bookingInfo.house.title"
+      :address="bookingInfo.house.address"
+      :city="bookingInfo.house.city"
+      :chosenDate="bookingInfo.chosenDate"
+    />
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
-        <option selected="selected" value="Select your card">Select your card</option>
+        <option selected="selected" value="Select your card">
+          Select your card
+        </option>
         <option value="visa">Visa</option>
         <option value="mastercard">Mastercard</option>
         <option value="american-express">American Express</option>
@@ -20,35 +29,39 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
-import CreditCard from "../components/CreditCard.vue"
+import CreditCard from '../components/CreditCard.vue';
 
 export default {
   components: {
     ListItem,
-    CreditCard
+    CreditCard,
   },
-    data() {
+  data() {
     return {
-      info: this.$store.state.selectedHouse,
-      // userId: this.$store.state.user.id,
-      cardType: "Select your card",
+      bookingInfo: this.$store.state.selectedHouse,
+      userId: this.$store.state.user.id,
+      cardType: 'Select your card',
     };
   },
   methods: {
     book() {
       let booking = {
-        // bookerId: this.userId,
-        houseId: this.info.house.id,
-        chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
+        bookerId: this.userId,
+        houseId: this.bookingInfo.house.id,
+        chosenDate: [
+          this.bookingInfo.chosenDate.start,
+          this.bookingInfo.chosenDate.end,
+        ],
+        price: this.bookingInfo.price,
+        guests: this.bookingInfo.guests,
       };
       this.$store.dispatch('book', booking);
     },
   },
   created() {
-    console.log(this.$store.state.selectedHouse);
-    // console.log(this.$store.state.user.id);
+    console.log(this.bookingInfo);
   },
-}; 
+};
 </script>
 
 <style scoped>

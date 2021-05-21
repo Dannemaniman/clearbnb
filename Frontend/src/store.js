@@ -10,6 +10,7 @@ export default createStore({
     reviews: [],
     replies: [],
     bookings: [],
+    userBookings: [],
     users: {},
   },
 
@@ -36,17 +37,36 @@ export default createStore({
     setReplies(state, replies) {
       state.replies = replies;
     },
+
+    setUsers(state, users) {
+      state.users = users;
+    },
     setBookings(state, bookings) {
       state.bookings = bookings;
+      let userBookings = [];
+      if (state.user == null) {
+        return;
+      } else if (state.user.email === 'admin@admin') {
+        state.userBookings = state.bookings;
+      } else {
+        for (let booking of state.bookings) {
+          if (state.user.id == booking.bookerId) {
+            userBookings.push(booking);
+          }
+        }
+        state.userBookings = userBookings;
+      }
     },
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
-    addHouses(state, house) {
-      state.houses.push(house);
-    },
-    setUsers(state, users) {
-      state.users = users;
+    deleteBooking(state, newMessage) {
+      for (let booking of state.userBookings) {
+        if (booking.id == newMessage.id) {
+          let index = state.userBookings.indexOf(booking);
+          state.userBookings.splice(index, 1);
+        }
+      }
     },
   },
 
@@ -90,6 +110,7 @@ export default createStore({
     async whoAmI(store) {
       let res = await fetch('/api/whoami');
       let user = await res.json();
+      console.log('whoAmI', user);
       store.commit('setUser', user);
     },
     async logout(store) {
@@ -128,13 +149,11 @@ export default createStore({
       });
 
       let booking = await res.json();
-      console.log('You booked', booking);
       store.commit('addBooking', booking);
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
     },
-
     async createHouse(store, hostObject) {
       let res = await fetch('/rest/houses', {
         method: 'POST',
@@ -158,7 +177,15 @@ export default createStore({
       //   body: JSON.stringify(userInfo)
       // })
     },
+    async deleteBooking(store, id) {
+      let res = await fetch('/rest/bookings/' + id, {
+        method: 'DELETE',
+      });
 
+      let ok = await res.text();
+      // console.log('Delete of', ok);
+      // store.commit('deleteBooking', id);
+    },
     async postReview(store, review) {
       let res = await fetch('/rest/post-review', {
         method: 'POST',

@@ -20,6 +20,11 @@
       </div>
       <BookingModal :home="home" />
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
     <MapComponent :home="home" />
     <Reviews :reviews="$store.state.reviews" />
     <Hosts />
