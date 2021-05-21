@@ -4,7 +4,7 @@
     <div class="item-info">
       <p class="item-type">{{item.house.title}}</p>
       <p class="item-adress">{{item.house.address}}, {{item.house.city}}</p>      
-      <p class="item-date">{{item.chosenDate.start.toLocaleDateString()}} - {{item.chosenDate.end.toLocaleDateString()}}</p>    
+      <p class="item-date">{{item.chosenDate.start}} - {{item.chosenDate.end}}</p>    
     </div>
     <button>Cancel</button>
   </article>

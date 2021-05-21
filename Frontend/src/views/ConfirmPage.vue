@@ -25,6 +25,7 @@ import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
 
 export default {
+  props:['info'],
   components: {
     ListItem,
     CreditCard,
@@ -52,7 +53,14 @@ export default {
   },
   created() {
     console.log(this.$store.state.selectedHouse);
+    console.log(this.info)
     // console.log(this.$store.state.user.id);
+  },
+  data() {
+    return {
+      info: this.$store.state.selectedHouse,
+      // userId: this.$store.state.user.id,
+    };
   },
 };
 </script>
