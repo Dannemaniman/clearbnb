@@ -36,7 +36,6 @@ export default {
     return {
       // user: null,
       showSpinner: false,
-      userHouses: [],
       showCreateHome: false,
       amenities: [],
       images: [],
@@ -143,6 +142,8 @@ export default {
 
       this.$store.dispatch('createHouse', hostObject);
       this.showCreateHome = false;
+
+      this.userObjects.push(hostObject);
       // }
     },
     created() {
