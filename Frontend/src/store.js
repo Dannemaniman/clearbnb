@@ -9,6 +9,8 @@ export default createStore({
     citySearch: '',
     reviews: [],
     bookings: [],
+    userBookings: [],
+    users: {},
   },
 
   // this.$store.commit('mutationName', data)
@@ -31,15 +33,39 @@ export default createStore({
     setReviews(state, reviews) {
       state.reviews = reviews;
     },
+    setUsers(state, users) {
+      state.users = users;
+    },
     setBookings(state, bookings) {
       state.bookings = bookings;
+      let userBookings = [];
+      if (state.user == null) {
+        return;
+      } else if (state.user.email === 'admin@admin') {
+        state.userBookings = state.bookings;
+      } else {
+        for (let booking of state.bookings) {
+          if (state.user.id == booking.bookerId) {
+            userBookings.push(booking);
+          }
+        }
+        state.userBookings = userBookings;
+      }
     },
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
+    deleteBooking(state, newMessage) {
+      for (let booking of state.userBookings) {
+        if (booking.id == newMessage.id) {
+          let index = state.userBookings.indexOf(booking);
+          state.userBookings.splice(index, 1);
+        }
+      }
+    },
   },
 
-  // this.$store.dispatch('actionNamehouses
+  // this.$store.dispatch('actionNamehouses)s
   actions: {
     async fetchHouses(store) {
       // fetch house and update state with response
@@ -68,15 +94,18 @@ export default createStore({
       });
 
       let loggedInUser = await res.json();
-
+      if ('Error' in loggedInUser) {
+        console.log('Detta blidde inte bra', loggedInUser);
+        alert('Bad credentials');
+        return;
+      }
       console.log('logged in user', loggedInUser);
-
       store.commit('setUser', loggedInUser);
     },
     async whoAmI(store) {
       let res = await fetch('/api/whoami');
       let user = await res.json();
-      console.log(user);
+      console.log('whoAmI', user);
       store.commit('setUser', user);
     },
     async logout(store) {
@@ -109,11 +138,48 @@ export default createStore({
       });
 
       let booking = await res.json();
-      console.log('You booked', booking);
       store.commit('addBooking', booking);
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
+    },
+    async createHouse(store, hostObject) {
+      let res = await fetch('/rest/houses', {
+        method: 'POST',
+        body: JSON.stringify(hostObject),
+      });
+
+      let house = await res.json();
+      console.log('You created', house);
+      store.commit('addHouses', house);
+    },
+
+    async getSliderInfo() {
+      let res = await fetch('/rest/best-houses');
+      let info = await res.json();
+    },
+
+    async updateUser(store, userInfo) {
+      console.log(userInfo);
+      // let res = await fetch('/rest/user/:id', {
+      //   method: 'PUT',
+      //   body: JSON.stringify(userInfo)
+      // })
+    },
+    async deleteBooking(store, id) {
+      let res = await fetch('/rest/bookings/' + id, {
+        method: 'DELETE',
+      });
+
+      let ok = await res.text();
+      // console.log('Delete of', ok);
+      // store.commit('deleteBooking', id);
+    },
+    async postReview(store, review) {
+      let res = await fetch('/rest/post-review', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
     },
   },
 });

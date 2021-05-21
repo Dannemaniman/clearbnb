@@ -1,5 +1,5 @@
 <template>
-  <section class="user-content">
+  <section v-if="loggedIn !== null" class="user-content">
     <div class="buttons">
       <button @click="openPage(1)">Bookings</button>
       <button @click="openPage(2)">Houses</button>
@@ -9,7 +9,7 @@
       <UserBookings v-if="bookings" />
     </div>
     <div>
-      <UserHouses v-if="houses" />
+      <UserHouses :userObjects="userObjects" v-if="houses" />
     </div>
     <div>
       <UserDetails v-if="details" />
@@ -34,9 +34,14 @@ export default {
       bookings: false,
       houses: false,
       details: true,
+      userObjects: '',
     };
   },
-
+  computed: {
+    loggedIn() {
+      this.$store.state.user ? true : this.$router.push('/');
+    },
+  },
   methods: {
     openPage(value) {
       switch (value) {
@@ -50,6 +55,7 @@ export default {
           this.bookings = false;
           this.houses = true;
           this.details = false;
+          this.getUserHouses();
           break;
         }
         case 3: {
@@ -60,6 +66,20 @@ export default {
         }
       }
     },
+    getUserHouses() {
+      let userID = this.$store.state.user.id;
+      let houses = this.$store.state.houses;
+      let userHouses = [];
+      for (let house of houses) {
+        if (userID == house.ownerId) {
+          userHouses.push(house);
+        }
+      }
+      this.userObjects = userHouses;
+    },
+  },
+  created() {
+    this.$store.dispatch('fetchBookings');
   },
 };
 </script>
