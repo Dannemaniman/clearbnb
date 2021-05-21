@@ -4,7 +4,7 @@
       <h1>CONFIRM DETAILS</h1>
     </div>
     <h2>Booking</h2>
-    <ListItem :item="info" />
+    <ListItem :item="bookingInfo" />
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
         <option selected="selected" value="Select your card">
@@ -25,14 +25,13 @@ import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
 
 export default {
-  props: ['info'],
   components: {
     ListItem,
     CreditCard,
   },
   data() {
     return {
-      info: this.$store.state.selectedHouse,
+      bookingInfo: this.$store.state.selectedHouse,
       userId: this.$store.state.user.id,
       cardType: 'Select your card',
     };
@@ -41,24 +40,16 @@ export default {
     book() {
       let booking = {
         bookerId: this.userId,
-        houseId: this.info.house.id,
-        chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
-        price: this.info.price,
-        guests: this.info.guests,
+        houseId: this.bookingInfo.house.id,
+        chosenDate: [
+          this.bookingInfo.chosenDate.start,
+          this.bookingInfo.chosenDate.end,
+        ],
+        price: this.bookingInfo.price,
+        guests: this.bookingInfo.guests,
       };
       this.$store.dispatch('book', booking);
     },
-  },
-  created() {
-    console.log(this.$store.state.selectedHouse);
-    console.log(this.info);
-    // console.log(this.$store.state.user.id);
-  },
-  data() {
-    return {
-      info: this.$store.state.selectedHouse,
-      // userId: this.$store.state.user.id,
-    };
   },
 };
 </script>
