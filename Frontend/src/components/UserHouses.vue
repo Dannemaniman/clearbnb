@@ -1,11 +1,13 @@
 <template>
   <button @click="showCreateHome = !showCreateHome">New House</button>
-
-  <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
-  <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
-  <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
-  <!-- <button type="reset">Reset</button> -->
-  <button @click="addNewHouse">Submit Home</button>
+  <Spinner v-if="showSpinner" />
+  <div v-else>
+    <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
+    <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
+    <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
+    <!-- <button type="reset">Reset</button> -->
+    <button @click="addNewHouse">Submit Home</button>
+  </div>
   <UserHouseItem
     v-for="(userHouse, index) of userObjects"
     v-bind:key="index"
@@ -19,6 +21,7 @@ import BasicInfo from './BasicInfo.vue';
 import PhotoUploader from './PhotoUploader.vue';
 import UserAmenities from './UserAmenities.vue';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import Spinner from './Spinner.vue';
 
 export default {
   components: {
@@ -26,11 +29,13 @@ export default {
     BasicInfo,
     PhotoUploader,
     UserAmenities,
+    Spinner,
   },
   props: ['userObjects'],
   data() {
     return {
       // user: null,
+      showSpinner: false,
       userHouses: [],
       showCreateHome: false,
       amenities: [],
@@ -92,8 +97,10 @@ export default {
       if (this.position.length <= 0) {
         this.position = [-74.2183050512854, 26.899583900684352];
       }
+      this.showSpinner = true;
       setTimeout(() => {
         this.submitHome();
+        this.showSpinner = false;
       }, 2000);
     },
 
@@ -132,6 +139,7 @@ export default {
       console.log(hostObject);
 
       this.$store.dispatch('createHouse', hostObject);
+      this.showCreateHome = false;
       // }
     },
     created() {
