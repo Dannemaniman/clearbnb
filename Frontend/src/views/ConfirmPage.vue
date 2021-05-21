@@ -1,5 +1,5 @@
 <template>
-  <section v-if="loggedIn !== null">
+  <section>
     <div class="header-bar">
       <h1>CONFIRM DETAILS</h1>
     </div>
@@ -36,19 +36,18 @@ export default {
       cardType: 'Select your card',
     };
   },
-  computed: {
-    loggedIn() {
-      this.$store.state.user ? true : this.$router.push('/login-page');
-    },
-  },
   methods: {
     book() {
-      let booking = {
-        // bookerId: this.userId,
-        houseId: this.info.house.id,
-        chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
-      };
-      this.$store.dispatch('book', booking);
+      if (this.$store.state.user !== null) {
+        let booking = {
+          // bookerId: this.userId,
+          houseId: this.info.house.id,
+          chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
+        };
+        this.$store.dispatch('book', booking);
+      } else {
+        this.$router.push('/login-page');
+      }
     },
   },
   created() {
