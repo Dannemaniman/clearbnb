@@ -38,10 +38,12 @@ export default createStore({
     },
     setBookings(state, bookings) {
       state.bookings = bookings;
+      let userBookings = [];
       if (state.user == null) {
         return;
+      } else if (state.user.email === 'admin@admin') {
+        state.userBookings = state.bookings;
       } else {
-        let userBookings = [];
         for (let booking of state.bookings) {
           if (state.user.id == booking.bookerId) {
             userBookings.push(booking);
