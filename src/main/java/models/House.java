@@ -25,7 +25,7 @@ public class House {
     private String description;
     private String price;
     private List<String> amenities;
-    private String reviews;
+    private List<Review> reviews;
     private String ownerId;
     private double[] position;
     private Date leaseStart;
@@ -57,6 +57,14 @@ public class House {
                 ", bookings=" + bookings +
                 '}';
     }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
     
     public double[] getPosition() {
         return position;
@@ -64,14 +72,6 @@ public class House {
     
     public void setPosition(double[] position) {
         this.position = position;
-    }
-    
-    public String getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(String reviews) {
-        this.reviews = reviews;
     }
 
     public String getZipcode() {
@@ -176,14 +176,6 @@ public class House {
 
     public void setAmenities(List<String> amenities) {
         this.amenities = amenities;
-    }
-
-    public String getReview() {
-        return reviews;
-    }
-
-    public void setReview(String reviews) {
-        this.reviews = reviews;
     }
 
     public String getOwnerId() {

@@ -41,7 +41,7 @@ public class Main {
             op.sort = "grade=desc";
             op.limit = 5;
         });
-        
+
         List<House> houses = new ArrayList<>();
 
         reviews.forEach(review -> {
@@ -89,6 +89,15 @@ public class Main {
          Review review = req.body(Review.class);
           System.out.println(review);
           collection("Review").save(review);
+      });
+
+      app.post("/rest/post-reply", (req, res) -> {
+          Review review = req.body(Review.class);
+          System.out.println(review);
+
+          //hitta rätt ställe att stoppa in reviewn i!
+
+         // collection("Review").save(review);
       });
       
       // start server

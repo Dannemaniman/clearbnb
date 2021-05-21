@@ -4,6 +4,7 @@ import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
 import java.awt.*;
+import java.util.List;
 
 @Document
 public class Review {
@@ -14,6 +15,7 @@ public class Review {
     private String review;
     private int grade;
     private String gradedHouse;
+    private List<Review> replies;
     
     public Review(){};
     
@@ -26,6 +28,22 @@ public class Review {
                 ", grade=" + grade +
                 ", gradedHouse='" + gradedHouse + '\'' +
                 '}';
+    }
+
+    public List<Review> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Review> replies) {
+        this.replies = replies;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
     public String getAvatar() {

@@ -22,7 +22,8 @@
     </div>
     <MapComponent :home="home" />
     <div class="reviews">
-      <Reviews v-for="review of reviews" :review="review" :key="review.id" />
+      <!-- <Reviews v-for="review of reviews" :review="review" :key="review.id" /> -->
+      <Reviews :reviews="reviews" />
     </div>
     <Hosts />
   </div>
@@ -62,6 +63,7 @@ export default {
       }
     });
     this.reviews = arr;
+    console.log(this.home)
   },
 };
 </script>

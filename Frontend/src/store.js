@@ -155,5 +155,12 @@ export default createStore({
         body: JSON.stringify(review),
       });
     },
+
+    async postReply(store, review) {
+      let res = await fetch('/rest/post-reply', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
+    },
   },
 });
