@@ -1,10 +1,10 @@
 <template>
-  <section v-if="loggedIn !== null">
+  <section>
     <div class="header-bar">
       <h1>CONFIRM DETAILS</h1>
     </div>
     <h2>Booking</h2>
-    <ListItem :item="info" />
+    <ListItem :houseId="info.house.id" :imgSrc="info.house.images[0]" :title="info.house.title" :address="info.house.address" :city="info.house.city" :chosenDate="info.chosenDate"/>
     <form class="credit-modal" @submit.prevent="">
       <select v-model="cardType">
         <option selected="selected" value="Select your card">
@@ -25,6 +25,7 @@ import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
 
 export default {
+  props:['info'],
   components: {
     ListItem,
     CreditCard,
@@ -36,26 +37,26 @@ export default {
       cardType: 'Select your card',
     };
   },
-  computed: {
-    loggedIn() {
-      this.$store.state.user ? true : this.$router.push('/login-page');
-    },
-  },
   methods: {
     book() {
-      let booking = {
-        // bookerId: this.userId,
-        houseId: this.info.house.id,
-        chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
-      };
-      this.$store.dispatch('book', booking);
+      if (this.$store.state.user !== null) {
+        let booking = {
+          // bookerId: this.userId,
+          houseId: this.info.house.id,
+          chosenDate: [this.info.chosenDate.start, this.info.chosenDate.end],
+        };
+        this.$store.dispatch('book', booking);
+      } else {
+        this.$router.push('/login-page');
+      }
     },
   },
   created() {
     console.log(this.$store.state.selectedHouse);
+    console.log(this.info)
     // console.log(this.$store.state.user.id);
   },
-};
+}; 
 </script>
 
 <style scoped>

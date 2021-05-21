@@ -5,7 +5,7 @@
       <h2>★ 4.25 <span class='span-night'>(23 Reviews)</span></h2>
     </header>
     <article>
-      <Calender />
+      <Calender @setDate="setDate"/>
       <GuestModal @increment="increment" @decrement="decrement" :adultCounter="adultCounter" :childCounter="childCounter" :seniorCounter="seniorCounter"/>
       <button @click="popPage">Check Availability</button>
     </article>
@@ -54,8 +54,8 @@ export default {
         senior: 150
       },
       chosenDate: {
-        start: new Date(2021, 11, 17), 
-        end: new Date(2022, 0, 13) 
+        start: null, 
+        end: null 
       }
     }
   },
@@ -89,6 +89,13 @@ export default {
         this.childCounter--
       } else if(type === 'senior' && this.seniorCounter !== 0){
         this.seniorCounter--
+      }
+    },
+    setDate(date, current) {
+      if(current === 1) {
+        this.chosenDate.start = date
+      } else {
+        this.chosenDate.end = date
       }
     }
   }
