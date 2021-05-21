@@ -66,6 +66,9 @@ export default {
 
     addNewHouse() {
       //let userAddress = 'Sunnanväg 209, Lund, SE';
+      if (this.basicInfo.zipcode == null) {
+        this.basicInfo.zipcode = 'xxx';
+      }
       let userAddress =
         this.basicInfo.address +
         ' ' +
