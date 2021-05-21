@@ -37,14 +37,15 @@ export default {
           setView: true,
           watch: true,
           maxZoom: 9,
+          maximumAge: 4000,
         })
         .on('locationfound', (e) => {
           let usermarker = new L.marker([e.latitude, e.longitude], {
             icon: this.customMarker(),
           });
-          /* if (usermarker) {
+          if (usermarker !== null) {
             this.mapDiv.removeLayer(usermarker);
-          } */
+          }
           //L.marker([e.latitude, e.longitude], { icon: this.customMarker() })
           usermarker.bindPopup('Detta är du!').addTo(this.mapDiv);
         })
