@@ -32,8 +32,8 @@ export default {
     },
 
     setupLeafletMap() {
-      this.mapDiv = L.map('mapContainer')
-        .locate({
+      this.mapDiv = L.map('mapContainer').setView(this.center, 9);
+      /* .locate({
           setView: true,
           watch: true,
           maxZoom: 9,
@@ -51,7 +51,7 @@ export default {
         })
         .on('locationerror', (error) => {
           console.log(error);
-        });
+        }); */
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
         {
