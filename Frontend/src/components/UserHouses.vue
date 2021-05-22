@@ -4,8 +4,7 @@
   <div v-else>
     <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
     <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
-    <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
-    <!-- <button type="reset">Reset</button> -->
+    <PhotoUploader v-if="showCreateHome" />
     <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
   </div>
   <UserHouseItem
@@ -55,15 +54,11 @@ export default {
     getAmenities(amen) {
       this.amenities = amen;
     },
-    getPhoto(photos) {
-      this.images = photos;
-    },
     getBasicInfo(info) {
       this.basicInfo = info;
     },
 
     addNewHouse() {
-      //let userAddress = 'Sunnanväg 209, Lund, SE';
       if (this.basicInfo.zipcode == null) {
         this.basicInfo.zipcode = 'xxx';
       }
@@ -81,7 +76,6 @@ export default {
       query_promise.then(
         (value) => {
           for (let i = 0; i < value.length; i++) {
-            // Success!
             let x_coor = value[i].x;
             let y_coor = value[i].y;
             //let label = value[i].label;
@@ -106,16 +100,10 @@ export default {
     },
 
     async submitHome() {
-      //  console.log( this.userHouses)
-      //  console.log(this.showCreateHome),
-      //  console.log(this.amenities),
-      //  console.log(this.images),
-      //  console.log(this.basicInfo)
+      this.images = this.$store.state.uploadedNames;
       if (this.images == null) {
-        console.log('hej');
         this.images = ['/images/No-Image.jpg'];
       }
-      // if (this.$store.state.user) {
       let ownerId = await this.$store.state.user.id;
       console.log(ownerId);
 

@@ -49,12 +49,7 @@ export default {
         }
 
         try {
-          let uploadResult = await fetch('/api/uploads/', {
-            method: 'POST',
-            body: formData,
-          });
-          let uploadNames = await uploadResult.json();
-          this.$emit('photo', uploadNames);
+          this.$store.dispatch('uploadImage', formData);
           this.uploading = false;
         } catch (err) {
           console.log(err);
