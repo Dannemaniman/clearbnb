@@ -45,7 +45,6 @@ export default {
       const file = this.$refs.file.files[0];
       this.selectedFiles.push(file);
       this.thumbnail.push(URL.createObjectURL(file));
-      this.$emit('photo', this.selectedFiles);
 
       // upload files with FormData
       let files = this.$refs.file.files;
@@ -66,7 +65,9 @@ export default {
 
         // get the uploaded file urls from response
         let uploadNames = await uploadResult.json();
-        console.log(uploadNames);
+
+        this.$emit('photo', uploadNames);
+        console.log(uploadNames); // skickat till husobject
       }
     },
 
