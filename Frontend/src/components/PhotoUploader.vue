@@ -7,11 +7,19 @@
       <div class="message-body">{{ message }}</div>
     </div>
     <div class="dropzone">
-      <input type="file" class="input-field" />
+      <input type="file" class="input-file" ref="file" @change="selectFile" />
 
       <p v-if="!uploading" class="call-to-action">Drag your files here</p>
 
       <p v-if="uploading" class="progress-bar"></p>
+    </div>
+    <div class="image-container">
+      <img
+        v-for="(image, index) in thumbnail"
+        :src="image"
+        :key="index"
+        class="chosen-image"
+      />
     </div>
   </form>
 </template>
@@ -33,11 +41,33 @@ export default {
   },
   emit: ['photo'],
   methods: {
-    selectFile() {
+    async selectFile() {
       const file = this.$refs.file.files[0];
       this.selectedFiles.push(file);
       this.thumbnail.push(URL.createObjectURL(file));
       this.$emit('photo', this.selectedFiles);
+
+      // upload files with FormData
+      let files = this.$refs.file.files;
+
+      if (files.length) {
+        let formData = new FormData();
+
+        // add files to formData
+        for (let file of files) {
+          formData.append('files', file, file.name);
+        }
+
+        // upload selected files to server
+        let uploadResult = await fetch('/api/uploads', {
+          method: 'POST',
+          body: formData,
+        });
+
+        // get the uploaded file urls from response
+        let uploadNames = await uploadResult.json();
+        console.log(uploadNames);
+      }
     },
 
     chosenFile(event) {
@@ -58,6 +88,17 @@ export default {
   outline-offset: -10px;
   background: lightgray;
   color: black;
+}
+.dropzone:hover {
+  background: rgb(184, 184, 184);
+}
+
+.input-file {
+  opacity: 0;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  cursor: pointer;
 }
 
 section {

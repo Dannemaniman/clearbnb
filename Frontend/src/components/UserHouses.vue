@@ -38,10 +38,9 @@ export default {
       showSpinner: false,
       showCreateHome: false,
       amenities: [],
-      images: [],
+      images: null,
       basicInfo: [],
       ownerId: '',
-      images: null,
       position: [],
       provider: new OpenStreetMapProvider(),
     };
