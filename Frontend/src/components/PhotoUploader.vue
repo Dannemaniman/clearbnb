@@ -31,7 +31,6 @@ export default {
   data() {
     return {
       file: '',
-      error: false,
       uploading: false,
       thumbnail: [],
       progress: 0,
