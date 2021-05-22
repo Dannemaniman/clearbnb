@@ -108,6 +108,7 @@ public class Main {
            
     
             for (UploadedFile file : files) {
+                //String id = req.params("id");
                 String filename = "/houses/" + file.getFilename();
                 uploadNames.add(filename);
                 // save file to static directory (creates dirs if necessary)

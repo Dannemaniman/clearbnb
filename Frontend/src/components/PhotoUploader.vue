@@ -59,7 +59,7 @@ export default {
         }
 
         // upload selected files to server
-        let uploadResult = await fetch('/api/uploads', {
+        let uploadResult = await fetch('/api/uploads/', {
           method: 'POST',
           body: formData,
         });
