@@ -37,10 +37,11 @@ export default {
   data() {
     return {
       file: '',
-      messege: '',
+      message: '',
       error: false,
       uploading: false,
       thumbnail: [],
+      progresss: 0,
     };
   },
   emit: ['photo'],
@@ -57,16 +58,22 @@ export default {
           this.thumbnail.push(URL.createObjectURL(file));
         }
 
-        // upload selected files to server
-        let uploadResult = await fetch('/api/uploads/', {
-          method: 'POST',
-          body: formData,
-        });
+        try {
+          this.uploading = true;
 
+          let uploadResult = await fetch('/api/uploads/', {
+            method: 'POST',
+            body: formData,
+          });
+
+          this.uploading = false;
+          let uploadNames = await uploadResult.json();
+          this.$emit('photo', uploadNames);
+        } catch (err) {
+          this.message = err.response.data.error;
+          this.error = true;
+        }
         // get the uploaded file urls from response
-        let uploadNames = await uploadResult.json();
-
-        this.$emit('photo', uploadNames);
       }
     },
   },
