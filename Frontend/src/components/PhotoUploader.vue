@@ -7,7 +7,13 @@
       <div class="message-body">{{ message }}</div>
     </div>
     <div class="dropzone">
-      <input type="file" class="input-file" ref="file" @change="selectFile" />
+      <input
+        type="file"
+        class="input-file"
+        ref="file"
+        @change="selectFile"
+        multiple
+      />
 
       <p v-if="!uploading" class="call-to-action">Drag your files here</p>
 
@@ -34,19 +40,12 @@ export default {
       messege: '',
       error: false,
       uploading: false,
-      // gammalt under
-      selectedFiles: [],
       thumbnail: [],
     };
   },
   emit: ['photo'],
   methods: {
     async selectFile() {
-      const file = this.$refs.file.files[0];
-      this.selectedFiles.push(file);
-      this.thumbnail.push(URL.createObjectURL(file));
-
-      // upload files with FormData
       let files = this.$refs.file.files;
 
       if (files.length) {
@@ -55,6 +54,7 @@ export default {
         // add files to formData
         for (let file of files) {
           formData.append('files', file, file.name);
+          this.thumbnail.push(URL.createObjectURL(file));
         }
 
         // upload selected files to server
@@ -67,13 +67,7 @@ export default {
         let uploadNames = await uploadResult.json();
 
         this.$emit('photo', uploadNames);
-        console.log(uploadNames); // skickat till husobject
       }
-    },
-
-    chosenFile(event) {
-      this.selectedFiles.push(event.target.files[0]);
-      this.thumbnail.push(URL.createObjectURL(event.target.files[0]));
     },
   },
 };
