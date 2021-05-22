@@ -13,13 +13,12 @@
   "description" : "Small cabin located on west coast",
   "price" : "3000",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "4",
+  "reviews" : null,
   "ownerId" : "eyzouy9Bwh_5crMvLmguX",
   "position" : [ 55.69370479244656, 13.908292932699233 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "4"
+  "bookings" : null
 }, {
   "id" : "dcGqW973SuZ7J6OWJRs6z",
   "images" : [ "\\images\\House2.jpg" ],
@@ -35,13 +34,12 @@
   "description" : "Warm log cabin located close to nature",
   "price" : "3999",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
+  "reviews" : null,
   "ownerId" : "eyzouy9Bwh_5crMvLmguX",
   "position" : [ 55.68370479244602, 13.608292932699289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "3"
+  "bookings" : null
 }, {
   "id" : "bVZlMEakb-184N0je24RI",
   "images" : [ "\\images\\House3.jpg" ],
@@ -57,13 +55,12 @@
   "description" : "Beautiful, large estate close to lake and the east coast",
   "price" : "1000",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "5",
+  "reviews" : null,
   "ownerId" : "eyzouy9Bwh_5crMvLmguX",
   "position" : [ 55.68570479244602, 13.308292932699288 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "5"
+  "bookings" : null
 }, {
   "id" : "NlrUnApOQNNvH6gzU2bfl",
   "images" : [ "\\images\\House4.jpg" ],
@@ -79,13 +76,12 @@
   "description" : "Fantastic villa close to amazing beaches",
   "price" : "2999",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
+  "reviews" : null,
   "ownerId" : "gQFpv1DOCTnaWAjf02Em1",
   "position" : [ 55.78370479244602, 13.60829693269929 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "3"
+  "bookings" : null
 }, {
   "id" : "spYROoShRiR-KDqU1piUK",
   "images" : [ "\\images\\House5.jpg" ],
@@ -101,13 +97,12 @@
   "description" : "Modern villa with swimming pool, located five minutes from the beach",
   "price" : "4999",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "2",
+  "reviews" : null,
   "ownerId" : "gQFpv1DOCTnaWAjf02Em1",
   "position" : [ 55.61370479244602, 13.618292932699289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "2"
+  "bookings" : null
 }, {
   "id" : "twxJGpNW9NrVaF2b9O_fR",
   "images" : [ "\\images\\House6.jpg" ],
@@ -123,13 +118,12 @@
   "description" : "Perfect house for a large family vacation",
   "price" : "2800",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "4",
+  "reviews" : null,
   "ownerId" : "0erYFeQsbyxuxdxBNOyB_",
   "position" : [ 55.62370479244602, 13.628292932699289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "4"
+  "bookings" : null
 }, {
   "id" : "0cbPLpLgqsnqSB3H2uaKx",
   "images" : [ "\\images\\House7.jpg" ],
@@ -145,13 +139,12 @@
   "description" : "Located close to beaches and the city of Lund, perfect for a weekend getaway",
   "price" : "3350",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "5",
+  "reviews" : null,
   "ownerId" : "dBDpz9bDOYvP3E9cB2A-O",
   "position" : [ 55.63370479244602, 13.638292932699288 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "5"
+  "bookings" : null
 }, {
   "id" : "o0U_oWPgWfmyFmeWjnyWk",
   "images" : [ "\\images\\House8.jpg" ],
@@ -167,13 +160,12 @@
   "description" : "Newly built large house for family vaccations",
   "price" : "1500",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "3",
+  "reviews" : null,
   "ownerId" : "dBDpz9bDOYvP3E9cB2A-O",
   "position" : [ 55.64370479244602, 13.648292932699288 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "3"
+  "bookings" : null
 }, {
   "id" : "KqcgVlfUkMX5jxtqlIaAP",
   "images" : [ "\\images\\House9.jpg" ],
@@ -189,13 +181,12 @@
   "description" : "Entire guesthouse for yourselves, comfortable in close proximity to lake Vomb",
   "price" : "2850",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "4",
+  "reviews" : null,
   "ownerId" : "_IwjSHxZHRvJmHtdLaSoZ",
   "position" : [ 55.68570479244602, 13.60129293269929 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "4"
+  "bookings" : null
 }, {
   "id" : "2JTVem4JSjdl-u0CjGzxO",
   "images" : [ "\\images\\House10.jpg" ],
@@ -211,13 +202,12 @@
   "description" : "Welcome to a stay in our house",
   "price" : "1249",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "1",
+  "reviews" : null,
   "ownerId" : "0wyNX2Dv7ttJEnDvcnGxx",
   "position" : [ 55.68340479244602, 13.608592932699288 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "1"
+  "bookings" : null
 }, {
   "id" : "8kHgfLziUXMXUN26vmI5-",
   "images" : [ "\\images\\House11.jpg" ],
@@ -233,13 +223,12 @@
   "description" : "Nice shack close to one of the best surfing spots in Sweden",
   "price" : "2670",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
+  "reviews" : null,
   "ownerId" : "0wyNX2Dv7ttJEnDvcnGxx",
   "position" : [ 55.67370479244602, 13.65829293269929 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "3"
+  "bookings" : null
 }, {
   "id" : "ejMnK0hcYhmp5RvWbQ8YL",
   "images" : [ "\\images\\House12.jpg" ],
@@ -255,13 +244,12 @@
   "description" : "Newly built house in Vik, close to Simrishamn and Kivik",
   "price" : "3500",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "5",
+  "reviews" : null,
   "ownerId" : "Hf7pJLnRbu1uExXWaXRW2",
   "position" : [ 55.68379479244602, 13.60899293269929 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "5"
+  "bookings" : null
 }, {
   "id" : "azG5NUzK3SDqQAkdcPmoe",
   "images" : [ "\\images\\House13.jpg" ],
@@ -277,13 +265,12 @@
   "description" : "Renovated studio in the center of Simrishamn",
   "price" : "3200",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "2",
+  "reviews" : null,
   "ownerId" : "Hf7pJLnRbu1uExXWaXRW2",
   "position" : [ 55.60379479244602, 13.69029293269929 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "2"
+  "bookings" : null
 }, {
   "id" : "5R0iSI8gc1rlO3thhD8dZ",
   "images" : [ "\\images\\House14.jpg" ],
@@ -299,13 +286,12 @@
   "description" : "Clean and fresh hostel on the beautiful east coast of Scania",
   "price" : "2780",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "4",
+  "reviews" : null,
   "ownerId" : "ZNCHlkWXbVW-5ZzDahTHi",
   "position" : [ 55.68379999244602, 13.608291232699289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "4"
+  "bookings" : null
 }, {
   "id" : "qSZAPu9B5AIlXswIH5AID",
   "images" : [ "\\images\\House15.jpg" ],
@@ -321,13 +307,12 @@
   "description" : "Welcome to this guesthouse close to the sea and the well renowned spa",
   "price" : "4500",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "3",
+  "reviews" : null,
   "ownerId" : "vYdyudpjkIFH0ri1Y4Hh7",
   "position" : [ 55.68370479100602, 13.608292932200289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "3"
+  "bookings" : null
 }, {
   "id" : "DwhvsJqmzJ69QcUi9H2-4",
   "images" : [ "\\images\\House16.jpg" ],
@@ -343,13 +328,12 @@
   "description" : "Cute cottage with seaview and a 5 minute trip to the town of Ystad",
   "price" : "2100",
   "amenities" : [ "Bed", "Breakfast", "Camera", "CCTV" ],
-  "reviews" : "2",
+  "reviews" : null,
   "ownerId" : "vYdyudpjkIFH0ri1Y4Hh7",
   "position" : [ 55.68370412244602, 13.608122932699288 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "2"
+  "bookings" : null
 }, {
   "id" : "thZ4l05-Au8YOorGzQvTV",
   "images" : [ "\\images\\House17.jpg" ],
@@ -365,13 +349,12 @@
   "description" : "Apartment right in the center of Ystad, close to everything",
   "price" : "1500",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "5",
+  "reviews" : null,
   "ownerId" : "vYdyudpjkIFH0ri1Y4Hh7",
   "position" : [ 55.68371279244602, 13.608122932699288 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "5"
+  "bookings" : null
 }, {
   "id" : "qVLuiQBIvPh9XorvdkKZy",
   "images" : [ "\\images\\House18.jpg" ],
@@ -387,13 +370,12 @@
   "description" : "Refreshing getaway in quiet fishing village",
   "price" : "4100",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "4",
+  "reviews" : null,
   "ownerId" : "EryPZ1tDNIVv--19Q5H6u",
   "position" : [ 55.68376779244602, 13.608296732699289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "4"
+  "bookings" : null
 }, {
   "id" : "GFvR2-OznKv0L0DezBQ5u",
   "images" : [ "\\images\\House19.jpg" ],
@@ -409,13 +391,12 @@
   "description" : "Perfect for birdwatchers and close to golfing",
   "price" : "3100",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "1",
+  "reviews" : null,
   "ownerId" : "EryPZ1tDNIVv--19Q5H6u",
   "position" : [ 55.45370479244602, 13.458292932699289 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "1"
+  "bookings" : null
 }, {
   "id" : "_VLfon8nLSNUDXDRENJd9",
   "images" : [ "\\images\\House20.jpg" ],
@@ -431,11 +412,10 @@
   "description" : "Nice estate close to everything in Trellehulla",
   "price" : "4000",
   "amenities" : [ "Dinner", "Elevator", "Fridge", "Heating" ],
-  "reviews" : "5",
+  "reviews" : null,
   "ownerId" : "EryPZ1tDNIVv--19Q5H6u",
   "position" : [ 55.68374579244602, 13.64529293269929 ],
   "leaseStart" : null,
   "leaseEnd" : null,
-  "bookings" : null,
-  "review" : "5"
+  "bookings" : null
 } ]
