@@ -35,32 +35,42 @@ public class Main {
         res.json(collection("House").find());
     });
 
+    app.get("/rest/cheapest-houses", (req, res) -> {
+       res.json(collection("House").find(op -> {
+           op.sort = "price=asc";
+           op.limit = 5;
+       }));
+    });
+
     app.get("/rest/best-houses", (req, res) -> {
 
-        List<Review> reviews = collection("Review").find(op -> {
-            op.sort = "grade=desc";
-            op.limit = 5;
+       // System.out.println(collection("Review").find());
+
+
+        //1. Push houseIds to new Array
+        ArrayList<String> houseIds = new ArrayList<>();
+        List<House> houses = collection("House").find();
+        houses.forEach(item -> {
+            houseIds.add(item.getId());
         });
+
+        System.out.println(houseIds);
+
+        //2. Go through all Reviews and push
+        List<Review> reviews = collection("Review").find();
+        houseIds.forEach(item -> {
+            collection("Review").find(item);
+        });
+
+
+
+/*
         List<House> houses = new ArrayList<>();
 
         reviews.forEach(review -> {
             houses.add(collection("House").findOne("id==" + review.getGradedHouse()));
-            System.out.println(review);
-        });
-
-        houses.forEach(item -> {
-            System.out.println();
-            System.out.println(item.toString());
-        });
-      //  System.out.println(houses.toString());
-
-
-       // List<Users>
-
-        //System.out.println(reviews);
-
-    //    reviews.forEach(name -> System.out.println(name));
-      //  res.json(collection("House").find());
+           // System.out.println(review);
+        }); */
     });
 
     app.get("/rest/houses/:id", (req, res) -> {

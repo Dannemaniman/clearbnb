@@ -1,13 +1,10 @@
 <template>
   <div class="home-content">
     <GalleryComponent />
-    <p>Nära dig</p>
-    <!-- <Slider :houses="houses" />
-    <p>I Omfånget</p>
-    <Slider :houses="houses" />
-    <p> Våra Förslag</p>
-    <Slider :houses="houses" /> -->
+    <Slider title="I Omfånget" :houses="houses" />
+    <Slider title="Bäst I Betyg" :houses="houses" />
     <MapComponent />
+    <Slider title="Billigaste" :houses="cheapestHouses" />
   </div>
 </template>
 
@@ -27,11 +24,15 @@ export default {
   data() {
     return {
       houses: null,
+      cheapestHouses: null,
+      bestHouses: null
     };
   },
   async created() {
     setTimeout(async () => {
       let housesData = await this.$store.state.houses;
+      this.cheapestHouses = await this.$store.state.cheapestHouses;
+      this.bestHouses = await this.$store.state.bestHouses;
       this.houses = housesData;
     }, 1000);
   },
@@ -43,9 +44,4 @@ export default {
   padding: 0 0.5rem;
 }
 
-p {
-  font-size: 2rem;
-  color: black;
-  font-weight: thin;
-}
 </style>

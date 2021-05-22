@@ -4,6 +4,8 @@ export default createStore({
   // this.$store.state.variableName
   state: {
     houses: [],
+    cheapestHouses: [],
+    bestHouses: [],
     selectedHouse: [],
     user: null,
     citySearch: '',
@@ -38,8 +40,11 @@ export default createStore({
     addBooking(state, booking) {
       state.bookings.push(booking);
     },
-    addHouses(state, house) {
-      state.houses.push(house);
+    addBestHouses(state, houses) {
+      state.bestHouses = houses;
+    },
+    addCheapestHouses(state, houses) {
+      state.cheapestHouses = houses;
     },
     setUsers(state, users) {
       state.users = users;
@@ -136,9 +141,19 @@ export default createStore({
       store.commit('addHouses', house);
     },
 
-    async getSliderInfo() {
+    async fetchBestHouses(store) {
       let res = await fetch('/rest/best-houses');
       let info = await res.json();
+      console.log('Best-houses:');
+      console.log(info);
+      store.commit('addBestHouses', info);
+    },
+    async fetchCheapestHouses(store) {
+      let res = await fetch('/rest/cheapest-houses');
+      let info = await res.json();
+      console.log('Cheapest-houses:');
+      console.log(info);
+      store.commit('addCheapestHouses', info);
     },
   },
 });

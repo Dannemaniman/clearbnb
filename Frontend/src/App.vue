@@ -24,7 +24,8 @@ export default {
     this.$store.dispatch('fetchHouses');
     this.$store.dispatch('fetchReviews');
     this.$store.dispatch('fetchUsers');
-    this.$store.dispatch('getSliderInfo')
+    this.$store.dispatch('fetchBestHouses');
+    this.$store.dispatch('fetchCheapestHouses');
   },
 };
 </script>

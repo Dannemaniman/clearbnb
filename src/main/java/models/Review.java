@@ -20,11 +20,11 @@ public class Review {
     @Override
     public String
     toString() {
-        return "Reviews{" +
-                "author='" + author + '\'' +
-                ", review='" + review + '\'' +
-                ", grade=" + grade +
-                ", gradedHouse='" + gradedHouse + '\'' +
+        return '\n' + "Reviews{" + '\n' +
+                "author='" + author + '\n' +
+                ", review='" + review + '\n' +
+                ", grade=" + grade + '\n' +
+                ", gradedHouse='" + gradedHouse + '\n' +
                 '}';
     }
     
