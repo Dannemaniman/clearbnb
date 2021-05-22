@@ -78,7 +78,9 @@ export default {
       this.userObjects = userHouses;
     },
   },
-  mounted() {},
+  created() {
+    this.$store.dispatch('fetchBookings');
+  },
 };
 </script>
 

@@ -27,23 +27,37 @@
       </button>
       <div class="login-form" v-if="isOpen">
         <form>
-          <div class="logIn" v-if="this.$store.state.user == null">
+          <div
+            class="logIn"
+            @click="isOpen = false"
+            v-if="this.$store.state.user == null"
+          >
             <router-link to="/login-page">Log in</router-link>
           </div>
-          <div class="signUp" v-if="this.$store.state.user == null">
+          <div
+            @click="isOpen = false"
+            class="signUp"
+            v-if="this.$store.state.user == null"
+          >
             <router-link to="/register-page">Sign up</router-link>
           </div>
           <div
             class="signUp"
             v-if="this.$store.state.user != null"
-            @click="this.$router.push('/user/' + this.$store.state.user.id)"
+            @click="
+              this.$router.push('/user/' + this.$store.state.user.id);
+              isOpen = false;
+            "
           >
             My Page
           </div>
           <div
             class="signUp"
             v-if="this.$store.state.user != null"
-            @click="logout"
+            @click="
+              logout();
+              isOpen = false;
+            "
           >
             <router-link to="/">Logout</router-link>
           </div>
