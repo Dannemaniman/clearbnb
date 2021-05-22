@@ -1,11 +1,9 @@
 import express.Express;
 import models.*;
-import nosqlite.Collection;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static nosqlite.Database.collection;
 /*
@@ -35,15 +33,39 @@ public class Main {
     review3.setAuthorName(user.getFullName());
     review3.setReview("njanjanja.!!!");
     review3.setGrade(2);
-    review3.setGradedHouse("o0U_oWPgWfmyFmeWjnyWk");
-
-
+    review3.setGradedHouse("spYROoShRiR-KDqU1piUK");
     collection("Review").save(review3);
 
-    System.out.println(collection("Review").find());
+    User user1 = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
+    Review review4 =  new Review();
+    review4.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
+    review4.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
+    review4.setAuthorName(user1.getFullName());
+    review4.setReview("njanjanja.!!!");
+    review4.setGrade(3);
+    review4.setGradedHouse("spYROoShRiR-KDqU1piUK");
+    collection("Review").save(review4);
+
+      User user2 = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
+      Review review5 =  new Review();
+      review5.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
+      review5.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
+      review5.setAuthorName(user2.getFullName());
+      review5.setReview("njanjanja.!!!");
+      review5.setGrade(5);
+      review5.setGradedHouse("spYROoShRiR-KDqU1piUK");
+      collection("Review").save(review5);
+
+      User user4 = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
+      Review review6 =  new Review();
+      review6.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
+      review6.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
+      review6.setAuthorName(user4.getFullName());
+      review6.setReview("njanjanja.!!!");
+      review6.setGrade(0);
+      review6.setGradedHouse("spYROoShRiR-KDqU1piUK");
+      collection("Review").save(review6);
 */
-
-
     
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());
@@ -58,38 +80,58 @@ public class Main {
 
     app.get("/rest/best-houses", (req, res) -> {
 
-        // System.out.println(collection("Review").find());
-   /*     List<Review> reviews = collection("Review").find(op -> {
-            op.sort = "grade=desc";
-            op.limit = 5;
-        });
-        */
-
-
         //1. Push houseIds to new Array
         ArrayList<String> houseIds = new ArrayList<>();
         List<House> houses = collection("House").find();
         houses.forEach(item -> {
             houseIds.add(item.getId());
         });
-
-        System.out.println(houseIds);
-
         //2. Go through all Reviews and push
-        List<Review> reviews = collection("Review").find();
-        houseIds.forEach(item -> {
-            collection("Review").find(item);
+
+        TreeMap<String, Double> housesUnsorted = new TreeMap<>();
+
+        houseIds.forEach(houseId -> {
+            //do this for every houseId in order to find out every houses score
+            List<Review> test = collection("Review").find("gradedHouse==" + houseId);
+            ArrayList<Integer> grade = new ArrayList<>();
+            int totalScore = 0;
+            double average = 0;
+
+            //get grades and push to array
+            test.forEach(review -> {
+                grade.add(review.getGrade());
+            });
+
+            for(int i = 0; i < grade.size(); i++) {
+                totalScore = totalScore + grade.get(i);
+            }
+
+            if(grade.size() != 0) {
+                average = (double)totalScore / (double)grade.size();
+                housesUnsorted.put(houseId, average);
+            }
+
+            if(housesUnsorted.size() == 5) return;
         });
 
+        ArrayList<Double> gradez = new ArrayList<>(housesUnsorted.values());
+        Collections.sort(gradez, Collections.reverseOrder());
 
+        //get all the TreeMap keys
+        Set<String> keys = housesUnsorted.keySet();
 
-/*
-        List<House> houses = new ArrayList<>();
-
-        reviews.forEach(review -> {
-            houses.add(collection("House").findOne("id==" + review.getGradedHouse()));
-           // System.out.println(review);
-        }); */
+        //value for which we need to fetch key
+        List<String> houseList = new ArrayList<>();
+            gradez.forEach( value -> {
+                for( String key : keys ){
+                    if( housesUnsorted.get(key).equals(value)){
+                        System.out.println("Key for value " + value + " is: " + key);
+                        houseList.add(key);
+                        return;
+                    }
+                }
+        });
+        res.json(collection("House").find("id==" + houseList));
     });
 
     app.get("/rest/houses/:id", (req, res) -> {

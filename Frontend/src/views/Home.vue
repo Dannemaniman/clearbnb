@@ -4,7 +4,7 @@
     <div v-else>
       <GalleryComponent />
       <Slider title="I Omfånget" :houses="houses" />
-      <Slider title="Bäst I Betyg" :houses="houses" />
+      <Slider title="Bäst I Betyg" :houses="bestHouses" />
       <MapComponent />
       <Slider title="Billigaste" :houses="cheapestHouses" />
     </div>
