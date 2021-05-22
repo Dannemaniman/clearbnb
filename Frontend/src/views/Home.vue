@@ -1,10 +1,13 @@
 <template>
   <div class="home-content">
-    <GalleryComponent />
-    <Slider title="I Omfånget" :houses="houses" />
-    <Slider title="Bäst I Betyg" :houses="houses" />
-    <MapComponent />
-    <Slider title="Billigaste" :houses="cheapestHouses" />
+    <Spinner v-if="showSpinner" />
+    <div v-else>
+      <GalleryComponent />
+      <Slider title="I Omfånget" :houses="houses" />
+      <Slider title="Bäst I Betyg" :houses="houses" />
+      <MapComponent />
+      <Slider title="Billigaste" :houses="cheapestHouses" />
+    </div>
   </div>
 </template>
 
@@ -13,6 +16,7 @@ import SearchBar from '../components/SearchBar.vue';
 import GalleryComponent from '../components/GalleryComponent.vue';
 import Slider from '../components/Slider.vue';
 import MapComponent from '../components/MapComponent.vue';
+import Spinner from '../components/Spinner.vue';
 
 export default {
   components: {
@@ -20,12 +24,14 @@ export default {
     SearchBar,
     Slider,
     MapComponent,
+    Spinner,
   },
   data() {
     return {
       houses: null,
       cheapestHouses: null,
-      bestHouses: null
+      bestHouses: null,
+      showSpinner: true,
     };
   },
   async created() {
@@ -34,6 +40,7 @@ export default {
       this.cheapestHouses = await this.$store.state.cheapestHouses;
       this.bestHouses = await this.$store.state.bestHouses;
       this.houses = housesData;
+      this.showSpinner = false;
     }, 1000);
   },
 };

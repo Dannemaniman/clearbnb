@@ -10,7 +10,9 @@ export default createStore({
     user: null,
     citySearch: '',
     reviews: [],
+    replies: [],
     bookings: [],
+    userBookings: [],
     users: {},
   },
 
@@ -34,8 +36,28 @@ export default createStore({
     setReviews(state, reviews) {
       state.reviews = reviews;
     },
+    setReplies(state, replies) {
+      state.replies = replies;
+    },
+
+    setUsers(state, users) {
+      state.users = users;
+    },
     setBookings(state, bookings) {
       state.bookings = bookings;
+      let userBookings = [];
+      if (state.user == null) {
+        return;
+      } else if (state.user.email === 'admin@admin') {
+        state.userBookings = state.bookings;
+      } else {
+        for (let booking of state.bookings) {
+          if (state.user.id == booking.bookerId) {
+            userBookings.push(booking);
+          }
+        }
+        state.userBookings = userBookings;
+      }
     },
     addBooking(state, booking) {
       state.bookings.push(booking);
@@ -48,6 +70,14 @@ export default createStore({
     },
     setUsers(state, users) {
       state.users = users;
+    },
+    deleteBooking(state, newMessage) {
+      for (let booking of state.userBookings) {
+        if (booking.id == newMessage.id) {
+          let index = state.userBookings.indexOf(booking);
+          state.userBookings.splice(index, 1);
+        }
+      }
     },
   },
 
@@ -91,6 +121,7 @@ export default createStore({
     async whoAmI(store) {
       let res = await fetch('/api/whoami');
       let user = await res.json();
+      console.log('whoAmI', user);
       store.commit('setUser', user);
     },
     async logout(store) {
@@ -104,12 +135,18 @@ export default createStore({
 
       store.commit('setUsers', users);
     },
-    async fetchReviews(store) {
-      let res = await fetch('/rest/reviews');
+    async fetchReviews(store, id) {
+      let res = await fetch(`/rest/reviews/${id}`);
       let reviews = await res.json();
-
       store.commit('setReviews', reviews);
     },
+
+    async fetchReplies(store, id) {
+      let res = await fetch(`/rest/replies/${id}`);
+      let replies = await res.json();
+      store.commit('setReplies', replies);
+    },
+
     async fetchBookings(store) {
       let res = await fetch('/rest/bookings');
       let bookings = await res.json();
@@ -123,13 +160,11 @@ export default createStore({
       });
 
       let booking = await res.json();
-      console.log('You booked', booking);
       store.commit('addBooking', booking);
     },
     async storeHome(store, house) {
       store.commit('setSelectedHouse', house);
     },
-
     async createHouse(store, hostObject) {
       let res = await fetch('/rest/houses', {
         method: 'POST',
@@ -154,6 +189,37 @@ export default createStore({
       console.log('Cheapest-houses:');
       console.log(info);
       store.commit('addCheapestHouses', info);
+    },
+
+    async updateUser(store, userInfo) {
+      console.log(userInfo);
+      // let res = await fetch('/rest/user/:id', {
+      //   method: 'PUT',
+      //   body: JSON.stringify(userInfo)
+      // })
+    },
+    async deleteBooking(store, id) {
+      let res = await fetch('/rest/bookings/' + id, {
+        method: 'DELETE',
+      });
+
+      let ok = await res.text();
+      // console.log('Delete of', ok);
+      // store.commit('deleteBooking', id);
+    },
+    async postReview(store, review) {
+      let res = await fetch('/rest/post-review', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
+    },
+
+    async postReply(store, review) {
+      console.log(review);
+      let res = await fetch('/rest/post-reply', {
+        method: 'POST',
+        body: JSON.stringify(review),
+      });
     },
   },
 });
