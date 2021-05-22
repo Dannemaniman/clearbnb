@@ -58,13 +58,12 @@ public class Main {
 
     app.get("/rest/best-houses", (req, res) -> {
 
-       // System.out.println(collection("Review").find());
-        List<Review> reviews = collection("Review").find(op -> {
+        // System.out.println(collection("Review").find());
+   /*     List<Review> reviews = collection("Review").find(op -> {
             op.sort = "grade=desc";
             op.limit = 5;
         });
-
-        List<House> houses = new ArrayList<>();
+        */
 
 
         //1. Push houseIds to new Array
