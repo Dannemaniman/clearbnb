@@ -17,7 +17,11 @@
 
       <p v-if="!uploading" class="call-to-action">Drag your files here</p>
 
-      <p v-if="uploading" class="progress-bar"></p>
+      <p v-if="uploading" class="progress-bar">
+        <progress class="progress is-primary" :value="progress" max="100">
+          {{ progress }} %
+        </progress>
+      </p>
     </div>
     <div class="image-container">
       <img
@@ -41,7 +45,7 @@ export default {
       error: false,
       uploading: false,
       thumbnail: [],
-      progresss: 0,
+      progress: 0,
     };
   },
   emit: ['photo'],
@@ -64,6 +68,8 @@ export default {
           let uploadResult = await fetch('/api/uploads/', {
             method: 'POST',
             body: formData,
+            onUploadProgress: (e) =>
+              (this.progress = Math.round((e.loaded * 100) / e.total)),
           });
 
           this.uploading = false;
@@ -72,6 +78,7 @@ export default {
         } catch (err) {
           this.message = err.response.data.error;
           this.error = true;
+          this.uploading = false;
         }
         // get the uploaded file urls from response
       }
