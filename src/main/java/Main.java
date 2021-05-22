@@ -79,57 +79,41 @@ public class Main {
     });
 
     app.get("/rest/best-houses", (req, res) -> {
-
-        //1. Push houseIds to new Array
-        ArrayList<String> houseIds = new ArrayList<>();
         List<House> houses = collection("House").find();
-        houses.forEach(item -> {
-            houseIds.add(item.getId());
-        });
-        //2. Go through all Reviews and push
-
         TreeMap<String, Double> housesUnsorted = new TreeMap<>();
 
-        houseIds.forEach(houseId -> {
-            //do this for every houseId in order to find out every houses score
-            List<Review> test = collection("Review").find("gradedHouse==" + houseId);
-            ArrayList<Integer> grade = new ArrayList<>();
+        houses.forEach(house -> {
+            List<Review> test = collection("Review").find("gradedHouse==" + house.getId());
+            ArrayList<Integer> grades = new ArrayList<>();
             int totalScore = 0;
-            double average = 0;
+            double average;
 
-            //get grades and push to array
             test.forEach(review -> {
-                grade.add(review.getGrade());
+                grades.add(review.getGrade());
             });
 
-            for(int i = 0; i < grade.size(); i++) {
-                totalScore = totalScore + grade.get(i);
+            if(grades.size() != 0) {
+                for(int i = 0; i < grades.size(); i++) {
+                    totalScore = totalScore + grades.get(i);
+                }
+                average = (double)totalScore / (double)grades.size();
+                housesUnsorted.put(house.getId(), average);
             }
-
-            if(grade.size() != 0) {
-                average = (double)totalScore / (double)grade.size();
-                housesUnsorted.put(houseId, average);
-            }
-
             if(housesUnsorted.size() == 5) return;
         });
 
-        ArrayList<Double> gradez = new ArrayList<>(housesUnsorted.values());
-        Collections.sort(gradez, Collections.reverseOrder());
-
-        //get all the TreeMap keys
+        ArrayList<Double> averageGrades = new ArrayList<>(housesUnsorted.values());
+        Collections.sort(averageGrades, Collections.reverseOrder());
         Set<String> keys = housesUnsorted.keySet();
-
-        //value for which we need to fetch key
         List<String> houseList = new ArrayList<>();
-            gradez.forEach( value -> {
-                for( String key : keys ){
-                    if( housesUnsorted.get(key).equals(value)){
-                        System.out.println("Key for value " + value + " is: " + key);
-                        houseList.add(key);
-                        return;
-                    }
+
+        averageGrades.forEach( value -> {
+            for( String key : keys ){
+                if( housesUnsorted.get(key).equals(value)){
+                    houseList.add(key);
+                    return;
                 }
+            }
         });
         res.json(collection("House").find("id==" + houseList));
     });
