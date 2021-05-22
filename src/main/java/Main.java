@@ -1,7 +1,5 @@
 import express.Express;
-import models.Booking;
-import models.House;
-import models.Review;
+import models.*;
 import nosqlite.Collection;
 
 import java.util.ArrayList;
@@ -29,9 +27,24 @@ public class Main {
 
     new Auth(app);
 
+/*
+    User user = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
+    Review review3 =  new Review();
+    review3.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
+    review3.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
+    review3.setAuthorName(user.getFullName());
+    review3.setReview("njanjanja.!!!");
+    review3.setGrade(2);
+    review3.setGradedHouse("o0U_oWPgWfmyFmeWjnyWk");
 
 
+    collection("Review").save(review3);
 
+    System.out.println(collection("Review").find());
+*/
+
+
+    
     app.get("/rest/houses", (req, res) -> {
         res.json(collection("House").find());
     });
@@ -42,7 +55,7 @@ public class Main {
             op.sort = "grade=desc";
             op.limit = 5;
         });
-        
+
         List<House> houses = new ArrayList<>();
 
         reviews.forEach(review -> {
@@ -63,11 +76,6 @@ public class Main {
     app.get("/rest/users/:id", (req, res) -> {
         res.json(collection("User").findById(req.params("id")));
     });
-    
-    app.get("/rest/reviews", (req, res) -> {
-        res.json(collection("Review").find());
-    });
-
 
     app.get("/rest/bookings", (req, res) -> {
         res.json(collection("Booking").find());
@@ -94,6 +102,22 @@ public class Main {
          Review review = req.body(Review.class);
           System.out.println(review);
           collection("Review").save(review);
+      });
+
+      app.post("/rest/post-reply", (req, res) -> {
+          Reply reply = req.body(Reply.class);
+          collection("Reply").save(reply);
+      });
+
+      app.get("/rest/reviews/:id", (req, res) -> {
+          //   List<Review> review = collection("Review").find("gradedHouse==" + req.params("id"));
+          res.json(collection("Review").find("gradedHouse==" + req.params("id")));
+      });
+
+      app.get("/rest/replies/:id", (req, res) -> {
+          List<Reply> replies = collection("Reply").find("reviewId==" + req.params("id"));
+          System.out.println(replies);
+          res.json(collection("Reply").find("reviewId==" + req.params("id")));
       });
       
       // start server

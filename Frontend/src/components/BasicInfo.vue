@@ -65,7 +65,7 @@
           <div class="button-container">
             <button
               type="button"
-              @click="guestCounter <= 0 ? (guestCounter = 0) : guestCounter--"
+              @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--"
             >
               -
             </button>
@@ -111,7 +111,7 @@ export default {
   emit: ['basicInfo'],
   data() {
     return {
-      guestCounter: 0,
+      guestCounter: 1,
       bedCounter: 0,
       bathroomCounter: 0,
       title: '',

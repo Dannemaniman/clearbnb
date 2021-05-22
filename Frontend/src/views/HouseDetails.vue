@@ -26,9 +26,7 @@
     <br />
 
     <MapComponent :home="home" />
-    <div class="reviews">
-      <Reviews v-for="review of reviews" :review="review" :key="review.id" />
-    </div>
+    <Reviews :reviews="$store.state.reviews" />
     <Hosts />
   </div>
 </template>
@@ -39,13 +37,13 @@ import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 import Reviews from '../components/Reviews.vue';
 import MapComponent from '../components/MapComponent.vue';
+
 export default {
   components: { Amenities, Hosts, BookingModal, Reviews, MapComponent },
   data() {
     return {
       home: null,
-      reviews: {},
-    };
+    }
   },
 
   /* mounted() {
@@ -59,14 +57,8 @@ export default {
     const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
-    this.reviews = this.$store.state.reviews;
-    let arr = [];
-    this.reviews.forEach((review) => {
-      if (review.gradedHouse == this.home.id) {
-        arr.push(review);
-      }
-    });
-    this.reviews = arr;
+
+    let reviews = await this.$store.dispatch('fetchReviews', this.home.id);
   },
 };
 </script>
