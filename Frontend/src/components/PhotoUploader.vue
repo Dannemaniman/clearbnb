@@ -9,9 +9,7 @@
         multiple
       />
 
-      <p v-if="!uploading" class="call-to-action">
-        Click or drag your files here
-      </p>
+      <p v-if="!uploading">Click or drag your files here</p>
     </div>
     <div class="image-container">
       <img
