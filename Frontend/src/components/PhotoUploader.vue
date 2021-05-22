@@ -33,16 +33,33 @@ export default {
   },
   emit: ['photo'],
   methods: {
+    selectFile() {
+      const file = this.$refs.file.files[0];
+      this.selectedFiles.push(file);
+      this.thumbnail.push(URL.createObjectURL(file));
+      this.$emit('photo', this.selectedFiles);
+    },
+
     chosenFile(event) {
       this.selectedFiles.push(event.target.files[0]);
       this.thumbnail.push(URL.createObjectURL(event.target.files[0]));
-      this.$emit('photo', this.selectedFiles);
     },
   },
 };
 </script>
 
 <style scoped>
+.dropzone {
+  min-height: 200px;
+  padding: 10px 10px;
+  position: relative;
+  cursor: pointer;
+  outline: 2px dashed grey;
+  outline-offset: -10px;
+  background: lightgray;
+  color: black;
+}
+
 section {
   margin-top: 1rem;
 }
