@@ -1,11 +1,5 @@
 <template>
   <form @submit.prevent="sendFile" enctype="multipart/form-data">
-    <div
-      v-if="message"
-      :class="`message ${error ? 'is-danger' : 'is-success'} `"
-    >
-      <div class="message-body">{{ message }}</div>
-    </div>
     <div class="dropzone">
       <input
         type="file"
@@ -15,7 +9,9 @@
         multiple
       />
 
-      <p v-if="!uploading" class="call-to-action">Drag your files here</p>
+      <p v-if="!uploading" class="call-to-action">
+        Click or drag your files here
+      </p>
     </div>
     <div class="image-container">
       <img
@@ -35,7 +31,6 @@ export default {
   data() {
     return {
       file: '',
-      message: '',
       error: false,
       uploading: false,
       thumbnail: [],
@@ -51,7 +46,6 @@ export default {
       if (files.length) {
         let formData = new FormData();
 
-        // add files to formData
         for (let file of files) {
           formData.append('files', file, file.name);
           this.thumbnail.push(URL.createObjectURL(file));
@@ -62,16 +56,14 @@ export default {
             method: 'POST',
             body: formData,
           });
-
           let uploadNames = await uploadResult.json();
           this.$emit('photo', uploadNames);
           this.uploading = false;
         } catch (err) {
-          this.message = err.response.data.error;
-          this.error = true;
+          console.log(err);
         }
-        // get the uploaded file urls from response
       }
+      this.uploading = false;
     },
   },
 };
@@ -84,7 +76,7 @@ export default {
   position: relative;
   cursor: pointer;
   outline: 2px dashed grey;
-  outline-offset: -10px;
+  outline-offset: -6px;
   background: lightgray;
   color: black;
 }
@@ -101,12 +93,8 @@ export default {
   cursor: pointer;
 }
 
-section {
-  margin-top: 1rem;
-}
-
 .image-container {
-  margin: 0 auto;
+  margin: 0.5rem auto;
   height: 11rem;
   min-width: 11rem;
   width: fit-content;
@@ -124,12 +112,5 @@ section {
 .chosen-image {
   height: 10rem;
   width: 10rem;
-}
-
-button {
-  padding: 0.6rem;
-  margin: 1rem;
-  cursor: pointer;
-  border-radius: 10px;
 }
 </style>
