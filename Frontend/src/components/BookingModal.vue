@@ -2,14 +2,10 @@
   <section>
     <header>
       <h1>{{ home.price }}kr <span class="span-night">/ night</span></h1>
-<<<<<<< Updated upstream
       <h2>
         ★ {{ reviewScore }}
         <span class="span-night"> {{ reviewAmount }}</span>
       </h2>
-=======
-      <h2>★ 4.25 <span class="span-night">(23 Reviews)</span></h2>
->>>>>>> Stashed changes
     </header>
     <article>
       <Calender @setDate="setDate" />
