@@ -4,12 +4,12 @@
     <div class="images">
       <img :src="home.images[0]" alt="" class="img-1" />
       <img :src="home.images[1]" alt="" class="img-2" />
-      <img :src="home.images[0]" alt="" class="img-3" />
-      <img :src="home.images[0]" alt="" class="img-4" />
-      <img :src="home.images[0]" alt="" class="img-5" />
-      <img :src="home.images[0]" alt="" class="img-6" />
-      <img :src="home.images[0]" alt="" class="img-7" />
-      <img :src="home.images[0]" alt="" class="img-8" />
+      <img :src="home.images[2]" alt="" class="img-3" />
+      <img :src="home.images[3]" alt="" class="img-4" />
+      <img :src="home.images[4]" alt="" class="img-5" />
+      <img :src="home.images[5]" alt="" class="img-6" />
+      <img :src="home.images[6]" alt="" class="img-7" />
+      <img :src="home.images[7]" alt="" class="img-8" />
     </div>
     <div class="content-holder">
       <div class="information">
