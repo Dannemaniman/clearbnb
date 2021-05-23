@@ -111,6 +111,8 @@ export default {
         propertyType: this.basicInfo.propertyType,
         amenities: this.amenities,
         price: this.basicInfo.price,
+        childDiscount: this.childDiscount,
+        seniorDiscount: this.seniorDiscount,
         title: this.basicInfo.title,
         city: this.basicInfo.city,
         address: this.basicInfo.address,

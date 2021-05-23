@@ -24,8 +24,9 @@ public class House {
     private Accommodation accommodation;
     private String description;
     private String price;
+    private int childDiscount;
+    private int seniorDiscount;
     private List<String> amenities;
-    //private List<Review> reviews;
     private String ownerId;
     private double[] position;
     private Date leaseStart;
@@ -57,6 +58,21 @@ public class House {
                 '}';
     }
 
+    public int getSeniorDiscount() {
+        return seniorDiscount;
+    }
+
+    public void setSeniorDiscount(int seniorDiscount) {
+        this.seniorDiscount = seniorDiscount;
+    }
+
+    public int getChildDiscount() {
+        return childDiscount;
+    }
+
+    public void setChildDiscount(int childDiscount) {
+        this.childDiscount = childDiscount;
+    }
     
     public double[] getPosition() {
         return position;
