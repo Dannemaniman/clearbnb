@@ -1,7 +1,7 @@
 <template>
   <section>
     <header>
-      <h1>{{ house.price }} kr <span class="span-night">/ night</span></h1>
+      <h1>{{ pricePerNight }} kr <span class="span-night">/ night</span></h1>
       <h2>
         ★ {{ reviewScore }}
         <span class="span-night"> {{ reviewAmount }}</span>
@@ -19,16 +19,25 @@
       <button @click="popPage">Check Availability</button>
     </article>
     <footer>
-      <div class="price-bar">
-        <p>{{ house.price }} x 1 night</p>
-        <p>{{ house.price }} kr</p>
+      <div
+        class="price-bar"
+        v-if="chosenDate.start !== null || chosenDate.end !== null"
+      >
+        <p>{{ pricePerNight }} x {{ totalNights }} night</p>
+        <p>{{ pricePerNight * totalNights }} kr</p>
       </div>
-      <div class="service-bar">
+      <div
+        class="service-bar"
+        v-if="chosenDate.start !== null || chosenDate.end !== null"
+      >
         <p>Service fee</p>
-        <p>265 kr</p>
+        <p>{{ serviceFee * totalNights }} kr</p>
       </div>
       <hr />
-      <div class="total-bar">
+      <div
+        class="total-bar"
+        v-if="chosenDate.start !== null || chosenDate.end !== null"
+      >
         <p>Total</p>
         <p>{{ totalPrice }}</p>
       </div>
@@ -68,20 +77,28 @@ export default {
       let rounded = average.toFixed(2);
       return rounded;
     },
-    lengthOfStay() {
-      console.log('stay:', this.chosenDate);
-    },
     totalPrice() {
       return (
+        this.pricePerNight * this.totalNights +
+        this.serviceFee * this.totalNights +
         this.adultCounter * this.prices['adult'] +
         this.childCounter * this.prices['child'] +
         this.seniorCounter * this.prices['senior']
       );
     },
+    totalNights() {
+      let start = new Date(this.chosenDate.start);
+      let end = new Date(this.chosenDate.end);
+      let timeDiff = end.getTime() - start.getTime();
+      let dayDiff = timeDiff / (1000 * 3600 * 24);
+      let totalDays = dayDiff + 1;
+
+      return totalDays;
+    },
   },
   data() {
     return {
-      adultCounter: 1,
+      adultCounter: 0,
       childCounter: 0,
       seniorCounter: 0,
       prices: {
@@ -94,6 +111,8 @@ export default {
         end: null,
       },
       house: this.home,
+      pricePerNight: parseFloat(this.home.price),
+      serviceFee: this.home.price * 0.15,
     };
   },
   methods: {
