@@ -2,10 +2,14 @@
   <section>
     <header>
       <h1>{{ home.price }}kr <span class="span-night">/ night</span></h1>
+<<<<<<< Updated upstream
       <h2>
         ★ {{ reviewScore }}
         <span class="span-night"> {{ reviewAmount }}</span>
       </h2>
+=======
+      <h2>★ 4.25 <span class="span-night">(23 Reviews)</span></h2>
+>>>>>>> Stashed changes
     </header>
     <article>
       <Calender @setDate="setDate" />
@@ -47,6 +51,26 @@ export default {
     GuestModal,
   },
   computed: {
+    reviewAmount() {
+      let reviewAmount = this.$store.state.reviews.length;
+      if (reviewAmount == 0) {
+        return '';
+      }
+      return `(${reviewAmount} reviews)`;
+    },
+    reviewScore() {
+      if (this.$store.state.reviews.length == 0) {
+        return 'No Reviews';
+      }
+      let total = 0;
+      this.$store.state.reviews.forEach(function (review) {
+        let grade = review.grade;
+        total += grade;
+      });
+      let average = total / this.$store.state.reviews.length;
+      let rounded = average.toFixed(2);
+      return rounded;
+    },
     //lägg computed som räknar ut antal dagar som är mellan 2 new Date()
     totalPrice() {
       return (
