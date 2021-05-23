@@ -104,7 +104,7 @@ export default {
 .images .img-1 {
   grid-area: img-1;
   object-fit: cover;
-  max-height: 30.6rem;
+  height: 30.6rem;
 }
 .img-2 {
   grid-area: img-2;
