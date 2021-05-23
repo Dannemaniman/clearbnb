@@ -192,15 +192,11 @@ export default createStore({
     async fetchBestHouses(store) {
       let res = await fetch('/rest/best-houses');
       let info = await res.json();
-      console.log('Best-houses:');
-      console.log(info);
       store.commit('addBestHouses', info);
     },
     async fetchCheapestHouses(store) {
       let res = await fetch('/rest/cheapest-houses');
       let info = await res.json();
-      console.log('Cheapest-houses:');
-      console.log(info);
       store.commit('addCheapestHouses', info);
     },
 

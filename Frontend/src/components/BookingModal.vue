@@ -1,8 +1,11 @@
 <template>
   <section>
     <header>
-      <h1>1,350 kr <span class="span-night">/ night</span></h1>
-      <h2>★ 4.25 <span class="span-night">(23 Reviews)</span></h2>
+      <h1>{{ home.price }}kr <span class="span-night">/ night</span></h1>
+      <h2>
+        ★ {{ reviewScore }}
+        <span class="span-night"> {{ reviewAmount }}</span>
+      </h2>
     </header>
     <article>
       <Calender @setDate="setDate" />
@@ -17,12 +20,12 @@
     </article>
     <footer>
       <div class="price-bar">
-        <p>1,500 kr x 1 night</p>
-        <p>1,500 kr</p>
+        <p>{{ perNight }} x {{ numberOfNights }} {{ nightString }}</p>
+        <p></p>
       </div>
       <div class="service-bar">
         <p>Service fee</p>
-        <p>265 kr</p>
+        <p>{{ serviceFee }} kr</p>
       </div>
       <hr />
       <div class="total-bar">
@@ -44,6 +47,26 @@ export default {
     GuestModal,
   },
   computed: {
+    reviewAmount() {
+      let reviewAmount = this.$store.state.reviews.length;
+      if (reviewAmount == 0) {
+        return '';
+      }
+      return `(${reviewAmount} reviews)`;
+    },
+    reviewScore() {
+      if (this.$store.state.reviews.length == 0) {
+        return 'No Reviews';
+      }
+      let total = 0;
+      this.$store.state.reviews.forEach(function (review) {
+        let grade = review.grade;
+        total += grade;
+      });
+      let average = total / this.$store.state.reviews.length;
+      let rounded = average.toFixed(2);
+      return rounded;
+    },
     //lägg computed som räknar ut antal dagar som är mellan 2 new Date()
     totalPrice() {
       return (
@@ -52,6 +75,35 @@ export default {
         this.seniorCounter * this.prices['senior']
       );
     },
+    perNight() {
+      return (
+        this.prices.adult * this.adultCounter +
+        this.prices.child * this.childCounter +
+        this.prices.senior * this.seniorCounter
+      );
+    },
+    nightString() {
+      return this.numberOfNights > 1 ? 'nights' : 'night';
+    },
+    serviceFee() {
+      return Math.round(this.totalPrice * 0.05);
+    },
+    numberOfNights() {
+      console.log(this.chosenDate.end - this.chosenDate.start);
+      if (this.chosenDate.start && this.chosenDate.end) {
+        let date1 = new Date(this.chosenDate.start);
+        let date2 = new Date(this.chosenDate.end);
+
+        let time = date2.getTime() - date1.getTime();
+
+        // To calculate the no. of days between two dates
+        var days = time / (1000 * 3600 * 24);
+
+        return days;
+      } else {
+        return 1;
+      }
+    },
   },
   data() {
     return {
@@ -59,9 +111,9 @@ export default {
       childCounter: 0,
       seniorCounter: 0,
       prices: {
-        adult: 250,
-        child: 125,
-        senior: 150,
+        adult: Number(this.home.price),
+        child: this.home.price * (this.home.childDiscount / 100),
+        senior: this.home.price * (this.home.seniorDiscount / 100),
       },
       chosenDate: {
         start: null,
