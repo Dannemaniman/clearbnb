@@ -1,8 +1,11 @@
 <template>
   <section>
     <header>
-      <h1>1,350 kr <span class="span-night">/ night</span></h1>
-      <h2>★ 4.25 <span class="span-night">(23 Reviews)</span></h2>
+      <h1>{{ house.price }} kr <span class="span-night">/ night</span></h1>
+      <h2>
+        ★ {{ reviewScore }}
+        <span class="span-night"> {{ reviewAmount }}</span>
+      </h2>
     </header>
     <article>
       <Calender @setDate="setDate" />
@@ -17,8 +20,8 @@
     </article>
     <footer>
       <div class="price-bar">
-        <p>1,500 kr x 1 night</p>
-        <p>1,500 kr</p>
+        <p>{{ house.price }} x 1 night</p>
+        <p>{{ house.price }} kr</p>
       </div>
       <div class="service-bar">
         <p>Service fee</p>
@@ -45,6 +48,29 @@ export default {
   },
   computed: {
     //lägg computed som räknar ut antal dagar som är mellan 2 new Date()
+    reviewAmount() {
+      let reviewAmount = this.$store.state.reviews.length;
+      if (reviewAmount == 0) {
+        return '';
+      }
+      return `(${reviewAmount} reviews)`;
+    },
+    reviewScore() {
+      if (this.$store.state.reviews.length == 0) {
+        return 'No Reviews';
+      }
+      let total = 0;
+      this.$store.state.reviews.forEach(function (review) {
+        let grade = review.grade;
+        total += grade;
+      });
+      let average = total / this.$store.state.reviews.length;
+      let rounded = average.toFixed(2);
+      return rounded;
+    },
+    lengthOfStay() {
+      console.log('stay:', this.chosenDate);
+    },
     totalPrice() {
       return (
         this.adultCounter * this.prices['adult'] +
@@ -67,6 +93,7 @@ export default {
         start: null,
         end: null,
       },
+      house: this.home,
     };
   },
   methods: {

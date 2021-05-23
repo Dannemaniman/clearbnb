@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       home: null,
-    }
+    };
   },
 
   /* mounted() {
@@ -57,8 +57,8 @@ export default {
     const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
-
-    let reviews = await this.$store.dispatch('fetchReviews', this.home.id);
+    console.log(data);
+    await this.$store.dispatch('fetchReviews', this.home.id);
   },
 };
 </script>
