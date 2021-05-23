@@ -1,8 +1,11 @@
 <template>
   <section>
     <header>
-      <h1>{{home.price}}kr <span class="span-night">/ night</span></h1>
-      <h2>★ 4.25 <span class="span-night">(23 Reviews)</span></h2>
+      <h1>{{ home.price }}kr <span class="span-night">/ night</span></h1>
+      <h2>
+        ★ {{ reviewScore }}
+        <span class="span-night"> {{ reviewAmount }}</span>
+      </h2>
     </header>
     <article>
       <Calender @setDate="setDate" />
@@ -17,12 +20,12 @@
     </article>
     <footer>
       <div class="price-bar">
-        <p>{{perNight}} x {{numberOfNights}} {{nightString}}</p>
+        <p>{{ perNight }} x {{ numberOfNights }} {{ nightString }}</p>
         <p></p>
       </div>
       <div class="service-bar">
         <p>Service fee</p>
-        <p>{{serviceFee}} kr</p>
+        <p>{{ serviceFee }} kr</p>
       </div>
       <hr />
       <div class="total-bar">
@@ -50,31 +53,37 @@ export default {
         this.adultCounter * this.prices['adult'] +
         this.childCounter * this.prices['child'] +
         this.seniorCounter * this.prices['senior']
-      )
+      );
     },
     perNight() {
-      return  (this.prices.adult*this.adultCounter) + (this.prices.child*this.childCounter) + (this.prices.senior*this.seniorCounter)
+      return (
+        this.prices.adult * this.adultCounter +
+        this.prices.child * this.childCounter +
+        this.prices.senior * this.seniorCounter
+      );
     },
     nightString() {
-     return this.numberOfNights > 1 ?  "nights" : "night"
+      return this.numberOfNights > 1 ? 'nights' : 'night';
     },
-    serviceFee(){
-     return Math.round(this.totalPrice*0.05)
+    serviceFee() {
+      return Math.round(this.totalPrice * 0.05);
     },
-    numberOfNights(){
-      console.log(this.chosenDate.end - this.chosenDate.start)
-      if(this.chosenDate.start && this.chosenDate.end) {
-        let date1 = new Date(this.chosenDate.start)
-        let date2 = new Date(this.chosenDate.end)
-  
-        let time = date2.getTime() -  date1.getTime();
-    
-      // To calculate the no. of days between two dates
-        var days = time/ (1000 * 3600 * 24);
-  
-        return days
-      } else { return 1 }
-    }   
+    numberOfNights() {
+      console.log(this.chosenDate.end - this.chosenDate.start);
+      if (this.chosenDate.start && this.chosenDate.end) {
+        let date1 = new Date(this.chosenDate.start);
+        let date2 = new Date(this.chosenDate.end);
+
+        let time = date2.getTime() - date1.getTime();
+
+        // To calculate the no. of days between two dates
+        var days = time / (1000 * 3600 * 24);
+
+        return days;
+      } else {
+        return 1;
+      }
+    },
   },
   data() {
     return {
@@ -83,13 +92,13 @@ export default {
       seniorCounter: 0,
       prices: {
         adult: Number(this.home.price),
-        child: this.home.price*(this.home.childDiscount/100),
-        senior: this.home.price*(this.home.seniorDiscount/100),
+        child: this.home.price * (this.home.childDiscount / 100),
+        senior: this.home.price * (this.home.seniorDiscount / 100),
       },
       chosenDate: {
         start: null,
         end: null,
-      }
+      },
     };
   },
   methods: {
