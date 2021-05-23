@@ -1,4 +1,5 @@
 <template>
+<p>{{title}}</p>
   <section class='section-slider'>
     <div class='slider-container' v-if="houses !== null">
       <div class='arrow-left' @click='moveLeft'/>
@@ -14,7 +15,7 @@
 
 <script> 
 export default {
-  props: ['houses'],
+  props: ['houses', 'title'],
   data() {
     return {
        moveCounter: 0,
@@ -47,9 +48,15 @@ export default {
   .section-slider {
     width: 100%;
     background-color: grey;
-    margin-bottom: 10rem;
+    margin-bottom: 7rem;
     border-top: 3px solid black;
   }
+
+  p {
+  font-size: 2rem;
+  color: black;
+  font-weight: thin;
+}
 
   .slider-container {
     width: 100%;
