@@ -12,6 +12,7 @@ export default createStore({
     bookings: [],
     userBookings: [],
     users: {},
+    uploadedNames: '',
   },
 
   // this.$store.commit('mutationName', data)
@@ -67,6 +68,9 @@ export default createStore({
           state.userBookings.splice(index, 1);
         }
       }
+    },
+    addUploadedNames(state, uploadNames) {
+      state.uploadedNames = uploadNames;
     },
   },
 
@@ -163,6 +167,15 @@ export default createStore({
       let house = await res.json();
       console.log('You created', house);
       store.commit('addHouses', house);
+    },
+
+    async uploadImage(store, images) {
+      let uploadResult = await fetch('/api/uploads/', {
+        method: 'POST',
+        body: images,
+      });
+      let uploadNames = await uploadResult.json();
+      store.commit('addUploadedNames', uploadNames);
     },
 
     async getSliderInfo() {
