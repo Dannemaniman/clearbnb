@@ -97,7 +97,7 @@ export default {
                 house.images[0] +
                 '" width="150" /></a>' +
                 '<br>' +
-                house.description +
+                house.city +
                 '<br>' +
                 'Price: ' +
                 '<strong>' +
@@ -131,7 +131,7 @@ export default {
               this.home.images[0] +
               '" width="150" /></a>' +
               '<br>' +
-              this.home.description +
+              this.home.city +
               '<br>' +
               'Price: ' +
               '<strong>' +
