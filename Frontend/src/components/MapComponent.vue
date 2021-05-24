@@ -101,7 +101,17 @@ export default {
             '</strong>' +
             '/night';
           //UserId = house.bookerID or UserId = house.ownerId
-          if (
+          if (this.user == null) {
+            L.circle(house.position, {
+              color: 'red',
+              fillColor: '#f03',
+              fillOpacity: 0.5,
+              radius: 500,
+            })
+              .bindPopup(content, { maxWidth: 160 })
+              .openPopup()
+              .addTo(this.mapDiv);
+          } else if (
             this.userBookings.houseId == house.id ||
             this.user.id == house.ownerId ||
             this.user.id === 'admin@admin'
@@ -141,16 +151,7 @@ export default {
           '</strong>' +
           '/night';
 
-        if (
-          this.userBookings.houseId == this.home.id ||
-          this.user.id == this.home.ownerId ||
-          this.user.id === 'admin@admin'
-        ) {
-          L.marker(this.home.position)
-            .bindPopup(singleContent, { maxWidth: 160 })
-            .openPopup()
-            .addTo(this.mapDiv);
-        } else {
+        if (this.user == null) {
           L.circle(this.home.position, {
             color: 'red',
             fillColor: '#f03',
@@ -158,6 +159,15 @@ export default {
             radius: 500,
             className: 'popup',
           })
+            .bindPopup(singleContent, { maxWidth: 160 })
+            .openPopup()
+            .addTo(this.mapDiv);
+        } else if (
+          this.userBookings.houseId == this.home.id ||
+          this.user.id == this.home.ownerId ||
+          this.user.id === 'admin@admin'
+        ) {
+          L.marker(this.home.position)
             .bindPopup(singleContent, { maxWidth: 160 })
             .openPopup()
             .addTo(this.mapDiv);
