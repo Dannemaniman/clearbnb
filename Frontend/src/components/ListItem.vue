@@ -9,7 +9,7 @@
     <button v-if="reviewable" class="review-button" @click="popReviewModal">
       Review
     </button>
-    <button class="cancel-button">Cancel</button>
+    <button class="cancel-button" @click="deleteBooking(this.userBooking.id)">Cancel</button>
   </article>
   <ReviewModal
     :houseId="houseId"
@@ -41,6 +41,9 @@ export default {
   methods: {
     popReviewModal() {
       this.showReviewModal = !this.showReviewModal;
+    },
+    deleteBooking(id) {
+      this.$store.dispatch('deleteBooking', id);
     },
   },
 };
