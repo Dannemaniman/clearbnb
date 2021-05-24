@@ -32,8 +32,8 @@ export default {
     },
 
     setupLeafletMap() {
-      this.mapDiv = L.map('mapContainer')
-        .locate({
+      this.mapDiv = L.map('mapContainer').setView(this.center, 9);
+      /* .locate({
           setView: true,
           watch: true,
           maxZoom: 9,
@@ -51,7 +51,7 @@ export default {
         })
         .on('locationerror', (error) => {
           console.log(error);
-        });
+        }); */
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
         {
@@ -91,11 +91,13 @@ export default {
               '<h3>' +
                 house.title +
                 '</h3>' +
-                '<img src="' +
+                '<a href=/house/' +
+                house.id +
+                '><img src="' +
                 house.images[0] +
-                '" width="150" />' +
+                '" width="150" /></a>' +
                 '<br>' +
-                house.description +
+                house.city +
                 '<br>' +
                 'Price: ' +
                 '<strong>' +
@@ -105,6 +107,10 @@ export default {
               { maxWidth: 160 }
             )
             .openPopup()
+            .on('popupopen', function (e) {
+              console.log(e);
+            })
+
             .addTo(this.mapDiv);
         });
       } else {
@@ -119,11 +125,13 @@ export default {
             '<h3>' +
               this.home.title +
               '</h3>' +
-              '<img src="' +
+              '<a href=/house/' +
+              this.home.id +
+              '><img src="' +
               this.home.images[0] +
-              '" width="150" />' +
+              '" width="150" /></a>' +
               '<br>' +
-              this.home.description +
+              this.home.city +
               '<br>' +
               'Price: ' +
               '<strong>' +
@@ -156,5 +164,8 @@ export default {
   margin-top: 7rem;
   width: 100%;
   height: 35rem;
+}
+.leaflet-popup-content {
+  color: aqua;
 }
 </style>
