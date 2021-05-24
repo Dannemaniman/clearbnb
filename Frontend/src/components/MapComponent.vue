@@ -178,10 +178,7 @@ export default {
     },
   },
   async mounted() {
-    let res = await fetch('/rest/houses');
-    let houses = await res.json();
-    this.houses = houses;
-
+    this.houses = this.$store.state.houses;
     this.setupLeafletMap();
     this.addMarkers();
     /*  this.mapDiv.on('locationfound', this.onLocationFound);
