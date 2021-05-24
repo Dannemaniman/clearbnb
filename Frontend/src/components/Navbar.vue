@@ -81,6 +81,9 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logout');
+      if (!this.$route.params.id) {
+        this.$router.go();
+      }
       console.log(this.$store.state.user);
     },
 
