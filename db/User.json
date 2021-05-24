@@ -79,11 +79,19 @@
   "userHouses" : null,
   "userBookings" : null
 }, {
-  "id" : "jXx3Ew3QbbIGU2Fsornl8",
+  "id" : "_aR81dtujOhvX9oRWuyVQ",
   "userName" : null,
   "userPassword" : "d7190eb194ff9494625514b6d178c87f99c5973e28c398969d2233f2960a573e",
   "email" : "daniellangas91@gmail.com",
   "fullName" : "Daniel Langås",
+  "userHouses" : null,
+  "userBookings" : null
+}, {
+  "id" : "AItQB_FycdDvsAecyTw8w",
+  "userName" : null,
+  "userPassword" : "1d6442ddcfd9db1ff81df77cbefcd5afcc8c7ca952ab3101ede17a84b866d3f3",
+  "email" : "admin@admin",
+  "fullName" : "Admin",
   "userHouses" : null,
   "userBookings" : null
 } ]

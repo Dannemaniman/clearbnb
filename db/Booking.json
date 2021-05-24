@@ -1,0 +1,22 @@
+[ {
+  "id" : "1aLIaVVtYpjgxiDOUH-VF",
+  "bookerId" : "vYdyudpjkIFH0ri1Y4Hh7",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1639695600000, 1642028400000 ],
+  "price" : 0.0,
+  "guests" : null
+}, {
+  "id" : "5MX6Bx-sIxSzFRHVtpoZU",
+  "bookerId" : "vYdyudpjkIFH0ri1Y4Hh7",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1639695600000, 1642028400000 ],
+  "price" : 0.0,
+  "guests" : null
+}, {
+  "id" : "JNZFyLLAqCIpY__LlamJI",
+  "bookerId" : "vYdyudpjkIFH0ri1Y4Hh7",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1639695600000, 1642028400000 ],
+  "price" : 0.0,
+  "guests" : null
+} ]
