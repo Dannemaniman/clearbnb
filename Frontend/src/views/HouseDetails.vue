@@ -27,7 +27,7 @@
 
     <MapComponent :home="home" />
     <Reviews :reviews="$store.state.reviews" />
-    <Hosts />
+    <Hosts :home="home" />
   </div>
 </template>
 

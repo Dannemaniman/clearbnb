@@ -176,6 +176,17 @@ export default {
             .bindPopup(singleContent, { maxWidth: 160 })
             .openPopup()
             .addTo(this.mapDiv);
+        } else {
+          L.circle(this.home.position, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500,
+            className: 'popup',
+          })
+            .bindPopup(singleContent, { maxWidth: 160 })
+            .openPopup()
+            .addTo(this.mapDiv);
         }
       }
 
