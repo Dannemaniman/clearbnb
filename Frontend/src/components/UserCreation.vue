@@ -58,7 +58,7 @@ export default {
   props: ['user'],
   methods: {
     submit() {
-      this.image = this.$store.state.uploadedNames;
+      this.image = this.$store.state.uploadedNames.toString();
       this.$store.dispatch('updateUser', this.$data);
     },
   },

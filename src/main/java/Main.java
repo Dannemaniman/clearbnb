@@ -137,9 +137,17 @@ public class Main {
         });
     
         app.put("/rest/users/:id", (req, res) -> {
-            System.out.println("test");
+            User user = collection("User").findById(req.params("id"));
+            User updates = req.body(User.class);
+            user.setFirstName(updates.getFirstName());
+            user.setLastName(updates.getLastName());
+            user.setFullName(updates.getFirstName() + " " + updates.getLastName());
+            user.setDescription(updates.getDescription());
+            user.setGender(updates.getGender());
+            user.setImage(updates.getImage());
+            collection("User").save(user);
             String test = "Svar från Backend";
-            res.json(test);
+            res.json(user);
         });
 
         app.get("/rest/bookings", (req, res) -> {

@@ -207,7 +207,7 @@ export default createStore({
         method: 'PUT',
         body: JSON.stringify(userInfo),
       });
-      console.log(res.json());
+      console.log(await res.json());
     },
     async deleteBooking(store, id) {
       let res = await fetch('/rest/bookings/' + id, {
