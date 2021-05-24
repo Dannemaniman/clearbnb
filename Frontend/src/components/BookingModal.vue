@@ -33,7 +33,6 @@
       <div class="total-bar">
         <p>Total</p>
         <p>{{ totalPrice }}</p>
-        <p>{{ maxGuests }}</p>
       </div>
     </footer>
   </section>
