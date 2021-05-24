@@ -12,35 +12,41 @@
       :city="bookingInfo.house.city"
       :chosenDate="bookingInfo.chosenDate"
     />
-    <form class="credit-modal" @submit.prevent="">
-      <select v-model="cardType">
-        <option selected="selected" value="Select your card">
-          Select your card
-        </option>
-        <option value="visa">Visa</option>
-        <option value="mastercard">Mastercard</option>
-        <option value="american-express">American Express</option>
-      </select>
-      <credit-card :cardType="cardType"></credit-card>
-      <button class="submit-button" @click="book">Pay</button>
-    </form>
+    <Spinner v-if="showSpinner" />
+    <div v-else>
+      <form class="credit-modal" @submit.prevent="">
+        <select v-model="cardType">
+          <option selected="selected" value="Select your card">
+            Select your card
+          </option>
+          <option value="visa">Visa</option>
+          <option value="mastercard">Mastercard</option>
+          <option value="american-express">American Express</option>
+        </select>
+        <credit-card :cardType="cardType"></credit-card>
+        <button class="submit-button" @click="book">Pay</button>
+      </form>
+    </div>
   </section>
 </template>
 
 <script>
 import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
+import Spinner from '../components/Spinner.vue';
 
 export default {
   components: {
     ListItem,
     CreditCard,
+    Spinner,
   },
   data() {
     return {
       bookingInfo: this.$store.state.selectedHouse,
       userId: this.$store.state.user.id,
       cardType: 'Select your card',
+      showSpinner: false,
     };
   },
   methods: {
@@ -56,7 +62,14 @@ export default {
         guests: this.bookingInfo.guests,
       };
       this.$store.dispatch('book', booking);
-      this.$router.push('/user/' + this.userId);
+      this.showSpinner = true;
+      setTimeout(() => {
+        this.$store.dispatch('fetchBookings');
+      }, 300);
+      setTimeout(() => {
+        this.$router.push('/user/' + this.userId);
+        this.showSpinner = false;
+      }, 1000);
     },
   },
   created() {

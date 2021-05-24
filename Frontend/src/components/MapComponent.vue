@@ -117,7 +117,7 @@ export default {
               booking.houseId.includes(house.id)
             ) ||
             this.user.id == house.ownerId ||
-            this.user.id === 'admin@admin'
+            this.user.email === 'admin@admin'
           ) {
             L.marker(house.position)
               .bindPopup(content, { maxWidth: 160 })
@@ -170,9 +170,20 @@ export default {
             booking.houseId.includes(this.home.id)
           ) ||
           this.user.id == this.home.ownerId ||
-          this.user.id === 'admin@admin'
+          this.user.email === 'admin@admin'
         ) {
           L.marker(this.home.position)
+            .bindPopup(singleContent, { maxWidth: 160 })
+            .openPopup()
+            .addTo(this.mapDiv);
+        } else {
+          L.circle(this.home.position, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500,
+            className: 'popup',
+          })
             .bindPopup(singleContent, { maxWidth: 160 })
             .openPopup()
             .addTo(this.mapDiv);
