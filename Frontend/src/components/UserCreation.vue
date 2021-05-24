@@ -60,6 +60,7 @@ export default {
     submit() {
       this.image = this.$store.state.uploadedNames.toString();
       this.$store.dispatch('updateUser', this.$data);
+      this.$router.go();
     },
   },
 };
