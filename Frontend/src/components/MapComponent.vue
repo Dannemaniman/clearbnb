@@ -112,7 +112,10 @@ export default {
               .openPopup()
               .addTo(this.mapDiv);
           } else if (
-            this.userBookings.houseId == house.id ||
+            //some(i => i.name.includes('Jack'));
+            this.userBookings.some((booking) =>
+              booking.houseId.includes(house.id)
+            ) ||
             this.user.id == house.ownerId ||
             this.user.id === 'admin@admin'
           ) {
@@ -163,7 +166,9 @@ export default {
             .openPopup()
             .addTo(this.mapDiv);
         } else if (
-          this.userBookings.houseId == this.home.id ||
+          this.userBookings.some((booking) =>
+            booking.houseId.includes(this.home.id)
+          ) ||
           this.user.id == this.home.ownerId ||
           this.user.id === 'admin@admin'
         ) {
@@ -179,6 +184,7 @@ export default {
   },
   async mounted() {
     this.houses = this.$store.state.houses;
+
     this.setupLeafletMap();
     this.addMarkers();
     /*  this.mapDiv.on('locationfound', this.onLocationFound);

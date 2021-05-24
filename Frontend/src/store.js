@@ -120,6 +120,7 @@ export default createStore({
         return;
       }
       console.log('logged in user', loggedInUser);
+      store.dispatch('fetchBookings', store);
       store.commit('setUser', loggedInUser);
     },
     async whoAmI(store) {
