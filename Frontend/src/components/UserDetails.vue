@@ -1,7 +1,9 @@
 <template>
-  <button class="create-button" @click="showCreate = !showCreate">Edit User Info</button>
+  <button class="create-button" @click="showCreate = !showCreate">
+    Edit User Info
+  </button>
   <div v-if="showCreate">
-      <UserCreation />
+    <UserCreation :user="user" />
   </div>
   <div class="user-details" v-if="user">
     <div class="image">
@@ -16,16 +18,16 @@
 </template>
 
 <script>
-import UserCreation from "./UserCreation.vue"
+import UserCreation from './UserCreation.vue';
 
 export default {
   components: {
-    UserCreation
+    UserCreation,
   },
   data() {
     return {
       user: null,
-      showCreate: false
+      showCreate: false,
     };
   },
 
@@ -39,7 +41,6 @@ export default {
 </script>
 
 <style scoped>
-
 .create-button {
   margin-top: 5rem;
   margin-bottom: 3rem;

@@ -2,23 +2,35 @@
   <section>
     <form @submit.prevent="submit">
       <label for="fname">First name:</label>
-      <input name="fname" type="text" class="long-input" v-model="fname"/>
+      <input name="fname" type="text" class="long-input" v-model="firstName" />
       <label for="lname">Last name:</label>
-      <input name="lname" type="text" class="long-input" v-model="lname"/>
-      <p class="profile-title">Profile Picture: </p>
+      <input name="lname" type="text" class="long-input" v-model="lastName" />
+      <p class="profile-title">Profile Picture:</p>
       <PhotoUploader />
-      <textarea name="description" placeholder="Please Enter a Accurate Description yourself." rows="10" cols="50" v-model="description"/>
+      <textarea
+        name="description"
+        placeholder="Please Enter a Accurate Description yourself."
+        rows="10"
+        cols="50"
+        v-model="description"
+      />
       <p class="gender-title">Gender:</p>
       <div class="radio">
-        <input type="radio" name="drone" value="male" checked v-model="radio"/>
+        <input
+          type="radio"
+          name="drone"
+          value="male"
+          checked
+          v-model="gender"
+        />
         <label for="male">Male</label>
       </div>
       <div class="radio">
-        <input type="radio" name="drone" value="female" v-model="radio"/>
+        <input type="radio" name="drone" value="female" v-model="gender" />
         <label for="female">Female</label>
       </div>
       <div class="radio">
-        <input type="radio" name="drone" value="other" v-model="radio"/>
+        <input type="radio" name="drone" value="other" v-model="gender" />
         <label for="other">Other</label>
       </div>
       <button type="submit">Submit</button>
@@ -27,30 +39,33 @@
 </template>
 
 <script>
-import PhotoUploader from "./PhotoUploader.vue"
+import PhotoUploader from './PhotoUploader.vue';
 
 export default {
   components: {
-    PhotoUploader
+    PhotoUploader,
   },
   data() {
     return {
-      fname: "",
-      lname: "",
-      description: "",
-      radio: ""
-    }
+      firstName: '',
+      lastName: '',
+      description: '',
+      gender: '',
+      image: '',
+      id: this.user.id,
+    };
   },
+  props: ['user'],
   methods: {
     submit() {
-     this.$store.dispatch('updateUser', this.$data)
-    }
-  }
-}
+      this.image = this.$store.state.uploadedNames;
+      this.$store.dispatch('updateUser', this.$data);
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 .profile-title {
   font-size: 1.6rem;
   margin-bottom: 0;
