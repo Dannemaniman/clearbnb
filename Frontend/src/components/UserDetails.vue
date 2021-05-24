@@ -7,7 +7,7 @@
   </div>
   <div class="user-details" v-if="user">
     <div class="image">
-      <img src="../../public/stockman.jpg" alt="" />
+      <img :src="user.image" alt="" />
     </div>
     <div class="info">
       <h1>{{ user.fullName }}</h1>

@@ -207,7 +207,8 @@ export default createStore({
         method: 'PUT',
         body: JSON.stringify(userInfo),
       });
-      console.log(await res.json());
+      let updatedUser = await res.json();
+      store.commit('setUser', updatedUser);
     },
     async deleteBooking(store, id) {
       let res = await fetch('/rest/bookings/' + id, {
