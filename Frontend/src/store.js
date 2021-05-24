@@ -203,10 +203,11 @@ export default createStore({
 
     async updateUser(store, userInfo) {
       console.log(userInfo);
-      // let res = await fetch('/rest/user/:id', {
-      //   method: 'PUT',
-      //   body: JSON.stringify(userInfo)
-      // })
+      let res = await fetch('/rest/users/' + this.state.user.id, {
+        method: 'PUT',
+        body: JSON.stringify(userInfo),
+      });
+      console.log(res.json());
     },
     async deleteBooking(store, id) {
       let res = await fetch('/rest/bookings/' + id, {

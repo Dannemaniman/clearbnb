@@ -135,6 +135,12 @@ public class Main {
         app.get("/rest/users/:id", (req, res) -> {
             res.json(collection("User").findById(req.params("id")));
         });
+    
+        app.put("/rest/users/:id", (req, res) -> {
+            System.out.println("test");
+            String test = "Svar från Backend";
+            res.json(test);
+        });
 
         app.get("/rest/bookings", (req, res) -> {
             res.json(collection("Booking").find());

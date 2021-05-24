@@ -50,7 +50,7 @@ export default {
       firstName: '',
       lastName: '',
       description: '',
-      gender: '',
+      gender: 'male',
       image: '',
       id: this.user.id,
     };
