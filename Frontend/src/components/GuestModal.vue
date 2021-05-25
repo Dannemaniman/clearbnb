@@ -100,117 +100,121 @@ export default {
 </script>
 
 <style scoped>
-.guest-container {
-  margin: 0;
-  width: 100%;
-  border: 1px solid black;
-  padding-top: 0.5rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
+  .guest-container{
+    margin: 0;
+    width: 100%;
+    border: 1px solid black;
+    padding-top: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    background-color: whitesmoke;
+    padding: 1rem;
+  }
 
-.guest-container:active,
-.guest-container:hover {
-  cursor: pointer;
-  background-color: rgba(240, 220, 45, 0.1);
-}
+  .guest-container:active, .guest-container:hover{
+    cursor: pointer;
+    background-color: rgba(240, 220, 45, 0.1)
+  }
 
-.guest-header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-radius: 10px;
-  z-index: 1;
-  position: relative;
-}
+  .guest-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 10px;
+    z-index: 1;
+    position: relative;
+  }
 
-p {
-  margin: 0;
-}
+  p {
+    margin: 0;
+  }
 
-.guest-header p:first-of-type {
-  text-align: left;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
+  .guest-header p:first-of-type{
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: bold;
+  } 
 
-.guest-header p:last-of-type {
-  text-align: left;
-}
+  .guest-header p:last-of-type {
+    text-align: left;
+  }
 
-.guest-modal {
-  background-color: whitesmoke;
-  position: absolute;
-  width: 20rem;
-  top: -0.2rem;
-  right: -0.2rem;
-  border: 2px solid black;
-  border-radius: 10px;
-  cursor: default;
-}
+  .guest-modal {
+    background-color: whitesmoke;
+    position: absolute;
+    width: 20rem;
+    top: -0.2rem;
+    right: -0.2rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: default;
+  }
 
-.select-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 2rem;
-}
+  .select-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
 
-.button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-content: right;
-  align-items: right;
-  position: relative;
-  right: 10px;
-}
+  .button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-content: right;
+    align-items: right;
+    position: relative;
+    right: 10px;
+  }
 
-.button-container p {
-  align-self: center;
-  margin: auto 0.8rem;
-}
+  .button-container p {
+    align-self: center;
+    margin: auto 0.8rem;
+  }
 
-button {
-  height: 2rem;
-  width: 2rem;
-  border-radius: 2rem;
-  outline: none;
-  cursor: pointer;
-}
+  button {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+    outline: none;
+    cursor: pointer;
+  }
 
-ul {
-  margin-top: 4rem;
-  padding: 0;
-}
+  ul {
+    margin-top: 4rem;
+    padding: 0;
+  }
 
-li {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  padding-left: 1rem;
-}
+  li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
+  }
 
-.select-label {
-  flex-grow: 4;
-  text-align: left;
-}
+  .select-label {
+    flex-grow: 4;
+    text-align: left;
+  }
 
-.select-label p:last-of-type {
-  font-size: 0.8rem;
-}
+  .select-label p:last-of-type {
+    font-size: 0.8rem;
+  }
 
-.guestmodal-info {
-  padding: 2rem;
-  padding-top: 0;
-  font-size: 0.7rem;
-}
+  .guestmodal-info{
+    padding: 2rem;
+    padding-top: 0;
+    font-size: 0.7rem;
+  }
 
-.leave-button {
-  border-radius: 0;
-  width: 4rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
-}
+  .leave-button {
+    border-radius: 0;
+    width: 4rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
 </style>

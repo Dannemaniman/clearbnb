@@ -2,6 +2,7 @@
   <Navbar />
 
   <main>
+    <div class="background-orange"></div>
     <router-view />
   </main>
 
@@ -58,5 +59,23 @@ body {
 
 main {
   flex-grow: 1;
+}
+
+.background-orange {
+  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+  /* transform: rotate(180deg); */
+  transform: rotate(180deg);
+  width: 100%;
+  height: 40rem;
+  position: fixed;
+  /* position: absolute; */
+  margin: 0 auto;
+  left: 0;
+  top: -3rem;
+  /* right: 20rem; */
+  z-index: -1;
 }
 </style>

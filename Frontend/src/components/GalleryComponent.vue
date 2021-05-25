@@ -58,6 +58,11 @@ export default {
     'house-1 house-2 house-3 house-3'
     'house-1 house-4 house-5 house-6'
     'house-7 house-7 house-8 house-6';
+      background: white;
+    box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px;
+    padding: 0.4rem;
+    border-radius: 10px;
+      background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
 }
 .house-1 {
   grid-area: house-1;

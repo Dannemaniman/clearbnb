@@ -3,6 +3,9 @@
     <Spinner v-if="showSpinner" />
     <div v-else>
       <GalleryComponent />
+      <p class="greeting"><span>Vi bryr oss!</span> <br /> 
+        Vi bryter våra ryggar för att du ska glömma bort ditt inrutade vardagsliv</p>
+        <Typewriter />
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
       <MapComponent />
@@ -17,6 +20,7 @@ import GalleryComponent from '../components/GalleryComponent.vue';
 import Slider from '../components/Slider.vue';
 import MapComponent from '../components/MapComponent.vue';
 import Spinner from '../components/Spinner.vue';
+import Typewriter from "../components/Typewriter.vue"
 
 export default {
   components: {
@@ -25,6 +29,7 @@ export default {
     Slider,
     MapComponent,
     Spinner,
+    Typewriter
   },
   data() {
     return {
@@ -51,4 +56,15 @@ export default {
   padding: 0 0.5rem;
 }
 
+.greeting {
+  font-size: 3rem;
+  font: bolder;
+  margin-bottom: 7rem;
+  line-height: 100%;
+  text-shadow: 2px 2px 0px #ffffff, 2px 2px 0px rgba(0, 0, 0, 0.164);
+}
+
+.greeting span {
+  font-size: 5rem;
+}
 </style>
