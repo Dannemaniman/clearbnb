@@ -54,6 +54,13 @@ export default {
   flex-direction: column;
 }
 
+@media (max-width: 650px) {
+  .form-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 form {
   display: flex;
   flex-direction: column;
