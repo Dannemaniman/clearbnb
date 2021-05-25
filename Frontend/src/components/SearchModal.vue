@@ -186,11 +186,11 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -80%);
+  transform: translate(-50%, -65%);
   z-index: 99;
-
+  box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
   max-width: 520px;
-  background-color: #e9e9e9;
+  background-color: whitesmoke;
   border-radius: 16px;
   padding: 25px;
   color: #000;
@@ -211,7 +211,7 @@ export default {
   align-items: flex-end;
 }
 .selectors select {
-  background: #a9a9a9;
+  background: white;
   border: 1px solid #9f9f9f;
   cursor: pointer;
   border-radius: 4px;
@@ -288,17 +288,20 @@ li {
 
 .selector-text {
   display: inline;
-  background-color: #c7c7c7;
+  background-color: white;
   padding: 0.5rem 0;
-  border-radius: 10px 0 0 0;
   text-align: left;
+  width: 50%;
 }
 
 .amenities {
-  background-color: #c7c7c7;
+  background-color: white;
   padding: 0.5rem 0;
-  border-radius: 0 10px 0 0;
-  height: 90px;
+  min-height: 10rem;
+  width: 50%;
+}
+.amenities > * {
+  margin: 0.5rem;
 }
 .amenities p {
   margin: 0;
