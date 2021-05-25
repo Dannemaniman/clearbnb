@@ -185,7 +185,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -65%);
+  transform: translate(-50%, -60%);
   z-index: 99;
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
   min-width: 50rem;
@@ -200,6 +200,9 @@ export default {
 }
 .flexbox > * {
   width: 50%;
+  margin: 0.2rem;
+  min-height: 14rem;
+  border-radius: 5px;
 }
 
 /*   */
@@ -208,6 +211,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 48%;
+  box-shadow: 0px 0px 5px rgb(0 0 0);
 }
 .selectors select {
   background: white;
@@ -234,10 +239,14 @@ select:focus {
 }
 .checkboxes .table {
   display: table;
-  width: 100%;
+  width: 96%;
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
+  min-height: 14rem;
+  border-radius: 5px;
+  text-align: start;
 }
 .checkboxes .row {
-  width: 50%;
+  width: 42%;
   display: inline-block;
   text-align: right;
 }
@@ -256,7 +265,7 @@ select:focus {
   text-align: left;
   display: inline-flex;
   align-items: center;
-  margin-left: 4rem;
+  margin-right: 1rem;
 }
 
 .select-label p:last-of-type {
@@ -296,18 +305,18 @@ li {
   display: inline;
   background-color: white;
   padding: 0.5rem 0;
-  width: 50%;
+  width: 48%;
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
 }
 
 .amenities {
   background-color: white;
-  padding: 0.5rem 0;
-  min-height: 10rem;
-  width: 50%;
+  padding-top: 0.4rem;
+  min-height: 14rem;
+  width: 48%;
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
 }
-.amenities > * {
-  margin: 0.5rem;
-}
+
 .amenities p {
   margin: 0;
 }
