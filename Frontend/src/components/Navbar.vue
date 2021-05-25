@@ -127,6 +127,10 @@ export default {
   z-index: 2;
   background: white;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 2rem;
 }
 
 .header-option ul {
@@ -144,6 +148,7 @@ export default {
   transition: ease 0.3s;
   padding: 2px 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
 }
 
 .header-search:hover {
@@ -234,7 +239,7 @@ export default {
   padding: 10px 16px;
   cursor: pointer;
   border-radius: 22px;
-
+  background: white;
   color: rgb(34, 34, 34);
 }
 

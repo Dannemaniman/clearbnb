@@ -13,9 +13,9 @@
     </div>
     <div class="content-holder">
       <div class="information">
-        <h1>{{ home.city }}</h1>
-        <h2>{{ home.address }}</h2>
-        <h2>{{ home.description }}</h2>
+        <h2>{{ home.city }}, <span class="home-address">{{ home.address }}</span></h2>
+        <h3></h3>
+        <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
       <BookingModal :home="home" />
@@ -24,7 +24,6 @@
     <br />
     <br />
     <br />
-
     <MapComponent :home="home" />
     <Reviews :reviews="$store.state.reviews" />
     <Hosts :home="home" />
@@ -67,6 +66,21 @@ export default {
 .detail-content {
   display: flex;
   flex-direction: column;
+  /* margin: 1rem auto; */
+  border-radius: 10px;
+  /* padding: 1rem; */
+  text-align: center;
+  width: 100%;
+  /* max-width: 59rem; */
+  /* margin: 0; */
+}
+
+h1 {
+  margin-top: 5rem;
+  font-size: 3rem;
+  /* font-size: fit-content; */
+  text-align: left;
+  margin-left: 1rem;
 }
 
 .content-holder {
@@ -81,7 +95,11 @@ export default {
 }
 
 .information h2:last-of-type {
-  font-size: 1.3rem;
+  font-size: 3rem;
+}
+
+.home-address {
+  font-size: 1.6rem;
 }
 
 .images {
@@ -93,8 +111,9 @@ export default {
     'img-1 img-1 img-1 img-3'
     'img-1 img-1 img-1 img-4'
     'img-5 img-6 img-7 img-8';
-  padding: 1rem;
+  padding: 0.3rem;
   gap: 0.3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 .images img {
   width: 100%;
@@ -155,5 +174,9 @@ export default {
   background-image: url('../../public/Map.png');
   height: 25rem;
   margin-top: 3rem;
+}
+
+.information h2 {
+  font-size: 6rem;
 }
 </style>

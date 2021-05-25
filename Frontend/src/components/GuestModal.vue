@@ -95,6 +95,11 @@ export default {
     padding-top: 0.5rem;
     margin-bottom: 1rem;
     position: relative;
+
+          border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  background-color: whitesmoke;
+    padding: 1rem;
   }
 
   .guest-container:active, .guest-container:hover{

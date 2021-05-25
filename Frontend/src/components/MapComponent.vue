@@ -1,5 +1,6 @@
 <template>
   <div id="container">
+    <p class="map-title">Homes in your vicinity</p>
     <div id="mapContainer"></div>
   </div>
 </template>
@@ -205,10 +206,30 @@ export default {
 </script>
 
 <style scoped>
+
+.container{
+
+  background: white;
+    box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.map-title {
+  font-size: 3rem;
+  margin: 0;
+  text-align: left;
+}
+
 #mapContainer {
-  margin-top: 7rem;
+  margin-top: 3rem;
   width: 100%;
   height: 35rem;
+
+  background: white;
+    box-shadow: rgba(0 0 0 / 60%) 0px 1px 6px;
+    padding: 1rem;
+    border-radius: 10px;
 }
 .leaflet-popup-content {
   color: aqua;

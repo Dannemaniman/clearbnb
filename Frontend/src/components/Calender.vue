@@ -109,6 +109,15 @@ export default {
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     margin-bottom: 1rem;
     position: relative;
+    /* overflow: hidden; */
+    margin-right: 1rem;
+    width: 100%;
+    /* height:  */
+    /* max-width: 1rem; */
+      border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  background-color: whitesmoke;
+    padding: 1rem;
   }
 
   section:hover, section:active {

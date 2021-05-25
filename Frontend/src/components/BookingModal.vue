@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="booking-modal-section">
     <header>
       <h1>{{ home.price }}kr <span class="span-night">/ night</span></h1>
       <h2>
@@ -178,15 +178,18 @@ export default {
 </script>
 
 <style scoped>
-section {
+.booking-modal-section {
   border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  background-color: whitesmoke;
+  /* box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
+  background-color: rgb(233, 233, 233);
   width: fit-content;
   padding: 1rem;
   color: black;
-  min-width: 14rem;
+  min-width: 16rem;
   position: relative;
+  max-height: 30rem;
+  /* overflow: hidden; */
+  margin-top: 4rem;
 }
 
 h2 {
