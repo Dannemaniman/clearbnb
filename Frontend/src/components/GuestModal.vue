@@ -100,16 +100,6 @@ export default {
 </script>
 
 <style scoped>
-.guest-container {
-  margin: 0;
-  width: 100%;
-  border: 1px solid black;
-  padding-top: 0.5rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-<<<<<<< HEAD
   .guest-container{
     margin: 0;
     width: 100%;
@@ -117,10 +107,9 @@ export default {
     padding-top: 0.5rem;
     margin-bottom: 1rem;
     position: relative;
-
-          border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    background-color: whitesmoke;
     padding: 1rem;
   }
 
