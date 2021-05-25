@@ -3,13 +3,16 @@
     <Spinner v-if="showSpinner" />
     <div v-else>
       <GalleryComponent />
-      <p class="greeting"><span>Vi bryr oss!</span> <br /> 
-        Vi bryter våra ryggar för att du ska glömma bort ditt inrutade vardagsliv</p>
-        <Typewriter />
+      <p class="greeting">
+        <span>Vi bryr oss!</span> <br />
+        Vi bryter våra ryggar för att du ska glömma bort ditt inrutade
+        vardagsliv
+      </p>
+      <Typewriter />
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
-      <MapComponent />
       <Slider title="Billigaste" :houses="cheapestHouses" />
+      <MapComponent />
     </div>
   </div>
 </template>
@@ -20,7 +23,7 @@ import GalleryComponent from '../components/GalleryComponent.vue';
 import Slider from '../components/Slider.vue';
 import MapComponent from '../components/MapComponent.vue';
 import Spinner from '../components/Spinner.vue';
-import Typewriter from "../components/Typewriter.vue"
+import Typewriter from '../components/Typewriter.vue';
 
 export default {
   components: {
@@ -29,7 +32,7 @@ export default {
     Slider,
     MapComponent,
     Spinner,
-    Typewriter
+    Typewriter,
   },
   data() {
     return {
