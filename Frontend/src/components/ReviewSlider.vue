@@ -55,11 +55,14 @@ export default {
 </script>
 
 <style scoped>
-  .section-slider {
-    width: 100%;
-    background-color: grey;
-    border-top: 3px solid black;
-  }
+.section-slider {
+  width: 100%;
+  background-color: grey;
+  border-top: 3px solid black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
 
   .slider-container {
     width: 100%;
@@ -126,7 +129,15 @@ export default {
     color: #4b4b4b;
     position: relative;
     border-right: 1px solid black;
+    border-radius: 10px;
+    margin: 0.3rem 1rem;
 }
+
+.review-card:hover, .review-card:active {
+  background-color: white;
+}
+
+
 .review-header {
   display: flex;
   align-items: center;

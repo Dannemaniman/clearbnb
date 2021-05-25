@@ -8,7 +8,7 @@
         <Typewriter />
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
-      <MapComponent />
+      <MapComponent :inDetail="false"/>
       <Slider title="Billigaste" :houses="cheapestHouses" />
     </div>
   </div>

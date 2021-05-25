@@ -1,6 +1,8 @@
 <template>
+
 <section>
  <ReviewSlider :reviews="reviews" @popSection="popReplySection"/>
+ <transition name="fade">
   <section v-if="showReview">
     <article class="top-review">
       <div class="user-bar">
@@ -12,6 +14,7 @@
         <p>{{ replyReview.review }}</p>
       </div>
     </article>
+ 
     <article v-for="review in replyReviews" :key="review.id" class="top-review reply">
       <div class="user-bar">
         <img :src="review.avatar" alt="" />
@@ -19,12 +22,15 @@
       </div>
        <p>{{ review.reply }}</p>
     </article>
+
     <div class="create-comment-container">
       <textarea name="description" placeholder="Must be logged in to write comment.." rows="3" cols="50" v-model="reviewText"/>
       <button class="send-button" @click="postReply">Post</button>
     </div>
   </section> 
+     </transition>
  </section>  
+  
 </template>
 
 <script>
@@ -68,6 +74,14 @@ export default {
 </script>
 
 <style scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
   section {
     width: 100%;
     display: flex;
@@ -78,7 +92,11 @@ export default {
     background-color: whitesmoke;
     padding: 2rem;
     position: relative;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    border-bottom: 1px solid black;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+    padding: 0.5rem;
+    border-radius: 10px;
   }
 
   .user-bar {

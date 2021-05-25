@@ -14,7 +14,6 @@
     <div class="content-holder">
       <div class="information">
         <h2>{{ home.city }}, <span class="home-address">{{ home.address }}</span></h2>
-        <h3></h3>
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
@@ -24,7 +23,7 @@
     <br />
     <br />
     <br />
-    <MapComponent :home="home" />
+    <MapComponent :home="home" :inDetail="true"/>
     <Reviews :reviews="$store.state.reviews" />
     <Hosts :home="home" />
   </div>
@@ -81,6 +80,10 @@ h1 {
   /* font-size: fit-content; */
   text-align: left;
   margin-left: 1rem;
+}
+
+h3 {
+  line-height: 150%;
 }
 
 .content-holder {
