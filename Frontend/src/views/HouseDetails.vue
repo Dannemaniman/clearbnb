@@ -2,18 +2,19 @@
   <div v-if="home" class="detail-content">
     <h1>{{ home.title }}</h1>
     <div class="images">
-      <img :src="home.images[0]" alt="" class="img-1" />
-      <img :src="home.images[1]" alt="" class="img-2" />
-      <img :src="home.images[2]" alt="" class="img-3" />
-      <img :src="home.images[3]" alt="" class="img-4" />
-      <img :src="home.images[4]" alt="" class="img-5" />
-      <img :src="home.images[5]" alt="" class="img-6" />
-      <img :src="home.images[6]" alt="" class="img-7" />
-      <img :src="home.images[7]" alt="" class="img-8" />
+      <img
+        v-for="(image, index) of home.images.slice(0, 8)"
+        :src="home.images[index]"
+        :key="index"
+        :class="addClass(index)"
+        @click="swapImage(index)"
+      />
     </div>
     <div class="content-holder">
       <div class="information">
-        <h2>{{ home.city }}, <span class="home-address">{{ home.address }}</span></h2>
+        <h2>
+          {{ home.city }}, <span class="home-address">{{ home.address }}</span>
+        </h2>
         <h3></h3>
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
@@ -43,6 +44,17 @@ export default {
     return {
       home: null,
     };
+  },
+  methods: {
+    addClass(index) {
+      return 'img-' + (index + 1);
+    },
+    swapImage(index) {
+      [this.home.images[0], this.home.images[index]] = [
+        this.home.images[index],
+        this.home.images[0],
+      ];
+    },
   },
 
   /* mounted() {
@@ -113,7 +125,7 @@ h1 {
     'img-5 img-6 img-7 img-8';
   padding: 0.3rem;
   gap: 0.3rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 .images img {
   width: 100%;
