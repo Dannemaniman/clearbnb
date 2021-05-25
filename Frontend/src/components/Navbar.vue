@@ -103,7 +103,7 @@ export default {
   --grey--light: #f7f7f7;
   --grey--text--light: #717171;
   --grey-text-dark: #222;
-  --pink: #ff385c;
+  --pink: rgb(254, 149, 0);
 }
 
 .logo {
@@ -148,7 +148,7 @@ export default {
   transition: ease 0.3s;
   padding: 2px 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    background: white;
+  background: white;
 }
 
 .header-search:hover {
