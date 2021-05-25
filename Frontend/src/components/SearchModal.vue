@@ -44,26 +44,21 @@
             </div>
           </div>
           <div class="checkboxes">
-            <div class="table">
-              <span class="row" v-for="amenity in amenities" :key="amenity">
-                <span class="checkbox-label"> {{ amenity }} </span>
-                <input
-                  type="checkbox"
-                  :value="amenity"
-                  v-model="searchObject.amenities"
-                />
-              </span>
-            </div>
+            <span class="row" v-for="amenity in amenities" :key="amenity">
+              <span class="checkbox-label"> {{ amenity }} </span>
+              <input
+                type="checkbox"
+                :value="amenity"
+                v-model="searchObject.amenities"
+              />
+            </span>
           </div>
 
           <div class="selector-text">
             <label>Property:</label>
-            <span> {{ searchObject.property }}</span
-            ><br />
-            <label>Max price:</label> <span> {{ searchObject.price }}</span
-            ><br />
-            <label>Min review:</label> <span> {{ searchObject.review }}</span
-            ><br />
+            <span> {{ searchObject.property }}</span>
+            <label>Max price:</label> <span> {{ searchObject.price }}</span>
+            <label>Min review:</label> <span> {{ searchObject.review }}</span>
             <label>Beds:</label> <span>{{ counter }}</span>
           </div>
           <div class="amenities">
@@ -173,12 +168,13 @@ export default {
 
 .modal-overlay {
   position: absolute;
+  height: 150vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 40%);
 }
 
 .modal {
@@ -188,7 +184,7 @@ export default {
   transform: translate(-50%, -60%);
   z-index: 99;
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
-  min-width: 50rem;
+  width: 50rem;
   background-color: white;
   border-radius: 16px;
   padding: 25px;
@@ -199,8 +195,7 @@ export default {
   flex-wrap: wrap;
 }
 .flexbox > * {
-  width: 50%;
-  margin: 0.2rem;
+  margin: 0.3rem;
   min-height: 14rem;
   border-radius: 5px;
 }
@@ -210,9 +205,11 @@ export default {
 .selectors {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 48%;
   box-shadow: 0px 0px 5px rgb(0 0 0);
+  padding: 1rem 6rem;
 }
 .selectors select {
   background: white;
@@ -237,13 +234,14 @@ select:focus {
 .selectors div {
   margin: 0.2rem 0;
 }
-.checkboxes .table {
+.checkboxes {
   display: table;
-  width: 96%;
+  width: 48%;
   box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
   min-height: 14rem;
   border-radius: 5px;
   text-align: start;
+  padding: 2rem 0.5rem;
 }
 .checkboxes .row {
   width: 42%;
@@ -277,7 +275,6 @@ li {
   list-style: none;
   display: flex;
   flex-direction: row;
-  padding-left: 1rem;
 }
 
 .button-container {
@@ -302,11 +299,13 @@ li {
 }
 
 .selector-text {
-  display: inline;
+  display: flex;
+  flex-direction: column;
   background-color: white;
   padding: 0.5rem 0;
   width: 48%;
   box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
+  padding: 1rem 0.5rem;
 }
 
 .amenities {
@@ -315,6 +314,7 @@ li {
   min-height: 14rem;
   width: 48%;
   box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
+  padding: 1rem 0.5rem 0 0.5rem;
 }
 
 .amenities p {
@@ -328,7 +328,7 @@ label {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: transform 1s;
+  transition: transform 0.5s;
 }
 .slide-enter {
   transform: translateY(-100vh) translateX(-50%);
