@@ -32,51 +32,28 @@
                 </option>
               </select>
             </div>
+            <div class="guest-number">
+              <li class="select-item">
+                <p class="select-label">Beds:</p>
+                <div class="button-container">
+                  <button @click="decrement">-</button>
+                  <p>{{ counter }}</p>
+                  <button @click="increment">+</button>
+                </div>
+              </li>
+            </div>
           </div>
           <div class="checkboxes">
-            <div>
-              <label>Bed</label>
-              <input
-                type="checkbox"
-                value="Bed"
-                v-model="searchObject.amenities"
-              />
+            <div class="table">
+              <span class="row" v-for="amenity in amenities" :key="amenity">
+                <span class="checkbox-label"> {{ amenity }} </span>
+                <input
+                  type="checkbox"
+                  :value="amenity"
+                  v-model="searchObject.amenities"
+                />
+              </span>
             </div>
-            <div>
-              <label>Breakfast</label>
-              <input
-                type="checkbox"
-                value="Breakfast"
-                v-model="searchObject.amenities"
-              />
-            </div>
-            <div>
-              <label>Fridge</label>
-              <input
-                type="checkbox"
-                value="Fridge"
-                v-model="searchObject.amenities"
-              />
-            </div>
-            <div>
-              <label>Heating</label>
-              <input
-                type="checkbox"
-                value="Heating"
-                v-model="searchObject.amenities"
-              />
-            </div>
-          </div>
-
-          <div class="guest-number">
-            <li class="select-item">
-              <p class="select-label">Beds:</p>
-              <div class="button-container">
-                <button @click="decrement">-</button>
-                <p>{{ counter }}</p>
-                <button @click="increment">+</button>
-              </div>
-            </li>
           </div>
 
           <div class="selector-text">
@@ -94,7 +71,9 @@
             <Amenities :amenities="searchObject.amenities" />
           </div>
         </div>
-        <button class="button" @click="sendSearch">Search</button>
+        <div class="search">
+          <button class="button" @click="sendSearch">Search</button>
+        </div>
       </div>
     </transition>
   </section>
@@ -117,6 +96,26 @@ export default {
       prices: ['1000', '2000', '3000', '4000'],
       reviews: ['1', '2', '3', '4', '5'],
       counter: 0,
+      amenities: [
+        'Bed',
+        'Breakfast',
+        'Camera',
+        'CCTV',
+        'Dinner',
+        'Elevator',
+        'Fridge',
+        'Heating',
+        'Iron',
+        'Mirror',
+        'Parking',
+        'Room Service',
+        'Sink',
+        'Tea',
+        'Television',
+        'Toothbrush',
+        'Towel',
+        'Wifi',
+      ],
     };
   },
   components: { Amenities },
@@ -189,8 +188,8 @@ export default {
   transform: translate(-50%, -65%);
   z-index: 99;
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
-  max-width: 520px;
-  background-color: whitesmoke;
+  min-width: 50rem;
+  background-color: white;
   border-radius: 16px;
   padding: 25px;
   color: #000;
@@ -200,7 +199,7 @@ export default {
   flex-wrap: wrap;
 }
 .flexbox > * {
-  flex: 1 1 50%;
+  width: 50%;
 }
 
 /*   */
@@ -208,11 +207,11 @@ export default {
 .selectors {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 }
 .selectors select {
   background: white;
-  border: 1px solid #9f9f9f;
+  border: 1px solid rgb(254, 149, 0);
   cursor: pointer;
   border-radius: 4px;
   -webkit-appearance: none;
@@ -224,24 +223,31 @@ export default {
   padding: 0.2rem;
   width: 7rem;
 }
-.selectors select:hover select:focus {
-  outline: none;
-  background-color: #a9a9a9;
-  border: 1px solid #4b4b4b;
+.selectors select:hover,
+select:focus {
+  outline: cadetblue;
+  background-color: whitesmoke;
+  border: 1px solid rgb(254, 149, 0);
 }
 .selectors div {
   margin: 0.2rem 0;
 }
-.checkboxes {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 0 3rem;
+.checkboxes .table {
+  display: table;
+  width: 100%;
+}
+.checkboxes .row {
+  width: 50%;
+  display: inline-block;
+  text-align: right;
+}
+.row .checkbox-label {
+  padding-right: 1em;
+  display: inline-block;
 }
 
 .guest-number {
   display: flex;
-  flex: 1 1 100%;
   flex-direction: column;
 }
 
@@ -290,7 +296,6 @@ li {
   display: inline;
   background-color: white;
   padding: 0.5rem 0;
-  text-align: left;
   width: 50%;
 }
 
