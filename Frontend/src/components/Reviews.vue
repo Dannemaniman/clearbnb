@@ -105,6 +105,11 @@ section {
   top: 0.5rem;
   left: 1rem;
 }
+.user-bar img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 45px;
+}
 
 .text-bar p {
   margin-bottom: 0;

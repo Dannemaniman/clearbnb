@@ -81,7 +81,7 @@ export default {
     },
   },
   created() {
-    this.getUserName();
+    //this.getUserName();
   },
   updated() {
     this.getUserName();
