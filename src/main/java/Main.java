@@ -135,6 +135,20 @@ public class Main {
         app.get("/rest/users/:id", (req, res) -> {
             res.json(collection("User").findById(req.params("id")));
         });
+    
+        app.put("/rest/users/:id", (req, res) -> {
+            User user = collection("User").findById(req.params("id"));
+            User updates = req.body(User.class);
+            user.setFirstName(updates.getFirstName());
+            user.setLastName(updates.getLastName());
+            user.setFullName(updates.getFirstName() + " " + updates.getLastName());
+            user.setDescription(updates.getDescription());
+            user.setGender(updates.getGender());
+            user.setImage(updates.getImage());
+            collection("User").save(user);
+            String test = "Svar från Backend";
+            res.json(user);
+        });
 
         app.get("/rest/bookings", (req, res) -> {
             res.json(collection("Booking").find());

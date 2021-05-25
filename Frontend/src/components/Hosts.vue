@@ -1,7 +1,7 @@
 <template>
   <section class="section-host">
     <header>
-      <img class="avatar" src="../../public/avatar.jpg" />
+      <img class="avatar" :src="owner.image" />
       <div class="user-container">
         <h1>
           Hosted by <span class="span-name">{{ owner.fullName }}</span>
@@ -12,12 +12,7 @@
     <article>
       <h2>About {{ owner.fullName }}</h2>
       <p class="info-text">
-        Tillgänglig på telefon under hela vistelsen, personligt mottagande och
-        incheckning.
-        <br /><br />
-        Bjuder på kaffe och bullar på morgonen.
-        <br /><br />
-        Jag spelar Heavy Metal på full volym från klockan 11 till 3 på natten.
+        {{ owner.description }}
         <br /><br />
         {{ owner.email }}
       </p>
