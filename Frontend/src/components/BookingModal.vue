@@ -15,6 +15,8 @@
         :adultCounter="adultCounter"
         :childCounter="childCounter"
         :seniorCounter="seniorCounter"
+        :guests="guests"
+        :maxGuests="maxGuests"
       />
       <button @click="popPage">Check Availability</button>
     </article>
@@ -47,6 +49,10 @@ export default {
     GuestModal,
   },
   computed: {
+    guests() {
+      let guests = this.adultCounter + this.childCounter + this.seniorCounter;
+      return guests;
+    },
     reviewAmount() {
       let reviewAmount = this.$store.state.reviews.length;
       if (reviewAmount == 0) {
@@ -70,9 +76,11 @@ export default {
     //lägg computed som räknar ut antal dagar som är mellan 2 new Date()
     totalPrice() {
       return (
-        this.adultCounter * this.prices['adult'] +
-        this.childCounter * this.prices['child'] +
-        this.seniorCounter * this.prices['senior']
+        this.numberOfNights *
+          (this.adultCounter * this.prices['adult'] +
+            this.childCounter * this.prices['child'] +
+            this.seniorCounter * this.prices['senior']) +
+        this.serviceFee
       );
     },
     perNight() {
@@ -86,7 +94,7 @@ export default {
       return this.numberOfNights > 1 ? 'nights' : 'night';
     },
     serviceFee() {
-      return Math.round(this.totalPrice * 0.05);
+      return Math.round(this.home.price * 0.15 * this.numberOfNights);
     },
     numberOfNights() {
       console.log(this.chosenDate.end - this.chosenDate.start);
@@ -119,12 +127,12 @@ export default {
         start: null,
         end: null,
       },
+      maxGuests: this.home.accommodation.beds,
     };
   },
   methods: {
     popPage() {
-      let guests = this.adultCounter + this.childCounter + this.seniorCounter;
-      if (guests == 0) {
+      if (this.guests == 0) {
         alert('Choose how many guests that are staying');
       } else if (this.chosenDate.start == null || this.chosenDate.end == null) {
         alert('You have to choose check-in and check-out dates');
@@ -132,7 +140,7 @@ export default {
         if (this.$store.state.user !== null) {
           let chosenObject = {
             guests: {
-              totalGuests: guests,
+              totalGuests: this.guests,
               adult: this.adultCounter,
               child: this.childCounter,
               senior: this.seniorCounter,
