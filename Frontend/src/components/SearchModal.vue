@@ -113,7 +113,7 @@ export default {
         amenities: [],
         beds: '',
       },
-      properties: ['Torp', 'Villa', 'Lägenhet', 'Sommarstuga'],
+      properties: ['apartment', 'house', 'bed-n-breakfast'],
       prices: ['1000', '2000', '3000', '4000'],
       reviews: ['1', '2', '3', '4', '5'],
       counter: 0,
@@ -157,21 +157,19 @@ export default {
   background: none;
   cursor: pointer;
   margin-top: 0.5rem;
-
   display: inline-block;
-  padding: 10px 20px;
-  background-image: linear-gradient(to right, #6b6b6b, #808080);
-  border-radius: 8px;
-
+  padding: 7px 15px;
+  background-image: linear-gradient(to right, rgb(254 149 0), rgb(254 135 0));
+  border-radius: 4px;
   color: #fff;
   font-size: 18px;
-  font-weight: 700;
-
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
-  transition: 0.4s ease-out;
+  font-weight: 400;
+  box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
+  transition: 0.2s ease-out;
 }
 .button:hover {
-  box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
+  transform: scale(1.01);
+  box-shadow: 2px 5px 5px rgb(0 0 0 /80%);
 }
 
 .modal-overlay {

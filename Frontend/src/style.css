@@ -33,10 +33,11 @@ main {
   margin: auto;
   /* background-color: whitesmoke; */
   /* opacity: 0.9; */
-  background: white;
-  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
+  background: whitesmoke;
+  /* box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px; */
   padding: 2rem;
   padding-top: 0;
+  border-radius: 4rem 4rem 0 0;
 }
 
 Färgkoder {
