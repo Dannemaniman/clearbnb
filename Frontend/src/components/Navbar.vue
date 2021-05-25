@@ -322,33 +322,25 @@ export default {
   background: var(--grey--light);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 650px) {
   .header-search,
   .header-search input {
     -webkit-box-align: center !important;
     align-items: center !important;
     display: flex !important;
     height: 44px !important;
-    margin: 0px !important;
-    white-space: nowrap !important;
-    width: 100%;
-  }
 
-  .nav-button {
-    display: none;
+    white-space: nowrap !important;
   }
 
   .logo {
     display: none;
   }
-  .login-form {
-    display: none;
-  }
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 450px) {
   .header-search {
-    width: 100%;
+    width: 65%;
   }
 
   .header-search input {

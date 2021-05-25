@@ -46,6 +46,12 @@ footer {
   padding-top: 1rem;
 }
 
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
 li {
   text-decoration: none;
   list-style: none;
