@@ -9,7 +9,7 @@
     <button v-if="reviewable" class="review-button" @click="popReviewModal">
       Review
     </button>
-    <button class="cancel-button" @click="deleteBooking(this.userBooking.id)">Cancel</button>
+    <button class="cancel-button" @click="deleteBooking(houseId)">Cancel</button>
   </article>
   <ReviewModal
     :houseId="houseId"
