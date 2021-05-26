@@ -3,7 +3,11 @@
     <div class="image-div">
       <img :src="house.images[0]" />
       <div class="overlay">
-        <div class="text">{{ house.price }} / night</div>
+        <div class="text">
+          {{ house.propertyType }} with {{ house.accommodation.beds }} beds
+          <br />
+          {{ house.price }} / Night
+        </div>
       </div>
     </div>
     <h2>{{ house.city }}</h2>
