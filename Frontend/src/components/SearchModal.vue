@@ -218,9 +218,10 @@ export default {
 }
 .selectors select {
   background: white;
-  border: 1px solid rgb(254, 149, 0);
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
   cursor: pointer;
-  border-radius: 4px;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><polygon points="0,0 100,0 50,50" style="fill:%23626163;"/></svg>');
@@ -229,12 +230,12 @@ export default {
   background-size: 0.8rem;
   padding: 0.2rem;
   width: 7rem;
+  margin-top: 0.3rem;
+  text-align-last: center;
 }
 .selectors select:hover,
 select:focus {
-  outline: cadetblue;
-  background-color: whitesmoke;
-  border: 1px solid rgb(254, 149, 0);
+  border-bottom: 1px solid rgb(254, 149, 0);
 }
 .selectors div {
   margin: 0.2rem 0;

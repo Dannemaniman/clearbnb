@@ -1,6 +1,8 @@
 <template>
   <div id="container">
-    <p class="map-title">{{inDetail ? "Location of Home" : "Homes in your vicinity"}}</p>
+    <p class="map-title">
+      {{ inDetail ? 'Location of Home' : 'Homes in your vicinity' }}
+    </p>
     <div id="mapContainer"></div>
   </div>
 </template>

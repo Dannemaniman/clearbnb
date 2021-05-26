@@ -129,8 +129,6 @@ export default {
 </script>
 
 <style scoped>
-.content {
-}
 h1 {
   margin-top: 3rem;
 }
