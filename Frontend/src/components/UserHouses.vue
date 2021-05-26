@@ -100,8 +100,12 @@ export default {
     },
 
     async submitHome() {
+      console.log(this.images);
       this.images = this.$store.state.uploadedNames;
-      if (this.images == null) {
+      console.log(this.images);
+
+      if (this.images.length == 0) {
+        console.log('tjohojs');
         this.images = ['/images/No-Image.jpg'];
       }
       let ownerId = await this.$store.state.user.id;
