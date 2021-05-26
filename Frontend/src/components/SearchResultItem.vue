@@ -70,6 +70,7 @@ export default {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+  width: 100%;
 }
 img {
   width: 100%;
