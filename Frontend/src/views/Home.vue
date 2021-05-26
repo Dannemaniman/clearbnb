@@ -58,6 +58,7 @@ export default {
 <style scoped>
 .home-content {
   padding: 0 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .greeting {
