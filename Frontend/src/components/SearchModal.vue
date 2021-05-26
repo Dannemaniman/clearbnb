@@ -184,20 +184,25 @@ export default {
   transform: translate(-50%, -60%);
   z-index: 99;
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
-  width: 50rem;
+  max-width: 50rem;
   background-color: white;
   border-radius: 16px;
   padding: 25px;
   color: #000;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
 }
 .flexbox {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .flexbox > * {
   margin: 0.3rem;
   min-height: 14rem;
   border-radius: 5px;
+  flex-shrink: 1;
+  min-width: 22rem;
 }
 
 /*   */

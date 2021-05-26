@@ -24,6 +24,7 @@ export default {
   flex-direction: column;
   align-self: center;
   width: 45%;
+  min-width: 20rem;
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
   margin-top: 3rem;
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
