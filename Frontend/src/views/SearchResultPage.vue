@@ -110,6 +110,8 @@ export default {
   },
 
   async created() {
+    await this.$store.dispatch('fetchHouses');
+    console.log('hej');
     /* let res = await fetch('/rest/houses');
     let houses = await res.json(); */
     let houses = this.$store.state.houses;
