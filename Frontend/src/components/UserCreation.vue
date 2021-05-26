@@ -19,7 +19,7 @@
               class="long-input"
               name="fname"
               type="text"
-              v-model.trim="firstName"
+              v-model.trim="userInfo.firstName"
               @blur="validateInput('fname')"
               :class="{ invalid: firstNameValidity === 'invalid' }"
             />
@@ -37,7 +37,7 @@
               class="long-input"
               name="lname"
               type="text"
-              v-model.trim="lastName"
+              v-model.trim="userInfo.lastName"
               @blur="validateInput('lname')"
               :class="{ invalid: lastNameValidity === 'invalid' }"
             />
@@ -52,7 +52,7 @@
           placeholder="Please Enter a Accurate Description yourself."
           rows="10"
           cols="50"
-          v-model="description"
+          v-model="userInfo.description"
         />
       </div>
       <p v-if="lastNameValidity === 'invalid'" style="color: red">
@@ -65,7 +65,7 @@
           name="drone"
           value="male"
           checked
-          v-model="gender"
+          v-model="userInfo.gender"
         />
         <label class="radio-label" for="male">Male</label>
         <input type="radio" name="drone" value="female" v-model="gender" />
@@ -91,12 +91,14 @@ export default {
   },
   data() {
     return {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      description: this.user.description,
-      gender: 'male',
-      image: '',
-      id: this.user.id,
+      userInfo: {
+        firstName: '',
+        lastName: '',
+        description: '',
+        gender: 'male',
+        image: '',
+        id: this.user.id,
+      },
       firstNameValidity: 'pending',
       lastNameValidity: 'pending',
       textareaValidity: 'pending',
@@ -107,14 +109,14 @@ export default {
   props: ['user'],
   methods: {
     submit() {
-      this.image = this.$store.state.uploadedNames.toString();
+      this.userInfo.image = this.$store.state.uploadedNames.toString();
 
       if (
         this.firstNameValidity === 'valid' ||
         this.lastNameValidity === 'valid' ||
         this.textareaValidity === 'valid'
       ) {
-        this.$store.dispatch('updateUser', this.$data);
+        this.$store.dispatch('updateUser', this.userInfo);
         this.$router.go();
       } else {
         this.invalidForm = 'invalid';
