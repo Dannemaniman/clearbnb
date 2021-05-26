@@ -2,10 +2,10 @@
   <section>
     <div>
       <p>
-        We will
+        <!--We will-->
         <span class="text">{{ typeValue }}</span>
         <span class="text-cursor"></span>
-        you
+        <!--you-->
       </p>
     </div>
   </section>
@@ -17,7 +17,7 @@ export default {
     return {
       typeValue: '',
       typeStatus: false,
-      typeArray: ['help', 'show', 'teach', 'advise'],
+      typeArray: ['Apartments', 'Houses', 'Rooms'],
       typingSpeed: 100,
       erasingSpeed: 100,
       newTextDelar: 2000,
@@ -82,6 +82,7 @@ div {
 }
 
 div p {
-  font-size: 3rem;
+  font-size: 4rem;
+  font-weight: 100;
 }
 </style>

@@ -1,6 +1,14 @@
 <template>
-  <section class="section-amenities">
-    <h1>Amenities</h1>
+  <section
+    class="section-amenities"
+    :class="{ invalid: invalid === 'invalid' }"
+  >
+    <h1>
+      Amenities
+      <span v-if="failedValidity" style="font-size: 2rem; color: red">
+        You must choose atleast 1!</span
+      >
+    </h1>
     <div class="amenities-container">
       <article
         v-for="(amenity, index) of amenities"
@@ -17,6 +25,7 @@
 
 <script>
 export default {
+  props: ['invalid'],
   emit: ['amenities'],
   data() {
     return {
