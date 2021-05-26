@@ -110,8 +110,10 @@ export default {
   },
 
   async created() {
-    let res = await fetch('/rest/houses');
-    let houses = await res.json();
+    /* let res = await fetch('/rest/houses');
+    let houses = await res.json(); */
+    let houses = this.$store.state.houses;
+    console.log(houses);
 
     houses.filter((house) => {
       let city = house.city.toLowerCase();
