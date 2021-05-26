@@ -35,7 +35,6 @@ footer {
   flex-direction: column;
   justify-content: center;
   background-color: rgb(254, 149, 0);
-  width: 100vw;
 }
 
 .footer-content {
