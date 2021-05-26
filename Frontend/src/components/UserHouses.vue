@@ -147,7 +147,6 @@ export default {
         this.submitHome();
         this.showSpinner = false;
       }, 2000);
-      this.submitHome();
     },
 
     async submitHome() {
