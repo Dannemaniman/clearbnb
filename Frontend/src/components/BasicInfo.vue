@@ -14,19 +14,21 @@
               type="text"
               class="title-input"
               v-model.trim="title"
-              @blur="validateInput('title')" 
-              :class="{invalid: titleValidity === 'invalid'}"
+              @blur="validateInput('title')"
+              :class="{ invalid: titleValidity === 'invalid' }"
             />
           </td>
         </tr>
         <tr>
-          <th><label for="price">Price: {{ price }} SEK</label></th>
-          <td>      
+          <th>
+            <label for="price">Price: {{ price }} SEK</label>
+          </th>
+          <td>
             <input
               name="price"
               type="range"
               min="1"
-              max="6000"
+              max="2000"
               step="50"
               v-model="price"
             />
@@ -34,7 +36,9 @@
         </tr>
         <tr>
           <th>
-            <label for="childDiscount">Child Discount: {{ childDiscount }} %</label>
+            <label for="childDiscount"
+              >Child Discount: {{ childDiscount }} %</label
+            >
           </th>
           <td>
             <input
@@ -49,7 +53,9 @@
         </tr>
         <tr>
           <th>
-            <label for="seniorDiscount">Senior Discount {{ seniorDiscount }} %</label>
+            <label for="seniorDiscount"
+              >Senior Discount {{ seniorDiscount }} %</label
+            >
           </th>
           <td>
             <input
@@ -59,15 +65,15 @@
               max="100"
               step="1"
               v-model="seniorDiscount"
-            />    
+            />
           </td>
         </tr>
-         <tr>
+        <tr>
           <th colspan="3">
             <label for="description">Description: </label>
           </th>
-         </tr>
-         <tr>
+        </tr>
+        <tr>
           <td colspan="3">
             <textarea
               name="description"
@@ -75,8 +81,8 @@
               rows="10"
               cols="80"
               v-model.trim="description"
-              @blur="validateInput('description')" 
-              :class="{invalid: descriptionValidity === 'invalid'}"
+              @blur="validateInput('description')"
+              :class="{ invalid: descriptionValidity === 'invalid' }"
             />
           </td>
         </tr>
@@ -93,14 +99,14 @@
               type="text"
               class="long-input"
               v-model.trim="address"
-              @blur="validateInput('address')" 
-              :class="{invalid: addressValidity === 'invalid'}"
+              @blur="validateInput('address')"
+              :class="{ invalid: addressValidity === 'invalid' }"
             />
           </td>
         </tr>
         <tr>
           <th colspan="3">
-            <label for="zip">Zip Code</label> 
+            <label for="zip">Zip Code</label>
           </th>
         </tr>
         <tr>
@@ -111,8 +117,8 @@
               type="text"
               class="state-input"
               v-model="zipcode"
-              @blur="validateInput('zipcode')" 
-              :class="{invalid: zipcodeValidity === 'invalid'}"
+              @blur="validateInput('zipcode')"
+              :class="{ invalid: zipcodeValidity === 'invalid' }"
             />
           </td>
           <td>
@@ -122,9 +128,9 @@
               type="text"
               class="short-input"
               v-model.trim="city"
-              @blur="validateInput('city')" 
-              :class="{invalid: cityValidity === 'invalid'}"
-            />          
+              @blur="validateInput('city')"
+              :class="{ invalid: cityValidity === 'invalid' }"
+            />
           </td>
         </tr>
         <tr>
@@ -134,8 +140,13 @@
         </tr>
         <tr>
           <td colspan="3">
-            <select id="property-select" name="properties" v-model="propertyType"  @blur="validateInput('property')" 
-              :class="{invalid: propertyValidity === 'invalid'}">
+            <select
+              id="property-select"
+              name="properties"
+              v-model="propertyType"
+              @blur="validateInput('property')"
+              :class="{ invalid: propertyValidity === 'invalid' }"
+            >
               <option disabled value="">Please Choose...</option>
               <option value="apartment">Apartment</option>
               <option value="house">House</option>
@@ -144,7 +155,9 @@
           </td>
         </tr>
         <tr>
-          <th colspan="3" class="accomodation">How many guests can your place accomodate?</th>
+          <th colspan="3" class="accomodation">
+            How many guests can your place accomodate?
+          </th>
         </tr>
         <tr class="accomodation-control">
           <th>Guests</th>
@@ -152,12 +165,14 @@
             <div class="button-container">
               <button
                 type="button"
-                @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--">
+                @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--"
+              >
                 -
               </button>
               <p>{{ guestCounter }}</p>
               <button type="button" @click="guestCounter++">+</button>
-          </div></td>
+            </div>
+          </td>
         </tr>
         <tr class="accomodation-control">
           <th>Beds</th>
@@ -181,7 +196,9 @@
               <button
                 type="button"
                 @click="
-                  bathroomCounter <= 0 ? (bathroomCounter = 0) : bathroomCounter--
+                  bathroomCounter <= 0
+                    ? (bathroomCounter = 0)
+                    : bathroomCounter--
                 "
               >
                 -
@@ -191,7 +208,7 @@
             </div>
           </td>
         </tr>
-      </table>      
+      </table>
     </form>
   </section>
 </template>
@@ -226,56 +243,50 @@ export default {
     getFormData() {
       this.$emit('basicInfo', this.$data);
     },
-    validateInput(type){
-      if(type === 'title') {
-        if(this.title === ""){
-          this.titleValidity = 'invalid'
+    validateInput(type) {
+      if (type === 'title') {
+        if (this.title === '') {
+          this.titleValidity = 'invalid';
         } else {
-          this.titleValidity = 'valid'
+          this.titleValidity = 'valid';
+        }
+      } else if (type === 'description') {
+        if (this.description === '') {
+          this.descriptionValidity = 'invalid';
+        } else {
+          this.descriptionValidity = 'valid';
+        }
+      } else if (type === 'address') {
+        if (this.address === '') {
+          this.addressValidity = 'invalid';
+        } else {
+          this.addressValidity = 'valid';
+        }
+      } else if (type === 'zipcode') {
+        if (this.zipcode === '') {
+          this.zipcodeValidity = 'invalid';
+        } else {
+          this.zipcodeValidity = 'valid';
+        }
+      } else if (type === 'city') {
+        if (this.city === '') {
+          this.cityValidity = 'invalid';
+        } else {
+          this.cityValidity = 'valid';
+        }
+      } else if (type === 'property') {
+        if (this.propertyType === '') {
+          this.propertyValidity = 'invalid';
+        } else {
+          this.propertyValidity = 'valid';
         }
       }
-      else if(type === 'description'){
-        if(this.description === ""){
-          this.descriptionValidity = 'invalid'
-        } else {
-          this.descriptionValidity = 'valid'
-        }
-      }
-      else if(type === 'address'){
-        if(this.address === ""){
-          this.addressValidity = 'invalid'
-        } else {
-          this.addressValidity = 'valid'
-        }
-      }
-      else if(type === 'zipcode'){
-        if(this.zipcode === ""){
-          this.zipcodeValidity = 'invalid'
-        } else {
-          this.zipcodeValidity = 'valid'
-        }
-      }
-      else if(type === 'city'){
-        if(this.city === ""){
-          this.cityValidity = 'invalid'
-        } else {
-          this.cityValidity = 'valid'
-        }
-      }
-      else if(type === 'property'){
-        if(this.propertyType === ""){
-          this.propertyValidity = 'invalid'
-        } else {
-          this.propertyValidity = 'valid'
-        }
-      }
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .invalid {
   border-bottom: 1px solid black;
   background-color: rgb(255, 216, 212);
@@ -350,7 +361,7 @@ select {
   position: relative;
 }
 
-.accomodation{
+.accomodation {
   padding-top: 4rem;
   padding-bottom: 4rem;
   font-size: 1.7rem;
