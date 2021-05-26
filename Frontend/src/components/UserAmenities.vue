@@ -22,7 +22,6 @@ export default {
     }
   },
   created(){
-    console.log(this.invalid)
     if(this.invalid === 'invalid'){
       this.failedValidity = true
     }
@@ -38,12 +37,13 @@ export default {
     addAmenity(amenity) {
       for(let ref in this.$refs) {
         if(ref === amenity) {
-          if(this.$refs[ref].style.border === "" || this.$refs[ref].style.border === "3px solid transparent") {
-            this.$refs[ref].style.border = "3px solid green"
+          if(this.$refs[ref].style.background === "" || this.$refs[ref].style.border === "3px solid transparent") {
+            this.$refs[ref].style.background = "orange"
             this.chosenAmenities.push(amenity)
           }
           else{
-            this.$refs[ref].style.border = ""
+            console.log("hej")
+            this.$refs[ref].style.background = "white"
             this.chosenAmenities = this.chosenAmenities.filter((item) => item !== amenity)
           }
         }
@@ -58,7 +58,6 @@ export default {
 
 .invalid {
   border: 4px solid red;
-  /* background: red; */
 }
 
 .section-amenities {
@@ -91,10 +90,11 @@ article {
   margin: 1rem;
   padding: 1rem;
   border: 3px solid transparent;
+  border-radius: 10px;
 }
 
 article:hover, article:active {
-  border: 3px solid black;
+  border: 3px solid orange;
 }
 
 p {
