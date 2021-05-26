@@ -103,7 +103,7 @@ export default {
   --grey--light: #f7f7f7;
   --grey--text--light: #717171;
   --grey-text-dark: #222;
-  --pink: #ff385c;
+  --pink: rgb(254, 149, 0);
 }
 
 .logo {
@@ -148,7 +148,7 @@ export default {
   transition: ease 0.3s;
   padding: 2px 8px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    background: white;
+  background: white;
 }
 
 .header-search:hover {
@@ -322,33 +322,25 @@ export default {
   background: var(--grey--light);
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 650px) {
   .header-search,
   .header-search input {
     -webkit-box-align: center !important;
     align-items: center !important;
     display: flex !important;
     height: 44px !important;
-    margin: 0px !important;
-    white-space: nowrap !important;
-    width: 100%;
-  }
 
-  .nav-button {
-    display: none;
+    white-space: nowrap !important;
   }
 
   .logo {
     display: none;
   }
-  .login-form {
-    display: none;
-  }
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 450px) {
   .header-search {
-    width: 100%;
+    width: 65%;
   }
 
   .header-search input {
