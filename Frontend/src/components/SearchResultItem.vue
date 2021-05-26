@@ -6,7 +6,7 @@
         <div class="text">
           {{ house.propertyType }} with {{ house.accommodation.beds }} beds
           <br />
-          {{ house.price }} / Night
+          {{ house.price }} SEK / Night
         </div>
       </div>
     </div>
