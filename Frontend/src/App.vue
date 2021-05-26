@@ -74,8 +74,9 @@ main {
   /* position: absolute; */
   margin: 0 auto;
   left: 0;
-  top: -3rem;
+  top: -20rem;
   /* right: 20rem; */
   z-index: -1;
+  filter: brightness(130%);
 }
 </style>

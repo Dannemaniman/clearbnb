@@ -1,17 +1,7 @@
 <template>
   <form @submit.prevent="sendFile" enctype="multipart/form-data">
-    <div class="dropzone">
-      <input
-        type="file"
-        class="input-file"
-        ref="file"
-        @change="selectFile"
-        multiple
-      />
-
-      <p v-if="!uploading">Click or drag your files here</p>
-    </div>
-    <div class="image-container">
+  <div class="image-container">
+      <p v-if="thumbnail.length === 0">Chosen pictures will be shown here!</p>
       <img
         v-for="(image, index) in thumbnail"
         :src="image"
@@ -19,13 +9,25 @@
         class="chosen-image"
       />
     </div>
+    <div class="dropzone" v-if="thumbnail.length < 1">
+      <input
+        type="file"
+        class="input-file"
+        ref="file"
+        @change="selectFile"
+        multiple
+      />
+      <p v-if="!uploading">Click or drag your files here</p>
+    </div>
   </form>
 </template>
 
 <script>
 export default {
   name: 'Dropzone',
-
+  created(){
+    console.log(this.thumbnail.length)
+  },
   data() {
     return {
       file: '',
@@ -68,12 +70,16 @@ export default {
   position: relative;
   cursor: pointer;
   outline: 2px dashed grey;
-  outline-offset: -6px;
-  background: lightgray;
+  outline-offset: -2px;
+  background: rgba(0, 0, 0, 0.089);
   color: black;
+  width: 50%;
+  margin: 0 auto;
+/* box-shadow: rgba(238, 151, 10, 0.712) 0px 0px 0px 3px; */
+  margin-top: 2rem;
 }
 .dropzone:hover {
-  background: rgb(184, 184, 184);
+  background: rgba(0, 0, 0, 0.246);
 }
 
 .input-file {
@@ -89,20 +95,30 @@ export default {
   margin: 0.5rem auto;
   height: 11rem;
   min-width: 11rem;
-  width: fit-content;
+  /* width: fit-content; */
   max-height: 20rem;
   display: flex;
   flex-direction: row;
-  text-align: left;
+  /* text-align: left; */
+  align-items: center;
+  justify-content: center;
   background-color: white;
-  border: 1px solid black;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.144);
+  box-shadow: rgb(225, 231, 236) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  padding-left: 1.5rem;
+  border-radius: 10px;
+  margin-left: 1rem;
 }
 
 .chosen-image {
   height: 10rem;
   width: 10rem;
+  padding: 0.2rem;
+  border-radius: 10px;
+  filter: brightness(80%);
+}
+
+.chosen-image:hover, .chosen-image:active {
+  filter: brightness(100%);
 }
 </style>

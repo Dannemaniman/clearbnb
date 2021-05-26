@@ -54,17 +54,18 @@ header {
   margin-bottom: 7rem;
 }
 
-  .section-slider {
-    width: 100%;
-    background: rgb(204, 204, 204);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-y: 10rem;  
-  }
+.section-slider {
+  width: 100%;
+  background: rgb(238, 238, 238);
+  /* background: rgb(204, 204, 204); */
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-image: url('../../public/bottomwave.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 10rem;  
+}
 
 p {
   font-size: 3rem;

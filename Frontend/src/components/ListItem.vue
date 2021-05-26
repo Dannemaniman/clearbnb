@@ -5,7 +5,7 @@
       <p class="item-type">{{ title }}</p>
       <p class="item-adress">{{ address }}, {{ city }}</p>
       <p class="item-date">
-        Date: {{ chosenDate.start }} - {{ chosenDate.end }}
+        Date: {{ chosenDate.start.toLocaleDateString() }} - {{ chosenDate.end.toLocaleDateString() }}
       </p>
     </div>
     <button v-if="reviewable" class="review-button" @click="popReviewModal">
@@ -29,6 +29,9 @@ export default {
   props: ['imgSrc', 'title', 'address', 'city', 'chosenDate', 'houseId'],
   components: {
     ReviewModal,
+  },
+  created(){
+    console.log(typeof chosenDate)
   },
   data() {
     return {
@@ -65,6 +68,8 @@ article {
   border: 1px solid transparent;
   border-radius: 8px;
   transition: all 0.2s ease;
+  margin: 1rem auto;
+  background: white;
 }
 
 article:hover,
