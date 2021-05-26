@@ -4,14 +4,15 @@
     <div v-else>
       <Typewriter />
       <GalleryComponent />
-      <p class="greeting"><span>We care!</span> <br /> 
-        We break our backs to serve your every need.</p>
-  
+      <p class="greeting">
+        <span>We care!</span> <br />
+        We break our backs to serve your every need.
+      </p>
+
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
-      <MapComponent :inDetail="false"/>
       <Slider title="Billigaste" :houses="cheapestHouses" />
-      <MapComponent />
+      <MapComponent :inDetail="false" />
     </div>
   </div>
 </template>
