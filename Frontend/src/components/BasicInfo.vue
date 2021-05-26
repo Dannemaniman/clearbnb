@@ -2,93 +2,155 @@
   <section>
     <p class="title">Home Info</p>
     <form @change.prevent="getFormData">
-      <label for="title">Title</label>
-      <input
-        name="title"
-        placeholder="Title..."
-        type="text"
-        class="long-input"
-        v-model.trim="title"
-        @blur="validateInput('title')" 
-        :class="{invalid: titleValidity === 'invalid'}"
-      />
-      <label for="price">Price</label>
-      <p>{{ price }}</p>
-      <input
-        name="price"
-        type="range"
-        min="1"
-        max="3000"
-        step="50"
-        v-model="price"
-      />
-      <label for="childDiscount">Child Discount</label>
-      <p>{{ childDiscount }} %</p>
-      <input
-        name="childDiscount"
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        v-model="childDiscount"
-      />
-      <label for="seniorDiscount">Senior Discount</label>
-      <p>{{ seniorDiscount }} %</p>
-      <input
-        name="seniorDiscount"
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        v-model="seniorDiscount"
-      />
-      <label for="description"></label>
-      <textarea
-        name="description"
-        placeholder="Please Enter a Accurate Description of the Home."
-        rows="10"
-        cols="50"
-        v-model.trim="description"
-         @blur="validateInput('description')" 
-        :class="{invalid: descriptionValidity === 'invalid'}"
-      />
-      <label for="address">Address</label>
-      <input
-        name="address"
-        placeholder="Enter address..."
-        type="text"
-        class="long-input"
-        v-model.trim="address"
-         @blur="validateInput('address')" 
-        :class="{invalid: addressValidity === 'invalid'}"
-      />
-      <label for="zip">Zip Code</label>
-      <input
-        name="zip"
-        placeholder="Zip code..."
-        type="text"
-        class="state-input"
-        v-model="zipcode"
-         @blur="validateInput('zipcode')" 
-        :class="{invalid: zipcodeValidity === 'invalid'}"
-      />
-      <input
-        name="zip"
-        placeholder="City..."
-        type="text"
-        class="short-input"
-        v-model.trim="city"
-         @blur="validateInput('city')" 
-        :class="{invalid: cityValidity === 'invalid'}"
-      />
-      <label for="properties">Property Type</label>
-      <select id="property-select" name="properties" v-model="propertyType"  @blur="validateInput('property')" 
-        :class="{invalid: propertyValidity === 'invalid'}">
-        <option disabled value="">Please Choose...</option>
-        <option value="apartment">Apartment</option>
-        <option value="house">House</option>
-        <option value="bed-n-breakfast">Bed and Breakfast</option>
-      </select>
+      <table>
+        <tr>
+          <th colspan="3"><label for="title">Title</label></th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <input
+              name="title"
+              placeholder="Title..."
+              type="text"
+              class="title-input"
+              v-model.trim="title"
+              @blur="validateInput('title')" 
+              :class="{invalid: titleValidity === 'invalid'}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th><label for="price">Price: {{ price }} SEK</label></th>
+          <td>      
+            <input
+              name="price"
+              type="range"
+              min="1"
+              max="6000"
+              step="50"
+              v-model="price"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="childDiscount">Child Discount: {{ childDiscount }} %</label>
+          </th>
+          <td>
+            <input
+              name="childDiscount"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              v-model="childDiscount"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="seniorDiscount">Senior Discount {{ seniorDiscount }} %</label>
+          </th>
+          <td>
+            <input
+              name="seniorDiscount"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              v-model="seniorDiscount"
+            />    
+          </td>
+        </tr>
+         <tr>
+          <th colspan="3">
+            <label for="description">Description: </label>
+          </th>
+         </tr>
+         <tr>
+          <td colspan="3">
+            <textarea
+              name="description"
+              placeholder="Please Enter a Accurate Description of the Home."
+              rows="10"
+              cols="50"
+              v-model.trim="description"
+              @blur="validateInput('description')" 
+              :class="{invalid: descriptionValidity === 'invalid'}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="address">Address</label>
+          </th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <input
+              name="address"
+              placeholder="Enter address..."
+              type="text"
+              class="long-input"
+              v-model.trim="address"
+              @blur="validateInput('address')" 
+              :class="{invalid: addressValidity === 'invalid'}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="zip">Zip Code</label> 
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input
+              name="zip"
+              placeholder="Zip code..."
+              type="text"
+              class="state-input"
+              v-model="zipcode"
+              @blur="validateInput('zipcode')" 
+              :class="{invalid: zipcodeValidity === 'invalid'}"
+            />
+          </td>
+          <td>
+            <input
+              name="zip"
+              placeholder="City..."
+              type="text"
+              class="short-input"
+              v-model.trim="city"
+              @blur="validateInput('city')" 
+              :class="{invalid: cityValidity === 'invalid'}"
+            />          
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="properties">Property Type</label>
+          </th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <select id="property-select" name="properties" v-model="propertyType"  @blur="validateInput('property')" 
+              :class="{invalid: propertyValidity === 'invalid'}">
+              <option disabled value="">Please Choose...</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="bed-n-breakfast">Bed and Breakfast</option>
+            </select>
+          </td>
+        </tr>
+      </table>      
+      
+      
+      
+      
+     
+     
+      
       <div class="accomodate-info">
         <p>How many guests can your place accomodate?</p>
         <div class="basicinfo-buttonbar">
@@ -218,13 +280,20 @@ export default {
 <style scoped>
 
 .invalid {
-  border-color: red;
+  /* border-color: red; */
+  border: 1px solid transparent;
+  background-color: rgb(255, 216, 212);
+  color: white;
+}
+
+table {
+  margin: 0 auto;
 }
 
 section {
   margin: 0 auto;
   margin-top: 2rem;
-  background-color: #a9a9a9;
+  /* background-color: #a9a9a9; */
   border-radius: 10px;
   width: 80%;
   color: black;
@@ -257,6 +326,10 @@ select {
 
 .title {
   font-size: 2rem;
+}
+
+.title-input {
+  width: 100%;
 }
 
 .accomodate-info {
@@ -301,15 +374,16 @@ input {
 }
 
 .long-input {
-  width: 60%;
+  width: 80%;
 }
 
 .state-input {
-  width: 35%;
-  margin-right: 2rem;
+  width: 85%;
+  /* margin-right: 2rem; */
+  margin-left: 3rem;
 }
 
 .short-input {
-  width: 20%;
+  width: 50%;
 }
 </style>

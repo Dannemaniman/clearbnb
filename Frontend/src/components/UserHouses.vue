@@ -1,18 +1,23 @@
 <template>
-  <button @click="showCreateHome = !showCreateHome">New House</button>
+  <ErrorModal errorMessage="Invalid fields!" @closeModal="closeModal" v-if="showError === true" />
   <Spinner v-if="showSpinner" />
   <div v-else>
     <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
     <UserAmenities v-if="showCreateHome" @amenities="getAmenities" :invalid="amenitiesValidity"/>
     <PhotoUploader v-if="showCreateHome" />
     <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
-    <p v-if="showValidityError" :class="{invalid: showValidityError === 'invalid'}"></p>
+    <p v-if="showValidityError === 'invalid'" style="color: red;">Something went wrong.. Check for Red fields!</p>
   </div>
-  <UserHouseItem
-    v-for="(userHouse, index) of userObjects"
-    v-bind:key="index"
-    v-bind:house="userHouse"
-  />
+  <h1>My Homes</h1>
+    <div v-if="userObjects.length > 0" class="user-home-container">
+      <UserHouseItem
+        v-for="(userHouse, index) of userObjects"
+        v-bind:key="index"
+        v-bind:house="userHouse"
+      />
+    </div>
+    <div v-else style="font-size: 2rem;">You have none of your homes available to be rented out!</div> 
+  <button @click="showCreateHome = !showCreateHome" class="new-house-btn">New House</button>
 </template>
 
 <script>
@@ -22,6 +27,7 @@ import PhotoUploader from './PhotoUploader.vue';
 import UserAmenities from './UserAmenities.vue';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import Spinner from './Spinner.vue';
+import ErrorModal from "./ErrorModal.vue"
 
 export default {
   components: {
@@ -30,6 +36,7 @@ export default {
     PhotoUploader,
     UserAmenities,
     Spinner,
+    ErrorModal
   },
   props: ['userObjects'],
   data() {
@@ -39,14 +46,8 @@ export default {
       amenities: [],
       amenitiesValidity: 'pending',
       images: null,
-      basicInfo: [],
-      ownerId: '',
-      position: [],
-      provider: new OpenStreetMapProvider(),
-      showValidityError: 'pending',
-      sendObject: {
-        propertyType: "this.basicInfo.propertyType",
-        amenities: [],
+      showError: false,
+      basicInfo: {
         price: "",
         childDiscount: this.childDiscount,
         seniorDiscount: this.seniorDiscount,
@@ -55,6 +56,14 @@ export default {
         address: "",
         zipcode: "",
         description: "",
+        propertyType: "",
+      },
+      ownerId: '',
+      position: [],
+      provider: new OpenStreetMapProvider(),
+      showValidityError: 'pending',
+      sendObject: {
+        amenities: [],
         accommodation: {
           bathrooms: [],
           beds: [],
@@ -86,10 +95,11 @@ export default {
     getBasicInfo(info) {
       this.basicInfo = info;
     },
-
+    closeModal(){
+      console.log("hej")
+      this.showError = false;
+    },
     addNewHouse() {
-
-
       if (this.basicInfo.zipcode == null) {
         this.basicInfo.zipcode = 'xxx';
       }
@@ -112,8 +122,6 @@ export default {
             //let label = value[i].label;
 
             this.position = [y_coor, x_coor];
-            console.log(this.position);
-            console.log(value);
           }
         },
         (reason) => {
@@ -123,11 +131,13 @@ export default {
       if (this.position.length <= 0) {
         this.position = [-74.2183050512854, 26.899583900684352];
       }
-      this.showSpinner = true;
-      setTimeout(() => {
+      // this.showSpinner = true;
+      // setTimeout(() => {
+      //   this.submitHome();
+      //   this.showSpinner = false;
+      // }, 2000);
         this.submitHome();
-        this.showSpinner = false;
-      }, 2000);
+
     },
 
     async submitHome() {
@@ -159,12 +169,13 @@ export default {
       };
 
 console.log(this.basicInfo.propertyType)
-      if(this.basicInfo.propertyType === '' || this.basicInfo.zipcode === '' || this.basicInfo.address === '' || this.basicInfo.city === '' || this.checkAmenityValidity === 'invalid' || this.basicInfo.title === '' || this.basicInfo.description === '' || this.$route.params.id === '') {
+      if(!this.basicInfo.propertyType === '' || this.basicInfo.zipcode === '' || this.basicInfo.address === '' || this.basicInfo.city === '' || this.checkAmenityValidity === 'invalid' || this.basicInfo.title === '' || this.basicInfo.description === '' || this.$route.params.id === '') {
         this.showValidityError = 'invalid'
+        this.showError = true
         return
       } else {
-      console.log('bajs')
-       console.log(hostObject);
+        console.log('bajs')
+        console.log(this.showValidityError);
         this.showValidityError = 'valid'
         this.$store.dispatch('createHouse', hostObject);
         this.showCreateHome = false;
@@ -178,8 +189,26 @@ console.log(this.basicInfo.propertyType)
 
 <style scoped>
 
+  section {
+    padding: 2rem;
+    
+  }
+
+  .user-home-container {
+    background-color: rgb(235, 235, 235);
+    padding: 2rem;
+    box-shadow: rgba(38, 57, 77, 0.3) 0px 20px 30px -10px;
+  }
+
+  h1 {
+    margin: 6rem auto;
+    font-size: 3rem;
+  }
+
+
 .invalid {
   border: 1px solid red;
+  background-color: salmon;
 }
 
 button {
@@ -192,14 +221,21 @@ button {
   cursor: pointer;
   background-color: rgb(235, 235, 235);
   transition: all 0.2s ease;
+  border: 0;
+  /* border: 1px solid green; */
+  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+    background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+  filter:brightness(130%)
 }
 
-button:hover {
+button:hover, button:active  {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #a9a9a9;
 }
 
-button:active {
-  background-color: #a9a9a9;
+.new-house-btn {
+  margin-top: 7rem;
 }
 </style>

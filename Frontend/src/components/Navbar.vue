@@ -131,6 +131,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 2rem;
+    /* filter: brightness(130%); */
 }
 
 .header-option ul {
