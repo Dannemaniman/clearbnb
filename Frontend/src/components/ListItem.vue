@@ -135,6 +135,7 @@ button:active {
 }
 
 .item-adress {
+  text-align: left;
   margin-left: 1.6rem;
 }
 
