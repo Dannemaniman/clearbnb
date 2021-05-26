@@ -2,13 +2,14 @@
   <div class="home-content">
     <Spinner v-if="showSpinner" />
     <div v-else>
+      <Typewriter />
       <GalleryComponent />
       <p class="greeting">
         <span>Vi bryr oss!</span> <br />
         Vi bryter våra ryggar för att du ska glömma bort ditt inrutade
         vardagsliv
       </p>
-      <Typewriter />
+
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
       <Slider title="Billigaste" :houses="cheapestHouses" />
@@ -60,14 +61,15 @@ export default {
 }
 
 .greeting {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font: bolder;
-  margin-bottom: 7rem;
-  line-height: 100%;
+  margin-bottom: 5rem;
+  line-height: 120%;
   text-shadow: 2px 2px 0px #ffffff, 2px 2px 0px rgba(0, 0, 0, 0.164);
+  color: #4b4b4b;
 }
 
 .greeting span {
-  font-size: 5rem;
+  font-size: 3.5rem;
 }
 </style>

@@ -214,9 +214,10 @@ export default {
 }
 
 .map-title {
-  font-size: 3rem;
-  margin: 0;
+  font-size: 2.5rem;
+  margin-left: 2rem;
   text-align: left;
+  color: #4b4b4b;
 }
 
 #mapContainer {
