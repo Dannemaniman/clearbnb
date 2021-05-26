@@ -1,136 +1,159 @@
 <template>
-  <section class='section-slider'>
-    <div class='slider-container'>
-      <div class='arrow-left' @click='moveLeft' />
-        <article class="review-card"  :class="`slide${String(Math.random()).replace(
-        '.', '')}`" v-for="review of reviews"  :review="review" :key="review.id" @popSection="popReplySection(review)" :ref="String(Math.random()).replace('.', '')">
-            <div class="review-header">
-              <img :src="review.avatar" alt="" />
-              <strong>{{ review.authorName }}</strong>
-            </div>
-            <div class="review-grade">
-                 {{ review.grade }} / 5
-            </div>
-            <div class="review-body">
-              {{ review.review }}
-            </div>
-            <img class="conversation-icon" src="../../public/icons/conversation.png" @click="$emit('popSection', review)"/>
-        </article>
-      <div class='arrow-right' @click='moveRight'/>
+  <section class="section-slider">
+    <div class="slider-container">
+      <div class="arrow-left" @click="moveLeft" />
+      <article
+        class="review-card"
+        :class="`slide${String(Math.random()).replace('.', '')}`"
+        v-for="review of reviews"
+        :review="review"
+        :key="review.id"
+        @popSection="popReplySection(review)"
+        :ref="String(Math.random()).replace('.', '')"
+      >
+        <div class="review-header">
+          <img :src="review.avatar" alt="" />
+          <strong>{{ review.authorName }}</strong>
+        </div>
+        <div class="review-grade">{{ review.grade }} / 5</div>
+        <div class="review-body">
+          {{ review.review }}
+        </div>
+        <img
+          class="conversation-icon"
+          src="../../public/icons/conversation.png"
+          @click="$emit('popSection', review)"
+        />
+      </article>
+      <div class="arrow-right" @click="moveRight" />
     </div>
   </section>
 </template>
 
-<script> 
-import ReviewItem from "./ReviewItem.vue"
+<script>
+import ReviewItem from './ReviewItem.vue';
 
 export default {
   props: ['reviews'],
   components: {
-    ReviewItem
+    ReviewItem,
   },
   data() {
     return {
       moveCounter: 0,
       showReview: true,
-    }
-  }, 
+    };
+  },
   methods: {
     moveRight() {
-      this.moveCounter >= this.reviews.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
+      this.moveCounter >= this.reviews.length - 1
+        ? (this.moveCounter = 0)
+        : (this.moveCounter += 1);
 
-       for(let ref in this.$refs) {
-         this.$refs[ref].style.transform = `translateX(-${240 * this.moveCounter}px)`
-       }
-    }, 
+      for (let ref in this.$refs) {
+        this.$refs[ref].style.transform = `translateX(-${
+          240 * this.moveCounter
+        }px)`;
+      }
+    },
     moveLeft() {
-      this.moveCounter <= 0 ? this.moveCounter = 0 : this.moveCounter -= 1
+      this.moveCounter <= 0 ? (this.moveCounter = 0) : (this.moveCounter -= 1);
 
-      for(let ref in this.$refs) {
-        this.$refs[ref].style.transform = `translateX(-${240 * this.moveCounter}px)`
-      } 
+      for (let ref in this.$refs) {
+        this.$refs[ref].style.transform = `translateX(-${
+          240 * this.moveCounter
+        }px)`;
+      }
     },
   },
-}
+  created() {
+    //this.getUserName();
+  },
+  updated() {
+    //this.getUserName();
+  },
+};
 </script>
 
 <style scoped>
-  .section-slider {
-    width: 100%;
-    background-color: grey;
-    border-top: 3px solid black;
-  }
+.section-slider {
+  width: 100%;
+  background-color: grey;
+  border-top: 3px solid black;
+}
 
-  .slider-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    position: relative;
-  }
+.slider-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: relative;
+}
 
-  article {
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
+article {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
-  img {
-    height: 30px;
-    width: 30px;
-  }
+img {
+  height: 30px;
+  width: 30px;
+}
 
-  .arrow-right {
-    position: absolute;
-    z-index:3;
-    top: 40%;
-    right: 0;
-    width: 0; 
-    height: 0; 
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-left: 30px solid black;
-    cursor: pointer;
-  }
+.arrow-right {
+  position: absolute;
+  z-index: 3;
+  top: 40%;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid black;
+  cursor: pointer;
+}
 
-  .arrow-right:hover,   .arrow-right:active {
-    border-left: 30px solid white;
-  }
+.arrow-right:hover,
+.arrow-right:active {
+  border-left: 30px solid white;
+}
 
-  .arrow-left {
-    z-index: 3;
-    position: absolute;
-    top: 40%;
-    width: 0; 
-    height: 0; 
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent; 
-    border-right: 30px solid black; 
-    cursor: pointer;    
-  }
+.arrow-left {
+  z-index: 3;
+  position: absolute;
+  top: 40%;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 30px solid black;
+  cursor: pointer;
+}
 
-  .arrow-left:hover,   .arrow-left:active {
-    border-right: 30px solid white;
-  }
+.arrow-left:hover,
+.arrow-left:active {
+  border-right: 30px solid white;
+}
 
-  .review-card {
-    min-width: 240px;
-    max-width: 30%;
-    height: 240px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 24px;
-    margin: 0;
-    background-color: #f2f2f2;
-    color: #4b4b4b;
-    position: relative;
-    border-right: 1px solid black;
+.review-card {
+  min-width: 240px;
+  max-width: 30%;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px;
+  margin: 0;
+  background-color: #f2f2f2;
+  color: #4b4b4b;
+  position: relative;
+  border-right: 1px solid black;
 }
 .review-header {
   display: flex;
   align-items: center;
-  align-self:flex-start;
+  align-self: flex-start;
   position: absolute;
   top: 2rem;
 }
@@ -167,8 +190,8 @@ export default {
   border-bottom: 3px solid transparent;
 }
 
-.conversation-icon:hover, .conversation-icon:active {
+.conversation-icon:hover,
+.conversation-icon:active {
   border-bottom: 3px solid black;
 }
-
 </style>
