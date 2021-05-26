@@ -3,9 +3,10 @@
   <Spinner v-if="showSpinner" />
   <div v-else>
     <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
-    <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
+    <UserAmenities v-if="showCreateHome" @amenities="getAmenities" :invalid="amenitiesValidity"/>
     <PhotoUploader v-if="showCreateHome" />
     <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
+    <p v-if="showValidityError" :class="{invalid: showValidityError === 'invalid'}"></p>
   </div>
   <UserHouseItem
     v-for="(userHouse, index) of userObjects"
@@ -33,16 +34,36 @@ export default {
   props: ['userObjects'],
   data() {
     return {
-      // user: null,
       showSpinner: false,
       showCreateHome: false,
       amenities: [],
+      amenitiesValidity: 'pending',
       images: null,
       basicInfo: [],
       ownerId: '',
       position: [],
       provider: new OpenStreetMapProvider(),
-    };
+      showValidityError: 'pending',
+      sendObject: {
+        propertyType: "this.basicInfo.propertyType",
+        amenities: [],
+        price: "",
+        childDiscount: this.childDiscount,
+        seniorDiscount: this.seniorDiscount,
+        title: "",
+        city: "",
+        address: "",
+        zipcode: "",
+        description: "",
+        accommodation: {
+          bathrooms: [],
+          beds: [],
+        },
+        ownerId: "",
+        position: "",
+        images: "",
+    }
+    }
   },
   computed: {
     houses() {
@@ -51,6 +72,14 @@ export default {
     },
   },
   methods: {
+    checkAmenityValidity(){
+      if(this.amenities.length >= 1 && this.images !== null){
+        this.amenitiesValidity = 'invalid'
+        return 'invalid'
+      } else {
+        return 'valid'
+      }
+    },
     getAmenities(amen) {
       this.amenities = amen;
     },
@@ -59,6 +88,8 @@ export default {
     },
 
     addNewHouse() {
+
+
       if (this.basicInfo.zipcode == null) {
         this.basicInfo.zipcode = 'xxx';
       }
@@ -129,34 +160,30 @@ export default {
         images: this.images,
       };
 
-      console.log(hostObject);
-
-      this.$store.dispatch('createHouse', hostObject);
-      this.showCreateHome = false;
-
-      this.userObjects.push(hostObject);
-      // }
-    },
-    created() {
-      /*   console.log('tjo');
-      let userId = this.$route.params.id;
-      let userRes = await fetch('/rest/users/' + userId);
-      let user = await userRes.json();
-      this.user = user;
-
-      let userHouses = [];
-      for (let house of this.houses) {
-        if (this.user.id == house.ownerId) {
-          userHouses.push(house);
-        }
+console.log(this.basicInfo.propertyType)
+      if(this.basicInfo.propertyType === '' || this.basicInfo.zipcode === '' || this.basicInfo.address === '' || this.basicInfo.city === '' || this.checkAmenityValidity === 'invalid' || this.basicInfo.title === '' || this.basicInfo.description === '' || this.$route.params.id === '') {
+        this.showValidityError = 'invalid'
+        return
+      } else {
+      console.log('bajs')
+       console.log(hostObject);
+        this.showValidityError = 'valid'
+        this.$store.dispatch('createHouse', hostObject);
+        this.showCreateHome = false;
+  
+        this.userObjects.push(hostObject);
       }
-      this.userHouses = userHouses; */
     },
   },
 };
 </script>
 
 <style scoped>
+
+.invalid {
+  border: 1px solid red;
+}
+
 button {
   margin-top: 1rem;
   width: 20%;
