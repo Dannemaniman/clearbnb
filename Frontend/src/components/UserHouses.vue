@@ -100,9 +100,7 @@ export default {
     },
 
     async submitHome() {
-      console.log(this.images);
       this.images = this.$store.state.uploadedNames;
-      console.log(this.images);
 
       if (this.images.length == 0) {
         console.log('tjohojs');
