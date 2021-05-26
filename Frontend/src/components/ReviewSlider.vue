@@ -69,7 +69,7 @@ export default {
       showReview: false,
       replyReviews: null,
       reviewText: '',
-      replyReview: null,
+      replyId: null,
       user: '',
     };
   },
@@ -83,6 +83,15 @@ export default {
         });
       });
       console.log(this.user);
+
+      /* await this.$store.state.users.forEach((user) => {
+        this.$store.state.replies.forEach((reply) => {
+          if (user.id === reply.authorId) {
+            this.user = user;
+          }
+        });
+      });
+      console.log(this.user); */
       // this.reviews;
     },
     postReply() {
@@ -91,8 +100,8 @@ export default {
         return;
       }
       let reply = {
-        reviewId: this.replyReview.id,
-        avatar: this.$store.user.image,
+        reviewId: this.replyId,
+        avatar: this.$store.state.user.image,
         author: this.$store.state.user.fullName,
         reply: this.reviewText,
       };
@@ -121,9 +130,9 @@ export default {
     async popReview(reviewId) {
       let element = this.$refs[reviewId];
       this.showReview = !this.showReview;
-
+      this.replyId = reviewId;
       await this.$store.dispatch('fetchReplies', reviewId);
-      this.replyReviews = this.$store.state.replies;
+      this.replyReviews = await this.$store.state.replies;
       console.log(this.replyReviews);
 
       if (this.showReview) {
