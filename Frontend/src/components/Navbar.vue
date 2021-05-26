@@ -70,14 +70,12 @@
 <script>
 export default {
   name: 'navbar',
-
   data() {
     return {
       isOpen: false,
       searchCity: '',
     };
   },
-
   methods: {
     logout() {
       this.$store.dispatch('logout');
@@ -86,7 +84,6 @@ export default {
       }
       console.log(this.$store.state.user);
     },
-
     searchByLocation() {
       let searchCity = this.searchCity;
       this.$store.commit('setCitySearch', searchCity);
@@ -105,40 +102,34 @@ export default {
   --grey-text-dark: #222;
   --pink: rgb(254, 149, 0);
 }
-
 .logo {
   width: 150px;
   height: 95px;
   margin: 7px 0 0 0;
 }
-
 .logo .nav {
   flex: 1 0 140px;
 }
-
 .header {
   top: 0%;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-
   width: 100%;
   z-index: 2;
   background: white;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px; */
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 2rem;
 }
-
 .header-option ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .header-search {
   display: inline-flex;
   border-radius: 24px;
@@ -150,11 +141,9 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background: white;
 }
-
 .header-search:hover {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .header-search input {
   outline: none;
   background: transparent;
@@ -165,7 +154,6 @@ export default {
   border: none;
   font-family: Helvetica, Arial, sans-serif;
 }
-
 .header-searchIcon {
   width: 32px;
   height: 32px;
@@ -177,17 +165,14 @@ export default {
   margin-left: 14px;
   z-index: 5;
 }
-
 .header-searchIcon img {
   width: 2rem;
   height: 1.2rem;
   padding: 0;
 }
-
 .nav {
   /* display: flex;
    justify-content: flex-end; */
-
   -webkit-box-pack: end !important;
   -ms-flex-pack: end !important;
   -webkit-box-align: center !important;
@@ -204,7 +189,6 @@ export default {
   justify-content: flex-end !important;
   height: 80px !important;
 }
-
 .favorite-icon button {
   background: none;
   border: none;
@@ -214,7 +198,6 @@ export default {
   justify-content: center;
   cursor: pointer;
 }
-
 .fa-user-circle {
   font-size: 30px;
   color: rgb(254, 149, 0);
@@ -223,16 +206,13 @@ export default {
 .fa-bars {
   color: rgb(254, 149, 0);
 }
-
 .fa-globe {
   font-size: 17px;
 }
-
 .nav {
   display: flex;
   justify-content: flex-end;
 }
-
 .nav-button {
   height: 48px;
   background: transparent;
@@ -246,18 +226,15 @@ export default {
   background: white;
   color: rgb(34, 34, 34);
 }
-
 .globe {
   transition: ease 0.3s;
   text-decoration: none;
   color: black;
   font-weight: bold;
 }
-
 .globe:hover {
   background: var(--grey--med);
 }
-
 .account {
   height: 42px;
   border-radius: 22px;
@@ -265,20 +242,16 @@ export default {
   transition: ease 0.3s;
   padding: 5px 5px 5px 12px;
 }
-
 .account:hover {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 }
-
 .account i:last-child {
   height: 30px;
   margin-left: 16px;
 }
-
 .account i:first-child {
   height: 12px;
 }
-
 .login-form {
   position: absolute;
   width: 245px;
@@ -291,41 +264,33 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--grey--med);
 }
-
 .login-form form {
   margin: 10px;
   font-size: 20px;
 }
-
 .logIn {
   padding: 30px;
 }
-
 .logIn a {
   color: var(--grey-text-dark);
   text-decoration: none;
 }
-
 .signUp {
   padding: 30px;
   cursor: pointer;
 }
-
 .signUp a {
   color: var(--grey-text-dark);
   text-decoration: none;
 }
-
 .signUp:hover {
   border-radius: 35px;
   background: var(--grey--light);
 }
-
 .logIn:hover {
   border-radius: 35px;
   background: var(--grey--light);
 }
-
 @media only screen and (max-width: 650px) {
   .header-search,
   .header-search input {
@@ -333,20 +298,16 @@ export default {
     align-items: center !important;
     display: flex !important;
     height: 44px !important;
-
     white-space: nowrap !important;
   }
-
   .logo {
     display: none;
   }
 }
-
 @media only screen and (max-width: 450px) {
   .header-search {
     width: 65%;
   }
-
   .header-search input {
     width: 100%;
   }

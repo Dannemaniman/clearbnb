@@ -36,6 +36,7 @@ main {
   box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
   padding: 2rem;
   padding-top: 0;
+  border-radius: 3rem 3rem 0 0;
 }
 
 @media (max-width: 400px) {
