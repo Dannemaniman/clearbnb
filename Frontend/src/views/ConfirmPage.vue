@@ -81,7 +81,7 @@ export default {
 
 <style scoped>
 section {
-  width: 90%;
+  width: 100%;
   border-radius: 8px;
   margin: 2rem auto 2rem auto;
   color: #4b4b4b;
@@ -116,7 +116,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 90%;
   border-radius: 8px;
   margin: 0 auto;
   border-bottom: 0;

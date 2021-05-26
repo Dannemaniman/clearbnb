@@ -112,6 +112,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding-bottom: 3rem;
+  width: 90%;
 }
 
 .card-expiration {
@@ -145,6 +146,13 @@ export default {
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   animation: movecard 1s ease-in-out infinite;
+}
+
+@media (max-width: 500px) {
+  .credit-card {
+    height: 10rem;
+    width: 15rem;
+  }
 }
 
 .credit-card:hover,
@@ -281,7 +289,7 @@ export default {
   line-height: 0.2rem;
   margin-top: 1rem;
   position: relative;
-  right: -2rem;
+  right: -1rem;
 }
 
 .card-monthyear {

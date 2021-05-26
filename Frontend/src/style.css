@@ -38,6 +38,12 @@ main {
   padding-top: 0;
 }
 
+@media (max-width: 400px) {
+  main {
+    padding: 0;
+  }
+}
+
 Färgkoder {
   color: #4b4b4b;
   color: #6b6b6b;
