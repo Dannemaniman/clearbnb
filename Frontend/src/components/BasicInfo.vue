@@ -8,14 +8,16 @@
         placeholder="Title..."
         type="text"
         class="long-input"
-        v-model="title"
+        v-model.trim="title"
+        @blur="validateInput('title')" 
+        :class="{invalid: titleValidity === 'invalid'}"
       />
       <label for="price">Price</label>
       <p>{{ price }}</p>
       <input
         name="price"
         type="range"
-        min="0"
+        min="1"
         max="3000"
         step="50"
         v-model="price"
@@ -46,7 +48,9 @@
         placeholder="Please Enter a Accurate Description of the Home."
         rows="10"
         cols="50"
-        v-model="description"
+        v-model.trim="description"
+         @blur="validateInput('description')" 
+        :class="{invalid: descriptionValidity === 'invalid'}"
       />
       <label for="address">Address</label>
       <input
@@ -54,7 +58,9 @@
         placeholder="Enter address..."
         type="text"
         class="long-input"
-        v-model="address"
+        v-model.trim="address"
+         @blur="validateInput('address')" 
+        :class="{invalid: addressValidity === 'invalid'}"
       />
       <label for="zip">Zip Code</label>
       <input
@@ -63,16 +69,21 @@
         type="text"
         class="state-input"
         v-model="zipcode"
+         @blur="validateInput('zipcode')" 
+        :class="{invalid: zipcodeValidity === 'invalid'}"
       />
       <input
         name="zip"
         placeholder="City..."
         type="text"
         class="short-input"
-        v-model="city"
+        v-model.trim="city"
+         @blur="validateInput('city')" 
+        :class="{invalid: cityValidity === 'invalid'}"
       />
       <label for="properties">Property Type</label>
-      <select id="property-select" name="properties" v-model="propertyType">
+      <select id="property-select" name="properties" v-model="propertyType"  @blur="validateInput('property')" 
+        :class="{invalid: propertyValidity === 'invalid'}">
         <option disabled value="">Please Choose...</option>
         <option value="apartment">Apartment</option>
         <option value="house">House</option>
@@ -131,29 +142,85 @@ export default {
   emit: ['basicInfo'],
   data() {
     return {
-      guestCounter: 1,
-      bedCounter: 0,
-      bathroomCounter: 0,
       title: '',
       price: 300,
+      childDiscount: 1,
+      seniorDiscount: 1,
       description: '',
       address: '',
       zipcode: '',
       city: '',
       propertyType: '',
-      seniorDiscount: 1,
-      childDiscount: 1,
+      guestCounter: 1,
+      bedCounter: 0,
+      bathroomCounter: 0,
+
+      titleValidity: 'pending',
+      descriptionValidity: 'pending',
+      addressValidity: 'pending',
+      zipcodeValidity: 'pending',
+      cityValidity: 'pending',
+      propertyValidity: 'pending',
     };
   },
   methods: {
     getFormData() {
       this.$emit('basicInfo', this.$data);
     },
+    validateInput(type){
+      if(type === 'title') {
+        if(this.title === ""){
+          this.titleValidity = 'invalid'
+        } else {
+          this.titleValidity = 'valid'
+        }
+      }
+      else if(type === 'description'){
+        if(this.description === ""){
+          this.descriptionValidity = 'invalid'
+        } else {
+          this.descriptionValidity = 'valid'
+        }
+      }
+      else if(type === 'address'){
+        if(this.address === ""){
+          this.addressValidity = 'invalid'
+        } else {
+          this.addressValidity = 'valid'
+        }
+      }
+      else if(type === 'zipcode'){
+        if(this.zipcode === ""){
+          this.zipcodeValidity = 'invalid'
+        } else {
+          this.zipcodeValidity = 'valid'
+        }
+      }
+      else if(type === 'city'){
+        if(this.city === ""){
+          this.cityValidity = 'invalid'
+        } else {
+          this.cityValidity = 'valid'
+        }
+      }
+      else if(type === 'property'){
+        if(this.propertyType === ""){
+          this.propertyValidity = 'invalid'
+        } else {
+          this.propertyValidity = 'valid'
+        }
+      }
+    }
   },
 };
 </script>
 
 <style scoped>
+
+.invalid {
+  border-color: red;
+}
+
 section {
   margin: 0 auto;
   margin-top: 2rem;
