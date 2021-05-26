@@ -141,7 +141,7 @@ export default {
     //this.getUserName();
   },
   updated() {
-    this.getUserName();
+    //this.getUserName();
   },
 };
 </script>
