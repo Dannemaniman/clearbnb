@@ -72,9 +72,11 @@ export default createStore({
     setUsers(state, users) {
       state.users = users;
     },
-    deleteBooking(state, newMessage) {
+    deleteBooking(state, id) {
+      console.log(id.id);
+
       for (let booking of state.userBookings) {
-        if (booking.id == newMessage.id) {
+        if (booking.id == id.id) {
           let index = state.userBookings.indexOf(booking);
           state.userBookings.splice(index, 1);
         }

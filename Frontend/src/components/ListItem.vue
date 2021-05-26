@@ -6,7 +6,7 @@
     <p class="item-date">Date: {{ chosenDate.start }} - {{ chosenDate.end }}</p>
     <p v-if="guests" class="item-guests">Guests: {{ guests.totalGuests }}</p>
     <p v-if="price" class="item-price">To Pay: {{ price }}</p>
-    <button class="cancel-button" @click="deleteBooking(houseId)">
+    <button class="cancel-button" @click="deleteBooking(bookingId.id)">
       Cancel
     </button>
     <button v-if="reviewable" class="review-button" @click="popReviewModal">
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import LoginPageVue from '../views/LoginPage.vue';
 import ReviewModal from './ReviewModal.vue';
 
 export default {
@@ -43,6 +44,7 @@ export default {
   data() {
     return {
       showReviewModal: false,
+      userBookings: this.$store.state.userBookings,
     };
   },
   computed: {
@@ -50,12 +52,20 @@ export default {
       let currentDate = new Date().toLocaleDateString();
       return this.chosenDate.end < currentDate ? true : false;
     },
+    bookingId() {
+      for (let booking of this.userBookings) {
+        if (this.houseId == booking.houseId) {
+          return booking;
+        }
+      }
+    },
   },
   methods: {
     popReviewModal() {
       this.showReviewModal = !this.showReviewModal;
     },
     deleteBooking(id) {
+      console.log(id);
       this.$store.dispatch('deleteBooking', id);
     },
   },
