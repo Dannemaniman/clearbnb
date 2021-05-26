@@ -32,33 +32,61 @@
                 </option>
               </select>
             </div>
-            <div class="guest-number">
-              <li class="select-item">
-                <p class="select-label">Beds:</p>
-                <div class="button-container">
-                  <button @click="decrement">-</button>
-                  <p>{{ counter }}</p>
-                  <button @click="increment">+</button>
-                </div>
-              </li>
-            </div>
           </div>
           <div class="checkboxes">
-            <span class="row" v-for="amenity in amenities" :key="amenity">
-              <span class="checkbox-label"> {{ amenity }} </span>
+            <div>
+              <label>Bed</label>
               <input
                 type="checkbox"
-                :value="amenity"
+                value="Bed"
                 v-model="searchObject.amenities"
               />
-            </span>
+            </div>
+            <div>
+              <label>Breakfast</label>
+              <input
+                type="checkbox"
+                value="Breakfast"
+                v-model="searchObject.amenities"
+              />
+            </div>
+            <div>
+              <label>Fridge</label>
+              <input
+                type="checkbox"
+                value="Fridge"
+                v-model="searchObject.amenities"
+              />
+            </div>
+            <div>
+              <label>Heating</label>
+              <input
+                type="checkbox"
+                value="Heating"
+                v-model="searchObject.amenities"
+              />
+            </div>
+          </div>
+
+          <div class="guest-number">
+            <li class="select-item">
+              <p class="select-label">Beds:</p>
+              <div class="button-container">
+                <button @click="decrement">-</button>
+                <p>{{ counter }}</p>
+                <button @click="increment">+</button>
+              </div>
+            </li>
           </div>
 
           <div class="selector-text">
             <label>Property:</label>
-            <span> {{ searchObject.property }}</span>
-            <label>Max price:</label> <span> {{ searchObject.price }}</span>
-            <label>Min review:</label> <span> {{ searchObject.review }}</span>
+            <span> {{ searchObject.property }}</span
+            ><br />
+            <label>Max price:</label> <span> {{ searchObject.price }}</span
+            ><br />
+            <label>Min review:</label> <span> {{ searchObject.review }}</span
+            ><br />
             <label>Beds:</label> <span>{{ counter }}</span>
           </div>
           <div class="amenities">
@@ -66,9 +94,7 @@
             <Amenities :amenities="searchObject.amenities" />
           </div>
         </div>
-        <div class="search">
-          <button class="button" @click="sendSearch">Search</button>
-        </div>
+        <button class="button" @click="sendSearch">Search</button>
       </div>
     </transition>
   </section>
@@ -87,30 +113,10 @@ export default {
         amenities: [],
         beds: '',
       },
-      properties: ['', 'Apartment', 'House', 'Bed-n-breakfast'],
-      prices: ['', '500', '700', '900', '1200'],
-      reviews: ['', '1', '2', '3', '4', '5'],
+      properties: ['Torp', 'Villa', 'Lägenhet', 'Sommarstuga'],
+      prices: ['1000', '2000', '3000', '4000'],
+      reviews: ['1', '2', '3', '4', '5'],
       counter: 0,
-      amenities: [
-        'Bed',
-        'Breakfast',
-        'Camera',
-        'CCTV',
-        'Dinner',
-        'Elevator',
-        'Fridge',
-        'Heating',
-        'Iron',
-        'Mirror',
-        'Parking',
-        'Room Service',
-        'Sink',
-        'Tea',
-        'Television',
-        'Toothbrush',
-        'Towel',
-        'Wifi',
-      ],
     };
   },
   components: { Amenities },
@@ -151,58 +157,52 @@ export default {
   background: none;
   cursor: pointer;
   margin-top: 0.5rem;
+
   display: inline-block;
-  padding: 7px 15px;
-  background-image: linear-gradient(to right, rgb(254 149 0), rgb(254 135 0));
-  border-radius: 4px;
+  padding: 10px 20px;
+  background-image: linear-gradient(to right, #6b6b6b, #808080);
+  border-radius: 8px;
+
   color: #fff;
   font-size: 18px;
-  font-weight: 400;
-  box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
-  transition: 0.2s ease-out;
+  font-weight: 700;
+
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  transition: 0.4s ease-out;
 }
 .button:hover {
-  transform: scale(1.01);
-  box-shadow: 2px 5px 5px rgb(0 0 0 /80%);
+  box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
 }
 
 .modal-overlay {
   position: absolute;
-  height: 150vh;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(0, 0, 0, 40%);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -80%);
   z-index: 99;
-  box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
-  max-width: 50rem;
-  background-color: white;
+
+  max-width: 520px;
+  background-color: #e9e9e9;
   border-radius: 16px;
   padding: 25px;
   color: #000;
-  max-height: calc(100vh - 210px);
-  overflow-y: auto;
 }
 .flexbox {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 .flexbox > * {
-  margin: 0.3rem;
-  min-height: 14rem;
-  border-radius: 5px;
-  flex-shrink: 1;
-  min-width: 22rem;
+  flex: 1 1 50%;
 }
 
 /*   */
@@ -210,18 +210,13 @@ export default {
 .selectors {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 48%;
-  box-shadow: 0px 0px 5px rgb(0 0 0);
-  padding: 1rem 6rem;
+  align-items: flex-end;
 }
 .selectors select {
-  background: white;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid rgb(0, 0, 0);
+  background: #a9a9a9;
+  border: 1px solid #9f9f9f;
   cursor: pointer;
+  border-radius: 4px;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><polygon points="0,0 100,0 50,50" style="fill:%23626163;"/></svg>');
@@ -230,37 +225,25 @@ export default {
   background-size: 0.8rem;
   padding: 0.2rem;
   width: 7rem;
-  margin-top: 0.3rem;
-  text-align-last: center;
 }
-.selectors select:hover,
-select:focus {
-  border-bottom: 1px solid rgb(254, 149, 0);
+.selectors select:hover select:focus {
+  outline: none;
+  background-color: #a9a9a9;
+  border: 1px solid #4b4b4b;
 }
 .selectors div {
   margin: 0.2rem 0;
 }
 .checkboxes {
-  display: table;
-  width: 48%;
-  box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
-  min-height: 14rem;
-  border-radius: 5px;
-  text-align: start;
-  padding: 2rem 0.5rem;
-}
-.checkboxes .row {
-  width: 42%;
-  display: inline-block;
-  text-align: right;
-}
-.row .checkbox-label {
-  padding-right: 1em;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 3rem;
 }
 
 .guest-number {
   display: flex;
+  flex: 1 1 100%;
   flex-direction: column;
 }
 
@@ -269,7 +252,7 @@ select:focus {
   text-align: left;
   display: inline-flex;
   align-items: center;
-  margin-right: 1rem;
+  margin-left: 4rem;
 }
 
 .select-label p:last-of-type {
@@ -281,6 +264,7 @@ li {
   list-style: none;
   display: flex;
   flex-direction: row;
+  padding-left: 1rem;
 }
 
 .button-container {
@@ -305,24 +289,19 @@ li {
 }
 
 .selector-text {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
+  display: inline;
+  background-color: #c7c7c7;
   padding: 0.5rem 0;
-  width: 48%;
-  box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
-  padding: 1rem 0.5rem;
+  border-radius: 10px 0 0 0;
+  text-align: left;
 }
 
 .amenities {
-  background-color: white;
-  padding-top: 0.4rem;
-  min-height: 14rem;
-  width: 48%;
-  box-shadow: 0px 0px 5px rgb(0 0 0 / 80%);
-  padding: 1rem 0.5rem 0 0.5rem;
+  background-color: #c7c7c7;
+  padding: 0.5rem 0;
+  border-radius: 0 10px 0 0;
+  height: 90px;
 }
-
 .amenities p {
   margin: 0;
 }
@@ -334,7 +313,7 @@ label {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: transform 0.5s;
+  transition: transform 1s;
 }
 .slide-enter {
   transform: translateY(-100vh) translateX(-50%);

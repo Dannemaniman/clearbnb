@@ -1,5 +1,5 @@
 <template>
- <p>{{title}}</p>
+<p>{{title}}</p>
 <header>
   <section class='section-slider'>
     <div class='slider-container' v-if="houses !== null">
@@ -28,14 +28,14 @@ export default {
       this.moveCounter >= this.houses.length-1 ? this.moveCounter = 0 : this.moveCounter += 1
 
        for(let ref in this.$refs) {
-         this.$refs[ref].style.transform = `translateX(-${314 * this.moveCounter}px)`
+         this.$refs[ref].style.transform = `translateX(-${300 * this.moveCounter}px)`
        }
     }, 
     moveLeft() {
       this.moveCounter <= 0 ? this.moveCounter = 0 : this.moveCounter -= 1
 
       for(let ref in this.$refs) {
-        this.$refs[ref].style.transform = `translateX(-${314 * this.moveCounter}px)`
+        this.$refs[ref].style.transform = `translateX(-${300 * this.moveCounter}px)`
       } 
     },
     goToDetails(id) {
@@ -48,15 +48,22 @@ export default {
 <style scoped>
 
 header {
-  box-shadow: rgba(0, 0, 0, 0.041) 0px 10px 20px, rgba(0, 0, 0, 0.15) 0px 6px 6px;
-  border-radius: 10px;
+box-shadow: rgba(0, 0, 0, 0.041) 0px 10px 20px, rgba(0, 0, 0, 0.15) 0px 6px 6px;
+   border-radius: 10px;
   padding: 0.1rem;
-  margin-bottom: 7rem;
+  /* height: 15rem; */
+      margin-bottom: 7rem;
 }
 
   .section-slider {
     width: 100%;
-    background: rgb(204, 204, 204);
+    background-color: grey;
+
+    /* border-top: 3px solid black; */
+
+          background: whitesmoke;
+              background: rgb(204, 204, 204);
+    /* box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px; */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     padding: 0.5rem;
     border-radius: 10px;
@@ -79,6 +86,7 @@ p {
     width: 100%;
     display: flex;
     flex-direction: row;
+    /* overflow: hidden; */
     position: relative;
     overflow-x: hidden;
   }
@@ -90,10 +98,6 @@ p {
     margin: auto 0.4rem;
     background: rgb(173, 173, 173);
     border-radius: 10px;
-  }
-
-  article:hover, article:active {
-    filter: brightness(60%);
   }
 
   img {

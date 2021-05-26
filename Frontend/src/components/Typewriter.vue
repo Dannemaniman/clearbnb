@@ -1,10 +1,10 @@
 <template>
   <section>
     <div>
-      <p><!--We will--> 
+      <p>We will 
         <span class="text">{{typeValue}}</span>
         <span class="text-cursor"></span>
-          <!--you--> </p>
+          you </p>
     </div>
   </section>
 </template>
@@ -15,7 +15,7 @@ export default {
     return {
       typeValue: "",
       typeStatus: false,
-      typeArray:  ['Apartments', 'Houses', 'Rooms'],
+      typeArray:  ['help', 'show', 'teach', 'advise'],
       typingSpeed: 100,
       erasingSpeed: 100,
       newTextDelar: 2000,

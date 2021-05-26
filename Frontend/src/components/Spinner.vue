@@ -8,7 +8,7 @@ export default {};
 
 <style scoped>
 .loader {
-  margin: 15rem auto;
+  margin: 100px auto;
   font-size: 25px;
   width: 1em;
   height: 1em;

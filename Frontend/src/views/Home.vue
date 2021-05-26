@@ -2,17 +2,17 @@
   <div class="home-content">
     <Spinner v-if="showSpinner" />
     <div v-else>
-      <Typewriter />
       <GalleryComponent />
       <p class="greeting">
-        <span>We care!</span> <br />
-        We break our backs to serve your every need.
+        <span>Vi bryr oss!</span> <br />
+        Vi bryter våra ryggar för att du ska glömma bort ditt inrutade
+        vardagsliv
       </p>
-
+      <Typewriter />
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
       <Slider title="Billigaste" :houses="cheapestHouses" />
-      <MapComponent :inDetail="false" />
+      <MapComponent />
     </div>
   </div>
 </template>

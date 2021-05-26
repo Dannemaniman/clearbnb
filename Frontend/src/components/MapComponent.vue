@@ -1,8 +1,6 @@
 <template>
   <div id="container">
-    <p class="map-title">
-      {{ inDetail ? 'Location of Home' : 'Homes in your vicinity' }}
-    </p>
+    <p class="map-title">Homes in your vicinity</p>
     <div id="mapContainer"></div>
   </div>
 </template>
@@ -23,7 +21,7 @@ export default {
       userBookings: this.$store.state.userBookings,
     };
   },
-  props: ['home', 'inDetail'],
+  props: ['home'],
   methods: {
     customMarker() {
       var userIcon = L.icon({

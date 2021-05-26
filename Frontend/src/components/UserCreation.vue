@@ -1,12 +1,10 @@
 <template>
   <section>
     <form @submit.prevent="submit">
-      <label for="fname">First name:</label><p v-if="firstNameValidity === 'invalid'" style="color: red;">Invalid first name</p>
-      <input name="fname" type="text" class="long-input" v-model.trim="firstName" @blur="validateInput('fname')" :class="{invalid: firstNameValidity === 'invalid'}"/>
-      
-      <label for="lname">Last name:</label><p v-if="lastNameValidity === 'invalid'" style="color: red;">Invalid last name</p>
-      <input name="lname" type="text" class="long-input" v-model.trim="lastName" @blur="validateInput('lname')" :class="{invalid: lastNameValidity === 'invalid'}"/>
-      
+      <label for="fname">First name:</label>
+      <input name="fname" type="text" class="long-input" v-model="firstName" />
+      <label for="lname">Last name:</label>
+      <input name="lname" type="text" class="long-input" v-model="lastName" />
       <p class="profile-title">Profile Picture:</p>
       <PhotoUploader />
       <textarea
@@ -14,11 +12,8 @@
         placeholder="Please Enter a Accurate Description yourself."
         rows="10"
         cols="50"
-        v-model.trim="description"
-        @blur="validateInput('textarea')" 
-        :class="{invalid: textareaValidity === 'invalid'}"
+        v-model="description"
       />
-      <p v-if="lastNameValidity === 'invalid'" style="color: red;">Invalid last name</p>
       <p class="gender-title">Gender:</p>
       <div class="radio">
         <input
@@ -39,7 +34,6 @@
         <label for="other">Other</label>
       </div>
       <button type="submit">Submit</button>
-      <p v-if="invalidForm === 'invalid'" style="color: red;">Invalid Form!</p>
     </form>
   </section>
 </template>
@@ -59,56 +53,20 @@ export default {
       gender: 'male',
       image: '',
       id: this.user.id,
-      firstNameValidity: 'pending',
-      lastNameValidity: 'pending',
-      textareaValidity: 'pending',
-      invalidForm: 'pending'
     };
   },
   props: ['user'],
   methods: {
     submit() {
       this.image = this.$store.state.uploadedNames.toString();
-
-      if(this.firstNameValidity !== 'invalid' && this.lastNameValidity !== 'invalid'  && this.textareaValidity !== 'invalid' ){
-        this.$store.dispatch('updateUser', this.$data);
-        this.$router.go()
-      } else {
-        this.invalidForm = "invalid"
-      }
-      console.log(this.invalidForm)
+      this.$store.dispatch('updateUser', this.$data);
+      this.$router.go();
     },
-    validateInput(type){
-      if(type === "fname"){
-        if(this.firstName === ""){
-          this.firstNameValidity = "invalid"
-        } else {
-          this.firstNameValidity = "valid"
-        }
-      } else if(type === "lname"){
-          if(this.lastName === ""){
-            this.lastNameValidity = "invalid"
-          } else {
-            this.lastNameValidity = "valid"
-          }   
-      } else if(type === "textarea"){
-          if(this.description === ""){
-            this.textareaValidity = "invalid"
-          } else {
-            this.textareaValidity = "valid"
-          }
-      }
-    }
   },
 };
 </script>
 
 <style scoped>
-
-.invalid {
-  border-color: red;
-}
-
 .profile-title {
   font-size: 1.6rem;
   margin-bottom: 0;

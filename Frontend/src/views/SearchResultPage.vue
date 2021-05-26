@@ -4,6 +4,7 @@
     <h1>{{ refinedSearchResult.length }} Matched objects</h1>
     <div class="search-results">
       <SearchResultItem
+        class="house"
         v-for="house of refinedSearchResult"
         :key="house.id"
         :house="house"
@@ -91,7 +92,6 @@ export default {
       return arr;
     },
     searchByReview(houses) {
-      //await this.$store.dispatch('fetchReviews', this.home.id);
       if (this.searchObject.review == '') {
         return houses;
       }
@@ -131,13 +131,13 @@ export default {
 
 <style scoped>
 h1 {
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 .search-results {
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
   justify-content: space-around;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 </style>
