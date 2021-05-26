@@ -42,6 +42,9 @@ export default {
       showSpinner: true,
     };
   },
+  updated() {
+    //set houses
+  },
   async created() {
     setTimeout(async () => {
       let housesData = await this.$store.state.houses;
