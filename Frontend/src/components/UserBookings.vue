@@ -1,6 +1,6 @@
 <template v-if="this.userBookings">
-  <ListItem 
-    v-for="(userBookedHome, index) of userBookedHomes" 
+  <ListItem
+    v-for="(userBookedHome, index) of userBookedHomes"
     :key="index"
     :houseId="userBookedHome.id"
     :chosenDate="chosenDate"
@@ -12,25 +12,27 @@
 </template>
 <script>
 import UserBookingItem from './UserBookingItem.vue';
-import ListItem from "./ListItem.vue"
+import ListItem from './ListItem.vue';
 export default {
   components: {
     UserBookingItem,
-    ListItem
+    ListItem,
   },
   computed: {
-    userBookedHomes()  {
-      let homes = this.$store.state.houses.filter((house)=> {
-        for(let booking of this.userBookings){
-          if(house.id === booking.houseId){
-            this.chosenDate.start = new Date(booking.chosenDate[0])
-            this.chosenDate.end = new Date(booking.chosenDate[1])
-            return house
+    userBookedHomes() {
+      let homes = this.$store.state.houses.filter((house) => {
+        for (let booking of this.userBookings) {
+          if (house.id === booking.houseId) {
+            let startDate = new Date(booking.chosenDate[0]);
+            let endDate = new Date(booking.chosenDate[1]);
+            this.chosenDate.start = startDate.toLocaleDateString();
+            this.chosenDate.end = endDate.toLocaleDateString();
+            return house;
           }
         }
-       })
-      return homes
-      } 
+      });
+      return homes;
+    },
   },
   data() {
     return {
@@ -38,12 +40,11 @@ export default {
       userBookings: this.$store.state.userBookings,
       chosenDate: {
         start: null,
-        end: null
-      }
+        end: null,
+      },
     };
   },
-  }
-
+};
 </script>
 
 <style></style>

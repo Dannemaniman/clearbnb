@@ -10,6 +10,8 @@
       :address="bookingInfo.house.address"
       :city="bookingInfo.house.city"
       :chosenDate="bookingInfo.chosenDate"
+      :price="bookingInfo.price"
+      :guests="bookingInfo.guests"
     />
     <Spinner v-if="showSpinner" />
     <div class="credit-container" v-else>

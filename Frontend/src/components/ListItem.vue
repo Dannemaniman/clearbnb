@@ -3,10 +3,12 @@
     <img :src="imgSrc" />
     <div class="item-info">
       <p class="item-type">{{ title }}</p>
-      <p class="item-adress">{{ address }}, {{ city }}</p>
+      <p class="item-adress">Address: {{ address }}, {{ city }}</p>
       <p class="item-date">
         Date: {{ chosenDate.start }} - {{ chosenDate.end }}
       </p>
+      <p v-if="guests" class="item-guests">Guests: {{ guests.totalGuests }}</p>
+      <p v-if="price" class="item-price">To Pay: {{ price }}</p>
     </div>
     <button v-if="reviewable" class="review-button" @click="popReviewModal">
       Review
@@ -26,7 +28,16 @@
 import ReviewModal from './ReviewModal.vue';
 
 export default {
-  props: ['imgSrc', 'title', 'address', 'city', 'chosenDate', 'houseId'],
+  props: [
+    'imgSrc',
+    'title',
+    'address',
+    'city',
+    'chosenDate',
+    'houseId',
+    'price',
+    'guests',
+  ],
   components: {
     ReviewModal,
   },
@@ -37,8 +48,7 @@ export default {
   },
   computed: {
     reviewable() {
-      let currentDate = new Date();
-      console.log(this.chosenDate);
+      let currentDate = new Date().toLocaleDateString();
       return this.chosenDate.end < currentDate ? true : false;
     },
   },
@@ -130,6 +140,7 @@ button:active {
 .item-type {
   font-size: 1.5rem;
   margin-top: 1rem;
+  margin-left: 5rem;
   margin-left: 1rem;
   text-align: left;
 }
@@ -143,5 +154,24 @@ button:active {
   text-align: left;
   margin-left: 1.6rem;
   font-size: 1rem;
+}
+
+.item-guests {
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 3.7rem;
+  margin-right: 20rem;
+}
+
+.item-price {
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 5.9rem;
+  margin-right: 18.4rem;
+  font-weight: bold;
 }
 </style>
