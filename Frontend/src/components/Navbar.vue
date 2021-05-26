@@ -217,7 +217,11 @@ export default {
 
 .fa-user-circle {
   font-size: 30px;
-  color: var(--grey--text--light);
+  color: rgb(254, 149, 0);
+}
+
+.fa-bars {
+  color: rgb(254, 149, 0);
 }
 
 .fa-globe {
