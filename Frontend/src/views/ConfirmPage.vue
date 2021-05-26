@@ -1,9 +1,8 @@
 <template>
   <section>
     <div class="header-bar">
-      <h1>CONFIRM DETAILS</h1>
+      <h1>Confirm Details</h1>
     </div>
-    <h2>Booking</h2>
     <ListItem
       :houseId="bookingInfo.house.id"
       :imgSrc="bookingInfo.house.images[0]"
@@ -13,7 +12,7 @@
       :chosenDate="bookingInfo.chosenDate"
     />
     <Spinner v-if="showSpinner" />
-    <div v-else>
+    <div class="credit-container" v-else>
       <form class="credit-modal" @submit.prevent="">
         <select v-model="cardType">
           <option selected="selected" value="Select your card">
@@ -80,26 +79,33 @@ export default {
 
 <style scoped>
 section {
-  width: 70%;
-  background-color: rgb(214, 214, 214);
+  width: 90%;
   border-radius: 8px;
-  margin: 0 auto;
-  color: black;
+  margin: 2rem auto 2rem auto;
+  color: #4b4b4b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .header-bar {
   height: 5rem;
   width: 100%;
-  background-color: #6b6b6b;
+  background-color: rgb(254, 149, 0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   overflow: hidden;
   display: flex;
+  border-radius: 8px 8px 0 0;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .header-bar > h1 {
   text-align: center;
-  color: whitesmoke;
+  color: #4b4b4b;
+}
+
+.credit-container {
+  padding-bottom: 2rem;
 }
 
 .credit-modal {
@@ -109,14 +115,13 @@ section {
   justify-content: center;
   align-items: center;
   width: 70%;
-  border-radius: 10px 10px 0 0;
+  border-radius: 8px;
   margin: 0 auto;
   border-bottom: 0;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  margin-top: 6rem;
-  background-color: whitesmoke;
+  margin-top: 4rem;
   position: relative;
 }
 
@@ -146,18 +151,36 @@ select {
   height: 2rem;
   width: 30%;
   outline: none;
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
   padding: 0.2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .submit-button {
-  background-color: green;
-  height: 2.5rem;
-  width: 6rem;
-  color: black;
-  font-weight: bold;
-  border-radius: 10px;
+  height: 2rem;
+  width: 10rem;
+  color: #4b4b4b;
+  background-image: linear-gradient(
+    147deg,
+    rgb(254, 149, 0) 0%,
+    rgb(254, 120, 0) 84%
+  );
+  border-radius: 4px;
+  border: #4b4b4b;
   outline: none;
-  margin-bottom: 4rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 3rem;
+}
+
+button:hover {
+  background-image: linear-gradient(
+    147deg,
+    rgb(185, 108, 0) 0%,
+    rgb(228, 108, 3) 84%
+  );
+  color: #4b4b4b;
 }
 </style>

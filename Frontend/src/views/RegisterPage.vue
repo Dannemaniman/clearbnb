@@ -1,7 +1,9 @@
 <template>
   <div class="form-container">
     <form @submit.prevent="register">
-      <img src="/images/register.png" />
+      <h1>
+        <span> Register </span>
+      </h1>
       <input
         v-model="fullName"
         type="text"
@@ -58,17 +60,13 @@ export default {
   flex-direction: column;
 }
 
-img {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  align-self: center;
-  margin: 1rem;
-  border-radius: 8px;
-  opacity: 0.8;
-  min-height: 100px;
-  object-fit: contain;
+@media (max-width: 650px) {
+  .form-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -76,25 +74,35 @@ form {
   justify-content: center;
   max-width: 30rem;
   height: 35rem;
-  background-color: #808080;
   border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
+
+form span {
+  padding-bottom: 0.6rem;
+  border-bottom: 0.4rem solid rgb(254, 149, 0);
+}
+
 input {
   width: 45vw;
   min-width: 130px;
   max-width: 220px;
-  height: 1.4rem;
+  height: 2rem;
   margin: 0.5rem auto;
-  border-radius: 4px;
-  border: 0;
-  background-color: #e9e9e9;
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  outline: none;
 }
-input:hover {
-  background-color: #a9a9a9;
+
+input:first-of-type {
+  margin-top: 2rem;
 }
+
 input:last-of-type {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
+
 button {
   width: 45vw;
   min-width: 130px;
@@ -103,10 +111,14 @@ button {
   margin: 0.5rem auto;
   font-size: 1rem;
   cursor: pointer;
-  background-image: linear-gradient(147deg, #6b6b6b 0%, #4b4b4b 84%);
+  background-image: linear-gradient(
+    147deg,
+    rgb(254, 149, 0) 0%,
+    rgb(254, 120, 0) 84%
+  );
   border: #4b4b4b;
   border-radius: 4px;
-  color: #e9e9e9;
+  color: #4b4b4b;
   text-decoration: none;
   align-items: center;
   justify-content: center;
@@ -114,7 +126,11 @@ button {
   background-color: #c7c7c7;
 }
 button:hover {
-  background: #c7c7c7;
+  background-image: linear-gradient(
+    147deg,
+    rgb(185, 108, 0) 0%,
+    rgb(228, 108, 3) 84%
+  );
   color: #4b4b4b;
 }
 .login {

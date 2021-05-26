@@ -76,7 +76,7 @@ export default {
         style: 'button',
         autoComplete: true,
         autoClose: true,
-        keepResult: true,
+        keepResult: false,
       });
       this.mapDiv.addControl(searchControl);
     },
@@ -206,13 +206,11 @@ export default {
 </script>
 
 <style scoped>
-
-.container{
-
+.container {
   background: white;
-    box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px;
-    padding: 1rem;
-    border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px;
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .map-title {
@@ -227,9 +225,9 @@ export default {
   height: 35rem;
 
   background: white;
-    box-shadow: rgba(0 0 0 / 60%) 0px 1px 6px;
-    padding: 1rem;
-    border-radius: 10px;
+  box-shadow: rgba(0 0 0 / 60%) 0px 1px 6px;
+  padding: 1rem;
+  border-radius: 10px;
 }
 .leaflet-popup-content {
   color: aqua;
