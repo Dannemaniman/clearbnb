@@ -87,9 +87,9 @@ export default {
         amenities: [],
         beds: '',
       },
-      properties: ['apartment', 'house', 'bed-n-breakfast'],
-      prices: ['1000', '2000', '3000', '4000'],
-      reviews: ['1', '2', '3', '4', '5'],
+      properties: ['', 'Apartment', 'House', 'Bed-n-breakfast'],
+      prices: ['', '500', '700', '900', '1200'],
+      reviews: ['', '1', '2', '3', '4', '5'],
       counter: 0,
       amenities: [
         'Bed',
