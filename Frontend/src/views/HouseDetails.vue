@@ -12,7 +12,9 @@
     </div>
     <div class="content-holder">
       <div class="information">
-        <h2>{{ home.city }}, <span class="home-address">{{ home.address }}</span></h2>
+        <h2>
+          {{ home.city }}, <span class="home-address">{{ home.address }}</span>
+        </h2>
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
@@ -22,7 +24,7 @@
     <br />
     <br />
     <br />
-    <MapComponent :home="home" :inDetail="true"/>
+    <MapComponent :home="home" :inDetail="true" />
     <Reviews :reviews="$store.state.reviews" />
     <Hosts :home="home" />
   </div>
@@ -135,7 +137,8 @@ h3 {
   cursor: pointer;
 }
 
-.images img:hover, .images img:active {
+.images img:hover,
+.images img:active {
   filter: brightness(60%);
 }
 
