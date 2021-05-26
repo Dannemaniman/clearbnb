@@ -120,10 +120,11 @@ export default {
   z-index: 2;
   background: white;
   /* box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px; */
-  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+  background-image: url('../../public/bottomwave.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: 2rem;
+  
     /* filter: brightness(130%); */
 }
 .header-option ul {

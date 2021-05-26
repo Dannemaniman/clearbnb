@@ -1,6 +1,6 @@
 <template>
   <section>
-    <p class="title">Home Info</p>
+    <p class="title">Create New Home</p>
     <form @change.prevent="getFormData">
       <table>
         <tr>
@@ -73,7 +73,7 @@
               name="description"
               placeholder="Please Enter a Accurate Description of the Home."
               rows="10"
-              cols="50"
+              cols="80"
               v-model.trim="description"
               @blur="validateInput('description')" 
               :class="{invalid: descriptionValidity === 'invalid'}"
@@ -143,58 +143,55 @@
             </select>
           </td>
         </tr>
+        <tr>
+          <th colspan="3" class="accomodation">How many guests can your place accomodate?</th>
+        </tr>
+        <tr class="accomodation-control">
+          <th>Guests</th>
+          <td>
+            <div class="button-container">
+              <button
+                type="button"
+                @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--">
+                -
+              </button>
+              <p>{{ guestCounter }}</p>
+              <button type="button" @click="guestCounter++">+</button>
+          </div></td>
+        </tr>
+        <tr class="accomodation-control">
+          <th>Beds</th>
+          <td>
+            <div class="button-container">
+              <button
+                type="button"
+                @click="bedCounter <= 0 ? (bedCounter = 0) : bedCounter--"
+              >
+                -
+              </button>
+              <p>{{ bedCounter }}</p>
+              <button type="button" @click="bedCounter++">+</button>
+            </div>
+          </td>
+        </tr>
+        <tr class="accomodation-control">
+          <th>Bathrooms</th>
+          <td>
+            <div class="button-container">
+              <button
+                type="button"
+                @click="
+                  bathroomCounter <= 0 ? (bathroomCounter = 0) : bathroomCounter--
+                "
+              >
+                -
+              </button>
+              <p>{{ bathroomCounter }}</p>
+              <button type="button" @click="bathroomCounter++">+</button>
+            </div>
+          </td>
+        </tr>
       </table>      
-      
-      
-      
-      
-     
-     
-      
-      <div class="accomodate-info">
-        <p>How many guests can your place accomodate?</p>
-        <div class="basicinfo-buttonbar">
-          <p>Guests</p>
-          <div class="button-container">
-            <button
-              type="button"
-              @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--"
-            >
-              -
-            </button>
-            <p>{{ guestCounter }}</p>
-            <button type="button" @click="guestCounter++">+</button>
-          </div>
-        </div>
-        <div class="basicinfo-buttonbar">
-          <p>Beds</p>
-          <div class="button-container">
-            <button
-              type="button"
-              @click="bedCounter <= 0 ? (bedCounter = 0) : bedCounter--"
-            >
-              -
-            </button>
-            <p>{{ bedCounter }}</p>
-            <button type="button" @click="bedCounter++">+</button>
-          </div>
-        </div>
-        <div class="basicinfo-buttonbar">
-          <p>Bathrooms</p>
-          <div class="button-container">
-            <button
-              type="button"
-              @click="
-                bathroomCounter <= 0 ? (bathroomCounter = 0) : bathroomCounter--
-              "
-            >
-              -
-            </button>
-            <p>{{ bathroomCounter }}</p>
-            <button type="button" @click="bathroomCounter++">+</button>
-          </div>
-        </div>
-      </div>
     </form>
   </section>
 </template>
@@ -280,20 +277,28 @@ export default {
 <style scoped>
 
 .invalid {
-  /* border-color: red; */
-  border: 1px solid transparent;
+  border-bottom: 1px solid black;
   background-color: rgb(255, 216, 212);
-  color: white;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-container th {
+  text-align: left;
+  font-size: 3rem;
 }
 
 table {
   margin: 0 auto;
+  width: 80%;
 }
 
 section {
   margin: 0 auto;
   margin-top: 2rem;
-  /* background-color: #a9a9a9; */
   border-radius: 10px;
   width: 80%;
   color: black;
@@ -325,11 +330,12 @@ select {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .title-input {
   width: 100%;
+  max-width: 30rem;
 }
 
 .accomodate-info {
@@ -342,6 +348,16 @@ select {
   width: 70%;
   margin: 0 auto;
   position: relative;
+}
+
+.accomodation{
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-size: 1.7rem;
+}
+
+.accomodation-control th {
+  text-align: center;
 }
 
 .basicinfo-buttonbar > p {
@@ -370,16 +386,16 @@ input {
   height: 2rem;
   outline: none;
   border-radius: 8px;
-  border: 1p solid black;
+  border-bottom: 1px solid black;
 }
 
 .long-input {
   width: 80%;
+  max-height: 334px;
 }
 
 .state-input {
-  width: 85%;
-  /* margin-right: 2rem; */
+  width: 75%;
   margin-left: 3rem;
 }
 

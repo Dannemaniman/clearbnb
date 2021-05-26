@@ -76,7 +76,6 @@ export default {
   },
   computed: {
     houses() {
-      console.log('computed');
       return this.$store.state.houses;
     },
   },
@@ -96,7 +95,6 @@ export default {
       this.basicInfo = info;
     },
     closeModal(){
-      console.log("hej")
       this.showError = false;
     },
     addNewHouse() {
@@ -119,8 +117,6 @@ export default {
           for (let i = 0; i < value.length; i++) {
             let x_coor = value[i].x;
             let y_coor = value[i].y;
-            //let label = value[i].label;
-
             this.position = [y_coor, x_coor];
           }
         },
@@ -137,7 +133,6 @@ export default {
       //   this.showSpinner = false;
       // }, 2000);
         this.submitHome();
-
     },
 
     async submitHome() {
@@ -170,18 +165,14 @@ export default {
         images: this.images,
       };
 
-console.log(this.basicInfo.propertyType)
       if(!this.basicInfo.propertyType === '' || this.basicInfo.zipcode === '' || this.basicInfo.address === '' || this.basicInfo.city === '' || this.checkAmenityValidity === 'invalid' || this.basicInfo.title === '' || this.basicInfo.description === '' || this.$route.params.id === '') {
         this.showValidityError = 'invalid'
         this.showError = true
         return
       } else {
-        console.log('bajs')
-        console.log(this.showValidityError);
         this.showValidityError = 'valid'
         this.$store.dispatch('createHouse', hostObject);
         this.showCreateHome = false;
-  
         this.userObjects.push(hostObject);
       }
     },
@@ -193,7 +184,6 @@ console.log(this.basicInfo.propertyType)
 
   section {
     padding: 2rem;
-    
   }
 
   .user-home-container {
@@ -224,9 +214,8 @@ button {
   background-color: rgb(235, 235, 235);
   transition: all 0.2s ease;
   border: 0;
-  /* border: 1px solid green; */
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: contain;
   background-size: cover;
   filter:brightness(130%)
