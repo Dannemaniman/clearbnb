@@ -218,23 +218,69 @@ export default {
   emit: ['basicInfo'],
   data() {
     return {
-      guestCounter: 1,
-      bedCounter: 0,
-      bathroomCounter: 0,
       title: '',
       price: 300,
+      childDiscount: 1,
+      seniorDiscount: 1,
       description: '',
       address: '',
       zipcode: '',
       city: '',
       propertyType: '',
-      seniorDiscount: 1,
-      childDiscount: 1,
+      guestCounter: 1,
+      bedCounter: 0,
+      bathroomCounter: 0,
+
+      titleValidity: 'pending',
+      descriptionValidity: 'pending',
+      addressValidity: 'pending',
+      zipcodeValidity: 'pending',
+      cityValidity: 'pending',
+      propertyValidity: 'pending',
     };
   },
   methods: {
     getFormData() {
       this.$emit('basicInfo', this.$data);
+    },
+    validateInput(type) {
+      if (type === 'title') {
+        if (this.title === '') {
+          this.titleValidity = 'invalid';
+        } else {
+          this.titleValidity = 'valid';
+        }
+      } else if (type === 'description') {
+        if (this.description === '') {
+          this.descriptionValidity = 'invalid';
+        } else {
+          this.descriptionValidity = 'valid';
+        }
+      } else if (type === 'address') {
+        if (this.address === '') {
+          this.addressValidity = 'invalid';
+        } else {
+          this.addressValidity = 'valid';
+        }
+      } else if (type === 'zipcode') {
+        if (this.zipcode === '') {
+          this.zipcodeValidity = 'invalid';
+        } else {
+          this.zipcodeValidity = 'valid';
+        }
+      } else if (type === 'city') {
+        if (this.city === '') {
+          this.cityValidity = 'invalid';
+        } else {
+          this.cityValidity = 'valid';
+        }
+      } else if (type === 'property') {
+        if (this.propertyType === '') {
+          this.propertyValidity = 'invalid';
+        } else {
+          this.propertyValidity = 'valid';
+        }
+      }
     },
   },
 };
