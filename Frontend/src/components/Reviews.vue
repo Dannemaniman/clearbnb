@@ -1,23 +1,18 @@
 <template>
-
-<section>
- <ReviewSlider :reviews="reviews"/>
- </section>  
-  
+  <section>
+    <ReviewSlider :reviews="reviews" />
+  </section>
 </template>
 
 <script>
-import ReviewSlider from "./ReviewSlider.vue"
+import ReviewSlider from './ReviewSlider.vue';
 
 export default {
   props: ['reviews'],
   components: {
-    ReviewSlider
+    ReviewSlider,
   },
 };
 </script>
 
-<style scoped>
-
-  
-</style>
+<style scoped></style>

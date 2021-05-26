@@ -142,7 +142,9 @@ export default {
 
     async submitHome() {
       this.images = this.$store.state.uploadedNames;
-      if (this.images == null) {
+
+      if (this.images.length == 0) {
+        console.log('tjohojs');
         this.images = ['/images/No-Image.jpg'];
       }
       let ownerId = await this.$store.state.user.id;
@@ -152,8 +154,8 @@ export default {
         propertyType: this.basicInfo.propertyType,
         amenities: this.amenities,
         price: this.basicInfo.price,
-        childDiscount: this.childDiscount,
-        seniorDiscount: this.seniorDiscount,
+        childDiscount: this.basicInfo.childDiscount,
+        seniorDiscount: this.basicInfo.seniorDiscount,
         title: this.basicInfo.title,
         city: this.basicInfo.city,
         address: this.basicInfo.address,
