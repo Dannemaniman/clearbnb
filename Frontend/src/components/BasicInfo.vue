@@ -28,7 +28,7 @@
               name="price"
               type="range"
               min="1"
-              max="6000"
+              max="2000"
               step="50"
               v-model="price"
             />

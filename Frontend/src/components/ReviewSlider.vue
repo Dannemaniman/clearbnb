@@ -12,8 +12,8 @@
         :ref="review.id"
       >
         <div class="review-header">
-          <img class="avatar-icon" :src="review.avatar" alt="" />
-          <strong>{{ review.authorName }}</strong>
+          <img class="avatar-icon" :src="user.image" alt="" />
+          <strong>{{ user.fullName }}</strong>
         </div>
         <div class="review-grade">{{ review.grade }} / 5 &#9733;</div>
         <div class="review-body">
@@ -69,18 +69,39 @@ export default {
       showReview: false,
       replyReviews: null,
       reviewText: '',
-      replyReview: null,
+      replyId: null,
+      user: '',
     };
   },
   methods: {
+    async getUserName() {
+      await this.$store.state.users.forEach((user) => {
+        this.reviews.forEach((review) => {
+          if (user.id === review.authorId) {
+            this.user = user;
+          }
+        });
+      });
+      console.log(this.user);
+
+      /* await this.$store.state.users.forEach((user) => {
+        this.$store.state.replies.forEach((reply) => {
+          if (user.id === reply.authorId) {
+            this.user = user;
+          }
+        });
+      });
+      console.log(this.user); */
+      // this.reviews;
+    },
     postReply() {
       if (!this.$store.state.user) {
         this.$router.push('/login-page');
         return;
       }
       let reply = {
-        reviewId: this.replyReview.id,
-        avatar: this.$store.user.image,
+        reviewId: this.replyId,
+        avatar: this.$store.state.user.image,
         author: this.$store.state.user.fullName,
         reply: this.reviewText,
       };
@@ -109,9 +130,9 @@ export default {
     async popReview(reviewId) {
       let element = this.$refs[reviewId];
       this.showReview = !this.showReview;
-
+      this.replyId = reviewId;
       await this.$store.dispatch('fetchReplies', reviewId);
-      this.replyReviews = this.$store.state.replies;
+      this.replyReviews = await this.$store.state.replies;
       console.log(this.replyReviews);
 
       if (this.showReview) {
@@ -138,10 +159,10 @@ export default {
     },
   },
   created() {
-    //this.getUserName();
+    this.getUserName();
   },
   updated() {
-    //this.getUserName();
+    this.getUserName();
   },
 };
 </script>
