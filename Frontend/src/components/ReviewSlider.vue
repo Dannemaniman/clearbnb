@@ -12,8 +12,8 @@
         :ref="review.id"
       >
         <div class="review-header">
-          <img class="avatar-icon" :src="review.avatar" alt="" />
-          <strong>{{ review.authorName }}</strong>
+          <img class="avatar-icon" :src="user.image" alt="" />
+          <strong>{{ user.fullName }}</strong>
         </div>
         <div class="review-grade">{{ review.grade }} / 5 &#9733;</div>
         <div class="review-body">
@@ -70,9 +70,21 @@ export default {
       replyReviews: null,
       reviewText: '',
       replyReview: null,
+      user: '',
     };
   },
   methods: {
+    async getUserName() {
+      await this.$store.state.users.forEach((user) => {
+        this.reviews.forEach((review) => {
+          if (user.id === review.authorId) {
+            this.user = user;
+          }
+        });
+      });
+      console.log(this.user);
+      // this.reviews;
+    },
     postReply() {
       if (!this.$store.state.user) {
         this.$router.push('/login-page');
@@ -138,10 +150,10 @@ export default {
     },
   },
   created() {
-    //this.getUserName();
+    this.getUserName();
   },
   updated() {
-    //this.getUserName();
+    this.getUserName();
   },
 };
 </script>
