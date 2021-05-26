@@ -37,6 +37,9 @@ export default {
   components: {
     ReviewModal,
   },
+  created() {
+    console.log(typeof chosenDate);
+  },
   data() {
     return {
       showReviewModal: false,
@@ -72,6 +75,8 @@ article {
   border: 1px solid transparent;
   border-radius: 8px;
   transition: all 0.2s ease;
+  margin: 1rem auto;
+  background: white;
 }
 
 article:hover,

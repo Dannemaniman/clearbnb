@@ -1,5 +1,6 @@
 <template>
   <section>
+    <ErrorModal errorMessage="Invalid fields!" @closeModal="closeModal" v-if="showError === true" />
     <div class="header-bar">
       <h1>Confirm Details</h1>
     </div>
@@ -24,7 +25,7 @@
           <option value="mastercard">Mastercard</option>
           <option value="american-express">American Express</option>
         </select>
-        <credit-card :cardType="cardType"></credit-card>
+        <credit-card :cardType="cardType" :cardInfo="cardInfo"></credit-card>
         <button class="submit-button" @click="book">Pay</button>
       </form>
     </div>
@@ -35,23 +36,36 @@
 import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
 import Spinner from '../components/Spinner.vue';
+import ErrorModal from "../components/ErrorModal.vue"
 
 export default {
   components: {
     ListItem,
     CreditCard,
     Spinner,
+    ErrorModal
   },
   data() {
     return {
       bookingInfo: this.$store.state.selectedHouse,
       userId: this.$store.state.user.id,
       cardType: 'Select your card',
+      cardInfo: {
+        cardNumber: "",
+        cardCVV: "",
+        validThruMonth: "",
+        validThruYear: "",
+      },
       showSpinner: false,
+      showError: false
     };
   },
   methods: {
     book() {
+      if(this.cardType === 'Select your card' || this.cardInfo.cardNumber === '' || this.cardInfo.cardCVV === '' || this.cardInfo.validThruMonth === '' || this.cardInfo.validThruYear === '') {
+        this.showError = true;
+        return
+      }
       let booking = {
         bookerId: this.userId,
         houseId: this.bookingInfo.house.id,
@@ -72,6 +86,10 @@ export default {
         this.showSpinner = false;
       }, 1000);
     },
+    closeModal(){
+      console.log("hej")
+      this.showError = false;
+    }
   },
   created() {
     console.log(this.bookingInfo);

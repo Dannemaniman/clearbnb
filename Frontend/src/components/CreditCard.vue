@@ -1,7 +1,7 @@
 <template>
   <hr class="separator" />
   <div class="credit_container">
-    <p class="booking-card">Valt kort</p>
+    <p class="booking-card">Valt kort:</p>
     <div :class="cardColor2" class="credit-card">
       <div class="credit-title">{{ cardType }}</div>
       <div class="card-chip">
@@ -19,16 +19,36 @@
         </div>
       </div>
       <div class="card-number">
-        <input placeholder="Card Number" type="text" class="card-number" />
+        <input
+          placeholder="Card Number"
+          type="text"
+          class="card-number"
+          v-model.trim="cardInformation.cardNumber"
+        />
       </div>
       <div class="card-validation">
-        <input placeholder="CVV" type="text" class="card-cvv" />
+        <input
+          placeholder="CVV"
+          type="text"
+          class="card-cvv"
+          v-model.trim="cardInformation.cardCVV"
+        />
         <div class="card-valid">VALID THRU</div>
         <div class="card-triangle"></div>
         <div class="card-monthyear">
-          <input placeholder="09" type="text" class="card-expiration" />
+          <input
+            placeholder="09"
+            type="text"
+            class="card-expiration"
+            v-model.trim="cardInformation.validThruMonth"
+          />
           <p class="separator">/</p>
-          <input placeholder="24" type="text" class="card-expiration" />
+          <input
+            placeholder="24"
+            type="text"
+            class="card-expiration"
+            v-model.trim="cardInformation.validThruYear"
+          />
         </div>
       </div>
       <div class="card-name"></div>
@@ -38,10 +58,11 @@
 
 <script>
 export default {
-  props: ['cardType'],
+  props: ['cardType', 'cardInfo'],
   data() {
     return {
       cardColor: 'black',
+      cardInformation: this.cardInfo,
     };
   },
   computed: {
