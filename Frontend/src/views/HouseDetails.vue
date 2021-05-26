@@ -132,7 +132,13 @@ h3 {
   width: 100%;
   max-height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
+
+.images img:hover, .images img:active {
+  filter: brightness(60%);
+}
+
 .images .img-1 {
   grid-area: img-1;
   object-fit: cover;
