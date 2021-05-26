@@ -42,27 +42,7 @@ export default {
       showSpinner: true,
     };
   },
-  methods: {
-    setReviewScore() {},
-  },
   updated() {
-    this.$store.state.houses.forEach(async (house) => {
-      await this.$store.dispatch('fetchReviews', house.id);
-
-      if (this.$store.state.reviews.length == 0) {
-        return '';
-      }
-      let total = 0;
-      this.$store.state.reviews.forEach(function (review) {
-        let grade = review.grade;
-        total += grade;
-      });
-      let average = total / this.$store.state.reviews.length;
-      let rounded = average.toFixed(2);
-      house.review = Number(rounded);
-    });
-    console.log(this.$store.state.houses);
-
     //set houses
   },
   async created() {
