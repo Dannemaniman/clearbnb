@@ -91,6 +91,7 @@ export default {
       return arr;
     },
     searchByReview(houses) {
+      //await this.$store.dispatch('fetchReviews', this.home.id);
       if (this.searchObject.review == '') {
         return houses;
       }

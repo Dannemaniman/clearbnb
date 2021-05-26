@@ -1,6 +1,11 @@
 <template>
   <article class="house" @click="goToDetails">
-    <img :src="house.images[0]" />
+    <div class="image-div">
+      <img :src="house.images[0]" />
+      <div class="overlay">
+        <div class="text">{{ house.price }} / night</div>
+      </div>
+    </div>
     <h2>{{ house.city }}</h2>
     <h3>{{ house.address }}</h3>
   </article>
@@ -30,9 +35,37 @@ export default {
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
   transition: 0.2s ease-out;
 }
-.house:hover {
-  transform: scale(1.01);
-  box-shadow: 2px 5px 5px rgb(0 0 0 /80%);
+
+.image-div {
+  position: relative;
+}
+.house .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #000;
+  line-height: 2rem;
+  border-radius: 0 0 8rem 0rem;
+}
+.overlay:hover {
+  opacity: 0.7;
+}
+.overlay .text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 img {
   width: 100%;
