@@ -1,6 +1,6 @@
 <template>
-  <section class="section-amenities">
-    <h1>Amenities</h1>
+  <section class="section-amenities" :class="{invalid: invalid === 'invalid'}" >
+    <h1>Amenities <span v-if="failedValidity" style="font-size: 2rem; color: red;"> You must choose atleast 1!</span></h1>
     <div class="amenities-container">
       <article v-for="(amenity, index) of amenities" :key="index" @click="addAmenity(amenity, index)" :ref="amenity">
         <img :src="getPath(index)" :alt="amenity" />
@@ -12,11 +12,19 @@
 
 <script>
 export default {
+  props: ['invalid'],
   emit: ['amenities'],
   data() {
     return {
        amenities: ['Bed', 'Breakfast', 'Camera', 'CCTV', 'Dinner', 'Elevator', 'Fridge', 'Heating', 'Iron', 'Mirror', 'Parking', 'Room Service', 'Sink', 'Tea', 'Television', 'Toothbrush', 'Towel', 'Wifi'],
-       chosenAmenities: []
+       chosenAmenities: [],
+       failedValidity: false,
+    }
+  },
+  created(){
+    console.log(this.invalid)
+    if(this.invalid === 'invalid'){
+      this.failedValidity = true
     }
   },
   methods: {
@@ -47,6 +55,12 @@ export default {
 </script>
 
 <style scoped>
+
+.invalid {
+  border: 4px solid red;
+  /* background: red; */
+}
+
 .section-amenities {
   display: flex;
   flex-direction: column;
