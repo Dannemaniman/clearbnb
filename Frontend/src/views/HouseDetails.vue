@@ -15,7 +15,6 @@
         <h2>
           {{ home.city }}, <span class="home-address">{{ home.address }}</span>
         </h2>
-        <h3></h3>
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
@@ -25,7 +24,7 @@
     <br />
     <br />
     <br />
-    <MapComponent :home="home" />
+    <MapComponent :home="home" :inDetail="true" />
     <Reviews :reviews="$store.state.reviews" />
     <Hosts :home="home" />
   </div>
@@ -95,6 +94,10 @@ h1 {
   margin-left: 1rem;
 }
 
+h3 {
+  line-height: 150%;
+}
+
 .content-holder {
   position: relative;
   display: flex;
@@ -131,7 +134,14 @@ h1 {
   width: 100%;
   max-height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
+
+.images img:hover,
+.images img:active {
+  filter: brightness(60%);
+}
+
 .images .img-1 {
   grid-area: img-1;
   object-fit: cover;

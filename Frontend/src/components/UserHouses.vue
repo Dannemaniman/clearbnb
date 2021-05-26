@@ -7,7 +7,11 @@
   <Spinner v-if="showSpinner" />
   <div v-else>
     <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
-    <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
+    <UserAmenities
+      v-if="showCreateHome"
+      @amenities="getAmenities"
+      :invalid="amenitiesValidity"
+    />
     <PhotoUploader v-if="showCreateHome" />
     <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
     <p v-if="showValidityError === 'invalid'" style="color: red">
@@ -51,10 +55,10 @@ export default {
   props: ['userObjects'],
   data() {
     return {
-      // user: null,
       showSpinner: false,
       showCreateHome: false,
       amenities: [],
+      amenitiesValidity: 'pending',
       images: null,
       showError: false,
       basicInfo: {
@@ -90,6 +94,14 @@ export default {
     },
   },
   methods: {
+    checkAmenityValidity() {
+      if (this.amenities.length >= 1 && this.images !== null) {
+        this.amenitiesValidity = 'invalid';
+        return 'invalid';
+      } else {
+        return 'valid';
+      }
+    },
     getAmenities(amen) {
       this.amenities = amen;
     },
@@ -139,7 +151,9 @@ export default {
 
     async submitHome() {
       this.images = this.$store.state.uploadedNames;
-      if (this.images == null) {
+
+      if (this.images.length == 0) {
+        console.log('tjohojs');
         this.images = ['/images/No-Image.jpg'];
       }
       let ownerId = await this.$store.state.user.id;
@@ -149,8 +163,8 @@ export default {
         propertyType: this.basicInfo.propertyType,
         amenities: this.amenities,
         price: this.basicInfo.price,
-        childDiscount: this.childDiscount,
-        seniorDiscount: this.seniorDiscount,
+        childDiscount: this.basicInfo.childDiscount,
+        seniorDiscount: this.basicInfo.seniorDiscount,
         title: this.basicInfo.title,
         city: this.basicInfo.city,
         address: this.basicInfo.address,
@@ -184,7 +198,6 @@ export default {
         this.showCreateHome = false;
         this.userObjects.push(hostObject);
       }
-      this.userHouses = userHouses;
     },
   },
 };

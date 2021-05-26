@@ -5,15 +5,14 @@
       <Typewriter />
       <GalleryComponent />
       <p class="greeting">
-        <span>Vi bryr oss!</span> <br />
-        Vi bryter våra ryggar för att du ska glömma bort ditt inrutade
-        vardagsliv
+        <span>We care!</span> <br />
+        We break our backs to serve your every need.
       </p>
 
       <Slider title="I Omfånget" :houses="houses" />
       <Slider title="Bäst I Betyg" :houses="bestHouses" />
       <Slider title="Billigaste" :houses="cheapestHouses" />
-      <MapComponent />
+      <MapComponent :inDetail="false" />
     </div>
   </div>
 </template>
@@ -61,19 +60,17 @@ export default {
 <style scoped>
 .home-content {
   padding: 0 0.5rem;
-  margin-bottom: 1rem;
 }
 
 .greeting {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font: bolder;
-  margin-bottom: 5rem;
-  line-height: 120%;
+  margin-bottom: 7rem;
+  line-height: 100%;
   text-shadow: 2px 2px 0px #ffffff, 2px 2px 0px rgba(0, 0, 0, 0.164);
-  color: #4b4b4b;
 }
 
 .greeting span {
-  font-size: 3.5rem;
+  font-size: 5rem;
 }
 </style>
