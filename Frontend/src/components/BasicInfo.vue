@@ -20,6 +20,26 @@
         step="50"
         v-model="price"
       />
+      <label for="childDiscount">Child Discount</label>
+      <p>{{ childDiscount }} %</p>
+      <input
+        name="childDiscount"
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        v-model="childDiscount"
+      />
+      <label for="seniorDiscount">Senior Discount</label>
+      <p>{{ seniorDiscount }} %</p>
+      <input
+        name="seniorDiscount"
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        v-model="seniorDiscount"
+      />
       <label for="description"></label>
       <textarea
         name="description"
@@ -65,7 +85,7 @@
           <div class="button-container">
             <button
               type="button"
-              @click="guestCounter <= 0 ? (guestCounter = 0) : guestCounter--"
+              @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--"
             >
               -
             </button>
@@ -111,7 +131,7 @@ export default {
   emit: ['basicInfo'],
   data() {
     return {
-      guestCounter: 0,
+      guestCounter: 1,
       bedCounter: 0,
       bathroomCounter: 0,
       title: '',
@@ -121,6 +141,8 @@ export default {
       zipcode: '',
       city: '',
       propertyType: '',
+      seniorDiscount: 1,
+      childDiscount: 1,
     };
   },
   methods: {

@@ -1,5 +1,6 @@
 <template>
   <div id="container">
+    <p class="map-title">Homes in your vicinity</p>
     <div id="mapContainer"></div>
   </div>
 </template>
@@ -16,6 +17,8 @@ export default {
       center: [55.68370479244602, 13.608292932699289],
       houses: '',
       provider: new OpenStreetMapProvider(),
+      user: this.$store.state.user,
+      userBookings: this.$store.state.userBookings,
     };
   },
   props: ['home'],
@@ -32,8 +35,8 @@ export default {
     },
 
     setupLeafletMap() {
-      this.mapDiv = L.map('mapContainer')
-        .locate({
+      this.mapDiv = L.map('mapContainer').setView(this.center, 9);
+      /* .locate({
           setView: true,
           watch: true,
           maxZoom: 9,
@@ -51,7 +54,7 @@ export default {
         })
         .on('locationerror', (error) => {
           console.log(error);
-        });
+        }); */
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
         {
@@ -73,7 +76,7 @@ export default {
         style: 'button',
         autoComplete: true,
         autoClose: true,
-        keepResult: true,
+        keepResult: false,
       });
       this.mapDiv.addControl(searchControl);
     },
@@ -81,68 +84,119 @@ export default {
     addMarkers() {
       if (!this.$route.params.id) {
         this.houses.forEach((house) => {
-          L.circle(house.position, {
+          let content =
+            '<h3>' +
+            house.title +
+            '</h3>' +
+            '<a href=/house/' +
+            house.id +
+            '><img src="' +
+            house.images[0] +
+            '" width="150" /></a>' +
+            '<br>' +
+            house.city +
+            '<br>' +
+            'Price: ' +
+            '<strong>' +
+            house.price +
+            '</strong>' +
+            '/night';
+          //UserId = house.bookerID or UserId = house.ownerId
+          if (this.user == null) {
+            L.circle(house.position, {
+              color: 'red',
+              fillColor: '#f03',
+              fillOpacity: 0.5,
+              radius: 500,
+            })
+              .bindPopup(content, { maxWidth: 160 })
+              .openPopup()
+              .addTo(this.mapDiv);
+          } else if (
+            //some(i => i.name.includes('Jack'));
+            this.userBookings.some((booking) =>
+              booking.houseId.includes(house.id)
+            ) ||
+            this.user.id == house.ownerId ||
+            this.user.email === 'admin@admin'
+          ) {
+            L.marker(house.position)
+              .bindPopup(content, { maxWidth: 160 })
+              .openPopup()
+              .addTo(this.mapDiv);
+          } else {
+            L.circle(house.position, {
+              color: 'red',
+              fillColor: '#f03',
+              fillOpacity: 0.5,
+              radius: 500,
+            })
+              .bindPopup(content, { maxWidth: 160 })
+              .openPopup()
+              .addTo(this.mapDiv);
+          }
+        });
+      } else {
+        let singleContent =
+          '<h3>' +
+          this.home.title +
+          '</h3>' +
+          '<a href=/house/' +
+          this.home.id +
+          '><img src="' +
+          this.home.images[0] +
+          '" width="150" /></a>' +
+          '<br>' +
+          this.home.city +
+          '<br>' +
+          'Price: ' +
+          '<strong>' +
+          this.home.price +
+          '</strong>' +
+          '/night';
+
+        if (this.user == null) {
+          L.circle(this.home.position, {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
             radius: 500,
+            className: 'popup',
           })
-            .bindPopup(
-              '<h3>' +
-                house.title +
-                '</h3>' +
-                '<img src="' +
-                house.images[0] +
-                '" width="150" />' +
-                '<br>' +
-                house.description +
-                '<br>' +
-                'Price: ' +
-                '<strong>' +
-                house.price +
-                '</strong>' +
-                '/night',
-              { maxWidth: 160 }
-            )
+            .bindPopup(singleContent, { maxWidth: 160 })
             .openPopup()
             .addTo(this.mapDiv);
-        });
-      } else {
-        L.circle(this.home.position, {
-          color: 'red',
-          fillColor: '#f03',
-          fillOpacity: 0.5,
-          radius: 500,
-          className: 'popup',
-        })
-          .bindPopup(
-            '<h3>' +
-              this.home.title +
-              '</h3>' +
-              '<img src="' +
-              this.home.images[0] +
-              '" width="150" />' +
-              '<br>' +
-              this.home.description +
-              '<br>' +
-              'Price: ' +
-              '<strong>' +
-              this.home.price +
-              '</strong>' +
-              '/night',
-            { maxWidth: 160 }
-          )
-          .openPopup()
-          .addTo(this.mapDiv);
+        } else if (
+          this.userBookings.some((booking) =>
+            booking.houseId.includes(this.home.id)
+          ) ||
+          this.user.id == this.home.ownerId ||
+          this.user.email === 'admin@admin'
+        ) {
+          L.marker(this.home.position)
+            .bindPopup(singleContent, { maxWidth: 160 })
+            .openPopup()
+            .addTo(this.mapDiv);
+        } else {
+          L.circle(this.home.position, {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500,
+            className: 'popup',
+          })
+            .bindPopup(singleContent, { maxWidth: 160 })
+            .openPopup()
+            .addTo(this.mapDiv);
+        }
       }
 
       /*  L.marker(this.home.position).addTo(this.mapDiv); */
     },
   },
   async mounted() {
-    let res = await fetch('/rest/houses');
-    let houses = await res.json();
-    this.houses = houses;
+    this.houses = this.$store.state.houses;
+
     this.setupLeafletMap();
     this.addMarkers();
     /*  this.mapDiv.on('locationfound', this.onLocationFound);
@@ -152,9 +206,30 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background: white;
+  box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.map-title {
+  font-size: 3rem;
+  margin: 0;
+  text-align: left;
+}
+
 #mapContainer {
-  margin-top: 7rem;
+  margin-top: 3rem;
   width: 100%;
   height: 35rem;
+
+  background: white;
+  box-shadow: rgba(0 0 0 / 60%) 0px 1px 6px;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.leaflet-popup-content {
+  color: aqua;
 }
 </style>

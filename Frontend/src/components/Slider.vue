@@ -1,4 +1,6 @@
 <template>
+<p>{{title}}</p>
+<header>
   <section class='section-slider'>
     <div class='slider-container' v-if="houses !== null">
       <div class='arrow-left' @click='moveLeft'/>
@@ -10,11 +12,12 @@
       <div class='arrow-right' @click='moveRight'/>
     </div>
   </section>
+  </header>
 </template>
 
 <script> 
 export default {
-  props: ['houses'],
+  props: ['houses', 'title'],
   data() {
     return {
        moveCounter: 0,
@@ -44,29 +47,63 @@ export default {
 
 <style scoped>
 
+header {
+box-shadow: rgba(0, 0, 0, 0.041) 0px 10px 20px, rgba(0, 0, 0, 0.15) 0px 6px 6px;
+   border-radius: 10px;
+  padding: 0.1rem;
+  /* height: 15rem; */
+      margin-bottom: 7rem;
+}
+
   .section-slider {
     width: 100%;
     background-color: grey;
-    margin-bottom: 10rem;
-    border-top: 3px solid black;
+
+    /* border-top: 3px solid black; */
+
+          background: whitesmoke;
+              background: rgb(204, 204, 204);
+    /* box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 10rem;  
   }
+
+p {
+  font-size: 3rem;
+  color: black;
+  font-weight: thin;
+  text-align: left;
+  margin-left: 2rem;
+  text-shadow: 2px 2px 0px #ffffff, 2px 2px 0px rgba(0, 0, 0, 0.164);
+}
 
   .slider-container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
+    overflow-x: hidden;
   }
 
   article {
     transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: rgb(0 0 0 / 50%) 0px 1px 12px;
+    margin: auto 0.4rem;
+    background: rgb(173, 173, 173);
+    border-radius: 10px;
   }
 
   img {
     height: 300px;
     width: 300px;
+    border-radius: 10px;
   }
 
   .arrow-right {

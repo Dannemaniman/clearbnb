@@ -1,11 +1,12 @@
 <template>
   <button @click="showCreateHome = !showCreateHome">New House</button>
-
-  <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
-  <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
-  <PhotoUploader v-if="showCreateHome" @photo="getPhoto" />
-  <!-- <button type="reset">Reset</button> -->
-  <button @click="addNewHouse">Submit Home</button>
+  <Spinner v-if="showSpinner" />
+  <div v-else>
+    <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
+    <UserAmenities v-if="showCreateHome" @amenities="getAmenities" />
+    <PhotoUploader v-if="showCreateHome" />
+    <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
+  </div>
   <UserHouseItem
     v-for="(userHouse, index) of userObjects"
     v-bind:key="index"
@@ -19,6 +20,7 @@ import BasicInfo from './BasicInfo.vue';
 import PhotoUploader from './PhotoUploader.vue';
 import UserAmenities from './UserAmenities.vue';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import Spinner from './Spinner.vue';
 
 export default {
   components: {
@@ -26,18 +28,18 @@ export default {
     BasicInfo,
     PhotoUploader,
     UserAmenities,
+    Spinner,
   },
   props: ['userObjects'],
   data() {
     return {
       // user: null,
-      userHouses: [],
+      showSpinner: false,
       showCreateHome: false,
       amenities: [],
-      images: [],
+      images: null,
       basicInfo: [],
       ownerId: '',
-      images: null,
       position: [],
       provider: new OpenStreetMapProvider(),
     };
@@ -52,15 +54,14 @@ export default {
     getAmenities(amen) {
       this.amenities = amen;
     },
-    getPhoto(photos) {
-      this.images = photos;
-    },
     getBasicInfo(info) {
       this.basicInfo = info;
     },
 
     addNewHouse() {
-      //let userAddress = 'Sunnanväg 209, Lund, SE';
+      if (this.basicInfo.zipcode == null) {
+        this.basicInfo.zipcode = 'xxx';
+      }
       let userAddress =
         this.basicInfo.address +
         ' ' +
@@ -75,7 +76,6 @@ export default {
       query_promise.then(
         (value) => {
           for (let i = 0; i < value.length; i++) {
-            // Success!
             let x_coor = value[i].x;
             let y_coor = value[i].y;
             //let label = value[i].label;
@@ -92,22 +92,18 @@ export default {
       if (this.position.length <= 0) {
         this.position = [-74.2183050512854, 26.899583900684352];
       }
+      this.showSpinner = true;
       setTimeout(() => {
         this.submitHome();
+        this.showSpinner = false;
       }, 2000);
     },
 
     async submitHome() {
-      //  console.log( this.userHouses)
-      //  console.log(this.showCreateHome),
-      //  console.log(this.amenities),
-      //  console.log(this.images),
-      //  console.log(this.basicInfo)
+      this.images = this.$store.state.uploadedNames;
       if (this.images == null) {
-        console.log('hej');
         this.images = ['/images/No-Image.jpg'];
       }
-      // if (this.$store.state.user) {
       let ownerId = await this.$store.state.user.id;
       console.log(ownerId);
 
@@ -115,6 +111,8 @@ export default {
         propertyType: this.basicInfo.propertyType,
         amenities: this.amenities,
         price: this.basicInfo.price,
+        childDiscount: this.childDiscount,
+        seniorDiscount: this.seniorDiscount,
         title: this.basicInfo.title,
         city: this.basicInfo.city,
         address: this.basicInfo.address,
@@ -132,6 +130,9 @@ export default {
       console.log(hostObject);
 
       this.$store.dispatch('createHouse', hostObject);
+      this.showCreateHome = false;
+
+      this.userObjects.push(hostObject);
       // }
     },
     created() {

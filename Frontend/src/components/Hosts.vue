@@ -1,45 +1,64 @@
 <template>
-  <section class='section-host'>
+  <section class="section-host">
     <header>
-      <img class='avatar' src='../../public/avatar.jpg'/>
-      <div class='user-container'>
-        <h1>Hosted by <span class='span-name'>Greger</span> </h1>
-        <p class='reviews-number'>★ 23 Reviews</p>
+      <img class="avatar" :src="owner.image" />
+      <div class="user-container">
+        <h1>
+          Hosted by <span class="span-name">{{ owner.fullName }}</span>
+        </h1>
+        <p class="reviews-number">★ 23 Reviews</p>
       </div>
     </header>
     <article>
-      <h2>About Greger</h2>
-      <p class='info-text'>
-        Tillgänglig på telefon under hela vistelsen, personligt mottagande och incheckning.
-        <br/><br/> 
-        Bjuder på kaffe och bullar på morgonen.
-        <br/><br/>
-        Jag spelar Heavy Metal på full volym från klockan 11 till 3 på natten. 
+      <h2>About {{ owner.fullName }}</h2>
+      <p class="info-text">
+        {{ owner.description }}
+        <br /><br />
+        {{ owner.email }}
       </p>
     </article>
     <footer>
-      <button class='button-contact'>Contact</button>
-      <div class='security-container'>
-        <img class='secure-icon' src='../../public/icons/keycard.png'/>
-        <p>To protect your payment, never transfer money or communicate outside of the Clearbnb website.</p>
+      <button class="button-contact">Contact</button>
+      <div class="security-container">
+        <img class="secure-icon" src="../../public/icons/keycard.png" />
+        <p>
+          To protect your payment, never transfer money or communicate outside
+          of the Clearbnb website.
+        </p>
       </div>
     </footer>
   </section>
 </template>
 
 <script>
-
 export default {
-  props: ['host']
-}
+  data() {
+    return {
+      owner: '',
+    };
+  },
+  props: ['home'],
+  methods: {
+    getOwner() {
+      this.$store.state.users.forEach((user) => {
+        if (user.id === this.home.ownerId) {
+          this.owner = user;
+        }
+      });
+    },
+  },
+  mounted() {
+    this.getOwner();
+  },
+};
 </script>
 
 <style scoped>
-
 .section-host {
-  background-color:  #a9a9a9;
-    /* padding-left: 1rem; */
-  overflow: hidden
+  margin-top: 6rem;
+  /* background-color: #a9a9a9; */
+  /* padding-left: 1rem; */
+  /* overflow: hidden; */
 }
 
 header {
@@ -53,12 +72,10 @@ header {
   width: 120px;
   background-color: whitesmoke;
   border-radius: 0 0 10px 0;
-   /* border-bottom: 2px solid black; */
-  border-left:  5px solid black; 
-    box-shadow:
-       inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgb(255,255,255),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
+  /* border-bottom: 2px solid black; */
+  border-left: 5px solid black;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
 h1 {
@@ -68,8 +85,9 @@ h1 {
 }
 
 .span-name {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 300;
+  margin-left: 0.2rem;
   /* margin-left: 1rem; */
 }
 
@@ -84,17 +102,17 @@ h1 {
 }
 
 article {
- margin-top: 2rem;
- background-color: whitesmoke;
- border-radius: 10px 0 0 10px;
- padding: 2rem;
- margin-left: 1rem;
- border-right: 5px solid black;
- box-shadow:
-       inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgb(255,255,255),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
-
+  margin-top: 2rem;
+  /* background-color: whitesmoke; */
+  border-radius: 10px 0 0 10px;
+  background: white;
+  padding: 2rem;
+  margin-left: 1rem;
+  border-right: 5px solid rgba(0, 0, 0, 0.281);
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.027), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    position: relative;
+    right: -1.9rem;
 }
 
 h2 {
@@ -110,7 +128,6 @@ h2 {
   height: 30px;
   width: 30px;
 }
-
 
 .info-text {
   color: black;
@@ -147,5 +164,4 @@ footer {
   font-size: 0.7rem;
   margin-left: 1rem;
 }
-
 </style>

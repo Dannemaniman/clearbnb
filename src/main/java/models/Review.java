@@ -4,28 +4,59 @@ import nosqlite.annotations.Document;
 import nosqlite.annotations.Id;
 
 import java.awt.*;
+import java.util.List;
 
 @Document
 public class Review {
-   @Id
+
+    @Id
     private String id;
     private String avatar;
-    private String author;
+    private String authorId;
+    private String authorName;
     private String review;
     private int grade;
     private String gradedHouse;
+    private List<Reply> replies;
     
     public Review(){};
-    
+
     @Override
-    public String
-    toString() {
-        return "Reviews{" +
-                "author='" + author + '\'' +
-                ", review='" + review + '\'' +
-                ", grade=" + grade +
-                ", gradedHouse='" + gradedHouse + '\'' +
+    public String toString() {
+        return '\n' + "Review{" + '\n' +
+                "id='" + id + '\n' +
+                ", avatar='" + avatar + '\n' +
+                ", authorId='" + authorId + '\n' +
+                ", authorName='" + authorName + '\n' +
+                ", review='" + review + '\n' +
+                ", grade=" + grade + '\n' +
+                ", gradedHouse='" + gradedHouse + '\n' +
+                ", replies=" + replies + '\n' +
                 '}';
+    }
+
+    public String getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
     public String getAvatar() {
@@ -35,13 +66,13 @@ public class Review {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
-    
-    public String getAuthor() {
-        return author;
+
+    public String getAuthorName() {
+        return authorName;
     }
-    
-    public void setAuthor(String author) {
-        this.author = author;
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
     
     public String getReview() {

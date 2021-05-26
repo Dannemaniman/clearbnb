@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <img v-bind:src="house.images[0]" alt="" />
+    <router-link class="house" :to="/house/ + house.id">
+      <img v-bind:src="house.images[0]" alt="" />
+    </router-link>
     <h3>{{ house.title }}</h3>
     <p>{{ house.address }}</p>
   </div>

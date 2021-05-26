@@ -24,8 +24,9 @@ public class House {
     private Accommodation accommodation;
     private String description;
     private String price;
+    private int childDiscount;
+    private int seniorDiscount;
     private List<String> amenities;
-    private String reviews;
     private String ownerId;
     private double[] position;
     private Date leaseStart;
@@ -48,7 +49,6 @@ public class House {
                 ", description='" + description + '\'' +
                 ", price='" + price + '\'' +
                 ", amenities=" + amenities +
-                ", reviews='" + reviews + '\'' +
                 ", ownerId='" + ownerId + '\'' +
                 ", position=" + Arrays.toString(position) +
                 ", bookings=" + bookings +
@@ -57,6 +57,22 @@ public class House {
                 ", bookings=" + bookings +
                 '}';
     }
+
+    public int getSeniorDiscount() {
+        return seniorDiscount;
+    }
+
+    public void setSeniorDiscount(int seniorDiscount) {
+        this.seniorDiscount = seniorDiscount;
+    }
+
+    public int getChildDiscount() {
+        return childDiscount;
+    }
+
+    public void setChildDiscount(int childDiscount) {
+        this.childDiscount = childDiscount;
+    }
     
     public double[] getPosition() {
         return position;
@@ -64,14 +80,6 @@ public class House {
     
     public void setPosition(double[] position) {
         this.position = position;
-    }
-    
-    public String getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(String reviews) {
-        this.reviews = reviews;
     }
 
     public String getZipcode() {
@@ -176,14 +184,6 @@ public class House {
 
     public void setAmenities(List<String> amenities) {
         this.amenities = amenities;
-    }
-
-    public String getReview() {
-        return reviews;
-    }
-
-    public void setReview(String reviews) {
-        this.reviews = reviews;
     }
 
     public String getOwnerId() {

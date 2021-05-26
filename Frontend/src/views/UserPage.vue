@@ -79,7 +79,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('fetchBookings');
+    //this.$store.dispatch('fetchBookings');
   },
 };
 </script>
