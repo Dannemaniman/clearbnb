@@ -6,6 +6,9 @@
   />
   <Spinner v-if="showSpinner" />
   <div v-else>
+    <button @click="showCreateHome = !showCreateHome" class="new-house-btn">
+      New House
+    </button>
     <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
     <UserAmenities
       v-if="showCreateHome"
@@ -29,9 +32,6 @@
   <div v-else style="font-size: 2rem">
     You have none of your homes available to be rented out!
   </div>
-  <button @click="showCreateHome = !showCreateHome" class="new-house-btn">
-    New House
-  </button>
 </template>
 
 <script>
@@ -132,6 +132,7 @@ export default {
             let x_coor = value[i].x;
             let y_coor = value[i].y;
             this.position = [y_coor, x_coor];
+            console.log(this.position);
           }
         },
         (reason) => {
@@ -141,12 +142,11 @@ export default {
       if (this.position.length <= 0) {
         this.position = [-74.2183050512854, 26.899583900684352];
       }
-      // this.showSpinner = true;
-      // setTimeout(() => {
-      //   this.submitHome();
-      //   this.showSpinner = false;
-      // }, 2000);
-      this.submitHome();
+      this.showSpinner = true;
+      setTimeout(() => {
+        this.submitHome();
+        this.showSpinner = false;
+      }, 2000);
     },
 
     async submitHome() {
@@ -215,7 +215,7 @@ section {
 }
 
 h1 {
-  margin: 6rem auto;
+  margin: 3rem auto;
   font-size: 3rem;
 }
 
@@ -249,6 +249,6 @@ button:active {
 }
 
 .new-house-btn {
-  margin-top: 7rem;
+  margin-top: 4rem;
 }
 </style>
