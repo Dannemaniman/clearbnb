@@ -23,29 +23,42 @@
 
 <script>
 export default {
-  props: ['days', 'month'],
+  props: ['days', 'month', 'firstDate', 'secondDate', 'current'],
   emit: ['setDate'],
+   created(){
+     this.renderInactiveFromProps()
+     
+   },
+  updated(){
+    this.renderInactiveFromProps()
+    this.currentMarker = this.current
+  },
   computed: {
     disabled() {
       return days - firstOne
+    },
+    currentMaker() {
+      return  this.current
     }
   },
   data() {
     return {
       tableClass: '',
-      currentMarker: 0,
       firstOne: null,
       secondOne: null,
       firstElement: null,
       secondElement: null,
       currentElement : null,
       monthNames: ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "July", "August", "September", "October", "November", "December"    
 ]
     }
   },
   methods: {
     markSelection(event) {
+
+      
+
       let yearMonth = event.target.attributes[0].ownerElement.parentElement.parentElement.firstChild.innerHTML.split(" ")
       let month = this.monthNames.indexOf(yearMonth[0].trim())
       let year = yearMonth[1].trim()
@@ -71,35 +84,119 @@ export default {
       }
       this.renderInactiveSelections();
     },
+    renderInactiveFromProps(){
+      if(this.firstDate !== 'Check-in'){
+          let stuff = this.firstDate.split('-')
+          let monthz = Number(stuff[1])
+
+          if(String(monthz).charAt(0) === 0){
+            monthz = String(monthz.substring(1))
+          }
+
+          let realFirstMonth = Number(monthz)-1
+
+        if(this.monthNames.indexOf(this.month) <  realFirstMonth){
+           if(this.currentMarker === 0) {
+             for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
+               for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+                 if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                    return
+                 }
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+              }
+             }
+            } 
+        }
+      } if(this.secondDate !== 'Check-out'){
+          let stuff = this.secondDate.split('-')
+          let monthz = Number(stuff[1])
+
+          if(String(monthz).charAt(0) === 0){
+            monthz = String(monthz.substring(1))
+          }
+
+        let realFirstMonth = Number(monthz)-1
+          if(this.monthNames.indexOf(this.month) >  realFirstMonth){
+            if(this.currentMarker === 1) {
+             for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
+               for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+                 if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                    return
+                 }
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+              }
+             }
+            }
+          }
+        }
+    },
     renderInactiveSelections() {
       if(this.currentMarker === 1) {
         for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
           for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
             if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
                 return
             }
-            if(
-              Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) < 
+            if(this.firstElement !== null){
+              
+              if(
+                Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) < 
               Number(this.firstElement.childNodes[0].data)){
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-            }
+            } 
+                }
+            // else if(
+            //   Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) > 
+            //   Number(this.firstElement.childNodes[0].data)){
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.backgroundColor = "salmon"
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.7"
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+            // }
           }
         }
       } else if(this.currentMarker === 0) {
         for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
           for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
             if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
                 return
             }
-            if(
-              Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) > 
+            if(this.secondElement !== null){
+
+              if(
+                Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) > 
               Number(this.secondElement.childNodes[0].data)){
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-            }
+            } 
+                }
+            // else if(
+            //   Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) < 
+            //   Number(this.secondElement.childNodes[0].data)){
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.backgroundColor = "salmon"
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.7"
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+            // }
           }
         }
       }
@@ -123,7 +220,7 @@ export default {
   }
 
   table {
-    margin: 5rem 1.6rem 2rem 3rem;
+    margin: 5rem 2.95rem 2rem 2.95rem;
     position: relative;
     border-spacing: 10px;
     transition: all 0.3s ease-in-out;
