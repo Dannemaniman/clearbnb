@@ -4,8 +4,14 @@
     <div class="info-container">
       <h1>Create Review!</h1>
       <p>Please write an accurate review of your experience of your stay!</p>
-      <textarea name="description" placeholder="Please Enter a Accurate Description of the Home." rows="10" cols="50" v-model="reviewText"/>
-      <p>Grade: </p>
+      <textarea
+        name="description"
+        placeholder="Please Enter a Accurate Description of the Home."
+        rows="10"
+        cols="50"
+        v-model="reviewText"
+      />
+      <p>Grade:</p>
       <select name="grade" v-model="grade">
         <option disabled selected>Please Choose...</option>
         <option value="1">1 Star</option>
@@ -23,41 +29,40 @@
 <script>
 export default {
   props: ['houseId'],
-  emit:['dismiss'],
+  emit: ['dismiss'],
   data() {
     return {
-      reviewText: "",
-      grade: "Please Choose...",
-    }
+      reviewText: '',
+      grade: 'Please Choose...',
+    };
   },
   methods: {
     send() {
-      if(this.grade === "Please Choose...") return
-      
+      if (this.grade === 'Please Choose...') return;
+
       let review = {
         review: this.reviewText,
         grade: this.grade,
-        author: this.$store.state.user.id,    //if no user user "3333sawdawd!"
+        authorId: this.$store.state.user.id, //if no user user "3333sawdawd!"
         gradedHouse: this.houseId,
-        avatar: ""
-      }
-      console.dir(review)
-      this.$store.dispatch('postReview', review)
-      this.$emit("dismiss")
-    }
-  }
-}
+        avatar: '',
+      };
+      console.dir(review);
+      this.$store.dispatch('postReview', review);
+      this.$emit('dismiss');
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 4;
 }
 
@@ -80,27 +85,26 @@ export default {
   margin-bottom: 3rem;
 }
 
- .cancel-button {
-    height: 3rem;
-    width: 4rem;    
-    border-top: none;
-    border-right: none;
-    outline: none;
-    border-radius: 10px 10px 10px 10px;
-    cursor: pointer;
-    margin-right: 2rem;
-  }
+.cancel-button {
+  height: 3rem;
+  width: 4rem;
+  border-top: none;
+  border-right: none;
+  outline: none;
+  border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
+  margin-right: 2rem;
+}
 
-  .send-button {
-    height: 3rem;
-    width: 4rem;
-    border-top: none;
-    border-right: none;
-    outline: none;
-    border-radius: 10px 10px 10px 10px;
-    cursor: pointer;
-    background-color: lightgreen;
-    border-color: green;
-  }
-
+.send-button {
+  height: 3rem;
+  width: 4rem;
+  border-top: none;
+  border-right: none;
+  outline: none;
+  border-radius: 10px 10px 10px 10px;
+  cursor: pointer;
+  background-color: lightgreen;
+  border-color: green;
+}
 </style>

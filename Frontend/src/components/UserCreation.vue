@@ -1,34 +1,63 @@
 <template>
   <section>
-        <ErrorModal errorMessage="Invalid fields!" @closeModal="closeModal" v-if="showError === true" />
+    <ErrorModal
+      errorMessage="Invalid fields!"
+      @closeModal="closeModal"
+      v-if="showError === true"
+    />
     <form @submit.prevent="submit">
       <table>
         <tr>
-          <th><label class="label-name" for="fname">First name:</label><p v-if="firstNameValidity === 'invalid'" style="color: red;">Invalid first name</p></th>
-          <td><input class="long-input" name="fname" type="text" v-model.trim="firstName" @blur="validateInput('fname')" :class="{invalid: firstNameValidity === 'invalid'}"/></td>
+          <th>
+            <label class="label-name" for="fname">First name:</label>
+            <p v-if="firstNameValidity === 'invalid'" style="color: red">
+              Invalid first name
+            </p>
+          </th>
+          <td>
+            <input
+              class="long-input"
+              name="fname"
+              type="text"
+              v-model.trim="userInfo.firstName"
+              @blur="validateInput('fname')"
+              :class="{ invalid: firstNameValidity === 'invalid' }"
+            />
+          </td>
         </tr>
         <tr>
-          <th> <label class="label-name" for="lname">Last name:</label><p v-if="lastNameValidity === 'invalid'" style="color: red;">Invalid last name</p></th>
-          <td><input class="long-input" name="lname" type="text"  v-model.trim="lastName" @blur="validateInput('lname')" :class="{invalid: lastNameValidity === 'invalid'}"/></td>
+          <th>
+            <label class="label-name" for="lname">Last name:</label>
+            <p v-if="lastNameValidity === 'invalid'" style="color: red">
+              Invalid last name
+            </p>
+          </th>
+          <td>
+            <input
+              class="long-input"
+              name="lname"
+              type="text"
+              v-model.trim="userInfo.lastName"
+              @blur="validateInput('lname')"
+              :class="{ invalid: lastNameValidity === 'invalid' }"
+            />
+          </td>
         </tr>
       </table>
-      
-      
-      
-     <div class="description-container">
-      <label class="label-description">Description:</label>
-      <textarea
-        name="description"
-        placeholder="Please Enter a Accurate Description yourself."
-        rows="10"
-        cols="50"
-        v-model.trim="description"
-        @blur="validateInput('textarea')" 
-        :class="{invalid: textareaValidity === 'invalid'}"
-      />
 
-     </div>
-      <p v-if="lastNameValidity === 'invalid'" style="color: red;">Invalid last name</p>
+      <div class="description-container">
+        <label class="label-description">Description:</label>
+        <textarea
+          name="description"
+          placeholder="Please Enter a Accurate Description yourself."
+          rows="10"
+          cols="50"
+          v-model="userInfo.description"
+        />
+      </div>
+      <p v-if="lastNameValidity === 'invalid'" style="color: red">
+        Invalid last name
+      </p>
       <p class="gender-title">Gender:</p>
       <div class="radio">
         <input
@@ -36,7 +65,7 @@
           name="drone"
           value="male"
           checked
-          v-model="gender"
+          v-model="userInfo.gender"
         />
         <label class="radio-label" for="male">Male</label>
         <input type="radio" name="drone" value="female" v-model="gender" />
@@ -44,82 +73,86 @@
         <input type="radio" name="drone" value="other" v-model="gender" />
         <label class="radio-label" for="other">Other</label>
       </div>
-       <p class="profile-title">Profile Picture:</p>
+      <p class="profile-title">Profile Picture:</p>
       <PhotoUploader />
       <button type="submit">Submit</button>
-      <p v-if="invalidForm === 'invalid'" style="color: red;">Invalid Form!</p>
     </form>
   </section>
 </template>
 
 <script>
 import PhotoUploader from './PhotoUploader.vue';
-import ErrorModal from "./ErrorModal.vue"
+import ErrorModal from './ErrorModal.vue';
 
 export default {
   components: {
     PhotoUploader,
-    ErrorModal
+    ErrorModal,
   },
   data() {
     return {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      description: this.user.description,
-      gender: 'male',
-      image: '',
-      id: this.user.id,
+      userInfo: {
+        firstName: '',
+        lastName: '',
+        description: '',
+        gender: 'male',
+        image: '',
+        id: this.user.id,
+      },
       firstNameValidity: 'pending',
       lastNameValidity: 'pending',
       textareaValidity: 'pending',
       invalidForm: 'pending',
-      showError: false
+      showError: false,
     };
   },
   props: ['user'],
   methods: {
     submit() {
-      this.image = this.$store.state.uploadedNames.toString();
+      this.userInfo.image = this.$store.state.uploadedNames.toString();
 
-      if(this.firstNameValidity === 'valid' || this.lastNameValidity === 'valid'  || this.textareaValidity === 'valid' ){
-        this.$store.dispatch('updateUser', this.$data);
-        this.$router.go()
+      if (
+        this.firstNameValidity === 'valid' ||
+        this.lastNameValidity === 'valid' ||
+        this.textareaValidity === 'valid'
+      ) {
+        this.$store.dispatch('updateUser', this.userInfo);
+        this.$router.go();
       } else {
-        this.invalidForm = "invalid"
-        this.showError = true
+        this.invalidForm = 'invalid';
+        this.showError = true;
       }
-      console.log(this.invalidForm)
+      console.log(this.invalidForm);
     },
-    closeModal(){
-      this.showError = false
+    closeModal() {
+      this.showError = false;
     },
-    validateInput(type){
-      if(type === "fname"){
-        if(this.firstName === ""){
-          this.firstNameValidity = "invalid"
+    validateInput(type) {
+      if (type === 'fname') {
+        if (this.firstName === '') {
+          this.firstNameValidity = 'invalid';
         } else {
-          this.firstNameValidity = "valid"
+          this.firstNameValidity = 'valid';
         }
-      } else if(type === "lname"){
-          if(this.lastName === ""){
-            this.lastNameValidity = "invalid"
-          } else {
-            this.lastNameValidity = "valid"
-          }   
-      } else if(type === "textarea"){
-          if(this.description === ""){
-            this.textareaValidity = "invalid"
-          } else {
-            this.textareaValidity = "valid"
-          }
+      } else if (type === 'lname') {
+        if (this.lastName === '') {
+          this.lastNameValidity = 'invalid';
+        } else {
+          this.lastNameValidity = 'valid';
+        }
+      } else if (type === 'textarea') {
+        if (this.description === '') {
+          this.textareaValidity = 'invalid';
+        } else {
+          this.textareaValidity = 'valid';
+        }
       }
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .description-container {
   display: flex;
   flex-direction: row;
@@ -135,8 +168,8 @@ export default {
 }
 
 table {
-    margin: 0 auto;
-    width: 100%;
+  margin: 0 auto;
+  width: 100%;
 }
 
 tr {
@@ -154,7 +187,7 @@ td {
 }
 
 .label-description {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 
 .invalid {
@@ -260,15 +293,16 @@ button {
   background-repeat: no-repeat;
   background-size: contain;
   background-size: cover;
-  filter:brightness(130%)
+  filter: brightness(130%);
 }
 
-button:hover, button:active {
+button:hover,
+button:active {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
-  filter:brightness(100%)
+  filter: brightness(100%);
 }
 
-input[type="radio"] {
+input[type='radio'] {
   margin-left: 3rem;
   /* margin: 0 auto; */
 }

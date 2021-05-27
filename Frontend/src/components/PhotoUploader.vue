@@ -1,7 +1,8 @@
 <template>
   <form @submit.prevent="sendFile" enctype="multipart/form-data">
-  <div class="image-container">
+    <div class="image-container">
       <p v-if="thumbnail.length === 0">Chosen pictures will be shown here!</p>
+
       <img
         v-for="(image, index) in thumbnail"
         :src="image"
@@ -25,8 +26,8 @@
 <script>
 export default {
   name: 'Dropzone',
-  created(){
-    console.log(this.thumbnail.length)
+  created() {
+    console.log(this.thumbnail.length);
   },
   data() {
     return {
@@ -75,7 +76,7 @@ export default {
   color: black;
   width: 50%;
   margin: 0 auto;
-/* box-shadow: rgba(238, 151, 10, 0.712) 0px 0px 0px 3px; */
+  /* box-shadow: rgba(238, 151, 10, 0.712) 0px 0px 0px 3px; */
   margin-top: 2rem;
 }
 .dropzone:hover {
@@ -104,7 +105,8 @@ export default {
   justify-content: center;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.144);
-  box-shadow: rgb(225, 231, 236) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  box-shadow: rgb(225, 231, 236) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
   padding-left: 1.5rem;
   border-radius: 10px;
   margin-left: 1rem;
@@ -118,7 +120,8 @@ export default {
   filter: brightness(80%);
 }
 
-.chosen-image:hover, .chosen-image:active {
+.chosen-image:hover,
+.chosen-image:active {
   filter: brightness(100%);
 }
 </style>

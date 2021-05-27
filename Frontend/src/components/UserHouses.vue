@@ -1,23 +1,37 @@
 <template>
-  <ErrorModal errorMessage="Invalid fields!" @closeModal="closeModal" v-if="showError === true" />
+  <ErrorModal
+    errorMessage="Invalid fields!"
+    @closeModal="closeModal"
+    v-if="showError === true"
+  />
   <Spinner v-if="showSpinner" />
   <div v-else>
+    <button @click="showCreateHome = !showCreateHome" class="new-house-btn">
+      New House
+    </button>
     <BasicInfo v-if="showCreateHome" @basicInfo="getBasicInfo" />
-    <UserAmenities v-if="showCreateHome" @amenities="getAmenities" :invalid="amenitiesValidity"/>
+    <UserAmenities
+      v-if="showCreateHome"
+      @amenities="getAmenities"
+      :invalid="amenitiesValidity"
+    />
     <PhotoUploader v-if="showCreateHome" />
     <button v-if="showCreateHome" @click="addNewHouse">Submit Home</button>
-    <p v-if="showValidityError === 'invalid'" style="color: red;">Something went wrong.. Check for Red fields!</p>
+    <p v-if="showValidityError === 'invalid'" style="color: red">
+      Something went wrong.. Check for Red fields!
+    </p>
   </div>
   <h1>My Homes</h1>
-    <div v-if="userObjects.length > 0" class="user-home-container">
-      <UserHouseItem
-        v-for="(userHouse, index) of userObjects"
-        v-bind:key="index"
-        v-bind:house="userHouse"
-      />
-    </div>
-    <div v-else style="font-size: 2rem;">You have none of your homes available to be rented out!</div> 
-  <button @click="showCreateHome = !showCreateHome" class="new-house-btn">New House</button>
+  <div v-if="userObjects.length > 0" class="user-home-container">
+    <UserHouseItem
+      v-for="(userHouse, index) of userObjects"
+      v-bind:key="index"
+      v-bind:house="userHouse"
+    />
+  </div>
+  <div v-else style="font-size: 2rem">
+    You have none of your homes available to be rented out!
+  </div>
 </template>
 
 <script>
@@ -27,7 +41,7 @@ import PhotoUploader from './PhotoUploader.vue';
 import UserAmenities from './UserAmenities.vue';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import Spinner from './Spinner.vue';
-import ErrorModal from "./ErrorModal.vue"
+import ErrorModal from './ErrorModal.vue';
 
 export default {
   components: {
@@ -36,7 +50,7 @@ export default {
     PhotoUploader,
     UserAmenities,
     Spinner,
-    ErrorModal
+    ErrorModal,
   },
   props: ['userObjects'],
   data() {
@@ -48,15 +62,15 @@ export default {
       images: null,
       showError: false,
       basicInfo: {
-        price: "",
+        price: '',
         childDiscount: this.childDiscount,
         seniorDiscount: this.seniorDiscount,
-        title: "",
-        city: "",
-        address: "",
-        zipcode: "",
-        description: "",
-        propertyType: "",
+        title: '',
+        city: '',
+        address: '',
+        zipcode: '',
+        description: '',
+        propertyType: '',
       },
       ownerId: '',
       position: [],
@@ -68,11 +82,11 @@ export default {
           bathrooms: [],
           beds: [],
         },
-        ownerId: "",
-        position: "",
-        images: "",
-    }
-    }
+        ownerId: '',
+        position: '',
+        images: '',
+      },
+    };
   },
   computed: {
     houses() {
@@ -80,12 +94,12 @@ export default {
     },
   },
   methods: {
-    checkAmenityValidity(){
-      if(this.amenities.length >= 1 && this.images !== null){
-        this.amenitiesValidity = 'invalid'
-        return 'invalid'
+    checkAmenityValidity() {
+      if (this.amenities.length >= 1 && this.images !== null) {
+        this.amenitiesValidity = 'invalid';
+        return 'invalid';
       } else {
-        return 'valid'
+        return 'valid';
       }
     },
     getAmenities(amen) {
@@ -94,7 +108,7 @@ export default {
     getBasicInfo(info) {
       this.basicInfo = info;
     },
-    closeModal(){
+    closeModal() {
       this.showError = false;
     },
     addNewHouse() {
@@ -118,6 +132,7 @@ export default {
             let x_coor = value[i].x;
             let y_coor = value[i].y;
             this.position = [y_coor, x_coor];
+            console.log(this.position);
           }
         },
         (reason) => {
@@ -127,12 +142,11 @@ export default {
       if (this.position.length <= 0) {
         this.position = [-74.2183050512854, 26.899583900684352];
       }
-      // this.showSpinner = true;
-      // setTimeout(() => {
-      //   this.submitHome();
-      //   this.showSpinner = false;
-      // }, 2000);
+      this.showSpinner = true;
+      setTimeout(() => {
         this.submitHome();
+        this.showSpinner = false;
+      }, 2000);
     },
 
     async submitHome() {
@@ -165,12 +179,21 @@ export default {
         images: this.images,
       };
 
-      if(!this.basicInfo.propertyType === '' || this.basicInfo.zipcode === '' || this.basicInfo.address === '' || this.basicInfo.city === '' || this.checkAmenityValidity === 'invalid' || this.basicInfo.title === '' || this.basicInfo.description === '' || this.$route.params.id === '') {
-        this.showValidityError = 'invalid'
-        this.showError = true
-        return
+      if (
+        !this.basicInfo.propertyType === '' ||
+        this.basicInfo.zipcode === '' ||
+        this.basicInfo.address === '' ||
+        this.basicInfo.city === '' ||
+        this.checkAmenityValidity === 'invalid' ||
+        this.basicInfo.title === '' ||
+        this.basicInfo.description === '' ||
+        this.$route.params.id === ''
+      ) {
+        this.showValidityError = 'invalid';
+        this.showError = true;
+        return;
       } else {
-        this.showValidityError = 'valid'
+        this.showValidityError = 'valid';
         this.$store.dispatch('createHouse', hostObject);
         this.showCreateHome = false;
         this.userObjects.push(hostObject);
@@ -181,22 +204,20 @@ export default {
 </script>
 
 <style scoped>
+section {
+  padding: 2rem;
+}
 
-  section {
-    padding: 2rem;
-  }
+.user-home-container {
+  background-color: rgb(235, 235, 235);
+  padding: 2rem;
+  box-shadow: rgba(38, 57, 77, 0.3) 0px 20px 30px -10px;
+}
 
-  .user-home-container {
-    background-color: rgb(235, 235, 235);
-    padding: 2rem;
-    box-shadow: rgba(38, 57, 77, 0.3) 0px 20px 30px -10px;
-  }
-
-  h1 {
-    margin: 6rem auto;
-    font-size: 3rem;
-  }
-
+h1 {
+  margin: 3rem auto;
+  font-size: 3rem;
+}
 
 .invalid {
   border: 1px solid red;
@@ -218,15 +239,16 @@ button {
   background-repeat: no-repeat;
   background-size: contain;
   background-size: cover;
-  filter:brightness(130%)
+  filter: brightness(130%);
 }
 
-button:hover, button:active  {
+button:hover,
+button:active {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #a9a9a9;
 }
 
 .new-house-btn {
-  margin-top: 7rem;
+  margin-top: 4rem;
 }
 </style>
