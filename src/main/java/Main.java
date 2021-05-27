@@ -80,7 +80,7 @@ public class Main {
         app.get("/rest/cheapest-houses", (req, res) -> {
             res.json(collection("House").find(op -> {
                 op.sort = "price=asc";
-                op.limit = 5;
+                op.limit = 10;
             }));
         });
 

@@ -23,7 +23,7 @@ public class House {
     private String propertyType;
     private Accommodation accommodation;
     private String description;
-    private String price;
+    private int price;
     private int childDiscount;
     private int seniorDiscount;
     private List<String> amenities;
@@ -170,11 +170,11 @@ public class House {
         this.description = description;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
