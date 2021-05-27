@@ -73,7 +73,6 @@ export default {
       let rounded = average.toFixed(2);
       return rounded;
     },
-    //lägg computed som räknar ut antal dagar som är mellan 2 new Date()
     totalPrice() {
       return (
         this.numberOfNights *
@@ -85,9 +84,9 @@ export default {
     },
     perNight() {
       return (
-        this.prices.adult * this.adultCounter +
-        this.prices.child * this.childCounter +
-        this.prices.senior * this.seniorCounter
+        (this.prices.adult * this.adultCounter) +
+        (this.prices.child * this.childCounter) +
+        (this.prices.senior * this.seniorCounter)
       );
     },
     nightString() {
@@ -97,14 +96,10 @@ export default {
       return Math.round(this.home.price * 0.15 * this.numberOfNights);
     },
     numberOfNights() {
-      console.log(this.chosenDate.end - this.chosenDate.start);
       if (this.chosenDate.start && this.chosenDate.end) {
         let date1 = new Date(this.chosenDate.start);
         let date2 = new Date(this.chosenDate.end);
-
         let time = date2.getTime() - date1.getTime();
-
-        // To calculate the no. of days between two dates
         var days = time / (1000 * 3600 * 24);
 
         return days;
@@ -188,7 +183,6 @@ export default {
 <style scoped>
 .booking-modal-section {
   border-radius: 10px;
-  /* box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px; */
   background-color: rgb(233, 233, 233);
   width: fit-content;
   padding: 1rem;
@@ -196,7 +190,6 @@ export default {
   min-width: 16rem;
   position: relative;
   max-height: 30rem;
-  /* overflow: hidden; */
   margin-top: 4rem;
 }
 

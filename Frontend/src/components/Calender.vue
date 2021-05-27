@@ -8,13 +8,12 @@
     </div>
     <div v-if='showModal' class='calender-modal'>
       <header class='calender-title'>
-        <p class='calender-nights'>1 night</p>
-        <p class='calender-datetitle'>May 15, 2021 - May 16, 2021</p>
+        <p class='calender-nights'>{{ totalNights }} days total</p>
       </header>
       <div class='arrow-left' @click='moveLeft'></div>
-      <article class='calender-month'>
-        <CalenderTable v-for='(days, month, index) in daysPerMonth' :key="index" :month='month' :days='days' @setDate="setDate"/>
-      </article>
+       <article class='calender-month' ref="calenderMonth">
+         <CalenderTable v-for='(days, month, index) in daysPerMonth' :key="index" :month='month' :days='days' @setDate="setDate" :firstDate="firstDate" :secondDate="secondDate" :current="current"/>
+       </article>
        <div class='arrow-right' @click='moveRight'></div>
       <button @click='closeModal'>Close</button>
     </div>
@@ -28,6 +27,14 @@ export default {
   emit: ['setDate'],
   components: {
     CalenderTable
+  },
+  computed:{
+    totalNights(){
+      let left = (new Date(this.secondDate).getTime() - new Date(this.firstDate).getTime()) / (1000 * 3600 * 24);
+      if(left){
+        return left  
+      } else { return "0"}
+    }
   },
   data() {
     return {
@@ -51,7 +58,6 @@ export default {
       },
       current: 0,
       firstElement: null,
-      // secondElement: null
     }
   },
   methods: {
@@ -60,6 +66,7 @@ export default {
     },
     closeModal(e) {
       this.showModal = false;
+      this.current = 0;
       e.stopPropagation();
     },
     setDate(date, element) {
@@ -81,20 +88,18 @@ export default {
    
     },
     moveRight() {
-      let calenders =  document.querySelectorAll('table')
       this.moveCounter >= 12-2 ? this.moveCounter = 0 : this.moveCounter += 1
 
-      calenders.forEach((item, index) => {
-         item.style.transform = `translateX(-${307 * this.moveCounter}px)`
-      })
+      for (let calender of this.$refs.calenderMonth.children){
+         calender.style.transform = `translateX(-${307 * this.moveCounter}px)`
+      }
     },
     moveLeft() {
-      let calenders =  document.querySelectorAll('table')
       this.moveCounter <= 0 ? this.moveCounter = 12-2 : this.moveCounter -= 1
 
-      calenders.forEach((item, index) => {
-         item.style.transform = `translateX(-${307 * (this.moveCounter)}px)`
-      })
+      for (let calender of this.$refs.calenderMonth.children){
+         calender.style.transform = `translateX(-${307 * this.moveCounter}px)`
+      }
     }
   }
 }
@@ -109,14 +114,11 @@ export default {
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     margin-bottom: 1rem;
     position: relative;
-    /* overflow: hidden; */
     margin-right: 1rem;
     width: 100%;
-    /* height:  */
-    /* max-width: 1rem; */
-      border-radius: 10px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-  background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    background-color: whitesmoke;
     padding: 1rem;
   }
 

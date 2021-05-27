@@ -20,7 +20,6 @@ export default {
   props: ['house'],
   methods: {
     goToDetails() {
-      /* this.$store.commit('setSelectedHouse', this.house); */
       this.$router.push('/house/' + this.house.id);
     },
   },
@@ -34,10 +33,11 @@ export default {
   align-self: center;
   width: 45%;
   min-width: 20rem;
-  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+  background-image: url('../../public/bottomwave.svg');
   margin-top: 3rem;
   box-shadow: 1px 3px 5px rgb(0 0 0 / 80%);
   transition: 0.2s ease-out;
+  cursor: pointer;
 }
 
 .image-div {
