@@ -5,7 +5,7 @@
       <p class="item-type">{{ title }}</p>
       <p class="item-adress">{{ address }}, {{ city }}</p>
       <p class="item-date">
-        Date: {{ chosenDate.start.toLocaleDateString() }} - {{ chosenDate.end.toLocaleDateString() }}
+        Date: {{ chosenDate.start }} - {{ chosenDate.end }}
       </p>
     </div>
     <button v-if="reviewable" class="review-button" @click="popReviewModal">

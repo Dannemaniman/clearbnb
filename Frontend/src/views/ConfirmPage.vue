@@ -68,8 +68,8 @@ export default {
         bookerId: this.userId,
         houseId: this.bookingInfo.house.id,
         chosenDate: [
-          this.bookingInfo.chosenDate.start,
-          this.bookingInfo.chosenDate.end,
+         new Date(this.bookingInfo.chosenDate.start),
+          new Date(this.bookingInfo.chosenDate.end),
         ],
         price: this.bookingInfo.price,
         guests: this.bookingInfo.guests,
