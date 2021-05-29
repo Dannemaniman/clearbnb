@@ -145,12 +145,11 @@ h2 {
 }
 
 .image {
-  width: 48%;
-  margin: 0.5rem;
+  width: 38%;
+  margin: 1rem 2rem 1rem 1rem;
 }
 
 img {
-  margin-top: 2rem;
   max-width: 100%;
   height: auto;
   border-radius: 50%;
@@ -158,7 +157,7 @@ img {
 }
 
 .info {
-  width: 48%;
+  width: 54%;
   display: flex;
   flex-flow: wrap;
   text-align: left;
