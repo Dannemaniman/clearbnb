@@ -38,7 +38,7 @@ export default {
 
       for (let ref in this.$refs) {
         this.$refs[ref].style.transform = `translateX(-${
-          300 * this.moveCounter
+          314 * this.moveCounter
         }px)`;
       }
     },
@@ -47,7 +47,7 @@ export default {
 
       for (let ref in this.$refs) {
         this.$refs[ref].style.transform = `translateX(-${
-          300 * this.moveCounter
+          314 * this.moveCounter
         }px)`;
       }
     },

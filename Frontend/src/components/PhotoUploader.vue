@@ -26,9 +26,6 @@
 <script>
 export default {
   name: 'Dropzone',
-  created() {
-    console.log(this.thumbnail.length);
-  },
   data() {
     return {
       file: '',
@@ -65,6 +62,11 @@ export default {
 </script>
 
 <style scoped>
+
+form {
+overflow: hidden;
+}
+
 .dropzone {
   min-height: 200px;
   padding: 10px 10px;
@@ -76,7 +78,6 @@ export default {
   color: black;
   width: 50%;
   margin: 0 auto;
-  /* box-shadow: rgba(238, 151, 10, 0.712) 0px 0px 0px 3px; */
   margin-top: 2rem;
 }
 .dropzone:hover {
@@ -96,11 +97,9 @@ export default {
   margin: 0.5rem auto;
   height: 11rem;
   min-width: 11rem;
-  /* width: fit-content; */
   max-height: 20rem;
   display: flex;
   flex-direction: row;
-  /* text-align: left; */
   align-items: center;
   justify-content: center;
   background-color: white;
@@ -110,6 +109,7 @@ export default {
   padding-left: 1.5rem;
   border-radius: 10px;
   margin-left: 1rem;
+  overflow: hidden;
 }
 
 .chosen-image {

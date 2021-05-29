@@ -1,6 +1,7 @@
 <template>
   <ErrorModal
     errorMessage="Invalid fields!"
+    errorDescription="Please look over the fields again."
     @closeModal="closeModal"
     v-if="showError === true"
   />
@@ -29,7 +30,7 @@
       v-bind:house="userHouse"
     />
   </div>
-  <div v-else style="font-size: 2rem">
+  <div v-else style="font-size: 2rem" class="no-homes">
     You have none of your homes available to be rented out!
   </div>
 </template>
@@ -59,7 +60,7 @@ export default {
       showCreateHome: false,
       amenities: [],
       amenitiesValidity: 'pending',
-      images: null,
+      images: this.$store.state.uploadedNames,
       showError: false,
       basicInfo: {
         price: '',
@@ -94,14 +95,6 @@ export default {
     },
   },
   methods: {
-    checkAmenityValidity() {
-      if (this.amenities.length >= 1 && this.images !== null) {
-        this.amenitiesValidity = 'invalid';
-        return 'invalid';
-      } else {
-        return 'valid';
-      }
-    },
     getAmenities(amen) {
       this.amenities = amen;
     },
@@ -111,7 +104,28 @@ export default {
     closeModal() {
       this.showError = false;
     },
+    checkValidity() {
+      if (
+        this.basicInfo.propertyType === '' ||
+        this.basicInfo.zipcode === '' ||
+        this.basicInfo.address === '' ||
+        this.basicInfo.city === '' ||
+        this.amenities.length === 0 ||
+        this.basicInfo.title === '' ||
+        this.basicInfo.description === '' ||
+        this.$route.params.id === ''
+      ) {
+        this.showValidityError = 'invalid';
+        this.showError = true;
+        return false;
+      } else {
+        this.showValidityError = 'valid';
+        return true
+      }
+    },
     addNewHouse() {
+      if(!this.checkValidity()) return
+
       if (this.basicInfo.zipcode == null) {
         this.basicInfo.zipcode = 'xxx';
       }
@@ -123,7 +137,7 @@ export default {
         this.basicInfo.zipcode.replace(/\s+/g, '') +
         ' ' +
         'SE';
-      //Adress  --, Stad postnummer, Land
+
       let query_promise = this.provider.search({ query: userAddress });
 
       query_promise.then(
@@ -132,11 +146,10 @@ export default {
             let x_coor = value[i].x;
             let y_coor = value[i].y;
             this.position = [y_coor, x_coor];
-            console.log(this.position);
           }
         },
         (reason) => {
-          console.log(reason); // Error!
+          console.log(reason);
         }
       );
       if (this.position.length <= 0) {
@@ -150,14 +163,9 @@ export default {
     },
 
     async submitHome() {
-      this.images = this.$store.state.uploadedNames;
-
       if (this.images.length == 0) {
-        console.log('tjohojs');
         this.images = ['/images/No-Image.jpg'];
       }
-      let ownerId = await this.$store.state.user.id;
-      console.log(ownerId);
 
       let hostObject = {
         propertyType: this.basicInfo.propertyType,
@@ -178,26 +186,9 @@ export default {
         position: this.position,
         images: this.images,
       };
-
-      if (
-        !this.basicInfo.propertyType === '' ||
-        this.basicInfo.zipcode === '' ||
-        this.basicInfo.address === '' ||
-        this.basicInfo.city === '' ||
-        this.checkAmenityValidity === 'invalid' ||
-        this.basicInfo.title === '' ||
-        this.basicInfo.description === '' ||
-        this.$route.params.id === ''
-      ) {
-        this.showValidityError = 'invalid';
-        this.showError = true;
-        return;
-      } else {
-        this.showValidityError = 'valid';
-        this.$store.dispatch('createHouse', hostObject);
-        this.showCreateHome = false;
-        this.userObjects.push(hostObject);
-      }
+      this.$store.dispatch('createHouse', hostObject);
+      this.showCreateHome = false;
+      this.userObjects.push(hostObject);
     },
   },
 };
@@ -246,6 +237,12 @@ button:hover,
 button:active {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #a9a9a9;
+}
+
+.no-homes {
+  background-color: rgb(235, 235, 235);
+  padding: 2rem;
+  box-shadow: rgba(38, 57, 77, 0.3) 0px 20px 30px -10px;
 }
 
 .new-house-btn {

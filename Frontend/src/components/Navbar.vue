@@ -223,7 +223,7 @@ export default {
 }
 
 .fa-bars {
-  color: rgb(254, 149, 0);
+  /* color: rgb(254, 149, 0); */
 }
 
 .fa-globe {

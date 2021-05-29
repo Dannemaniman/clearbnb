@@ -55,7 +55,6 @@ export default {
     let res = await fetch('/rest/users/' + id);
     let user = await res.json();
     this.user = user;
-    console.log(this.user)
   },
 };
 </script>

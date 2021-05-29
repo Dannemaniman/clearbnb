@@ -71,7 +71,8 @@ export default {
         if (ref === amenity) {
           if (
             this.$refs[ref].style.background === '' ||
-            this.$refs[ref].style.border === '3px solid transparent'
+            this.$refs[ref].style.border === '3px solid transparent' || 
+            this.$refs[ref].style.background === 'white'
           ) {
             this.$refs[ref].style.background = 'orange';
             this.chosenAmenities.push(amenity);

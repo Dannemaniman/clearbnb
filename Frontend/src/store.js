@@ -73,8 +73,6 @@ export default createStore({
       state.users = users;
     },
     deleteBooking(state, id) {
-      console.log(id.id);
-
       for (let booking of state.userBookings) {
         if (booking.id == id.id) {
           let index = state.userBookings.indexOf(booking);
@@ -117,18 +115,15 @@ export default createStore({
 
       let loggedInUser = await res.json();
       if ('Error' in loggedInUser) {
-        console.log('Detta blidde inte bra', loggedInUser);
         alert('Bad credentials');
         return;
       }
-      console.log('logged in user', loggedInUser);
       store.dispatch('fetchBookings', store);
       store.commit('setUser', loggedInUser);
     },
     async whoAmI(store) {
       let res = await fetch('/api/whoami');
       let user = await res.json();
-      console.log('whoAmI', user);
       store.commit('setUser', user);
     },
     async logout(store) {
@@ -218,8 +213,6 @@ export default createStore({
       });
 
       let ok = await res.text();
-      // console.log('Delete of', ok);
-      // store.commit('deleteBooking', id);
     },
     async postReview(store, review) {
       let res = await fetch('/rest/post-review', {

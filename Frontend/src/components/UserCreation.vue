@@ -2,6 +2,7 @@
   <section>
     <ErrorModal
       errorMessage="Invalid fields!"
+      errorDescription="Please look over the fields again."
       @closeModal="closeModal"
       v-if="showError === true"
     />
@@ -44,7 +45,6 @@
           </td>
         </tr>
       </table>
-
       <div class="description-container">
         <label class="label-description">Description:</label>
         <textarea
@@ -53,11 +53,12 @@
           rows="10"
           cols="50"
           v-model="userInfo.description"
+          @blur="validateInput('textarea')"
+          :class="{ invalid: textareaValidity === 'invalid' }"
         />
       </div>
-      <p v-if="lastNameValidity === 'invalid'" style="color: red">
-        Invalid last name
-      </p>
+      <p v-if="textareaValidity === 'invalid'" style="color: red; margin-top: 0;">
+        Invalid description</p>
       <p class="gender-title">Gender:</p>
       <div class="radio">
         <input
@@ -102,7 +103,6 @@ export default {
       firstNameValidity: 'pending',
       lastNameValidity: 'pending',
       textareaValidity: 'pending',
-      invalidForm: 'pending',
       showError: false,
     };
   },
@@ -110,38 +110,35 @@ export default {
   methods: {
     submit() {
       this.userInfo.image = this.$store.state.uploadedNames.toString();
-
       if (
-        this.firstNameValidity === 'valid' ||
-        this.lastNameValidity === 'valid' ||
+        this.firstNameValidity === 'valid' &&
+        this.lastNameValidity === 'valid' &&
         this.textareaValidity === 'valid'
       ) {
         this.$store.dispatch('updateUser', this.userInfo);
         this.$router.go();
       } else {
-        this.invalidForm = 'invalid';
         this.showError = true;
       }
-      console.log(this.invalidForm);
     },
     closeModal() {
       this.showError = false;
     },
     validateInput(type) {
       if (type === 'fname') {
-        if (this.firstName === '') {
+        if (this.userInfo.firstName === '') {
           this.firstNameValidity = 'invalid';
         } else {
           this.firstNameValidity = 'valid';
         }
       } else if (type === 'lname') {
-        if (this.lastName === '') {
+        if (this.userInfo.lastName === '') {
           this.lastNameValidity = 'invalid';
         } else {
           this.lastNameValidity = 'valid';
         }
       } else if (type === 'textarea') {
-        if (this.description === '') {
+        if (this.userInfo.description === '') {
           this.textareaValidity = 'invalid';
         } else {
           this.textareaValidity = 'valid';
@@ -191,7 +188,7 @@ td {
 }
 
 .invalid {
-  border-color: red;
+ background-color: salmon;
 }
 
 .profile-title {
@@ -227,10 +224,6 @@ input {
   border: 1p solid black;
 }
 
-input:last-of-type {
-  /* margin-bottom: 2rem; */
-}
-
 .radio {
   display: flex;
   flex-direction: row;
@@ -241,7 +234,6 @@ input:last-of-type {
 
 .radio label {
   margin: 0;
-  /* text-align: center; */
 }
 
 .radio input {
@@ -256,7 +248,6 @@ input:last-of-type {
 
 label {
   display: block;
-  /* margin-top: 1rem; */
 }
 
 .label-name {
@@ -284,11 +275,9 @@ button {
   outline: none;
   font-weight: 700;
   cursor: pointer;
-  /* background: rgb(235, 235, 235); */
   background: transparent;
   transition: all 0.2s ease;
   border: 0;
-  /* border: 1px solid green; */
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -304,6 +293,5 @@ button:active {
 
 input[type='radio'] {
   margin-left: 3rem;
-  /* margin: 0 auto; */
 }
 </style>

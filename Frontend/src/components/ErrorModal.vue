@@ -1,8 +1,9 @@
 <template>
   <div class="backdrop" @click="$emit('closeModal')"></div>
   <article>
-       {{errorMessage}}
-      
+    <h1>{{errorMessage}}</h1>
+       <hr />
+      <p>{{errorDescription}}</p>
   <button @click="$emit('closeModal')">Close</button>
   </article>
 </template>
@@ -10,7 +11,7 @@
 <script>
 export default {
   emit:['closeModal'],
-  props: ['errorMessage']
+  props: ['errorMessage', 'errorDescription']
 }
 </script>
 
@@ -28,7 +29,6 @@ export default {
 }
 
 article {
-  /* height: 40rem; */
   background: white;
   position: fixed;
   z-index: 5;
@@ -38,11 +38,42 @@ article {
   right: 0;
   top: 0;
   bottom: 0;
-  height: 20%;
+  max-height: 40%;
   margin: auto auto;
   width: 40%;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 2rem;
+}
+
+button {
+  margin-top: 3rem;
+  width: 20%;
+  height: 4rem;
+  border-radius: 10px;
+  outline: none;
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s ease;
+  border: 0;
+  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+  filter: brightness(130%);
+}
+
+h1 {
+  margin: 0;
+}
+
+hr {
+  width: 100%;
 }
 
 button {

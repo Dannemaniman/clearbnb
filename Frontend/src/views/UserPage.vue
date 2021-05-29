@@ -90,16 +90,12 @@ export default {
       this.userObjects = userHouses;
     },
   },
-  created() {
-    //this.$store.dispatch('fetchBookings');
-  },
 };
 </script>
 
 <style scoped>
 
 .active {
-  /* border: 1px solid green; */
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
     background-repeat: no-repeat;
   background-size: contain;

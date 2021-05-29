@@ -148,7 +148,7 @@
               :class="{ invalid: propertyValidity === 'invalid' }"
             >
               <option disabled value="">Please Choose...</option>
-              <option value="apartment">Apartment</option>
+              <option selected value="apartment">Apartment</option>
               <option value="house">House</option>
               <option value="bed-n-breakfast">Bed and Breakfast</option>
             </select>

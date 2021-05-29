@@ -82,17 +82,6 @@ export default {
           }
         });
       });
-      console.log(this.user);
-
-      /* await this.$store.state.users.forEach((user) => {
-        this.$store.state.replies.forEach((reply) => {
-          if (user.id === reply.authorId) {
-            this.user = user;
-          }
-        });
-      });
-      console.log(this.user); */
-      // this.reviews;
     },
     postReply() {
       if (!this.$store.state.user) {
@@ -106,6 +95,8 @@ export default {
         reply: this.reviewText,
       };
       this.$store.dispatch('postReply', reply);
+      this.reviewText = ""
+      this.popReview(this.replyId)
     },
     moveRight() {
       this.moveCounter >= this.reviews.length - 1
@@ -133,21 +124,16 @@ export default {
       this.replyId = reviewId;
       await this.$store.dispatch('fetchReplies', reviewId);
       this.replyReviews = await this.$store.state.replies;
-      console.log(this.replyReviews);
 
       if (this.showReview) {
         element.style.maxWidth = '100%';
         element.style.width = '100%';
+        element.style.height = '20rem'
         element.style.position = 'absolute';
-        element.style.zIndex = '4';
+        element.style.zIndex = '7';
         element.style.marginRight = '0';
         element.style.marginLeft = '0';
         element.children[0].children[1].style.paddingLeft = '2rem';
-        for (let ref in this.$refs) {
-          this.$refs[ref].style.transform = `translateX(-${
-            0 * this.moveCounter
-          }px)`;
-        }
       } else {
         element.style.maxWidth = '';
         element.style.width = '';
@@ -155,6 +141,7 @@ export default {
         element.style.zIndex = '';
         element.style.marginRight = '';
         element.style.marginLeft = '';
+        element.style.height = ""
       }
     },
   },
@@ -187,6 +174,7 @@ export default {
 
 .slider-container {
   width: 100%;
+  min-height: 240px;;
   display: flex;
   flex-direction: row;
   overflow: hidden;
