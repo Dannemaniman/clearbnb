@@ -15,6 +15,7 @@ export default createStore({
     userBookings: [],
     users: {},
     uploadedNames: '',
+    bookedDates: [],
   },
 
   // this.$store.commit('mutationName', data)
@@ -40,7 +41,9 @@ export default createStore({
     setReplies(state, replies) {
       state.replies = replies;
     },
-
+    setBookedDates(state, bookedDates) {
+      state.bookedDates = bookedDates;
+    },
     setUsers(state, users) {
       state.users = users;
     },
@@ -88,11 +91,8 @@ export default createStore({
   // this.$store.dispatch('actionNamehouses)s
   actions: {
     async fetchHouses(store) {
-      // fetch house and update state with response
-      // store.commit('setHouse')
       let res = await fetch('/rest/houses');
       let houses = await res.json();
-
       store.commit('setHouses', houses);
     },
     async register(store, credentials) {
@@ -100,11 +100,7 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(credentials),
       });
-
       let loggedInUser = await res.json();
-
-      console.log('registered user', loggedInUser);
-
       store.commit('setUser', loggedInUser);
     },
     async login(store, credentials) {
@@ -112,7 +108,6 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(credentials),
       });
-
       let loggedInUser = await res.json();
       if ('Error' in loggedInUser) {
         alert('Bad credentials');
@@ -127,14 +122,12 @@ export default createStore({
       store.commit('setUser', user);
     },
     async logout(store) {
-      let res = await fetch('/api/logout');
-      console.log('logged out');
+      await fetch('/api/logout');
       store.commit('setUser', null);
     },
     async fetchUsers(store) {
       let res = await fetch('/rest/users');
       let users = await res.json();
-
       store.commit('setUsers', users);
     },
     async fetchReviews(store, id) {
@@ -149,10 +142,16 @@ export default createStore({
       store.commit('setReplies', replies);
     },
 
+    async fetchBookedDates(store, id) {
+      let res = await fetch(`/rest/house/bookings/${id}`);
+      let bookedDates = await res.json();
+      console.dir('INNE I FETCHBOOKEDDATES ' + bookedDates);
+      store.commit('setBookedDates', bookedDates);
+      console.log(store.state.bookedDates);
+    },
     async fetchBookings(store) {
       let res = await fetch('/rest/bookings');
       let bookings = await res.json();
-
       store.commit('setBookings', bookings);
     },
     async book(store, confirmedBooking) {
@@ -199,7 +198,6 @@ export default createStore({
     },
 
     async updateUser(store, userInfo) {
-      console.log(userInfo);
       let res = await fetch('/rest/users/' + this.state.user.id, {
         method: 'PUT',
         body: JSON.stringify(userInfo),
