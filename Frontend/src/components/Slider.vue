@@ -63,9 +63,10 @@ export default {
 .bezel-image {
   height: 40px;
   width: 40px;
-  /* display: inline;; */
   margin-left: 2rem;
-}
+  position: relative;
+  top: 0.6rem;
+  }
 
 .house-card {
   position: relative;
@@ -106,7 +107,6 @@ header {
     rgba(0, 0, 0, 0.15) 0px 6px 6px;
   border-radius: 10px;
   padding: 0.1rem;
-  /* height: 15rem; */
   margin-bottom: 7rem;
 }
 
@@ -127,6 +127,7 @@ p {
   font-weight: thin;
   text-align: left;
   margin-left: 2rem;
+  line-height: 125%;
   text-shadow: 2px 2px 0px #ffffff, 2px 2px 0px rgba(0, 0, 0, 0.164);
 }
 
@@ -134,7 +135,6 @@ p {
   width: 100%;
   display: flex;
   flex-direction: row;
-  /* overflow: hidden; */
   position: relative;
   overflow-x: hidden;
 }

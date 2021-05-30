@@ -18,7 +18,7 @@
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal :home="home" />
+      <BookingModal :home="home" :bookedDates="bookedDates"/>
     </div>
     <br />
     <br />
@@ -42,7 +42,9 @@ export default {
   data() {
     return {
       home: null,
-      reviews: null
+      reviews: null,
+      bookedDates: [],
+      bookings: this.$store.bookedDates,
     };
   },
   methods: {
@@ -56,7 +58,6 @@ export default {
       ];
     },
   },
-
   async created() {
     let id = this.$route.params.id;
     const response = await fetch(`/rest/houses/${id}`);
@@ -65,6 +66,13 @@ export default {
 
     await this.$store.dispatch('fetchReviews', this.home.id);
     this.reviews = this.$store.state.reviews
+
+    await this.$store.dispatch('fetchBookedDates', this.home.id)
+    this.bookings = this.$store.state.bookedDates
+
+    this.bookings.forEach((booking) => {
+      this.bookedDates.push(booking.chosenDate)
+    })
   },
 };
 </script>
@@ -83,6 +91,7 @@ h1 {
   font-size: 3rem;
   text-align: left;
   margin-left: 1rem;
+  line-height: 125%;
 }
 
 h3 {
@@ -93,6 +102,16 @@ h3 {
   position: relative;
   display: flex;
   flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+@media screen and (max-width: 600px) {
+  .content-holder {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
 }
 
 .information {
@@ -184,5 +203,6 @@ h3 {
 
 .information h2 {
   font-size: 6rem;
+  line-height: 125%;
 }
 </style>

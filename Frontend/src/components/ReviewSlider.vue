@@ -13,7 +13,7 @@
       >
         <div class="review-header">
           <img class="avatar-icon" :src="user.image" alt="" />
-          <strong>{{ user.fullName }}</strong>
+          <strong class="review-topcard">{{ user.fullName }}</strong>
         </div>
         <div class="review-grade">{{ review.grade }} / 5 &#9733;</div>
         <div class="review-body">
@@ -36,7 +36,7 @@
         >
           <div class="review-header smaller">
             <img class="avatar-icon" :src="review.avatar" alt="" />
-            <strong>{{ review.author }}</strong>
+            <strong class="reply-author">{{ review.author }}</strong>
           </div>
           <p class="reply-content">{{ review.reply }}</p>
         </article>
@@ -159,6 +159,8 @@ export default {
   font-size: 1.6rem;
 }
 
+
+
 .section-slider {
   width: 100%;
   background-color: grey;
@@ -277,6 +279,7 @@ img {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   font-size: 1.6rem;
+  /* overflow:scroll; */
 }
 
 .avatar-icon {
@@ -292,6 +295,18 @@ strong {
   position: relative;
   left: -1rem;
 }
+
+.reply-author {
+  /* white-space: nowrap;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  /* text-overflow: ellipsis; */
+  /* max-width: 100px;  
+  overflow:scroll; */
+  line-height: 125%;
+}
+
+
 
 .review-header {
   display: flex;
@@ -447,5 +462,27 @@ textarea {
 .reply:hover,
 .reply:active {
   background: rgb(211, 211, 211);
+}
+
+@media screen and (max-width: 430px) {
+.reply {
+  margin: auto 0;
+  width: 100%;
+}
+.reply-content {
+  width: 100%;
+}
+.reply-author {
+  font-size: 6vw;
+}
+.review-topcard {
+  font-size: 8vw;
+}
+
+.reply-content {
+  font-size: 6vw;
+  overflow: hidden;
+}
+
 }
 </style>

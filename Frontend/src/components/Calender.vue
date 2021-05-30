@@ -21,7 +21,9 @@
           :firstDate="firstDate"
           :secondDate="secondDate"
           :current="current"
+          :bookedDates="bookedDates"
         />
+        <!--:bookedDates="takenDaysPerCalender[index]"-->
       </article>
       <div class="arrow-right" @click="moveRight"></div>
       <button @click="closeModal">Close</button>
@@ -33,7 +35,8 @@
 import CalenderTable from './CalenderTable.vue';
 
 export default {
-  emit: ['setDate'],
+  emit: ['setDate', 'bookedDates'],
+  props: ['bookedDates'],
   components: {
     CalenderTable,
   },
@@ -72,6 +75,7 @@ export default {
       },
       current: 0,
       firstElement: null,
+      bookedDatesCalender: this.bookedDates,
     };
   },
   methods: {
@@ -84,6 +88,7 @@ export default {
       e.stopPropagation();
     },
     setDate(date, element) {
+      console.log(date, element);
       this.current === 0 ? (this.firstDate = date) : (this.secondDate = date);
       this.current === 0 ? (this.current = 1) : (this.current = 0);
       if (this.current === 0) {
