@@ -35,6 +35,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   background-color: rgb(254, 149, 0);
+  margin-top: 1rem;
 }
 
 .footer-content {

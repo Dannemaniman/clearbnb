@@ -31,47 +31,6 @@ public class Main {
 
         new Auth(app);
 
-/*
-    User user = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
-    Review review3 =  new Review();
-    review3.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
-    review3.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
-    review3.setAuthorName(user.getFullName());
-    review3.setReview("njanjanja.!!!");
-    review3.setGrade(2);
-    review3.setGradedHouse("spYROoShRiR-KDqU1piUK");
-    collection("Review").save(review3);
-
-    User user1 = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
-    Review review4 =  new Review();
-    review4.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
-    review4.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
-    review4.setAuthorName(user1.getFullName());
-    review4.setReview("njanjanja.!!!");
-    review4.setGrade(3);
-    review4.setGradedHouse("spYROoShRiR-KDqU1piUK");
-    collection("Review").save(review4);
-
-      User user2 = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
-      Review review5 =  new Review();
-      review5.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
-      review5.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
-      review5.setAuthorName(user2.getFullName());
-      review5.setReview("njanjanja.!!!");
-      review5.setGrade(5);
-      review5.setGradedHouse("spYROoShRiR-KDqU1piUK");
-      collection("Review").save(review5);
-
-      User user4 = collection("User").findOne("id==" + "vYdyudpjkIFH0ri1Y4Hh7");
-      Review review6 =  new Review();
-      review6.setAvatar("https://robohash.org/autdelectusest.png?size=50x50&set=set1");
-      review6.setAuthorId("vYdyudpjkIFH0ri1Y4Hh7");
-      review6.setAuthorName(user4.getFullName());
-      review6.setReview("njanjanja.!!!");
-      review6.setGrade(0);
-      review6.setGradedHouse("spYROoShRiR-KDqU1piUK");
-      collection("Review").save(review6);
-*/
 
         app.get("/rest/houses", (req, res) -> {
             res.json(collection("House").find());
@@ -154,8 +113,9 @@ public class Main {
             res.json(collection("Booking").find());
         });
 
-        app.get("/rest/bookings/:id", (req, res) -> {
-            res.json(collection("Booking").findById(req.params("id")));
+        app.get("/rest/house/bookings/:id", (req, res) -> {
+            List<Booking> bokningar = collection("Booking").find("houseId==" + req.params("id"));
+            res.json(bokningar);
         });
 
         app.post("/rest/bookings", (req, res) -> {
@@ -173,7 +133,6 @@ public class Main {
 
         app.post("/rest/post-review", (req, res) -> {
             Review review = req.body(Review.class);
-            System.out.println(review);
             collection("Review").save(review);
         });
 
@@ -189,7 +148,6 @@ public class Main {
 
         app.get("/rest/replies/:id", (req, res) -> {
             List<Reply> replies = collection("Reply").find("reviewId==" + req.params("id"));
-            System.out.println(replies);
             res.json(collection("Reply").find("reviewId==" + req.params("id")));
         });
 
@@ -200,9 +158,7 @@ public class Main {
 
         app.post("/api/uploads/", (req, res) -> {
             List<String> uploadNames = new ArrayList<>();
-
             List<UploadedFile> files = req.formDataFiles("files");
-
 
             for (UploadedFile file : files) {
                 //String id = req.params("id");
