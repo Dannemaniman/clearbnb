@@ -167,7 +167,6 @@ export default {
       if (this.images.length === 0) {
         this.images = ['/images/No-Image.jpg'];
       }
-      console.log(this.images);
       if (this.images.length < 8) {
         for (let i = this.images.length; i < 8; i++) {
           this.images[i] = '/images/No-Image.jpg';

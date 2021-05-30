@@ -84,7 +84,6 @@ export default {
       if (!this.$route.params.id) {
         this.$router.go();
       }
-      console.log(this.$store.state.user);
     },
 
     searchByLocation() {
@@ -187,9 +186,6 @@ export default {
 }
 
 .nav {
-  /* display: flex;
-   justify-content: flex-end; */
-
   -webkit-box-pack: end !important;
   -ms-flex-pack: end !important;
   -webkit-box-align: center !important;
@@ -220,10 +216,6 @@ export default {
 .fa-user-circle {
   font-size: 30px;
   color: rgb(254, 149, 0);
-}
-
-.fa-bars {
-  /* color: rgb(254, 149, 0); */
 }
 
 .fa-globe {

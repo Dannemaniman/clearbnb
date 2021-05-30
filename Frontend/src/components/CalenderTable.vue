@@ -49,16 +49,11 @@
 export default {
   props: ['days', 'month', 'firstDate', 'secondDate', 'current', 'bookedDates'],
   emit: ['setDate'],
-  created() {
-    //  this.renderInactiveFromProps()
-    //  console.log(this.bookedDates, this.month)
-  },
+  created() {},
   mounted() {
-    // this.checkBookedDates()
     this.checkBookedDates();
   },
   updated() {
-    // this.renderInactiveFromProps()
     this.currentMarker = this.current;
   },
   computed: {
@@ -95,7 +90,6 @@ export default {
   },
   methods: {
     markSelection(event) {
-      console.log('AAA');
       let yearMonth =
         event.target.attributes[0].ownerElement.parentElement.parentElement.firstChild.innerHTML.split(
           ' '
@@ -263,14 +257,6 @@ export default {
                 ].style.pointerEvents = 'none';
               }
             }
-            // else if(
-            //   Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) >
-            //   Number(this.firstElement.childNodes[0].data)){
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.backgroundColor = "salmon"
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.7"
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default"
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-            // }
           }
         }
       } else if (this.currentMarker === 0) {
@@ -310,14 +296,6 @@ export default {
                 ].style.pointerEvents = 'none';
               }
             }
-            // else if(
-            //   Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) <
-            //   Number(this.secondElement.childNodes[0].data)){
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.backgroundColor = "salmon"
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.7"
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default"
-            //     this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-            // }
           }
         }
       }
@@ -330,7 +308,7 @@ export default {
             '|| End: ' +
             new Date(dateSet[1]).toLocaleDateString()
         );
-        // console.log("bookedDateMonth: " + this.monthNames[bookedDateMonth] + " vs " + "tableMonth: " + this.month + " day: " + day)
+
         let startDate = new Date(dateSet[0]).toLocaleDateString();
         let endDate = new Date(dateSet[1]).toLocaleDateString();
         let start = new Date(dateSet[0]).getMonth();
@@ -339,15 +317,10 @@ export default {
         let endDay = new Date(dateSet[1]).getDay();
         let type = '';
 
-        // console.log(start < end)
-        // console.log(`start: ${start} end: ${end}`)
-
         if (start < end || start > end) {
-          // console.log(start + " < " + end)
           type = 'lesser';
         }
         if (start === end) {
-          // console.log(start + " === " + end)
           type = 'same';
         }
         console.log(start);
@@ -419,8 +392,6 @@ export default {
       sameOrLesser,
       dateObjects
     ) {
-      console.log(sameOrLesser);
-
       if (order === 'second') {
         for (let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
           for (
@@ -528,8 +499,6 @@ export default {
                 firstDay
             );
 
-            // if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) >= secondDay) return
-
             if (sameOrLesser === 'all') {
               this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity =
                 '0.2';
@@ -577,26 +546,6 @@ export default {
           }
         }
       }
-      // } else if(order === "first"){
-      //   console.log(firstDay)
-      //     if(sameOrLesser === "same")   {
-      //     // console.log("delete same --- first")
-      //         if((Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)) >= firstDay && (Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)) <= secondDay ){
-      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
-      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default"
-      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-      //            console.log("delete same --- first SUPER TRIGGERED")
-      //            }
-      //         }
-      //       else if(sameOrLesser === "lesser"){
-      //           if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)){
-      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
-      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default"
-      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-      //            console.log("delete lesser")
-      //        }
-      //       }
-      // }
     },
     mounted() {
       setTimeout(() => {

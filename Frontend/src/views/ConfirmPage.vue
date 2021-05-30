@@ -1,6 +1,10 @@
 <template>
   <section>
-    <ErrorModal errorMessage="Invalid fields!" @closeModal="closeModal" v-if="showError === true" />
+    <ErrorModal
+      errorMessage="Invalid fields!"
+      @closeModal="closeModal"
+      v-if="showError === true"
+    />
     <div class="header-bar">
       <h1>Confirm Details</h1>
     </div>
@@ -36,14 +40,14 @@
 import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
 import Spinner from '../components/Spinner.vue';
-import ErrorModal from "../components/ErrorModal.vue"
+import ErrorModal from '../components/ErrorModal.vue';
 
 export default {
   components: {
     ListItem,
     CreditCard,
     Spinner,
-    ErrorModal
+    ErrorModal,
   },
   data() {
     return {
@@ -51,26 +55,32 @@ export default {
       userId: this.$store.state.user.id,
       cardType: 'Select your card',
       cardInfo: {
-        cardNumber: "",
-        cardCVV: "",
-        validThruMonth: "",
-        validThruYear: "",
+        cardNumber: '',
+        cardCVV: '',
+        validThruMonth: '',
+        validThruYear: '',
       },
       showSpinner: false,
-      showError: false
+      showError: false,
     };
   },
   methods: {
     book() {
-      if(this.cardType === 'Select your card' || this.cardInfo.cardNumber === '' || this.cardInfo.cardCVV === '' || this.cardInfo.validThruMonth === '' || this.cardInfo.validThruYear === '') {
+      if (
+        this.cardType === 'Select your card' ||
+        this.cardInfo.cardNumber === '' ||
+        this.cardInfo.cardCVV === '' ||
+        this.cardInfo.validThruMonth === '' ||
+        this.cardInfo.validThruYear === ''
+      ) {
         this.showError = true;
-        return
+        return;
       }
       let booking = {
         bookerId: this.userId,
         houseId: this.bookingInfo.house.id,
         chosenDate: [
-         new Date(this.bookingInfo.chosenDate.start),
+          new Date(this.bookingInfo.chosenDate.start),
           new Date(this.bookingInfo.chosenDate.end),
         ],
         price: this.bookingInfo.price,
@@ -86,13 +96,9 @@ export default {
         this.showSpinner = false;
       }, 1000);
     },
-    closeModal(){
-      console.log("hej")
+    closeModal() {
       this.showError = false;
-    }
-  },
-  created() {
-    console.log(this.bookingInfo);
+    },
   },
 };
 </script>

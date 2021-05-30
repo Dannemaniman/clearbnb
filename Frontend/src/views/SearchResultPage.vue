@@ -9,7 +9,6 @@
         :house="house"
       />
     </div>
-    <!-- <p>{{ houses }}</p> -->
   </div>
 </template>
 
@@ -91,7 +90,6 @@ export default {
       return arr;
     },
     searchByReview(houses) {
-      //await this.$store.dispatch('fetchReviews', this.home.id);
       if (this.searchObject.review == '') {
         return houses;
       }
@@ -123,17 +121,13 @@ export default {
         let rounded = average.toFixed(2);
         house.review = Number(rounded);
       });
-      console.log(this.$store.state.houses);
     },
   },
 
   async created() {
     await this.$store.dispatch('fetchHouses');
     this.setHouseReviews();
-    /* let res = await fetch('/rest/houses');
-    let houses = await res.json(); */
     let houses = this.$store.state.houses;
-    console.log(houses);
 
     houses.filter((house) => {
       let city = house.city.toLowerCase();
@@ -144,9 +138,6 @@ export default {
     });
     this.refinedSearchResult = this.houses;
     this.housesByCity = this.houses;
-    /* else {
-      this.houses = houses;
-    } */
   },
 };
 </script>

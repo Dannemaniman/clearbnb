@@ -23,7 +23,6 @@
           :current="current"
           :bookedDates="bookedDates"
         />
-        <!--:bookedDates="takenDaysPerCalender[index]"-->
       </article>
       <div class="arrow-right" @click="moveRight"></div>
       <button @click="closeModal">Close</button>
@@ -88,7 +87,6 @@ export default {
       e.stopPropagation();
     },
     setDate(date, element) {
-      console.log(date, element);
       this.current === 0 ? (this.firstDate = date) : (this.secondDate = date);
       this.current === 0 ? (this.current = 1) : (this.current = 0);
       if (this.current === 0) {

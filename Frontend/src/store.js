@@ -218,7 +218,6 @@ export default createStore({
     },
 
     async postReply(store, review) {
-      console.log(review);
       let res = await fetch('/rest/post-reply', {
         method: 'POST',
         body: JSON.stringify(review),

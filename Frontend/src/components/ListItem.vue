@@ -38,9 +38,7 @@ export default {
   components: {
     ReviewModal,
   },
-  created() {
-    console.log(typeof chosenDate);
-  },
+
   data() {
     return {
       showReviewModal: false,
@@ -65,7 +63,6 @@ export default {
       this.showReviewModal = !this.showReviewModal;
     },
     deleteBooking(id) {
-      console.log(id);
       this.$store.dispatch('deleteBooking', id);
     },
   },
