@@ -60,7 +60,7 @@ export default {
       showCreateHome: false,
       amenities: [],
       amenitiesValidity: 'pending',
-      images: this.$store.state.uploadedNames,
+      images: [],
       showError: false,
       basicInfo: {
         price: '',
@@ -85,7 +85,7 @@ export default {
         },
         ownerId: '',
         position: '',
-        images: '',
+        images: [],
       },
     };
   },
@@ -120,11 +120,11 @@ export default {
         return false;
       } else {
         this.showValidityError = 'valid';
-        return true
+        return true;
       }
     },
     addNewHouse() {
-      if(!this.checkValidity()) return
+      if (!this.checkValidity()) return;
 
       if (this.basicInfo.zipcode == null) {
         this.basicInfo.zipcode = 'xxx';
@@ -163,8 +163,15 @@ export default {
     },
 
     async submitHome() {
-      if (this.images.length == 0) {
+      this.images = this.$store.state.uploadedNames;
+      if (this.images.length === 0) {
         this.images = ['/images/No-Image.jpg'];
+      }
+      console.log(this.images);
+      if (this.images.length < 8) {
+        for (let i = this.images.length; i < 8; i++) {
+          this.images[i] = '/images/No-Image.jpg';
+        }
       }
 
       let hostObject = {
@@ -189,6 +196,7 @@ export default {
       this.$store.dispatch('createHouse', hostObject);
       this.showCreateHome = false;
       this.userObjects.push(hostObject);
+      this.$store.state.uploadedNames = null;
     },
   },
 };
