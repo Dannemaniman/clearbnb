@@ -54,6 +54,7 @@ export default {
 <style scoped>
 .section-host {
   margin-top: 6rem;
+
 }
 
 header {
@@ -74,6 +75,7 @@ header {
 
 h1 {
   font-weight: 400;
+  line-height: 125%;
   color: black;
   margin-left: 1rem;
 }
@@ -103,8 +105,8 @@ article {
   border-right: 5px solid rgba(0, 0, 0, 0.281);
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.027), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-    position: relative;
-    right: -1.9rem;
+  position: relative;
+  right: -1.9rem;
 }
 
 h2 {
@@ -114,6 +116,7 @@ h2 {
   font-weight: 600;
   text-align: left;
   margin-bottom: 2rem;
+  line-height: 125%;
 }
 
 .secure-icon {
@@ -125,6 +128,7 @@ h2 {
   color: black;
   text-align: left;
   margin-left: 2rem;
+  line-height: 125%;
 }
 
 footer {
@@ -146,5 +150,11 @@ footer {
   color: black;
   font-size: 0.7rem;
   margin-left: 1rem;
+}
+
+@media screen and (max-width: 430px) {
+.section-host{
+  overflow: hidden;
+} 
 }
 </style>

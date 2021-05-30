@@ -23,21 +23,26 @@
 
 <script>
 export default {
-  props: ['days', 'month', 'firstDate', 'secondDate', 'current'],
+  props: ['days', 'month', 'firstDate', 'secondDate', 'current', 'bookedDates'],
   emit: ['setDate'],
    created(){
-     this.renderInactiveFromProps()
+    //  this.renderInactiveFromProps()
+    //  console.log(this.bookedDates, this.month)
      
    },
+   mounted(){
+      // this.checkBookedDates()
+       this.checkBookedDates()    
+   },
   updated(){
-    this.renderInactiveFromProps()
+    // this.renderInactiveFromProps()
     this.currentMarker = this.current
   },
   computed: {
     disabled() {
       return days - firstOne
     },
-    currentMaker() {
+    currentMarker() {
       return  this.current
     }
   },
@@ -51,14 +56,12 @@ export default {
       currentElement : null,
       monthNames: ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"    
-]
+      ], 
     }
   },
   methods: {
     markSelection(event) {
-
-      
-
+      console.log("AAA")
       let yearMonth = event.target.attributes[0].ownerElement.parentElement.parentElement.firstChild.innerHTML.split(" ")
       let month = this.monthNames.indexOf(yearMonth[0].trim())
       let year = yearMonth[1].trim()
@@ -134,11 +137,11 @@ export default {
                  this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
                  this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
                  this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
-              }
              }
             }
           }
         }
+      }
     },
     renderInactiveSelections() {
       if(this.currentMarker === 1) {
@@ -183,7 +186,7 @@ export default {
 
               if(
                 Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) > 
-              Number(this.secondElement.childNodes[0].data)){
+                Number(this.secondElement.childNodes[0].data)){
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
@@ -200,13 +203,181 @@ export default {
           }
         }
       }
-    }
+    },
+    checkBookedDates(){
+      this.bookedDates.forEach((dateSet) => {
+         console.log("Start: " + new Date(dateSet[0]).toLocaleDateString() + "|| End: " + new Date(dateSet[1]).toLocaleDateString())
+        // console.log("bookedDateMonth: " + this.monthNames[bookedDateMonth] + " vs " + "tableMonth: " + this.month + " day: " + day)
+        let startDate = new Date(dateSet[0]).toLocaleDateString()
+        let endDate = new Date(dateSet[1]).toLocaleDateString()
+        let start = new Date(dateSet[0]).getMonth()
+        let end = new Date(dateSet[1]).getMonth()
+        let startDay = new Date(dateSet[0]).getDay()
+        let endDay = new Date(dateSet[1]).getDay()
+        let type = ""
+
+
+        
+
+        // console.log(start < end)
+        // console.log(`start: ${start} end: ${end}`)
+
+        if(start < end || start > end){
+          // console.log(start + " < " + end)
+          type = "lesser"
+        }
+        if(start === end){
+          // console.log(start + " === " + end)
+          type = "same"
+        }
+          console.log(start)
+          console.log(this.monthNames.indexOf(this.month))
+          console.log(end)
+
+
+
+        //FIRST DATE
+        let dateString = new Date(dateSet[0]).toLocaleDateString()
+        let firstIndex = dateString.indexOf("-")
+        let bookedDateMonth = Number(dateString.substr(firstIndex+1, 2))-1
+        let lastIndex = dateString.lastIndexOf("-")
+        let firstDay = dateString.substr(lastIndex+1, 2)
+        
+
+        //SECOND DATE
+        let secondDateString = new Date(dateSet[1]).toLocaleDateString()
+        let secondFirstIndex = secondDateString.indexOf("-")
+        let secondbookedDateMonth = Number(secondDateString.substr(secondFirstIndex+1, 2))-1
+        let secondlastIndex = secondDateString.lastIndexOf("-")
+        let secondDay = secondDateString.substr(secondlastIndex+1, 2)
+
+
+        if(this.monthNames.indexOf(this.month) > start && this.monthNames.indexOf(this.month) < end ){
+          type = "all"
+          this.detoggleFromBookings(Number(secondDay), Number(firstDay), "second", type, endDate)
+        }
+
+       else if(this.monthNames[secondbookedDateMonth].trim() === this.month.trim()){
+          console.log("SECOND NUMBER TRIGGERED DETOGGLE")
+          console.log(`starMonth: ${start}, day: ${startDay} || endMonth: ${end}, day: ${endDay} `)
+          this.detoggleFromBookings(Number(secondDay), Number(firstDay), "second", type, endDate)
+        }
+
+       else if(this.monthNames[bookedDateMonth].trim() === this.month.trim()){
+           console.log("FIRST NUMBER TRIGGERED DETOGGLE FOR " + this.month)          
+           console.log(`starMonth: ${start}, day: ${startDay} || endMonth: ${end}, day: ${endDay} `)
+           this.detoggleFromBookings(Number(secondDay), Number(firstDay), "first", type, dateSet)
+       }
+      })
+    },
+    detoggleFromBookings(secondDay, firstDay, order, sameOrLesser, dateObjects){
+      console.log(sameOrLesser)
+
+      if(order === "second"){
+  
+        for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
+          for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+
+            if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                return
+            }
+  
+            if(sameOrLesser === "all"){
+                   this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                   this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                   this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                   console.log("GHEEEEEEEEEEEEEEEEEEEEEEEEEAWDAWEDAWDAWDAWDAWDAWDAWD")
+                   continue
+                }
+
+            if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) >= secondDay) return
+     
+            if(sameOrLesser === "lesser"){
+             if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) <= secondDay){
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                 console.log("delete lesser || second")
+             }
+            }
+            else if(sameOrLesser === "same")   
+              if((Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)) >= firstDay ){
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                 this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                 console.log("delete same || first")
+             }
+          }
+        }
+        } else if(order === "first") {
+            for(let i = 1; i < this.$refs.masterRow.childNodes.length; i++) {
+              for(let x = 0; x < this.$refs.masterRow.childNodes[i].childNodes.length; x++){
+                  if(this.days === 30 && this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data === "30"){
+                       this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                       this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                       this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                      return
+                  }
+                  console.log(sameOrLesser)
+                  console.log(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data +  " ||| " + firstDay)
+                
+                // if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) >= secondDay) return
+
+                if(sameOrLesser === "all"){
+                   this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                   this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                   this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                   continue
+                }
+        
+                if(sameOrLesser === "lesser"){
+                if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data) >= firstDay){
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                    console.log("delete lesser || first")
+                }
+                }
+                else if(sameOrLesser === "same")   
+                  if(!firstDay <= (Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data))){
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+                    this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+                    console.log("delete same || first")
+                  }
+              }
+            }
+        }
+      // } else if(order === "first"){
+      //   console.log(firstDay)
+      //     if(sameOrLesser === "same")   {
+      //     // console.log("delete same --- first")
+      //         if((Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)) >= firstDay && (Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)) <= secondDay ){
+      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+      //            console.log("delete same --- first SUPER TRIGGERED")
+      //            }
+      //         }
+      //       else if(sameOrLesser === "lesser"){
+      //           if(Number(this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0].data)){
+      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity = "0.2"
+      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.cursor = "default" 
+      //            this.$refs.masterRow.childNodes[i].childNodes[x].style.pointerEvents = "none"
+      //            console.log("delete lesser")
+      //        }
+      //       } 
+      // }
   },
   mounted() {
     setTimeout(() => {
        this.tableClass = 'table-pop'
     }, 100)
   }
+}
 }
 </script>
 

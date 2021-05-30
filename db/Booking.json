@@ -19,4 +19,76 @@
   "chosenDate" : [ 1639695600000, 1642028400000 ],
   "price" : 0.0,
   "guests" : null
+}, {
+  "id" : "nqa9v_PtrKs9sewavE54c",
+  "bookerId" : "EryPZ1tDNIVv--19Q5H6u",
+  "houseId" : "poB9Xpq6Ko2KimVozODqz",
+  "chosenDate" : [ 1609459200000, 1609977600000 ],
+  "price" : 8280.0,
+  "guests" : {
+    "totalGuests" : 1,
+    "adult" : 1,
+    "child" : 0,
+    "senior" : 0
+  }
+}, {
+  "id" : "aQ9B1Vxs7745ATDEEll9X",
+  "bookerId" : "_aR81dtujOhvX9oRWuyVQ",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1610928000000, 1613520000000 ],
+  "price" : 175275.0,
+  "guests" : {
+    "totalGuests" : 6,
+    "adult" : 6,
+    "child" : 0,
+    "senior" : 0
+  }
+}, {
+  "id" : "LQ5KRfM_edlLIbpnJIuSv",
+  "bookerId" : "AItQB_FycdDvsAecyTw8w",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1611100800000, 1613433600000 ],
+  "price" : 29498.0,
+  "guests" : {
+    "totalGuests" : 1,
+    "adult" : 1,
+    "child" : 0,
+    "senior" : 0
+  }
+}, {
+  "id" : "Ee0Eahl0hKI6FAjb1GYWM",
+  "bookerId" : "AItQB_FycdDvsAecyTw8w",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1610409600000, 1613433600000 ],
+  "price" : 38238.0,
+  "guests" : {
+    "totalGuests" : 1,
+    "adult" : 1,
+    "child" : 0,
+    "senior" : 0
+  }
+}, {
+  "id" : "SANjNpnwdi1IPxXNK9Eco",
+  "bookerId" : "AItQB_FycdDvsAecyTw8w",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1611014400000, 1613520000000 ],
+  "price" : 31683.0,
+  "guests" : {
+    "totalGuests" : 1,
+    "adult" : 1,
+    "child" : 0,
+    "senior" : 0
+  }
+}, {
+  "id" : "hOWK_UptRU4QnBiB28fYh",
+  "bookerId" : "_aR81dtujOhvX9oRWuyVQ",
+  "houseId" : "Cnu23rs_VAMQ2thzdHHiI",
+  "chosenDate" : [ 1610323200000, 1612828800000 ],
+  "price" : 31683.0,
+  "guests" : {
+    "totalGuests" : 1,
+    "adult" : 1,
+    "child" : 0,
+    "senior" : 0
+  }
 } ]
