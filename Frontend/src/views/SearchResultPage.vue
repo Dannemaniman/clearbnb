@@ -4,13 +4,11 @@
     <h1>{{ refinedSearchResult.length }} Matched objects</h1>
     <div class="search-results">
       <SearchResultItem
-        class="house"
         v-for="house of refinedSearchResult"
         :key="house.id"
         :house="house"
       />
     </div>
-    <!-- <p>{{ houses }}</p> -->
   </div>
 </template>
 
@@ -107,11 +105,29 @@ export default {
       this.searchObject = payload.searchObject;
       this.refinedSearchResult = this.searchResult;
     },
+    setHouseReviews() {
+      this.$store.state.houses.forEach(async (house) => {
+        await this.$store.dispatch('fetchReviews', house.id);
+
+        if (this.$store.state.reviews.length == 0) {
+          return '';
+        }
+        let total = 0;
+        this.$store.state.reviews.forEach(function (review) {
+          let grade = review.grade;
+          total += grade;
+        });
+        let average = total / this.$store.state.reviews.length;
+        let rounded = average.toFixed(2);
+        house.review = Number(rounded);
+      });
+    },
   },
 
   async created() {
-    let res = await fetch('/rest/houses');
-    let houses = await res.json();
+    await this.$store.dispatch('fetchHouses');
+    this.setHouseReviews();
+    let houses = this.$store.state.houses;
 
     houses.filter((house) => {
       let city = house.city.toLowerCase();
@@ -122,22 +138,19 @@ export default {
     });
     this.refinedSearchResult = this.houses;
     this.housesByCity = this.houses;
-    /* else {
-      this.houses = houses;
-    } */
   },
 };
 </script>
 
 <style scoped>
 h1 {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 .search-results {
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
   justify-content: space-around;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 </style>

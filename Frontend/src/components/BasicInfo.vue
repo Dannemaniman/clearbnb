@@ -1,127 +1,214 @@
 <template>
   <section>
-    <p class="title">Home Info</p>
+    <p class="title">Create New Home</p>
     <form @change.prevent="getFormData">
-      <label for="title">Title</label>
-      <input
-        name="title"
-        placeholder="Title..."
-        type="text"
-        class="long-input"
-        v-model="title"
-      />
-      <label for="price">Price</label>
-      <p>{{ price }}</p>
-      <input
-        name="price"
-        type="range"
-        min="0"
-        max="3000"
-        step="50"
-        v-model="price"
-      />
-      <label for="childDiscount">Child Discount</label>
-      <p>{{ childDiscount }} %</p>
-      <input
-        name="childDiscount"
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        v-model="childDiscount"
-      />
-      <label for="seniorDiscount">Senior Discount</label>
-      <p>{{ seniorDiscount }} %</p>
-      <input
-        name="seniorDiscount"
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        v-model="seniorDiscount"
-      />
-      <label for="description"></label>
-      <textarea
-        name="description"
-        placeholder="Please Enter a Accurate Description of the Home."
-        rows="10"
-        cols="50"
-        v-model="description"
-      />
-      <label for="address">Address</label>
-      <input
-        name="address"
-        placeholder="Enter address..."
-        type="text"
-        class="long-input"
-        v-model="address"
-      />
-      <label for="zip">Zip Code</label>
-      <input
-        name="zip"
-        placeholder="Zip code..."
-        type="text"
-        class="state-input"
-        v-model="zipcode"
-      />
-      <input
-        name="zip"
-        placeholder="City..."
-        type="text"
-        class="short-input"
-        v-model="city"
-      />
-      <label for="properties">Property Type</label>
-      <select id="property-select" name="properties" v-model="propertyType">
-        <option disabled value="">Please Choose...</option>
-        <option value="apartment">Apartment</option>
-        <option value="house">House</option>
-        <option value="bed-n-breakfast">Bed and Breakfast</option>
-      </select>
-      <div class="accomodate-info">
-        <p>How many guests can your place accomodate?</p>
-        <div class="basicinfo-buttonbar">
-          <p>Guests</p>
-          <div class="button-container">
-            <button
-              type="button"
-              @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--"
+      <table>
+        <tr>
+          <th colspan="3"><label for="title">Title</label></th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <input
+              name="title"
+              placeholder="Title..."
+              type="text"
+              class="title-input"
+              v-model.trim="title"
+              @blur="validateInput('title')"
+              :class="{ invalid: titleValidity === 'invalid' }"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="price">Price: {{ price }} SEK</label>
+          </th>
+          <td>
+            <input
+              name="price"
+              type="range"
+              min="1"
+              max="2000"
+              step="50"
+              v-model="price"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="childDiscount"
+              >Child Discount: {{ childDiscount }} %</label
             >
-              -
-            </button>
-            <p>{{ guestCounter }}</p>
-            <button type="button" @click="guestCounter++">+</button>
-          </div>
-        </div>
-        <div class="basicinfo-buttonbar">
-          <p>Beds</p>
-          <div class="button-container">
-            <button
-              type="button"
-              @click="bedCounter <= 0 ? (bedCounter = 0) : bedCounter--"
+          </th>
+          <td>
+            <input
+              name="childDiscount"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              v-model="childDiscount"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="seniorDiscount"
+              >Senior Discount {{ seniorDiscount }} %</label
             >
-              -
-            </button>
-            <p>{{ bedCounter }}</p>
-            <button type="button" @click="bedCounter++">+</button>
-          </div>
-        </div>
-        <div class="basicinfo-buttonbar">
-          <p>Bathrooms</p>
-          <div class="button-container">
-            <button
-              type="button"
-              @click="
-                bathroomCounter <= 0 ? (bathroomCounter = 0) : bathroomCounter--
-              "
+          </th>
+          <td>
+            <input
+              name="seniorDiscount"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              v-model="seniorDiscount"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="description">Description: </label>
+          </th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <textarea
+              name="description"
+              placeholder="Please Enter a Accurate Description of the Home."
+              rows="10"
+              cols="80"
+              v-model.trim="description"
+              @blur="validateInput('description')"
+              :class="{ invalid: descriptionValidity === 'invalid' }"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="address">Address</label>
+          </th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <input
+              name="address"
+              placeholder="Enter address..."
+              type="text"
+              class="long-input"
+              v-model.trim="address"
+              @blur="validateInput('address')"
+              :class="{ invalid: addressValidity === 'invalid' }"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="zip">Zip Code</label>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input
+              name="zip"
+              placeholder="Zip code..."
+              type="text"
+              class="state-input"
+              v-model="zipcode"
+              @blur="validateInput('zipcode')"
+              :class="{ invalid: zipcodeValidity === 'invalid' }"
+            />
+          </td>
+          <td>
+            <input
+              name="zip"
+              placeholder="City..."
+              type="text"
+              class="short-input"
+              v-model.trim="city"
+              @blur="validateInput('city')"
+              :class="{ invalid: cityValidity === 'invalid' }"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">
+            <label for="properties">Property Type</label>
+          </th>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <select
+              id="property-select"
+              name="properties"
+              v-model="propertyType"
+              @blur="validateInput('property')"
+              :class="{ invalid: propertyValidity === 'invalid' }"
             >
-              -
-            </button>
-            <p>{{ bathroomCounter }}</p>
-            <button type="button" @click="bathroomCounter++">+</button>
-          </div>
-        </div>
-      </div>
+              <option disabled value="">Please Choose...</option>
+              <option selected value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="bed-n-breakfast">Bed and Breakfast</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3" class="accomodation">
+            How many guests can your place accomodate?
+          </th>
+        </tr>
+        <tr class="accomodation-control">
+          <th>Guests</th>
+          <td>
+            <div class="button-container">
+              <button
+                type="button"
+                @click="guestCounter <= 1 ? (guestCounter = 1) : guestCounter--"
+              >
+                -
+              </button>
+              <p>{{ guestCounter }}</p>
+              <button type="button" @click="guestCounter++">+</button>
+            </div>
+          </td>
+        </tr>
+        <tr class="accomodation-control">
+          <th>Beds</th>
+          <td>
+            <div class="button-container">
+              <button
+                type="button"
+                @click="bedCounter <= 0 ? (bedCounter = 0) : bedCounter--"
+              >
+                -
+              </button>
+              <p>{{ bedCounter }}</p>
+              <button type="button" @click="bedCounter++">+</button>
+            </div>
+          </td>
+        </tr>
+        <tr class="accomodation-control">
+          <th>Bathrooms</th>
+          <td>
+            <div class="button-container">
+              <button
+                type="button"
+                @click="
+                  bathroomCounter <= 0
+                    ? (bathroomCounter = 0)
+                    : bathroomCounter--
+                "
+              >
+                -
+              </button>
+              <p>{{ bathroomCounter }}</p>
+              <button type="button" @click="bathroomCounter++">+</button>
+            </div>
+          </td>
+        </tr>
+      </table>
     </form>
   </section>
 </template>
@@ -131,33 +218,98 @@ export default {
   emit: ['basicInfo'],
   data() {
     return {
-      guestCounter: 1,
-      bedCounter: 0,
-      bathroomCounter: 0,
       title: '',
       price: 300,
+      childDiscount: 1,
+      seniorDiscount: 1,
       description: '',
       address: '',
       zipcode: '',
       city: '',
       propertyType: '',
-      seniorDiscount: 1,
-      childDiscount: 1,
+      guestCounter: 1,
+      bedCounter: 0,
+      bathroomCounter: 0,
+
+      titleValidity: 'pending',
+      descriptionValidity: 'pending',
+      addressValidity: 'pending',
+      zipcodeValidity: 'pending',
+      cityValidity: 'pending',
+      propertyValidity: 'pending',
     };
   },
   methods: {
     getFormData() {
       this.$emit('basicInfo', this.$data);
     },
+    validateInput(type) {
+      if (type === 'title') {
+        if (this.title === '') {
+          this.titleValidity = 'invalid';
+        } else {
+          this.titleValidity = 'valid';
+        }
+      } else if (type === 'description') {
+        if (this.description === '') {
+          this.descriptionValidity = 'invalid';
+        } else {
+          this.descriptionValidity = 'valid';
+        }
+      } else if (type === 'address') {
+        if (this.address === '') {
+          this.addressValidity = 'invalid';
+        } else {
+          this.addressValidity = 'valid';
+        }
+      } else if (type === 'zipcode') {
+        if (this.zipcode === '') {
+          this.zipcodeValidity = 'invalid';
+        } else {
+          this.zipcodeValidity = 'valid';
+        }
+      } else if (type === 'city') {
+        if (this.city === '') {
+          this.cityValidity = 'invalid';
+        } else {
+          this.cityValidity = 'valid';
+        }
+      } else if (type === 'property') {
+        if (this.propertyType === '') {
+          this.propertyValidity = 'invalid';
+        } else {
+          this.propertyValidity = 'valid';
+        }
+      }
+    },
   },
 };
 </script>
 
 <style scoped>
+.invalid {
+  border-bottom: 1px solid black;
+  background-color: rgb(255, 216, 212);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-container th {
+  text-align: left;
+  font-size: 3rem;
+}
+
+table {
+  margin: 0 auto;
+  width: 80%;
+}
+
 section {
   margin: 0 auto;
   margin-top: 2rem;
-  background-color: #a9a9a9;
   border-radius: 10px;
   width: 80%;
   color: black;
@@ -189,7 +341,12 @@ select {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 3rem;
+}
+
+.title-input {
+  width: 100%;
+  max-width: 30rem;
 }
 
 .accomodate-info {
@@ -202,6 +359,16 @@ select {
   width: 70%;
   margin: 0 auto;
   position: relative;
+}
+
+.accomodation {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-size: 1.7rem;
+}
+
+.accomodation-control th {
+  text-align: center;
 }
 
 .basicinfo-buttonbar > p {
@@ -230,19 +397,20 @@ input {
   height: 2rem;
   outline: none;
   border-radius: 8px;
-  border: 1p solid black;
+  border-bottom: 1px solid black;
 }
 
 .long-input {
-  width: 60%;
+  width: 80%;
+  max-height: 334px;
 }
 
 .state-input {
-  width: 35%;
-  margin-right: 2rem;
+  width: 75%;
+  margin-left: 3rem;
 }
 
 .short-input {
-  width: 20%;
+  width: 50%;
 }
 </style>

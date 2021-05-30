@@ -1,18 +1,18 @@
 <template>
   <section v-if="loggedIn !== null" class="user-content">
     <div class="buttons">
-      <button @click="openPage(1)">Bookings</button>
-      <button @click="openPage(2)">Houses</button>
-      <button @click="openPage(3)">Details</button>
+      <button @click="openPage(1)" :class="{active: activeButton1 === true}">Bookings</button>
+      <button @click="openPage(2)" :class="{active: activeButton2 === true}">Houses</button>
+      <button @click="openPage(3)" :class="{active: activeButton3 === true}">Details</button>
     </div>
     <div>
-      <UserBookings v-if="bookings" />
+      <UserBookings v-if="bookings"/>
     </div>
     <div>
-      <UserHouses :userObjects="userObjects" v-if="houses" />
+      <UserHouses :userObjects="userObjects" v-if="houses"/>
     </div>
     <div>
-      <UserDetails v-if="details" />
+      <UserDetails v-if="details"/>
     </div>
   </section>
 </template>
@@ -35,6 +35,9 @@ export default {
       houses: false,
       details: true,
       userObjects: '',
+      activeButton1: false,
+      activeButton2: false,
+      activeButton3: false
     };
   },
   computed: {
@@ -49,6 +52,9 @@ export default {
           this.bookings = true;
           this.houses = false;
           this.details = false;
+          this.activeButton1 = true;
+          this.activeButton2 = false;
+          this.activeButton3 = false;
           break;
         }
         case 2: {
@@ -56,12 +62,18 @@ export default {
           this.houses = true;
           this.details = false;
           this.getUserHouses();
+          this.activeButton1 = false;
+          this.activeButton2 = true;
+          this.activeButton3 = false;
           break;
         }
         case 3: {
           this.bookings = false;
           this.houses = false;
           this.details = true;
+          this.activeButton1 = false;
+          this.activeButton2 = false;
+          this.activeButton3 = true;
           break;
         }
       }
@@ -78,35 +90,42 @@ export default {
       this.userObjects = userHouses;
     },
   },
-  created() {
-    //this.$store.dispatch('fetchBookings');
-  },
 };
 </script>
 
 <style scoped>
+
+.active {
+  background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
+    background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+  filter:brightness(130%);
+  background-color: transparent;
+}
+
 .user-content {
   display: flex;
   flex-direction: column;
 }
 
 button {
-  width: 33.33%;
+  width: 30.33%;
   height: 6rem;
   border-radius: 0px 0px 10px 10px;
   outline: none;
   font-weight: 400;
   cursor: pointer;
+  border: 0;
   background-color: rgb(235, 235, 235);
   transition: all 0.2s ease;
+  margin: auto 0.3rem;
+  margin-top: 2rem;
 }
 
-button:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-color: #a9a9a9;
+button:hover, button:active {
+  box-shadow: rgba(143, 143, 143, 0.35) 0px 5px 15px;
+  background-color: #cfcfcf;
 }
 
-button:active {
-  background-color: #a9a9a9;
-}
 </style>

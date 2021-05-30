@@ -4,15 +4,17 @@
     <div v-else>
       <GalleryComponent />
       <p class="greeting">
-        <span>Vi bryr oss!</span> <br />
-        Vi bryter våra ryggar för att du ska glömma bort ditt inrutade
-        vardagsliv
+        <span>We care!</span> <br />
+        We willingly break our backs to serve your every need. <br /><br />
+        <span class="small-information">
+        We bend over backwards in order to help you find the most suitable accomodation you can dream of.
+        <img src="../../public/icons/successful.png" class="bezel-image"/>
+        </span>
       </p>
-      <Typewriter />
-      <Slider title="I Omfånget" :houses="houses" />
-      <Slider title="Bäst I Betyg" :houses="bestHouses" />
-      <Slider title="Billigaste" :houses="cheapestHouses" />
-      <MapComponent />
+      <Slider title="All Homes" :houses="houses" />
+      <Slider img="../../public/icons/badge.png" title="Best Graded Homes" :houses="bestHouses" />
+      <Slider img="../../public/icons/new.png" title="Economically Comfortable Housing" :houses="cheapestHouses" />
+      <MapComponent :inDetail="false" />
     </div>
   </div>
 </template>
@@ -59,6 +61,11 @@ export default {
   padding: 0 0.5rem;
 }
 
+.bezel-image {
+  height: 40px;
+  width: 40px;
+}
+
 .greeting {
   font-size: 3rem;
   font: bolder;
@@ -70,4 +77,9 @@ export default {
 .greeting span {
   font-size: 5rem;
 }
+
+.greeting .small-information {
+  font-size: 2rem;
+}
+
 </style>

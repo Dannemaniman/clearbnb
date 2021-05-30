@@ -50,14 +50,14 @@ export default {
 </script>
 
 <style>
-.booking-card {
+/* .booking-card {
   border-radius: 10px;
   border: 1px solid black;
   background-color: rgb(235, 235, 235);
   color: black;
   margin: 10px;
   display: flex;
-}
+} */
 
 .cancel {
   height: 20px;

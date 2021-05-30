@@ -6,7 +6,6 @@
         <h1>
           Hosted by <span class="span-name">{{ owner.fullName }}</span>
         </h1>
-        <p class="reviews-number">★ 23 Reviews</p>
       </div>
     </header>
     <article>
@@ -18,7 +17,6 @@
       </p>
     </article>
     <footer>
-      <button class="button-contact">Contact</button>
       <div class="security-container">
         <img class="secure-icon" src="../../public/icons/keycard.png" />
         <p>
@@ -56,9 +54,6 @@ export default {
 <style scoped>
 .section-host {
   margin-top: 6rem;
-  /* background-color: #a9a9a9; */
-  /* padding-left: 1rem; */
-  /* overflow: hidden; */
 }
 
 header {
@@ -66,13 +61,16 @@ header {
   flex-direction: row;
   align-items: center;
 }
+.user-container h1 {
+  display: flex;
+  flex-direction: column;
+}
 
 .avatar {
   height: 130px;
   width: 120px;
   background-color: whitesmoke;
   border-radius: 0 0 10px 0;
-  /* border-bottom: 2px solid black; */
   border-left: 5px solid black;
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
@@ -80,15 +78,15 @@ header {
 
 h1 {
   font-weight: 400;
+  line-height: 125%;
   color: black;
   margin-left: 1rem;
 }
 
 .span-name {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 300;
   margin-left: 0.2rem;
-  /* margin-left: 1rem; */
 }
 
 .reviews-number {
@@ -103,16 +101,15 @@ h1 {
 
 article {
   margin-top: 2rem;
-  /* background-color: whitesmoke; */
   border-radius: 10px 0 0 10px;
   background: white;
   padding: 2rem;
-  margin-left: 1rem;
   border-right: 5px solid rgba(0, 0, 0, 0.281);
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.027), 0 0 0 2px rgb(255, 255, 255),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-    position: relative;
-    right: -1.9rem;
+  box-shadow: inset 0 -3em 3em rgb(0 0 0 / 3%), 0 0 0 2px rgb(255 255 255),
+    0.3em 0.3em 1em rgb(0 0 0 / 30%);
+  position: relative;
+  right: -1.4rem;
+  width: 90%;
 }
 
 h2 {
@@ -122,6 +119,7 @@ h2 {
   font-weight: 600;
   text-align: left;
   margin-bottom: 2rem;
+  line-height: 125%;
 }
 
 .secure-icon {
@@ -133,6 +131,7 @@ h2 {
   color: black;
   text-align: left;
   margin-left: 2rem;
+  line-height: 125%;
 }
 
 footer {
@@ -141,15 +140,6 @@ footer {
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
-}
-
-.button-contact {
-  height: 3rem;
-  width: 8rem;
-  border-radius: 8px 8px 8px 8px;
-  outline: none;
-  text-align: center;
-  font-size: 1.2rem;
 }
 
 .security-container {
@@ -163,5 +153,11 @@ footer {
   color: black;
   font-size: 0.7rem;
   margin-left: 1rem;
+}
+
+@media screen and (max-width: 430px) {
+  .section-host {
+    overflow: hidden;
+  }
 }
 </style>

@@ -1,5 +1,10 @@
 <template>
   <section>
+    <ErrorModal
+      errorMessage="Invalid fields!"
+      @closeModal="closeModal"
+      v-if="showError === true"
+    />
     <div class="header-bar">
       <h1>Confirm Details</h1>
     </div>
@@ -10,6 +15,8 @@
       :address="bookingInfo.house.address"
       :city="bookingInfo.house.city"
       :chosenDate="bookingInfo.chosenDate"
+      :price="bookingInfo.price"
+      :guests="bookingInfo.guests"
     />
     <Spinner v-if="showSpinner" />
     <div class="credit-container" v-else>
@@ -22,7 +29,7 @@
           <option value="mastercard">Mastercard</option>
           <option value="american-express">American Express</option>
         </select>
-        <credit-card :cardType="cardType"></credit-card>
+        <credit-card :cardType="cardType" :cardInfo="cardInfo"></credit-card>
         <button class="submit-button" @click="book">Pay</button>
       </form>
     </div>
@@ -33,29 +40,48 @@
 import ListItem from '../components/ListItem.vue';
 import CreditCard from '../components/CreditCard.vue';
 import Spinner from '../components/Spinner.vue';
+import ErrorModal from '../components/ErrorModal.vue';
 
 export default {
   components: {
     ListItem,
     CreditCard,
     Spinner,
+    ErrorModal,
   },
   data() {
     return {
       bookingInfo: this.$store.state.selectedHouse,
       userId: this.$store.state.user.id,
       cardType: 'Select your card',
+      cardInfo: {
+        cardNumber: '',
+        cardCVV: '',
+        validThruMonth: '',
+        validThruYear: '',
+      },
       showSpinner: false,
+      showError: false,
     };
   },
   methods: {
     book() {
+      if (
+        this.cardType === 'Select your card' ||
+        this.cardInfo.cardNumber === '' ||
+        this.cardInfo.cardCVV === '' ||
+        this.cardInfo.validThruMonth === '' ||
+        this.cardInfo.validThruYear === ''
+      ) {
+        this.showError = true;
+        return;
+      }
       let booking = {
         bookerId: this.userId,
         houseId: this.bookingInfo.house.id,
         chosenDate: [
-          this.bookingInfo.chosenDate.start,
-          this.bookingInfo.chosenDate.end,
+          new Date(this.bookingInfo.chosenDate.start),
+          new Date(this.bookingInfo.chosenDate.end),
         ],
         price: this.bookingInfo.price,
         guests: this.bookingInfo.guests,
@@ -70,16 +96,16 @@ export default {
         this.showSpinner = false;
       }, 1000);
     },
-  },
-  created() {
-    console.log(this.bookingInfo);
+    closeModal() {
+      this.showError = false;
+    },
   },
 };
 </script>
 
 <style scoped>
 section {
-  width: 90%;
+  width: 100%;
   border-radius: 8px;
   margin: 2rem auto 2rem auto;
   color: #4b4b4b;
@@ -114,7 +140,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 90%;
   border-radius: 8px;
   margin: 0 auto;
   border-bottom: 0;

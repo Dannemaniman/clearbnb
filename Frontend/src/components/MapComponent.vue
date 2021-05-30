@@ -27,34 +27,15 @@ export default {
       var userIcon = L.icon({
         iconUrl: '/munch.png',
 
-        iconSize: [30, 30], // size of the icon
-        iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
-        popupAnchor: [0, 0], // point from which the popup should open relative to the iconAnchor
+        iconSize: [30, 30], 
+        iconAnchor: [0, 0], 
+        popupAnchor: [0, 0], 
       });
       return userIcon;
     },
 
     setupLeafletMap() {
       this.mapDiv = L.map('mapContainer').setView(this.center, 9);
-      /* .locate({
-          setView: true,
-          watch: true,
-          maxZoom: 9,
-          maximumAge: 4000,
-        })
-        .on('locationfound', (e) => {
-          let usermarker = new L.marker([e.latitude, e.longitude], {
-            icon: this.customMarker(),
-          });
-          if (usermarker !== null) {
-            this.mapDiv.removeLayer(usermarker);
-          }
-          //L.marker([e.latitude, e.longitude], { icon: this.customMarker() })
-          usermarker.bindPopup('Detta är du!').addTo(this.mapDiv);
-        })
-        .on('locationerror', (error) => {
-          console.log(error);
-        }); */
       L.tileLayer(
         'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
         {
@@ -101,7 +82,6 @@ export default {
             house.price +
             '</strong>' +
             '/night';
-          //UserId = house.bookerID or UserId = house.ownerId
           if (this.user == null) {
             L.circle(house.position, {
               color: 'red',
@@ -113,7 +93,6 @@ export default {
               .openPopup()
               .addTo(this.mapDiv);
           } else if (
-            //some(i => i.name.includes('Jack'));
             this.userBookings.some((booking) =>
               booking.houseId.includes(house.id)
             ) ||
@@ -190,8 +169,6 @@ export default {
             .addTo(this.mapDiv);
         }
       }
-
-      /*  L.marker(this.home.position).addTo(this.mapDiv); */
     },
   },
   async mounted() {
@@ -199,8 +176,6 @@ export default {
 
     this.setupLeafletMap();
     this.addMarkers();
-    /*  this.mapDiv.on('locationfound', this.onLocationFound);
-    this.mapDiv.on('locationerror', this.onLocationError); */
   },
 };
 </script>
@@ -214,9 +189,11 @@ export default {
 }
 
 .map-title {
-  font-size: 3rem;
-  margin: 0;
+  font-size: 2.5rem;
+  line-height: 125%;
+  margin-left: 2rem;
   text-align: left;
+  color: #4b4b4b;
 }
 
 #mapContainer {

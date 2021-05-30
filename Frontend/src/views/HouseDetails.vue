@@ -15,18 +15,17 @@
         <h2>
           {{ home.city }}, <span class="home-address">{{ home.address }}</span>
         </h2>
-        <h3></h3>
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal :home="home" />
+      <BookingModal :home="home" :bookedDates="bookedDates" />
     </div>
     <br />
     <br />
     <br />
     <br />
-    <MapComponent :home="home" />
-    <Reviews :reviews="$store.state.reviews" />
+    <MapComponent :home="home" :inDetail="true" />
+    <Reviews :reviews="reviews" v-if="reviews.length" />
     <Hosts :home="home" />
   </div>
 </template>
@@ -35,14 +34,17 @@
 import Hosts from '../components/Hosts.vue';
 import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
-import Reviews from '../components/Reviews.vue';
 import MapComponent from '../components/MapComponent.vue';
+import Reviews from '../components/ReviewSlider.vue';
 
 export default {
   components: { Amenities, Hosts, BookingModal, Reviews, MapComponent },
   data() {
     return {
       home: null,
+      reviews: null,
+      bookedDates: [],
+      bookings: this.$store.bookedDates,
     };
   },
   methods: {
@@ -56,20 +58,21 @@ export default {
       ];
     },
   },
-
-  /* mounted() {
-    console.log(this.$refs);
-    let mapDiv = this.$refs.mapDiv;
-    mapDiv.dropMarker({ Latitude: 55.6837, Longitude: 13.60829 });
-  }, */
-
   async created() {
     let id = this.$route.params.id;
     const response = await fetch(`/rest/houses/${id}`);
     const data = await response.json();
     this.home = data;
 
-    let reviews = await this.$store.dispatch('fetchReviews', this.home.id);
+    await this.$store.dispatch('fetchReviews', this.home.id);
+    this.reviews = this.$store.state.reviews;
+
+    await this.$store.dispatch('fetchBookedDates', this.home.id);
+    this.bookings = this.$store.state.bookedDates;
+
+    this.bookings.forEach((booking) => {
+      this.bookedDates.push(booking.chosenDate);
+    });
   },
 };
 </script>
@@ -78,27 +81,38 @@ export default {
 .detail-content {
   display: flex;
   flex-direction: column;
-  /* margin: 1rem auto; */
   border-radius: 10px;
-  /* padding: 1rem; */
   text-align: center;
   width: 100%;
-  /* max-width: 59rem; */
-  /* margin: 0; */
+  padding: 0.1rem;
 }
 
 h1 {
   margin-top: 5rem;
   font-size: 3rem;
-  /* font-size: fit-content; */
   text-align: left;
   margin-left: 1rem;
+  line-height: 125%;
+}
+
+h3 {
+  line-height: 150%;
 }
 
 .content-holder {
   position: relative;
   display: flex;
   flex-direction: row;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+@media screen and (max-width: 600px) {
+  .content-holder {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .information {
@@ -131,7 +145,14 @@ h1 {
   width: 100%;
   max-height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
+
+.images img:hover,
+.images img:active {
+  filter: brightness(60%);
+}
+
 .images .img-1 {
   grid-area: img-1;
   object-fit: cover;
@@ -166,13 +187,6 @@ h1 {
   height: 10rem;
 }
 
-/* .images img:nth-child(1) {
-  grid-row-start: 1;
-  grid-row-end: 4;
-  grid-column-start: 1;
-  grid-column-end: 4;
-} */
-
 .reviews {
   display: flex;
   align-items: center;
@@ -190,5 +204,6 @@ h1 {
 
 .information h2 {
   font-size: 6rem;
+  line-height: 125%;
 }
 </style>

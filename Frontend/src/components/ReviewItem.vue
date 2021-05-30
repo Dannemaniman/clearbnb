@@ -12,7 +12,6 @@
     <div class="review-body">
       {{ review.review }}
     </div>
-    <!-- <img class="conversation-icon" src="../../public/icons/conversation.png" v-if="review.replies"/> -->
     <img class="conversation-icon" src="../../public/icons/conversation.png" @click="$emit('popSection', review)"/>
   </article>
 </template>
@@ -24,9 +23,6 @@ export default {
   created() {
     this.getHouseTitle();
     this.getUserName();
-    console.log("röv")
-    console.log(this.review)
-    console.log(this.review.user)
   },
   data() {
     return {

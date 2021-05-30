@@ -1,8 +1,21 @@
 <template>
-  <section class="section-amenities">
-    <h1>Amenities</h1>
+  <section
+    class="section-amenities"
+    :class="{ invalid: invalid === 'invalid' }"
+  >
+    <h1>
+      Amenities
+      <span v-if="failedValidity" style="font-size: 2rem; color: red">
+        You must choose atleast 1!</span
+      >
+    </h1>
     <div class="amenities-container">
-      <article v-for="(amenity, index) of amenities" :key="index" @click="addAmenity(amenity, index)" :ref="amenity">
+      <article
+        v-for="(amenity, index) of amenities"
+        :key="index"
+        @click="addAmenity(amenity, index)"
+        :ref="amenity"
+      >
         <img :src="getPath(index)" :alt="amenity" />
         <p>{{ amenity }}</p>
       </article>
@@ -12,11 +25,37 @@
 
 <script>
 export default {
+  props: ['invalid'],
   emit: ['amenities'],
   data() {
     return {
-       amenities: ['Bed', 'Breakfast', 'Camera', 'CCTV', 'Dinner', 'Elevator', 'Fridge', 'Heating', 'Iron', 'Mirror', 'Parking', 'Room Service', 'Sink', 'Tea', 'Television', 'Toothbrush', 'Towel', 'Wifi'],
-       chosenAmenities: []
+      amenities: [
+        'Bed',
+        'Breakfast',
+        'Camera',
+        'CCTV',
+        'Dinner',
+        'Elevator',
+        'Fridge',
+        'Heating',
+        'Iron',
+        'Mirror',
+        'Parking',
+        'Room Service',
+        'Sink',
+        'Tea',
+        'Television',
+        'Toothbrush',
+        'Towel',
+        'Wifi',
+      ],
+      chosenAmenities: [],
+      failedValidity: false,
+    };
+  },
+  created() {
+    if (this.invalid === 'invalid') {
+      this.failedValidity = true;
     }
   },
   methods: {
@@ -28,25 +67,34 @@ export default {
       );
     },
     addAmenity(amenity) {
-      for(let ref in this.$refs) {
-        if(ref === amenity) {
-          if(this.$refs[ref].style.border === "" || this.$refs[ref].style.border === "3px solid transparent") {
-            this.$refs[ref].style.border = "3px solid green"
-            this.chosenAmenities.push(amenity)
-          }
-          else{
-            this.$refs[ref].style.border = ""
-            this.chosenAmenities = this.chosenAmenities.filter((item) => item !== amenity)
+      for (let ref in this.$refs) {
+        if (ref === amenity) {
+          if (
+            this.$refs[ref].style.background === '' ||
+            this.$refs[ref].style.border === '3px solid transparent' ||
+            this.$refs[ref].style.background === 'white'
+          ) {
+            this.$refs[ref].style.background = 'orange';
+            this.chosenAmenities.push(amenity);
+          } else {
+            this.$refs[ref].style.background = 'white';
+            this.chosenAmenities = this.chosenAmenities.filter(
+              (item) => item !== amenity
+            );
           }
         }
       }
-      this.$emit('amenities', this.chosenAmenities)
+      this.$emit('amenities', this.chosenAmenities);
     },
   },
 };
 </script>
 
 <style scoped>
+.invalid {
+  border: 4px solid red;
+}
+
 .section-amenities {
   display: flex;
   flex-direction: column;
@@ -77,10 +125,12 @@ article {
   margin: 1rem;
   padding: 1rem;
   border: 3px solid transparent;
+  border-radius: 10px;
 }
 
-article:hover, article:active {
-  border: 3px solid black;
+article:hover,
+article:active {
+  border: 3px solid orange;
 }
 
 p {
@@ -91,5 +141,4 @@ img {
   height: 50px;
   width: 50px;
 }
-
 </style>

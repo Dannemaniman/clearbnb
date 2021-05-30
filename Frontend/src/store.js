@@ -15,6 +15,7 @@ export default createStore({
     userBookings: [],
     users: {},
     uploadedNames: '',
+    bookedDates: [],
   },
 
   // this.$store.commit('mutationName', data)
@@ -40,7 +41,9 @@ export default createStore({
     setReplies(state, replies) {
       state.replies = replies;
     },
-
+    setBookedDates(state, bookedDates) {
+      state.bookedDates = bookedDates;
+    },
     setUsers(state, users) {
       state.users = users;
     },
@@ -72,9 +75,9 @@ export default createStore({
     setUsers(state, users) {
       state.users = users;
     },
-    deleteBooking(state, newMessage) {
+    deleteBooking(state, id) {
       for (let booking of state.userBookings) {
-        if (booking.id == newMessage.id) {
+        if (booking.id == id.id) {
           let index = state.userBookings.indexOf(booking);
           state.userBookings.splice(index, 1);
         }
@@ -88,11 +91,8 @@ export default createStore({
   // this.$store.dispatch('actionNamehouses)s
   actions: {
     async fetchHouses(store) {
-      // fetch house and update state with response
-      // store.commit('setHouse')
       let res = await fetch('/rest/houses');
       let houses = await res.json();
-
       store.commit('setHouses', houses);
     },
     async register(store, credentials) {
@@ -100,11 +100,7 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(credentials),
       });
-
       let loggedInUser = await res.json();
-
-      console.log('registered user', loggedInUser);
-
       store.commit('setUser', loggedInUser);
     },
     async login(store, credentials) {
@@ -112,32 +108,26 @@ export default createStore({
         method: 'POST',
         body: JSON.stringify(credentials),
       });
-
       let loggedInUser = await res.json();
       if ('Error' in loggedInUser) {
-        console.log('Detta blidde inte bra', loggedInUser);
         alert('Bad credentials');
         return;
       }
-      console.log('logged in user', loggedInUser);
       store.dispatch('fetchBookings', store);
       store.commit('setUser', loggedInUser);
     },
     async whoAmI(store) {
       let res = await fetch('/api/whoami');
       let user = await res.json();
-      console.log('whoAmI', user);
       store.commit('setUser', user);
     },
     async logout(store) {
-      let res = await fetch('/api/logout');
-      console.log('logged out');
+      await fetch('/api/logout');
       store.commit('setUser', null);
     },
     async fetchUsers(store) {
       let res = await fetch('/rest/users');
       let users = await res.json();
-
       store.commit('setUsers', users);
     },
     async fetchReviews(store, id) {
@@ -152,10 +142,14 @@ export default createStore({
       store.commit('setReplies', replies);
     },
 
+    async fetchBookedDates(store, id) {
+      let res = await fetch(`/rest/house/bookings/${id}`);
+      let bookedDates = await res.json();
+      store.commit('setBookedDates', bookedDates);
+    },
     async fetchBookings(store) {
       let res = await fetch('/rest/bookings');
       let bookings = await res.json();
-
       store.commit('setBookings', bookings);
     },
     async book(store, confirmedBooking) {
@@ -202,7 +196,6 @@ export default createStore({
     },
 
     async updateUser(store, userInfo) {
-      console.log(userInfo);
       let res = await fetch('/rest/users/' + this.state.user.id, {
         method: 'PUT',
         body: JSON.stringify(userInfo),
@@ -216,8 +209,6 @@ export default createStore({
       });
 
       let ok = await res.text();
-      // console.log('Delete of', ok);
-      // store.commit('deleteBooking', id);
     },
     async postReview(store, review) {
       let res = await fetch('/rest/post-review', {
@@ -227,7 +218,6 @@ export default createStore({
     },
 
     async postReply(store, review) {
-      console.log(review);
       let res = await fetch('/rest/post-reply', {
         method: 'POST',
         body: JSON.stringify(review),
