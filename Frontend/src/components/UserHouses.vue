@@ -60,7 +60,7 @@ export default {
       showCreateHome: false,
       amenities: [],
       amenitiesValidity: 'pending',
-      images: this.$store.state.uploadedNames,
+      images: [],
       showError: false,
       basicInfo: {
         price: '',
@@ -85,7 +85,7 @@ export default {
         },
         ownerId: '',
         position: '',
-        images: '',
+        images: [],
       },
     };
   },
@@ -163,7 +163,7 @@ export default {
     },
 
     async submitHome() {
-      console.log(this.images.length);
+      this.images = this.$store.state.uploadedNames;
       if (this.images.length === 0) {
         this.images = ['/images/No-Image.jpg'];
       }
@@ -196,6 +196,7 @@ export default {
       this.$store.dispatch('createHouse', hostObject);
       this.showCreateHome = false;
       this.userObjects.push(hostObject);
+      this.$store.state.uploadedNames = null;
     },
   },
 };
