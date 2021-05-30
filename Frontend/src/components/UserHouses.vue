@@ -120,11 +120,11 @@ export default {
         return false;
       } else {
         this.showValidityError = 'valid';
-        return true
+        return true;
       }
     },
     addNewHouse() {
-      if(!this.checkValidity()) return
+      if (!this.checkValidity()) return;
 
       if (this.basicInfo.zipcode == null) {
         this.basicInfo.zipcode = 'xxx';
@@ -163,8 +163,15 @@ export default {
     },
 
     async submitHome() {
-      if (this.images.length == 0) {
+      console.log(this.images.length);
+      if (this.images.length === 0) {
         this.images = ['/images/No-Image.jpg'];
+      }
+      console.log(this.images);
+      if (this.images.length < 8) {
+        for (let i = this.images.length; i < 8; i++) {
+          this.images[i] = '/images/No-Image.jpg';
+        }
       }
 
       let hostObject = {
