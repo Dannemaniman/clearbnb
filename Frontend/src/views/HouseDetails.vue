@@ -18,7 +18,7 @@
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal :home="home" />
+      <BookingModal :home="home" :bookedDates="bookedDates"/>
     </div>
     <br />
     <br />
@@ -73,9 +73,6 @@ export default {
     this.bookings.forEach((booking) => {
       this.bookedDates.push(booking.chosenDate)
     })
-
-    console.log(this.bookedDates)
-    //skicka in i bookingsModal
   },
 };
 </script>

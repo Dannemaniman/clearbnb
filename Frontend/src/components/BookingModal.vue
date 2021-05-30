@@ -8,7 +8,7 @@
       </h2>
     </header>
     <article>
-      <Calender @setDate="setDate" />
+      <Calender @setDate="setDate" :bookedDates="bookedDates"/>
       <GuestModal
         @increment="increment"
         @decrement="decrement"
@@ -43,7 +43,7 @@ import Calender from '../components/Calender.vue';
 import GuestModal from '../components/GuestModal.vue';
 
 export default {
-  props: ['home'],
+  props: ['home', 'bookedDates'],
   components: {
     Calender,
     GuestModal,

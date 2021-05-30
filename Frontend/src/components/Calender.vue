@@ -12,8 +12,9 @@
       </header>
       <div class='arrow-left' @click='moveLeft'></div>
        <article class='calender-month' ref="calenderMonth">
-         <CalenderTable v-for='(days, month, index) in daysPerMonth' :key="index" :month='month' :days='days' @setDate="setDate" :firstDate="firstDate" :secondDate="secondDate" :current="current"/>
-       </article>
+         <CalenderTable v-for='(days, month, index) in daysPerMonth' :key="index" :month='month' :days='days' @setDate="setDate" :firstDate="firstDate" :secondDate="secondDate" :current="current"
+         :bookedDates="bookedDates"/>   <!--:bookedDates="takenDaysPerCalender[index]"-->
+       </article> 
        <div class='arrow-right' @click='moveRight'></div>
       <button @click='closeModal'>Close</button>
     </div>
@@ -24,7 +25,8 @@
 import CalenderTable from "./CalenderTable.vue"
 
 export default {
-  emit: ['setDate'],
+  emit: ['setDate', 'bookedDates'],
+  props: ['bookedDates'],
   components: {
     CalenderTable
   },
@@ -44,7 +46,7 @@ export default {
       moveCounter: 0,
       daysPerMonth: {
         "January": 31,
-        "February": 28,
+        "February":  28,
         "March": 31,
         "April": 30,
         "May": 31, 
@@ -58,6 +60,7 @@ export default {
       },
       current: 0,
       firstElement: null,
+      bookedDatesCalender: this.bookedDates
     }
   },
   methods: {
@@ -70,6 +73,7 @@ export default {
       e.stopPropagation();
     },
     setDate(date, element) {
+      console.log(date, element)
       this.current === 0 ? this.firstDate = date : this.secondDate = date
       this.current === 0 ? this.current = 1 : this.current = 0
       if(this.current === 0) {
@@ -84,8 +88,6 @@ export default {
         element.style.backgroundColor = "lightblue"        
         this.$emit('setDate', date, this.current)
       }
-      
-   
     },
     moveRight() {
       this.moveCounter >= 12-2 ? this.moveCounter = 0 : this.moveCounter += 1

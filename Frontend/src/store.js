@@ -145,9 +145,7 @@ export default createStore({
     async fetchBookedDates(store, id) {
       let res = await fetch(`/rest/house/bookings/${id}`);
       let bookedDates = await res.json();
-      console.dir('INNE I FETCHBOOKEDDATES ' + bookedDates);
       store.commit('setBookedDates', bookedDates);
-      console.log(store.state.bookedDates);
     },
     async fetchBookings(store) {
       let res = await fetch('/rest/bookings');

@@ -115,9 +115,7 @@ public class Main {
 
         app.get("/rest/house/bookings/:id", (req, res) -> {
             List<Booking> bokningar = collection("Booking").find("houseId==" + req.params("id"));
-            System.out.println(req.params("id"));
             res.json(bokningar);
-            System.out.println(bokningar);
         });
 
         app.post("/rest/bookings", (req, res) -> {
