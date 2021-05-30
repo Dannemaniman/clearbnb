@@ -18,14 +18,14 @@
         <h3>{{ home.description }}</h3>
         <Amenities :amenities="home.amenities" />
       </div>
-      <BookingModal :home="home" :bookedDates="bookedDates"/>
+      <BookingModal :home="home" :bookedDates="bookedDates" />
     </div>
     <br />
     <br />
     <br />
     <br />
     <MapComponent :home="home" :inDetail="true" />
-    <Reviews :reviews="reviews" v-if="reviews.length"/>
+    <Reviews :reviews="reviews" v-if="reviews.length" />
     <Hosts :home="home" />
   </div>
 </template>
@@ -35,7 +35,7 @@ import Hosts from '../components/Hosts.vue';
 import BookingModal from '../components/BookingModal.vue';
 import Amenities from '../components/Amenities.vue';
 import MapComponent from '../components/MapComponent.vue';
-import Reviews from "../components/ReviewSlider.vue"
+import Reviews from '../components/ReviewSlider.vue';
 
 export default {
   components: { Amenities, Hosts, BookingModal, Reviews, MapComponent },
@@ -65,14 +65,14 @@ export default {
     this.home = data;
 
     await this.$store.dispatch('fetchReviews', this.home.id);
-    this.reviews = this.$store.state.reviews
+    this.reviews = this.$store.state.reviews;
 
-    await this.$store.dispatch('fetchBookedDates', this.home.id)
-    this.bookings = this.$store.state.bookedDates
+    await this.$store.dispatch('fetchBookedDates', this.home.id);
+    this.bookings = this.$store.state.bookedDates;
 
     this.bookings.forEach((booking) => {
-      this.bookedDates.push(booking.chosenDate)
-    })
+      this.bookedDates.push(booking.chosenDate);
+    });
   },
 };
 </script>
@@ -84,6 +84,7 @@ export default {
   border-radius: 10px;
   text-align: center;
   width: 100%;
+  padding: 0.1rem;
 }
 
 h1 {
@@ -108,9 +109,9 @@ h3 {
 
 @media screen and (max-width: 600px) {
   .content-holder {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 

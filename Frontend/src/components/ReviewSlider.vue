@@ -95,8 +95,8 @@ export default {
         reply: this.reviewText,
       };
       this.$store.dispatch('postReply', reply);
-      this.reviewText = ""
-      this.popReview(this.replyId)
+      this.reviewText = '';
+      this.popReview(this.replyId);
     },
     moveRight() {
       this.moveCounter >= this.reviews.length - 1
@@ -128,7 +128,7 @@ export default {
       if (this.showReview) {
         element.style.maxWidth = '100%';
         element.style.width = '100%';
-        element.style.height = '20rem'
+        element.style.height = '20rem';
         element.style.position = 'absolute';
         element.style.zIndex = '7';
         element.style.marginRight = '0';
@@ -141,7 +141,7 @@ export default {
         element.style.zIndex = '';
         element.style.marginRight = '';
         element.style.marginLeft = '';
-        element.style.height = ""
+        element.style.height = '';
       }
     },
   },
@@ -159,8 +159,6 @@ export default {
   font-size: 1.6rem;
 }
 
-
-
 .section-slider {
   width: 100%;
   background-color: grey;
@@ -176,7 +174,7 @@ export default {
 
 .slider-container {
   width: 100%;
-  min-height: 240px;;
+  min-height: 240px;
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -306,8 +304,6 @@ strong {
   line-height: 125%;
 }
 
-
-
 .review-header {
   display: flex;
   align-items: center;
@@ -318,6 +314,7 @@ strong {
 
 .review-header strong {
   padding-left: 1rem;
+  font-size: 1rem;
 }
 
 .author {
@@ -465,24 +462,23 @@ textarea {
 }
 
 @media screen and (max-width: 430px) {
-.reply {
-  margin: auto 0;
-  width: 100%;
-}
-.reply-content {
-  width: 100%;
-}
-.reply-author {
-  font-size: 6vw;
-}
-.review-topcard {
-  font-size: 8vw;
-}
+  .reply {
+    margin: auto 0;
+    width: 100%;
+  }
+  .reply-content {
+    width: 100%;
+  }
+  .reply-author {
+    font-size: 6vw;
+  }
+  .review-topcard {
+    font-size: 8vw;
+  }
 
-.reply-content {
-  font-size: 6vw;
-  overflow: hidden;
-}
-
+  .reply-content {
+    font-size: 6vw;
+    overflow: hidden;
+  }
 }
 </style>

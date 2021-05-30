@@ -54,13 +54,16 @@ export default {
 <style scoped>
 .section-host {
   margin-top: 6rem;
-
 }
 
 header {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.user-container h1 {
+  display: flex;
+  flex-direction: column;
 }
 
 .avatar {
@@ -81,7 +84,7 @@ h1 {
 }
 
 .span-name {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 300;
   margin-left: 0.2rem;
 }
@@ -101,12 +104,12 @@ article {
   border-radius: 10px 0 0 10px;
   background: white;
   padding: 2rem;
-  margin-left: 1rem;
   border-right: 5px solid rgba(0, 0, 0, 0.281);
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.027), 0 0 0 2px rgb(255, 255, 255),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 -3em 3em rgb(0 0 0 / 3%), 0 0 0 2px rgb(255 255 255),
+    0.3em 0.3em 1em rgb(0 0 0 / 30%);
   position: relative;
-  right: -1.9rem;
+  right: -1.4rem;
+  width: 90%;
 }
 
 h2 {
@@ -153,8 +156,8 @@ footer {
 }
 
 @media screen and (max-width: 430px) {
-.section-host{
-  overflow: hidden;
-} 
+  .section-host {
+    overflow: hidden;
+  }
 }
 </style>
