@@ -7,8 +7,6 @@
       </article>
     </div>
   </section>
-
-  <!-- const TILLGÄNGLIGA_IKONER = ['Bed', 'Breakfast', 'Camera', 'CCTV', 'Dinner', 'Elevator', 'Fridge', 'Heating', 'Iron', 'Mirror', 'Parking', 'Room Service', 'Sink', 'Tea', 'Television', 'Toothbrush', 'Towel', 'Wifi'] -->
 </template>
 
 <script>
@@ -30,7 +28,6 @@ export default {
 .section-amenities {
   display: flex;
   flex-direction: column;
-  /* background-color: #a9a9a9; */
   border-radius: 8px 8px 8px 2px;
 }
 

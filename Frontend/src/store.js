@@ -1,7 +1,6 @@
 import { createStore } from 'vuex';
 
 export default createStore({
-  // this.$store.state.variableName
   state: {
     houses: [],
     cheapestHouses: [],
@@ -18,7 +17,6 @@ export default createStore({
     bookedDates: [],
   },
 
-  // this.$store.commit('mutationName', data)
   mutations: {
     setHouses(state, houses) {
       state.houses = houses;
@@ -88,7 +86,6 @@ export default createStore({
     },
   },
 
-  // this.$store.dispatch('actionNamehouses)s
   actions: {
     async fetchHouses(store) {
       let res = await fetch('/rest/houses');
@@ -171,7 +168,6 @@ export default createStore({
       });
 
       let house = await res.json();
-      console.log('You created', house);
       store.commit('addHouses', house);
     },
 

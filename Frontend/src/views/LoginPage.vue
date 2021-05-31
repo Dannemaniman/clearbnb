@@ -13,9 +13,6 @@
       />
       <button class="login">Login</button>
       <hr />
-      <!--<router-link to="/">
-        <button class="cancel" type="button">Cancel</button>
-      </router-link> -->
       <router-link class="register" to="/register-page"
         >Register new account</router-link
       >

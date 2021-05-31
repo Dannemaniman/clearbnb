@@ -54,7 +54,7 @@ export default {
     this.checkBookedDates();
   },
   updated() {
-    this.currentMarker = this.current;
+    // this.currentMarker = this.current;
   },
   computed: {
     disabled() {
@@ -100,7 +100,7 @@ export default {
       let date = new Date(year, month, day).toLocaleDateString();
 
       if (this.currentMarker === 0 && event.target.children.length === 0) {
-        this.currentMarker = 1;
+        // this.currentMarker = 1;
         this.firstElement
           ? (this.firstElement.style.backgroundColor = '')
           : (this.firstElement = null);
@@ -119,7 +119,7 @@ export default {
         this.secondElement
           ? (this.secondElement.style.backgroundColor = '')
           : (this.secondElement = null);
-        this.currentMarker = 0;
+        // this.currentMarker = 0;
         this.firstOne = date;
         this.secondElement = event.target;
         this.$emit('setDate', date, this.secondElement);

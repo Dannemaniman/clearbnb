@@ -43,7 +43,7 @@ export default {
       let review = {
         review: this.reviewText,
         grade: this.grade,
-        authorId: this.$store.state.user.id, //if no user user "3333sawdawd!"
+        authorId: this.$store.state.user.id, 
         gradedHouse: this.houseId,
         avatar: '',
       };
