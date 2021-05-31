@@ -438,4 +438,26 @@
   "leaseStart" : null,
   "leaseEnd" : null,
   "bookings" : null
+}, {
+  "id" : "qyNhWDANq8ptv18qIqSXx",
+  "images" : [ "/images/houses/jason-briscoe-AQl-J19ocWE-unsplash.jpg", "/images/houses/greg-rivers-rChFUMwAe7E-unsplash.jpg", "/images/houses/ajacques-bopp-Hh18POSx5qk-unsplash.jpg", "/images/houses/roberto-nickson-tleCJiDOri0-unsplash.jpg", "/images/houses/patrick-perkins-3wylDrjxH-E-unsplash.jpg", "/images/houses/ralph-ravi-kayden-JDBVXignFdA-unsplash.jpg", "/images/houses/kara-eads-L7EwHkq1B2s-unsplash.jpg", "/images/houses/kam-idris-kyt0PkBSCNQ-unsplash.jpg" ],
+  "title" : "Martins Hem",
+  "address" : "Rudeboksvägen 288",
+  "zipcode" : "22655",
+  "city" : "Lund",
+  "propertyType" : "apartment",
+  "accommodation" : {
+    "bathrooms" : 2,
+    "beds" : 3
+  },
+  "description" : "Martins hem här",
+  "price" : 1001,
+  "childDiscount" : 26,
+  "seniorDiscount" : 30,
+  "amenities" : [ "Breakfast", "Dinner", "Sink", "Mirror", "Television", "Room Service", "CCTV", "Toothbrush", "Fridge", "Heating" ],
+  "ownerId" : "P9wPqnGo0oyJAudMCS9Nt",
+  "position" : [ 55.7271529, 13.1611516 ],
+  "leaseStart" : null,
+  "leaseEnd" : null,
+  "bookings" : null
 } ]
