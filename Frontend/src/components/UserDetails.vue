@@ -63,7 +63,6 @@ section {
 }
 
 table {
-  /* border: 1px solid black; */
   margin: 0 auto;
   font-size: 1.5rem;
   background: white;
@@ -75,24 +74,10 @@ th {
 
 td,
 th {
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.164); */
-  /* border: 1px solid orange; */
   padding: 1rem 3rem;
-  /* width: 100%; */
-  /* border: 1px solid black; */
   line-height: 120%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.226);
 }
-
-/* .create-button {
-  margin-top: 5rem;
-  margin-bottom: 3rem;
-  height: 2rem;
-  color: black;
-  border-radius: 10px;
-  outline: none;
-  cursor: pointer;
-} */
 
 button {
   margin-top: 3rem;
@@ -102,11 +87,9 @@ button {
   outline: none;
   font-weight: 700;
   cursor: pointer;
-  /* background: rgb(235, 235, 235); */
   background: transparent;
   transition: all 0.2s ease;
   border: 0;
-  /* border: 1px solid green; */
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
   background-repeat: no-repeat;
   background-size: contain;

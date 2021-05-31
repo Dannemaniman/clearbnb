@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import LoginPageVue from '../views/LoginPage.vue';
 import ReviewModal from './ReviewModal.vue';
 
 export default {

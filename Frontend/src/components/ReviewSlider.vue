@@ -277,7 +277,6 @@ img {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   font-size: 1.6rem;
-  /* overflow:scroll; */
 }
 
 .avatar-icon {
@@ -295,12 +294,6 @@ strong {
 }
 
 .reply-author {
-  /* white-space: nowrap;
-  overflow: hidden;
-  scroll-behavior: smooth;
-  /* text-overflow: ellipsis; */
-  /* max-width: 100px;  
-  overflow:scroll; */
   line-height: 125%;
 }
 
@@ -338,15 +331,6 @@ strong {
   left: 0;
   margin: 0 auto;
   width: 50%;
-  /* border-radius: 10px; */
-  /* background: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    font-size: 1.7rem;
-    padding: 1rem;
-    height: 50%;
-    bottom: 1rem;
-    text-align: left; */
 }
 
 .conversation-icon {
@@ -434,8 +418,6 @@ textarea {
 }
 
 .send-button {
-  /* height: 4rem;
-    width: 7rem; */
   padding: 1rem;
   font-size: 2.5rem;
   border-top: none;

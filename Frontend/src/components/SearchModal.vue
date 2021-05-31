@@ -205,8 +205,6 @@ export default {
   min-width: 22rem;
 }
 
-/*   */
-
 .selectors {
   display: flex;
   flex-direction: column;

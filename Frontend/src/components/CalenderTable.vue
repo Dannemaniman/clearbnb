@@ -53,9 +53,6 @@ export default {
   mounted() {
     this.checkBookedDates();
   },
-  updated() {
-    this.currentMarker = this.current;
-  },
   computed: {
     disabled() {
       return days - firstOne;
@@ -100,7 +97,6 @@ export default {
       let date = new Date(year, month, day).toLocaleDateString();
 
       if (this.currentMarker === 0 && event.target.children.length === 0) {
-        this.currentMarker = 1;
         this.firstElement
           ? (this.firstElement.style.backgroundColor = '')
           : (this.firstElement = null);
@@ -119,7 +115,6 @@ export default {
         this.secondElement
           ? (this.secondElement.style.backgroundColor = '')
           : (this.secondElement = null);
-        this.currentMarker = 0;
         this.firstOne = date;
         this.secondElement = event.target;
         this.$emit('setDate', date, this.secondElement);
@@ -302,13 +297,6 @@ export default {
     },
     checkBookedDates() {
       this.bookedDates.forEach((dateSet) => {
-        console.log(
-          'Start: ' +
-            new Date(dateSet[0]).toLocaleDateString() +
-            '|| End: ' +
-            new Date(dateSet[1]).toLocaleDateString()
-        );
-
         let startDate = new Date(dateSet[0]).toLocaleDateString();
         let endDate = new Date(dateSet[1]).toLocaleDateString();
         let start = new Date(dateSet[0]).getMonth();
@@ -323,9 +311,6 @@ export default {
         if (start === end) {
           type = 'same';
         }
-        console.log(start);
-        console.log(this.monthNames.indexOf(this.month));
-        console.log(end);
 
         //FIRST DATE
         let dateString = new Date(dateSet[0]).toLocaleDateString();
@@ -357,10 +342,6 @@ export default {
         } else if (
           this.monthNames[secondbookedDateMonth].trim() === this.month.trim()
         ) {
-          console.log('SECOND NUMBER TRIGGERED DETOGGLE');
-          console.log(
-            `starMonth: ${start}, day: ${startDay} || endMonth: ${end}, day: ${endDay} `
-          );
           this.detoggleFromBookings(
             Number(secondDay),
             Number(firstDay),
@@ -371,10 +352,6 @@ export default {
         } else if (
           this.monthNames[bookedDateMonth].trim() === this.month.trim()
         ) {
-          console.log('FIRST NUMBER TRIGGERED DETOGGLE FOR ' + this.month);
-          console.log(
-            `starMonth: ${start}, day: ${startDay} || endMonth: ${end}, day: ${endDay} `
-          );
           this.detoggleFromBookings(
             Number(secondDay),
             Number(firstDay),
@@ -422,9 +399,6 @@ export default {
               this.$refs.masterRow.childNodes[i].childNodes[
                 x
               ].style.pointerEvents = 'none';
-              console.log(
-                'GHEEEEEEEEEEEEEEEEEEEEEEEEEAWDAWEDAWDAWDAWDAWDAWDAWD'
-              );
               continue;
             }
 
@@ -450,7 +424,6 @@ export default {
                 this.$refs.masterRow.childNodes[i].childNodes[
                   x
                 ].style.pointerEvents = 'none';
-                console.log('delete lesser || second');
               }
             } else if (sameOrLesser === 'same')
               if (
@@ -466,7 +439,6 @@ export default {
                 this.$refs.masterRow.childNodes[i].childNodes[
                   x
                 ].style.pointerEvents = 'none';
-                console.log('delete same || first');
               }
           }
         }
@@ -491,13 +463,6 @@ export default {
               ].style.pointerEvents = 'none';
               return;
             }
-            console.log(sameOrLesser);
-            console.log(
-              this.$refs.masterRow.childNodes[i].childNodes[x].childNodes[0]
-                .data +
-                ' ||| ' +
-                firstDay
-            );
 
             if (sameOrLesser === 'all') {
               this.$refs.masterRow.childNodes[i].childNodes[x].style.opacity =
@@ -524,7 +489,6 @@ export default {
                 this.$refs.masterRow.childNodes[i].childNodes[
                   x
                 ].style.pointerEvents = 'none';
-                console.log('delete lesser || first');
               }
             } else if (sameOrLesser === 'same')
               if (
@@ -541,7 +505,6 @@ export default {
                 this.$refs.masterRow.childNodes[i].childNodes[
                   x
                 ].style.pointerEvents = 'none';
-                console.log('delete same || first');
               }
           }
         }

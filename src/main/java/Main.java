@@ -12,12 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static nosqlite.Database.collection;
-/*
-    C - Create  POST
-    R - Read    GET
-    U - Update  PUT
-    D - Delete  DELETE
- */
+
 public class Main {
     public static void main(String[] args) {
         Express app = new Express();
@@ -120,7 +115,6 @@ public class Main {
 
         app.post("/rest/bookings", (req, res) -> {
             Booking booking = req.body(Booking.class);
-            // Booking occupied = collection("Booking").find(and(eq("houseId" + booking.getHouseId()), eq("bookedDates" + booking.getBookedDates())));
             collection("Booking").save(booking);
             res.json(booking);
         });
@@ -142,16 +136,13 @@ public class Main {
         });
 
         app.get("/rest/reviews/:id", (req, res) -> {
-            //   List<Review> review = collection("Review").find("gradedHouse==" + req.params("id"));
             res.json(collection("Review").find("gradedHouse==" + req.params("id")));
         });
 
         app.get("/rest/replies/:id", (req, res) -> {
-            List<Reply> replies = collection("Reply").find("reviewId==" + req.params("id"));
             res.json(collection("Reply").find("reviewId==" + req.params("id")));
         });
 
-        // start server
         app.delete("rest/bookings/:id", (req, res) -> {
             res.json(collection("Booking").deleteById(req.params("id")));
         });
@@ -161,13 +152,10 @@ public class Main {
             List<UploadedFile> files = req.formDataFiles("files");
 
             for (UploadedFile file : files) {
-                //String id = req.params("id");
                 String filename = "/images/houses/" + file.getFilename();
                 uploadNames.add(filename);
-                // save file to static directory (creates dirs if necessary)
                 FileUtil.streamToFile(file.getContent(), "Frontend/public" + filename);
             }
-
             res.json(uploadNames);
         });
 

@@ -35,7 +35,6 @@ public class Auth {
 
         app.post("/api/login", (req, res) -> {
            User user = req.body(User.class);
-
            User userInColl = collection("User").findOne("email==" + user.getEmail());
 
            if (userInColl == null) {

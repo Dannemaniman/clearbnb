@@ -17,7 +17,6 @@ public class User {
     private String description;
     private String gender;
     private String image;
-    // ignore this property when saving to the collection
     @Transient private List<House> userHouses;
     @Transient private List<House> userBookings;
 

@@ -23,17 +23,6 @@ export default {
   },
   props: ['home'],
   methods: {
-    customMarker() {
-      var userIcon = L.icon({
-        iconUrl: '/munch.png',
-
-        iconSize: [30, 30], 
-        iconAnchor: [0, 0], 
-        popupAnchor: [0, 0], 
-      });
-      return userIcon;
-    },
-
     setupLeafletMap() {
       this.mapDiv = L.map('mapContainer').setView(this.center, 9);
       L.tileLayer(

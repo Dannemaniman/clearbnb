@@ -97,7 +97,7 @@ export default {
 
 .active {
   background-image: url('https://www.getaccept.com/hubfs/Product%20pages%202.0/Product%20tour/bottom%20wave.svg');
-    background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-size: contain;
   background-size: cover;
   filter:brightness(130%);

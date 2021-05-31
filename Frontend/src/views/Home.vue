@@ -25,7 +25,6 @@ import GalleryComponent from '../components/GalleryComponent.vue';
 import Slider from '../components/Slider.vue';
 import MapComponent from '../components/MapComponent.vue';
 import Spinner from '../components/Spinner.vue';
-import Typewriter from '../components/Typewriter.vue';
 
 export default {
   components: {
@@ -34,7 +33,6 @@ export default {
     Slider,
     MapComponent,
     Spinner,
-    Typewriter,
   },
   data() {
     return {

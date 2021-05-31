@@ -19,9 +19,6 @@
       />
       <button class="login">Register</button>
       <hr />
-      <!--<router-link to="/">
-        <button class="cancel" type="button">Cancel</button>
-      </router-link> -->
     </form>
   </div>
 </template>
@@ -43,7 +40,6 @@ export default {
         email: this.email,
         userPassword: this.userPassword,
       };
-
       this.$store.dispatch('register', credentials);
       this.$router.push('/');
     },

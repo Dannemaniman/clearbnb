@@ -25,7 +25,7 @@
     <br />
     <br />
     <MapComponent :home="home" :inDetail="true" />
-    <Reviews :reviews="reviews" v-if="reviews.length" />
+    <Reviews :reviews="reviews" v-if="reviews" />
     <Hosts :home="home" />
   </div>
 </template>
@@ -103,8 +103,6 @@ h3 {
   position: relative;
   display: flex;
   flex-direction: row;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 @media screen and (max-width: 600px) {
