@@ -97,8 +97,9 @@ export default {
           ? (this.firstElement = element)
           : (this.secondElement = element);
         element.style.backgroundColor = 'salmon';
-        this.$refs.calenderMonth.style.pointerEvents = "none"
-        this.$refs.button.style.boxShadow = "0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(30,255,28,0)"
+        this.$emit('setDate', date, this.current);
+         this.$refs.calenderMonth.style.pointerEvents = "none"
+         this.$refs.button.style.boxShadow = "0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(30,255,28,0)"
       } else if (this.current === 1) {
         this.secondElement
           ? (this.secondElement.style.backgroundColor = '')
